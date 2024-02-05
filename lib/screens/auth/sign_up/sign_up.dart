@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,6 +8,7 @@ import '../../../helpers/widgets/custom_container.dart';
 import '../../../helpers/widgets/input_field.dart';
 
 class SignUp extends StatelessWidget {
+  static const routeName = '/sign-up';
   const SignUp({super.key});
 
   @override
@@ -45,7 +48,9 @@ class SignUp extends StatelessWidget {
               ),
               10.verticalSpace,
               CustomContainer(
-                onTap: () {},
+                onTap: () {
+                  changePage(BottomNavBar.routeName);
+                },
                 text: 'Continue',
                 color: AppColors.lightPurple,
                 textColor: AppColors.pureWhite,

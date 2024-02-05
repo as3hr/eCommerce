@@ -1,12 +1,14 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/helpers/widgets/custom_container.dart';
 import 'package:e_commerce/helpers/widgets/input_field.dart';
-import 'package:e_commerce/screens/auth_screens/sign_up/sign_up.dart';
+import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -41,8 +43,7 @@ class LoginScreen extends StatelessWidget {
                 10.verticalSpace,
                 CustomContainer(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const SignUp()));
+                    changePage(SignUp.routeName);
                   },
                   text: 'Continue',
                   color: AppColors.lightPurple,

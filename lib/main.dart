@@ -1,3 +1,4 @@
+import 'package:e_commerce/routes.dart';
 import 'package:e_commerce/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return const GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
+            initialRoute: SplashScreen.routeName,
+            onGenerateRoute: Routes.onGenerateRoute,
           );
         });
   }
