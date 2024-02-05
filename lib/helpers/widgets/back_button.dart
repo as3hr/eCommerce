@@ -2,6 +2,8 @@ import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../styles/app_images.dart';
+
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key});
 
@@ -14,7 +16,7 @@ class CustomBackButton extends StatelessWidget {
       child: const CircleAvatar(
         backgroundColor: AppColors.grayI,
         radius: 20,
-        child: Icon(Icons.arrow_back_ios_rounded),
+        child: Image(image: AssetImage(AppImages.arrowBackward)),
       ),
     );
   }

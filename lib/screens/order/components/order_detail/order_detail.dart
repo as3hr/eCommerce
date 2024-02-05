@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail_container.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_status_list.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class OrderDetail extends StatelessWidget {
             const OrderDetailContainer(
                 child: Center(
               child: ListTile(
-                leading: Icon(Icons.bookmark_border),
+                leading: Image(image: AssetImage(AppImages.order)),
                 title: Text('4 items'),
                 trailing: Text('View all'),
               ),

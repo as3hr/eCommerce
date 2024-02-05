@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,12 +14,12 @@ class SearchField extends StatelessWidget {
         color: AppColors.grayI,
         borderRadius: BorderRadius.circular(30),
       ),
-      height: 55,
+      height: 45,
       width: 0.9.sw,
       child: Row(
         children: [
           13.horizontalSpace,
-          const Icon(Icons.search),
+          const Image(image: AssetImage(AppImages.search)),
           5.horizontalSpace,
           Expanded(
             child: Padding(

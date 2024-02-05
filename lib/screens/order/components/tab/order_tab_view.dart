@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,7 @@ class OrderTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 10,
+        itemCount: 3,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -24,14 +25,15 @@ class OrderTabView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
-                leading: const Icon(Icons.bookmark_border_outlined),
+                leading: const Image(image: AssetImage(AppImages.order)),
                 title: const Text('This is just for testing the UI'),
                 subtitle: const Text('4 items'),
                 trailing: GestureDetector(
                     onTap: () {
                       changePage(OrderDetail.routeName);
                     },
-                    child: const Icon(Icons.arrow_forward_ios_rounded)),
+                    child:
+                        const Image(image: AssetImage(AppImages.arrowForward))),
               ),
             ),
           );

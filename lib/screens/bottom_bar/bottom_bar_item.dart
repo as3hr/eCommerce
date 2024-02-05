@@ -13,18 +13,16 @@ class BottomBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<BottomNavBarController>(builder: (controller) {
       return GestureDetector(
-        onTap: () {
-          controller.setIndex(index);
-          item.onTap.call(context);
-        },
-        child: Icon(
-          item.icon,
-          size: 30,
-          color: controller.currentIndex == index
-              ? AppColors.lightPurple
-              : AppColors.grayI,
-        ),
-      );
+          onTap: () {
+            controller.setIndex(index);
+            item.onTap.call(context);
+          },
+          child: Image(
+            image: AssetImage(item.image),
+            color: controller.currentIndex == index
+                ? AppColors.lightPurple
+                : AppColors.grayIV,
+          ));
     });
   }
 }

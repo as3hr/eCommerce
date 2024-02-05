@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class NotificationList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const ListTile(
-                leading: Icon(Icons.notifications_active_outlined),
+                leading: Image(image: AssetImage(AppImages.notification)),
                 title: Text(
                     'This is just for testing the UI This is just for testing the UI This is just for testing the UI'),
               ),

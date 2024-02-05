@@ -23,7 +23,7 @@ class AllCategories extends StatelessWidget {
                 child: Column(
                   children: [
                     const CircleAvatar(
-                      backgroundColor: AppColors.lightPurple,
+                      backgroundColor: AppColors.grayI,
                       radius: 30,
                     ),
                     3.verticalSpace,

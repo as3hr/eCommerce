@@ -14,8 +14,11 @@ class ItemsList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: ((context, index) {
-            return const ItemContainer(
-                image: '', title: 'Mens t shirt', price: 1200);
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ItemContainer(
+                  onTap: () {}, image: '', title: 'Mens t shirt', price: 1200),
+            );
           })),
     );
   }

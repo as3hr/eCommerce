@@ -9,19 +9,24 @@ class ItemContainer extends StatelessWidget {
       required this.image,
       this.isFav = false,
       required this.title,
+      required this.onTap,
       required this.price});
   final String image;
   final bool isFav;
   final String title;
+  final Function() onTap;
   final int price;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
-        height: 280,
+        height: 024.sh,
         width: 0.5.sw,
-        color: AppColors.grayI,
+        decoration: BoxDecoration(
+          color: AppColors.grayI,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Stack(
           children: [
             const Center(child: Icon(Icons.abc_sharp)),
@@ -33,9 +38,14 @@ class ItemContainer extends StatelessWidget {
             Positioned(
                 bottom: 0,
                 child: Container(
-                  height: 60,
+                  height: 55,
                   width: 0.5.sw,
-                  color: AppColors.grayIII,
+                  decoration: const BoxDecoration(
+                    color: AppColors.grayIII,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                     child: Column(
