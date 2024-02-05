@@ -29,10 +29,10 @@ class BottomNavBar extends StatelessWidget {
               ),
               bottomNavigationBar: Container(
                 color: AppColors.pureWhite,
-                height: 70,
+                height: 65,
                 width: 1.sw,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: BottomBar.allBottomBarItems
                       .mapIndexed((index, item) =>
                           BottomBarItem(item: item, index: index))

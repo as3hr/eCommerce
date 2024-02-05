@@ -1,1 +1,4 @@
-class AppImages {}
+class AppImages {
+  static const baseUrl = 'assets/images';
+  static const bellImage = '$baseUrl/bell.png';
+}
