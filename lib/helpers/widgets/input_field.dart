@@ -1,5 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/decoration.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {

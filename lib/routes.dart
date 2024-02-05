@@ -5,6 +5,7 @@ import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/notification/notification_screen.dart';
+import 'package:e_commerce/screens/order/components/order_detail/order_detail.dart';
 import 'package:e_commerce/screens/order/order_screen.dart';
 import 'package:e_commerce/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,13 @@ class Routes {
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const OrderScreen(),
+        );
+      case OrderDetail.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const OrderDetail(),
         );
       case NotificationScreen.routeName:
         return GetPageRoute(

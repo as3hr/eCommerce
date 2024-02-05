@@ -7,6 +7,8 @@ class CustomContainer extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.preFixIcon,
+    this.width,
+    this.height,
     required this.color,
     required this.textColor,
   });
@@ -15,7 +17,8 @@ class CustomContainer extends StatelessWidget {
   final Function() onTap;
   final Color color;
   final Color textColor;
-
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,8 +26,8 @@ class CustomContainer extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 75,
-          width: 1.sw,
+          height: height ?? 75,
+          width: width ?? 1.sw,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35),
             color: color,

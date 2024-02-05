@@ -9,4 +9,5 @@ class AppColors {
   static const grayII = Color(0xffF5F5F5);
   static const grayIII = Color(0xffDEDEDE);
   static const grayIV = Colors.grey;
+  static const transparent = Color(0x00ffffff);
 }

@@ -17,7 +17,7 @@ class NotificationScreen extends StatelessWidget {
           child: Column(
             children: [
               50.verticalSpace,
-              const Center(child: Text('Notification')),
+              const Center(child: Text('Notifications')),
               // const EmptyNotifications(),
               15.verticalSpace,
               const NotificationList(),
