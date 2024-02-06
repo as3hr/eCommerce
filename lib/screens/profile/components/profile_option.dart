@@ -1,4 +1,9 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/address_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/help_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/support_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist_screen.dart';
 
 class ProfileOption {
   final String title;
@@ -6,30 +11,30 @@ class ProfileOption {
 
   ProfileOption({required this.title, required this.onTap});
 
-  static final allOption = [
+  static final allOptions = [
     ProfileOption(
         onTap: () {
-          changePage('');
+          changePage(AddressScreen.routeName);
         },
         title: 'Address'),
     ProfileOption(
         onTap: () {
-          changePage('');
+          changePage(WishListScreen.routeName);
         },
         title: 'Wishlist'),
     ProfileOption(
         onTap: () {
-          changePage('');
+          changePage(PaymentScreen.routeName);
         },
         title: 'Payment'),
     ProfileOption(
         onTap: () {
-          changePage('');
+          changePage(HelpScreen.routeName);
         },
         title: 'Help'),
     ProfileOption(
         onTap: () {
-          changePage('');
+          changePage(SupportScreen.routeName);
         },
         title: 'Support'),
   ];

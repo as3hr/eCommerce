@@ -13,9 +13,9 @@ class ProfileOptionList extends StatelessWidget {
     return SizedBox(
       height: 0.48.sh,
       child: ListView.builder(
-          itemCount: ProfileOption.allOption.length,
+          itemCount: ProfileOption.allOptions.length,
           itemBuilder: (context, index) {
-            final option = ProfileOption.allOption[index];
+            final option = ProfileOption.allOptions[index];
             return Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: CustomTile(

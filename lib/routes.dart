@@ -8,6 +8,11 @@ import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/notification/notification_screen.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail.dart';
 import 'package:e_commerce/screens/order/order_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/address_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/help_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/support_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist_screen.dart';
 import 'package:e_commerce/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,6 +94,41 @@ class Routes {
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const NotificationScreen(),
+        );
+      case AddressScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const AddressScreen(),
+        );
+      case WishListScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const WishListScreen(),
+        );
+      case PaymentScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const PaymentScreen(),
+        );
+      case HelpScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const HelpScreen(),
+        );
+      case SupportScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const SupportScreen(),
         );
       default:
         return _errorRoute(settings);
