@@ -4,13 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../helpers/styles/app_colors.dart';
 
 class OrderTab extends StatelessWidget {
-  const OrderTab({super.key, required this.text});
+  const OrderTab({super.key, required this.text, this.height, this.width});
   final String text;
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 25,
-      width: 0.2.sw,
+      height: height ?? 25,
+      width: width ?? 0.2.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: AppColors.grayI,

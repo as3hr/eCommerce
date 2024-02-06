@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ class ItemContainer extends StatelessWidget {
       required this.image,
       this.isFav = false,
       required this.title,
+      this.width,
       required this.onTap,
       required this.price});
   final String image;
@@ -16,30 +18,40 @@ class ItemContainer extends StatelessWidget {
   final String title;
   final Function() onTap;
   final int price;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         height: 024.sh,
-        width: 0.5.sw,
+        width: width ?? 0.4.sw,
         decoration: BoxDecoration(
           color: AppColors.grayI,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
           children: [
-            const Center(child: Icon(Icons.abc_sharp)),
+            const Center(
+              child: Image(
+                image: AssetImage(AppImages.bellImage),
+                fit: BoxFit.fitHeight,
+              ),
+            ),
             Positioned(
               top: 10,
               right: 5,
-              child: Icon(isFav ? Icons.favorite : Icons.favorite_border),
+              child: isFav
+                  ? const Icon(Icons.favorite)
+                  : const Image(
+                      image: AssetImage(AppImages.favIconUnfilled),
+                    ),
             ),
             Positioned(
                 bottom: 0,
                 child: Container(
                   height: 55,
-                  width: 0.5.sw,
+                  width: width ?? 0.4.sw,
                   decoration: const BoxDecoration(
                     color: AppColors.grayIII,
                     borderRadius: BorderRadius.only(

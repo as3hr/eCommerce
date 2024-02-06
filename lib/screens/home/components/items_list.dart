@@ -17,7 +17,11 @@ class ItemsList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ItemContainer(
-                  onTap: () {}, image: '', title: 'Mens t shirt', price: 1200),
+                  onTap: () {},
+                  width: 0.5.sw,
+                  image: '',
+                  title: 'Mens t shirt',
+                  price: 1200),
             );
           })),
     );

@@ -1,4 +1,7 @@
+import 'package:e_commerce/helpers/functions/bottom_sheet.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
+import 'package:e_commerce/helpers/widgets/custom_bottom_sheet_body.dart';
 import 'package:e_commerce/helpers/widgets/item_container.dart';
 import 'package:e_commerce/helpers/widgets/modal_drop_down.dart';
 import 'package:e_commerce/screens/order/components/tab/order_tab.dart';
@@ -20,7 +23,10 @@ class CategoryContent extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: OrderTab(text: 'On Sale'),
+                child: OrderTab(
+                  text: 'On Sale',
+                  height: 35,
+                ),
               ),
               ModalDropDown(
                 text: 'Price',
@@ -30,13 +36,34 @@ class CategoryContent extends StatelessWidget {
               ),
               ModalDropDown(
                 text: 'Sort By',
-                onTap: () {},
+                onTap: () {
+                  viewBottomSheet(
+                      context,
+                      'Sort By',
+                      const CustomBottomSheetBody(containers: [
+                        BottomSheetContainer(title: 'Recommended', index: 0),
+                        BottomSheetContainer(title: 'Newest', index: 1),
+                        BottomSheetContainer(
+                            title: 'Lowset-Highest Price', index: 2),
+                        BottomSheetContainer(
+                            title: 'Highest-Lowest Price', index: 3),
+                      ]));
+                },
               ),
               ModalDropDown(
                 text: 'Men',
                 textColor: AppColors.pureWhite,
                 color: AppColors.lightPurple,
-                onTap: () {},
+                onTap: () {
+                  viewBottomSheet(
+                      context,
+                      'Gender',
+                      const CustomBottomSheetBody(containers: [
+                        BottomSheetContainer(title: 'Men', index: 0),
+                        BottomSheetContainer(title: 'Women', index: 1),
+                        BottomSheetContainer(title: 'Kids', index: 2),
+                      ]));
+                },
               ),
             ],
           ),
@@ -50,20 +77,19 @@ class CategoryContent extends StatelessWidget {
             child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
+                  childAspectRatio: 0.7,
                 ),
+                padding: EdgeInsets.zero,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 280,
-                    width: 1.sw,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ItemContainer(
-                          image: '',
-                          title: 'Women T shirt',
-                          price: 3000,
-                          onTap: () {}),
-                    ),
+                  return Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ItemContainer(
+                        image: '',
+                        width: 0.463.sw,
+                        title: 'Women T shirt',
+                        price: 3000,
+                        onTap: () {}),
                   );
                 }),
           ),

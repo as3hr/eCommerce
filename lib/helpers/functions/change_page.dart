@@ -4,14 +4,15 @@ import 'package:get/get.dart';
 import '../../screens/bottom_bar/bottom_nav_bar.dart';
 
 void changePage(String routeName,
-    {bool nested = false, BuildContext? context}) {
+    {bool nested = false, BuildContext? context, arguments}) {
   if (nested) {
     Get.offNamedUntil(
       routeName,
       id: 1,
       ModalRoute.withName(BottomNavBar.routeName),
+      arguments: arguments,
     );
   } else {
-    Get.toNamed(routeName);
+    Get.toNamed(routeName, arguments: arguments);
   }
 }
