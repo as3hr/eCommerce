@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,8 @@ class BottomSheetContainer extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: AppDecoration.semiBoldStyle(
+                            fontSize: 20,
                             color: isSelected
                                 ? AppColors.pureWhite
                                 : AppColors.pureBlack),

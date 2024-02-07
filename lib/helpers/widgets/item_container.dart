@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,9 +67,15 @@ class ItemContainer extends StatelessWidget {
                       children: [
                         Text(
                           title,
+                          style: AppDecoration.semiMediumStyle(
+                              fontSize: 17.5, color: AppColors.pureBlack),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Text('\$$price'),
+                        Text(
+                          '\$$price',
+                          style: AppDecoration.boldStyle(
+                              fontSize: 16, color: AppColors.pureBlack),
+                        ),
                       ],
                     ),
                   ),

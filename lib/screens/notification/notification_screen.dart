@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/notification/components/notifications_list.dart';
 import 'package:e_commerce/screens/notification/notification_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,12 @@ class NotificationScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     50.verticalSpace,
-                    const Center(child: Text('Notifications')),
+                    Center(
+                        child: Text(
+                      'Notifications',
+                      style: AppDecoration.boldStyle(
+                          fontSize: 18, color: AppColors.pureBlack),
+                    )),
                     // const EmptyNotifications(),
                     15.verticalSpace,
                     const NotificationList(),

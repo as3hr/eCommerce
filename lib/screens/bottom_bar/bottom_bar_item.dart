@@ -21,7 +21,7 @@ class BottomBarItem extends StatelessWidget {
             image: AssetImage(item.image),
             color: controller.currentIndex == index
                 ? AppColors.lightPurple
-                : AppColors.grayIV,
+                : AppColors.lightBlack,
           ));
     });
   }

@@ -16,7 +16,10 @@ class CustomBackButton extends StatelessWidget {
       child: const CircleAvatar(
         backgroundColor: AppColors.grayI,
         radius: 20,
-        child: Image(image: AssetImage(AppImages.arrowBackward)),
+        child: Image(
+          image: AssetImage(AppImages.arrowBackward),
+          color: AppColors.pureBlack,
+        ),
       ),
     );
   }

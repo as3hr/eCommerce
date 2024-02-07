@@ -22,7 +22,7 @@ class EmptyOrders extends StatelessWidget {
           text: 'Explore Categories',
           color: AppColors.lightPurple,
           textColor: AppColors.grayI,
-          width: 0.4.sw,
+          width: 0.45.sw,
           height: 55,
         ),
       ],

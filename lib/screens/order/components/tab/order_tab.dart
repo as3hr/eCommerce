@@ -12,12 +12,15 @@ class OrderTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height ?? 25,
-      width: width ?? 0.2.sw,
+      width: width ?? 0.23.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: AppColors.grayI,
       ),
-      child: Center(child: Text(text)),
+      child: Center(
+          child: Text(
+        text,
+      )),
     );
   }
 }

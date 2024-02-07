@@ -1,5 +1,7 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../helpers/styles/app_colors.dart';
@@ -21,16 +23,35 @@ class OrderContent extends StatelessWidget {
                 overlayColor: MaterialStateProperty.resolveWith((states) {
                   return Colors.transparent;
                 }),
+                labelStyle: AppDecoration.mediumStyle(
+                    fontSize: 16, color: AppColors.lightPurple),
+                unselectedLabelStyle: AppDecoration.mediumStyle(
+                    fontSize: 14, color: AppColors.pureBlack),
                 dividerColor: AppColors.transparent,
                 indicatorColor: AppColors.transparent,
                 controller: controller.tabController,
                 padding: const EdgeInsets.all(10),
-                tabs: const [
-                  OrderTab(text: 'Processing'),
-                  OrderTab(text: 'Shipped'),
-                  OrderTab(text: 'Delivered'),
-                  OrderTab(text: 'Returned'),
-                  OrderTab(text: 'Cancelled'),
+                tabs: [
+                  OrderTab(
+                    text: 'Processing',
+                    width: 0.24.sw,
+                  ),
+                  OrderTab(
+                    text: 'Shipped',
+                    width: 0.24.sw,
+                  ),
+                  OrderTab(
+                    text: 'Delivered',
+                    width: 0.24.sw,
+                  ),
+                  OrderTab(
+                    text: 'Returned',
+                    width: 0.24.sw,
+                  ),
+                  OrderTab(
+                    text: 'Cancelled',
+                    width: 0.24.sw,
+                  ),
                 ]),
             Expanded(
                 child: TabBarView(

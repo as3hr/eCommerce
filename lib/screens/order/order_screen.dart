@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/order/components/order_content.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,14 @@ class OrderScreen extends StatelessWidget {
               child: Column(
                 children: [
                   55.verticalSpace,
-                  const Center(
-                    child: Text('Orders'),
+                  Center(
+                    child: Text(
+                      'Orders',
+                      style: AppDecoration.boldStyle(
+                          fontSize: 18, color: AppColors.pureBlack),
+                    ),
                   ),
-                  35.verticalSpace,
+                  25.verticalSpace,
                   // const EmptyOrders(),
                   const OrderContent(),
                 ],

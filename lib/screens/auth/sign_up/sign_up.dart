@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,11 +23,12 @@ class SignUp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               80.verticalSpace,
-              const Padding(
-                padding: EdgeInsets.only(left: 20.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
                 child: Text(
                   'Create Account',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                  style: AppDecoration.boldStyle(
+                      fontSize: 35, color: AppColors.pureBlack),
                 ),
               ),
               20.verticalSpace,
@@ -48,6 +50,8 @@ class SignUp extends StatelessWidget {
               ),
               10.verticalSpace,
               CustomContainer(
+                height: 65,
+                width: 0.97.sw,
                 onTap: () {
                   changePage(BottomNavBar.routeName);
                 },

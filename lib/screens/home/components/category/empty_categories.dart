@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,15 +16,18 @@ class EmptyCategories extends StatelessWidget {
         90.verticalSpace,
         const Image(image: AssetImage(AppImages.categorySearch)),
         5.verticalSpace,
-        const Text(
-            "Sorry, we couldn't find any\nmatching result for your\nSearch."),
+        Text(
+          "Sorry, we couldn't find any\n  matching result for your\n                Search.",
+          style: AppDecoration.semiBoldStyle(
+              fontSize: 25, color: AppColors.pureBlack),
+        ),
         5.verticalSpace,
         CustomContainer(
           onTap: () {},
           text: 'Explore Categories',
           color: AppColors.lightPurple,
           textColor: AppColors.grayI,
-          width: 0.4.sw,
+          width: 0.45.sw,
           height: 55,
         ),
       ],

@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +17,12 @@ class EmptyNotifications extends StatelessWidget {
           child: Image(image: AssetImage(AppImages.bellImage)),
         ),
         10.verticalSpace,
-        const Center(child: Text('No Notification yet')),
+        Center(
+            child: Text(
+          'No Notification yet',
+          style:
+              AppDecoration.boldStyle(fontSize: 20, color: AppColors.pureBlack),
+        )),
       ],
     );
   }

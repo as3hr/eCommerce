@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,22 +21,23 @@ class SearchField extends StatelessWidget {
         children: [
           13.horizontalSpace,
           const Image(image: AssetImage(AppImages.search)),
-          5.horizontalSpace,
+          10.horizontalSpace,
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(right: 5.0),
               child: TextFormField(
                   cursorColor: AppColors.lightPurple,
                   onChanged: onChanged,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(0),
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(0),
                     hintText: 'Search',
-                    hintStyle: TextStyle(color: AppColors.grayIV),
-                    focusedBorder: OutlineInputBorder(
+                    hintStyle: AppDecoration.mediumStyle(
+                        fontSize: 16.sp, color: AppColors.lightBlack),
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Colors.transparent,
                     )),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Colors.transparent,
                     )),

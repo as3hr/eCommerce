@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 
 class SpacerRow extends StatelessWidget {
@@ -11,8 +13,16 @@ class SpacerRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(text1),
-          Text(text2 ?? ''),
+          Text(
+            text1,
+            style: AppDecoration.boldStyle(
+                fontSize: 20, color: AppColors.pureBlack),
+          ),
+          Text(
+            text2 ?? '',
+            style: AppDecoration.semiBoldStyle(
+                fontSize: 17, color: AppColors.pureBlack),
+          ),
         ],
       ),
     );

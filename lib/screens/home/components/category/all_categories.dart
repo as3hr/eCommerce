@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,7 +28,11 @@ class AllCategories extends StatelessWidget {
                       radius: 30,
                     ),
                     3.verticalSpace,
-                    Text(category.title),
+                    Text(
+                      category.title,
+                      style: AppDecoration.mediumStyle(
+                          fontSize: 15, color: AppColors.pureBlack),
+                    ),
                   ],
                 ),
               ),

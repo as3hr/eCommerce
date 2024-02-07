@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,8 @@ class ModalDropDown extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 4.0),
                         child: Text(
                           text,
-                          style: TextStyle(
+                          style: AppDecoration.mediumStyle(
+                              fontSize: 15,
                               color: textColor ?? AppColors.pureBlack),
                         ),
                       ),

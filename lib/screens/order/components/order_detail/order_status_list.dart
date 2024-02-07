@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,28 +11,58 @@ class OrderStatusList extends StatelessWidget {
     return Column(
       children: [
         20.verticalSpace,
-        const ListTile(
-          leading: Icon(Icons.check_circle),
-          title: Text('Delivered'),
-          trailing: Text('28 May'),
+        ListTile(
+          leading: const Icon(
+            Icons.check_circle,
+            color: AppColors.lightPurple,
+          ),
+          title: Text(
+            'Delivered',
+            style: AppDecoration.mediumStyle(
+                fontSize: 18, color: AppColors.pureBlack),
+          ),
+          trailing: Text('28 May',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 15, color: AppColors.pureBlack)),
         ),
         8.verticalSpace,
-        const ListTile(
-          leading: Icon(Icons.check_circle),
-          title: Text('Shipped'),
-          trailing: Text('28 May'),
+        ListTile(
+          leading: const Icon(
+            Icons.check_circle,
+            color: AppColors.lightPurple,
+          ),
+          title: Text('Shipped',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 18, color: AppColors.pureBlack)),
+          trailing: Text('28 May',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 15, color: AppColors.pureBlack)),
         ),
         8.verticalSpace,
-        const ListTile(
-          leading: Icon(Icons.check_circle),
-          title: Text('Order Confirmed'),
-          trailing: Text('28 May'),
+        ListTile(
+          leading: const Icon(
+            Icons.check_circle,
+            color: AppColors.lightPurple,
+          ),
+          title: Text('Order Confirmed',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 18, color: AppColors.pureBlack)),
+          trailing: Text('28 May',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 15, color: AppColors.pureBlack)),
         ),
         8.verticalSpace,
-        const ListTile(
-          leading: Icon(Icons.check_circle),
-          title: Text('Order Placed'),
-          trailing: Text('28 May'),
+        ListTile(
+          leading: const Icon(
+            Icons.check_circle,
+            color: AppColors.lightPurple,
+          ),
+          title: Text('Order Placed',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 18, color: AppColors.pureBlack)),
+          trailing: Text('28 May',
+              style: AppDecoration.mediumStyle(
+                  fontSize: 15, color: AppColors.pureBlack)),
         ),
         20.verticalSpace,
       ],

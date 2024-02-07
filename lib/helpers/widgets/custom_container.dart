@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ class CustomContainer extends StatelessWidget {
     this.preFixIcon,
     this.width,
     this.height,
+    this.fontSize,
     required this.color,
     required this.textColor,
   });
@@ -19,6 +21,7 @@ class CustomContainer extends StatelessWidget {
   final Color textColor;
   final double? width;
   final double? height;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +50,8 @@ class CustomContainer extends StatelessWidget {
               Center(
                 child: Text(
                   text,
-                  style: TextStyle(color: textColor),
+                  style: AppDecoration.semiBoldStyle(
+                      fontSize: fontSize ?? 20, color: textColor),
                 ),
               ),
             ],

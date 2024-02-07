@@ -7,6 +7,8 @@ import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../helpers/styles/app_decoration.dart';
+
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login';
   const LoginScreen({super.key});
@@ -24,11 +26,12 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 80.verticalSpace,
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
                   child: Text(
                     'Sign in',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                    style: AppDecoration.boldStyle(
+                        fontSize: 35, color: AppColors.pureBlack),
                   ),
                 ),
                 10.verticalSpace,
@@ -42,6 +45,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 10.verticalSpace,
                 CustomContainer(
+                  height: 65,
+                  width: 0.97.sw,
                   onTap: () {
                     changePage(SignUp.routeName);
                   },
@@ -49,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                   color: AppColors.lightPurple,
                   textColor: AppColors.pureWhite,
                 ),
+                10.verticalSpace,
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: EasyRichText(
@@ -62,6 +68,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 60.verticalSpace,
                 CustomContainer(
+                  height: 65,
+                  width: 0.97.sw,
                   onTap: () {},
                   preFixIcon: Icons.apple,
                   text: 'Continue With Apple',
@@ -69,6 +77,8 @@ class LoginScreen extends StatelessWidget {
                   textColor: AppColors.pureBlack,
                 ),
                 CustomContainer(
+                  height: 65,
+                  width: 0.97.sw,
                   onTap: () {},
                   preFixIcon: Icons.g_mobiledata_outlined,
                   text: 'Continue With Google',
@@ -76,6 +86,8 @@ class LoginScreen extends StatelessWidget {
                   textColor: AppColors.pureBlack,
                 ),
                 CustomContainer(
+                  height: 65,
+                  width: 0.97.sw,
                   onTap: () {},
                   preFixIcon: Icons.facebook,
                   text: 'Continue With Facebook',

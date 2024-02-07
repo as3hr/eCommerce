@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,9 +16,13 @@ class InitialCategoryScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           20.verticalSpace,
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text('Shop By Categories'),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              'Shop By Categories',
+              style: AppDecoration.boldStyle(
+                  fontSize: 25, color: AppColors.pureBlack),
+            ),
           ),
           10.verticalSpace,
           Expanded(
@@ -38,7 +43,11 @@ class InitialCategoryScreen extends StatelessWidget {
                           child: ListTile(
                               leading: const Image(
                                   image: AssetImage(AppImages.profile)),
-                              title: Text(item.title))),
+                              title: Text(
+                                item.title,
+                                style: AppDecoration.mediumStyle(
+                                    fontSize: 18, color: AppColors.pureBlack),
+                              ))),
                     ),
                   );
                 }),

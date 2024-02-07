@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,13 +16,28 @@ void viewBottomSheet(
           height: 0.45.sh,
           child: Column(
             children: [
-              10.verticalSpace,
+              20.verticalSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Clear'),
-                  Text(titleText),
-                  const Text('X'),
+                  Text(
+                    'Clear',
+                    style: AppDecoration.semiBoldStyle(
+                        fontSize: 20, color: AppColors.pureBlack),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Text(
+                      titleText,
+                      style: AppDecoration.boldStyle(
+                          fontSize: 23, color: AppColors.pureBlack),
+                    ),
+                  ),
+                  Text(
+                    'X',
+                    style: AppDecoration.semiBoldStyle(
+                        fontSize: 20, color: AppColors.pureBlack),
+                  ),
                 ],
               ),
               25.verticalSpace,

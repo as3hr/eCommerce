@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail_container.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_status_list.dart';
@@ -25,37 +26,63 @@ class OrderDetail extends StatelessWidget {
                 20.horizontalSpace,
                 const CustomBackButton(),
                 90.horizontalSpace,
-                const Center(
-                  child: Text('Order #34521'),
+                Center(
+                  child: Text(
+                    'Order #34521',
+                    style: AppDecoration.boldStyle(
+                        fontSize: 23, color: AppColors.pureBlack),
+                  ),
                 ),
               ],
             ),
             const OrderStatusList(),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text('Order Items'),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'Order Items',
+                style: AppDecoration.boldStyle(
+                    fontSize: 17, color: AppColors.pureBlack),
+              ),
             ),
             15.verticalSpace,
-            const OrderDetailContainer(
+            OrderDetailContainer(
                 child: Center(
               child: ListTile(
-                leading: Image(image: AssetImage(AppImages.order)),
-                title: Text('4 items'),
-                trailing: Text('View all'),
+                leading: const Image(
+                  image: AssetImage(AppImages.order),
+                  color: AppColors.pureBlack,
+                ),
+                title: Text(
+                  '4 items',
+                  style: AppDecoration.mediumStyle(
+                      fontSize: 15, color: AppColors.pureBlack),
+                ),
+                trailing: Text(
+                  'View all',
+                  style: AppDecoration.mediumStyle(
+                      fontSize: 12, color: AppColors.lightPurple),
+                ),
               ),
             )),
             20.verticalSpace,
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text('Shipping Details'),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'Shipping Details',
+                style: AppDecoration.boldStyle(
+                    fontSize: 17, color: AppColors.pureBlack),
+              ),
             ),
             15.verticalSpace,
-            const OrderDetailContainer(
+            OrderDetailContainer(
               child: Center(
                   child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    'Jail Chowrangi near Aligarh Collegiate, Building: Saima Apartments, flat #109, Block B, postal code: 74555'),
+                  'Jail Chowrangi near Aligarh Collegiate, Building: Saima Apartments, flat #109, Block B, postal code: 74555',
+                  style: AppDecoration.boldStyle(
+                      fontSize: 13, color: AppColors.lightBlack),
+                ),
               )),
             ),
           ],
