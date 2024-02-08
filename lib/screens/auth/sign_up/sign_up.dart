@@ -1,6 +1,6 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
+import 'package:e_commerce/screens/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -53,7 +53,7 @@ class SignUp extends StatelessWidget {
                 height: 65,
                 width: 0.97.sw,
                 onTap: () {
-                  changePage(BottomNavBar.routeName);
+                  changePage(LoginScreen.routeName);
                 },
                 text: 'Continue',
                 color: AppColors.lightPurple,

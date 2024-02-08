@@ -1,3 +1,6 @@
+import 'package:e_commerce/helpers/functions/bottom_sheet.dart';
+import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
+import 'package:e_commerce/helpers/widgets/custom_bottom_sheet_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,25 +18,39 @@ class ItemSizeQuantity extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(5),
-          child: CustomTile(
-            borderRadius: 20,
-            width: 1.sw,
-            leading: Text(
-              'Size',
-              style: AppDecoration.semiBoldStyle(
-                  fontSize: 19, color: AppColors.lightBlack),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'S',
-                  style: AppDecoration.boldStyle(
-                      fontSize: 17, color: AppColors.pureBlack),
-                ),
-                20.horizontalSpace,
-                const Image(image: AssetImage(AppImages.arrowDropDown))
-              ],
+          child: GestureDetector(
+            onTap: () {
+              viewBottomSheet(
+                  context,
+                  'Size',
+                  const CustomBottomSheetBody(containers: [
+                    BottomSheetContainer(title: 'S', index: 0),
+                    BottomSheetContainer(title: 'M', index: 1),
+                    BottomSheetContainer(title: 'L', index: 2),
+                    BottomSheetContainer(title: 'XL', index: 3),
+                    BottomSheetContainer(title: '2XL', index: 4),
+                  ]));
+            },
+            child: CustomTile(
+              borderRadius: 20,
+              width: 1.sw,
+              leading: Text(
+                'Size',
+                style: AppDecoration.semiBoldStyle(
+                    fontSize: 19, color: AppColors.lightBlack),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'S',
+                    style: AppDecoration.boldStyle(
+                        fontSize: 17, color: AppColors.pureBlack),
+                  ),
+                  20.horizontalSpace,
+                  const Image(image: AssetImage(AppImages.arrowDropDown))
+                ],
+              ),
             ),
           ),
         ),

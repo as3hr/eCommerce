@@ -4,6 +4,7 @@ import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/helpers/widgets/custom_container.dart';
 import 'package:e_commerce/helpers/widgets/input_field.dart';
 import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
+import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                   height: 65,
                   width: 0.97.sw,
                   onTap: () {
-                    changePage(SignUp.routeName);
+                    changePage(BottomNavBar.routeName);
                   },
                   text: 'Continue',
                   color: AppColors.lightPurple,
@@ -58,13 +59,18 @@ class LoginScreen extends StatelessWidget {
                 10.verticalSpace,
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
-                  child: EasyRichText(
-                    "Don't have an Account ? Create One",
-                    patternList: [
-                      EasyPattern(
-                          targetString: 'Create One',
-                          style: const TextStyle(fontWeight: FontWeight.bold))
-                    ],
+                  child: GestureDetector(
+                    onTap: () {
+                      changePage(SignUp.routeName);
+                    },
+                    child: EasyRichText(
+                      "Don't have an Account ? Create One",
+                      patternList: [
+                        EasyPattern(
+                            targetString: 'Create One',
+                            style: const TextStyle(fontWeight: FontWeight.bold))
+                      ],
+                    ),
                   ),
                 ),
                 60.verticalSpace,

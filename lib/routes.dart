@@ -2,6 +2,7 @@ import 'package:e_commerce/helpers/widgets/item_detail/item_detail_screen.dart';
 import 'package:e_commerce/screens/auth/login/login_screen.dart';
 import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
+import 'package:e_commerce/screens/home/components/cart/cart_screen.dart';
 import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/notification/notification_screen.dart';
@@ -60,6 +61,13 @@ class Routes {
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const HomeScreen(),
+        );
+      case CartScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const CartScreen(),
         );
       case CategoriesScreen.routeName:
         return GetPageRoute(

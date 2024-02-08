@@ -35,10 +35,19 @@ class PaymentScreen extends StatelessWidget {
             10.verticalSpace,
             CustomTile(
               width: 1.sw,
-              title: Text(
-                '**** 4187',
-                style: AppDecoration.semiBoldStyle(
-                    fontSize: 18, color: AppColors.pureBlack),
+              title: Row(
+                children: [
+                  Text(
+                    '**** 4187',
+                    style: AppDecoration.semiBoldStyle(
+                        fontSize: 18, color: AppColors.pureBlack),
+                  ),
+                  5.horizontalSpace,
+                  const Image(
+                    image: AssetImage(AppImages.cardLogo),
+                    height: 35,
+                  ),
+                ],
               ),
               trailing: const Image(image: AssetImage(AppImages.arrowForward)),
               trailingOnTap: () {
@@ -48,10 +57,19 @@ class PaymentScreen extends StatelessWidget {
             10.verticalSpace,
             CustomTile(
               width: 1.sw,
-              title: Text(
-                '**** 4187',
-                style: AppDecoration.semiBoldStyle(
-                    fontSize: 18, color: AppColors.pureBlack),
+              title: Row(
+                children: [
+                  Text(
+                    '**** 4187',
+                    style: AppDecoration.semiBoldStyle(
+                        fontSize: 18, color: AppColors.pureBlack),
+                  ),
+                  5.horizontalSpace,
+                  const Image(
+                    image: AssetImage(AppImages.cardLogo),
+                    height: 35,
+                  ),
+                ],
               ),
               trailing: const Image(image: AssetImage(AppImages.arrowForward)),
               trailingOnTap: () {

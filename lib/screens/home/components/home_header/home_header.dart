@@ -1,8 +1,8 @@
 import 'package:e_commerce/helpers/functions/bottom_sheet.dart';
 import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/widgets/modal_drop_down.dart';
-import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:e_commerce/helpers/widgets/custom_bottom_sheet_body.dart';
+import 'package:e_commerce/screens/home/components/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../helpers/styles/app_colors.dart';
@@ -52,7 +52,7 @@ class HomeHeader extends StatelessWidget {
           padding: const EdgeInsets.only(right: 25),
           child: GestureDetector(
             onTap: () {
-              changePage(CategoriesScreen.routeName);
+              changePage(CartScreen.routeName);
             },
             child: const CircleAvatar(
                 backgroundColor: AppColors.lightPurple,

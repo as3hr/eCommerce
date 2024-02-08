@@ -16,4 +16,7 @@ class AppImages {
   static const arrowDropDown = '$baseUrl/drop_down.png';
   static const favIconUnfilled = '$baseUrl/fav_icon_unfilled.png';
   static const categorySearch = '$baseUrl/category_search.png';
+  static const emptyCart = '$baseUrl/empty_cart.png';
+  static const orderPlaced = '$baseUrl/order_placed.png';
+  static const cardLogo = '$baseUrl/card_logo.png';
 }

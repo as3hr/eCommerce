@@ -1,25 +1,27 @@
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
+import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
+import '../../../../helpers/styles/app_images.dart';
 import '../../../../helpers/widgets/custom_container.dart';
-import 'categories_screen.dart';
 
-class EmptyCategories extends StatelessWidget {
-  const EmptyCategories({super.key});
+class EmptyCart extends StatelessWidget {
+  const EmptyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        90.verticalSpace,
-        const Image(image: AssetImage(AppImages.categorySearch)),
-        5.verticalSpace,
+        250.verticalSpace,
+        const Center(
+          child: Image(image: AssetImage(AppImages.emptyCart)),
+        ),
+        15.verticalSpace,
         Text(
-          "Sorry, we couldn't find any\n  matching result for your\n                Search.",
+          "Your Cart is Empty",
           style: AppDecoration.semiBoldStyle(
               fontSize: 25, color: AppColors.pureBlack),
         ),

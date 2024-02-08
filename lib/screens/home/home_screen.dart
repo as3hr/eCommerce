@@ -1,6 +1,8 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/helpers/widgets/search_field.dart';
 import 'package:e_commerce/screens/home/components/category/all_categories.dart';
+import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:e_commerce/screens/home/components/home_header/home_header.dart';
 import 'package:e_commerce/screens/home/components/spacer_row.dart';
 import 'package:e_commerce/screens/home/components/items_list.dart';
@@ -29,7 +31,13 @@ class HomeScreen extends StatelessWidget {
                     15.verticalSpace,
                     SearchField(onChanged: (val) {}),
                     15.verticalSpace,
-                    const SpacerRow(text1: 'Categories'),
+                    SpacerRow(
+                      text1: 'Categories',
+                      text2: 'See All',
+                      text2Tap: () {
+                        changePage(CategoriesScreen.routeName);
+                      },
+                    ),
                     15.verticalSpace,
                     const AllCategories(),
                     15.verticalSpace,
@@ -37,7 +45,11 @@ class HomeScreen extends StatelessWidget {
                     15.verticalSpace,
                     const ItemsList(),
                     15.verticalSpace,
-                    const SpacerRow(text1: 'New in', text2: 'See All'),
+                    const SpacerRow(
+                      text1: 'New in',
+                      text2: 'See All',
+                      text1Color: AppColors.lightPurple,
+                    ),
                     15.verticalSpace,
                     const ItemsList(),
                     10.verticalSpace,

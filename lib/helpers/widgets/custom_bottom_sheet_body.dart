@@ -8,12 +8,12 @@ class CustomBottomSheetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-          children: containers
-              .map((container) => BottomSheetContainer(
-                  title: container.title, index: container.index))
-              .toList()),
-    );
+    return Expanded(
+        child: ListView.builder(
+            itemCount: containers.length,
+            itemBuilder: (context, index) {
+              final container = containers[index];
+              return BottomSheetContainer(title: container.title, index: index);
+            }));
   }
 }
