@@ -1,6 +1,10 @@
 class AppImages {
   static const baseUrl = 'assets/images';
   static const bellImage = '$baseUrl/bell.png';
+  static const logo = '$baseUrl/Logo.png';
+  static const apple = '$baseUrl/apple.png';
+  static const google = '$baseUrl/google.png';
+  static const facebook = '$baseUrl/facebook.png';
   static const checkOut = '$baseUrl/check-out.png';
   static const home = '$baseUrl/home.png';
   static const notification = '$baseUrl/notification.png';

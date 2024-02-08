@@ -13,7 +13,12 @@ class AllCategories extends StatelessWidget {
     return SizedBox(
       height: 100,
       width: 1.sw,
-      child: ListView.builder(
+      child: ListView.separated(
+          separatorBuilder: (context, index) {
+            return const VerticalDivider(
+              color: AppColors.transparent,
+            );
+          },
           scrollDirection: Axis.horizontal,
           itemCount: CategoryItem.allCategories.length,
           itemBuilder: (context, index) {

@@ -33,17 +33,20 @@ class ItemContainer extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            const Center(
-              child: Image(
-                image: AssetImage(AppImages.bellImage),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
+            const Center(child: Text('I M A G E  H E R E')
+                // Image(
+                //   image: AssetImage(AppImages.bellImage),
+                //   fit: BoxFit.fitHeight,
+                // ),
+                ),
             Positioned(
               top: 10,
               right: 5,
               child: isFav
-                  ? const Icon(Icons.favorite)
+                  ? const Icon(
+                      Icons.favorite,
+                      color: AppColors.redColor,
+                    )
                   : const Image(
                       image: AssetImage(AppImages.favIconUnfilled),
                     ),

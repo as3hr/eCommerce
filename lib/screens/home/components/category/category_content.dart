@@ -9,6 +9,9 @@ import 'package:e_commerce/helpers/widgets/modal_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../helpers/functions/change_page.dart';
+import '../../../../helpers/widgets/item_detail/item_detail_screen.dart';
+
 class CategoryContent extends StatelessWidget {
   const CategoryContent({super.key});
 
@@ -98,7 +101,9 @@ class CategoryContent extends StatelessWidget {
                         width: 0.463.sw,
                         title: 'Women T shirt',
                         price: 3000,
-                        onTap: () {}),
+                        onTap: () {
+                          changePage(ItemDetailScreen.routeName);
+                        }),
                   );
                 }),
           ),

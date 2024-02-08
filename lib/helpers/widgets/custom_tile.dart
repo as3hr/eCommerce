@@ -13,6 +13,8 @@ class CustomTile extends StatelessWidget {
     this.height,
     this.width,
     this.trailingOnTap,
+    this.borderRadius,
+    this.color,
   });
   final Widget? leading;
   final Widget? title;
@@ -21,6 +23,8 @@ class CustomTile extends StatelessWidget {
   final Function()? trailingOnTap;
   final double? height;
   final double? width;
+  final double? borderRadius;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,9 +33,9 @@ class CustomTile extends StatelessWidget {
         height: height ?? 60,
         width: width ?? 0.85.sw,
         decoration: BoxDecoration(
-          color: AppColors.grayI,
+          color: color ?? AppColors.grayI,
           shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(borderRadius ?? 10),
         ),
         child: ListTile(
           leading: leading,

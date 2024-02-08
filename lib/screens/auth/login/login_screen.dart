@@ -1,5 +1,6 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/helpers/widgets/custom_container.dart';
 import 'package:e_commerce/helpers/widgets/input_field.dart';
 import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
@@ -71,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                   height: 65,
                   width: 0.97.sw,
                   onTap: () {},
-                  preFixIcon: Icons.apple,
+                  preFixImage: AppImages.apple,
                   text: 'Continue With Apple',
                   color: AppColors.grayI,
                   textColor: AppColors.pureBlack,
@@ -80,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                   height: 65,
                   width: 0.97.sw,
                   onTap: () {},
-                  preFixIcon: Icons.g_mobiledata_outlined,
+                  preFixImage: AppImages.google,
                   text: 'Continue With Google',
                   color: AppColors.grayI,
                   textColor: AppColors.pureBlack,
@@ -89,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                   height: 65,
                   width: 0.97.sw,
                   onTap: () {},
-                  preFixIcon: Icons.facebook,
+                  preFixImage: AppImages.facebook,
                   text: 'Continue With Facebook',
                   color: AppColors.grayI,
                   textColor: AppColors.pureBlack,

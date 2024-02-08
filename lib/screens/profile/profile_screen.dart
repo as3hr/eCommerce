@@ -2,6 +2,8 @@ import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/widgets/custom_tile.dart';
 import 'package:e_commerce/screens/auth/login/login_screen.dart';
 import 'package:e_commerce/screens/profile/components/profile_option_list.dart';
+import 'package:e_commerce/screens/profile/components/update_profile_screen.dart';
+import 'package:e_commerce/screens/profile/profile_image.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,57 +24,57 @@ class ProfileScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: AppColors.pureWhite,
             body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    55.verticalSpace,
-                    const Center(
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundColor: AppColors.grayI,
+              child: Column(
+                children: [
+                  55.verticalSpace,
+                  const ProfileImage(),
+                  20.verticalSpace,
+                  CustomTile(
+                    height: 0.1.sh,
+                    width: 0.9.sw,
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Text(
+                        'Gilbert Jones',
+                        style: AppDecoration.mediumStyle(
+                            fontSize: 17, color: AppColors.pureBlack),
                       ),
                     ),
-                    20.verticalSpace,
-                    CustomTile(
-                      height: 0.1.sh,
-                      width: 0.9.sw,
-                      title: Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          'Gilbert Jones',
+                    subTitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        3.verticalSpace,
+                        Text(
+                          'GIlbertjones@gmail.com',
                           style: AppDecoration.mediumStyle(
-                              fontSize: 17, color: AppColors.pureBlack),
+                              fontSize: 16, color: AppColors.pureBlack),
                         ),
-                      ),
-                      subTitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          3.verticalSpace,
-                          Text(
-                            'GIlbertjones@gmail.com',
-                            style: AppDecoration.mediumStyle(
-                                fontSize: 16, color: AppColors.pureBlack),
-                          ),
-                          5.verticalSpace,
-                          Text(
-                            '+92 3323232456',
-                            style: AppDecoration.mediumStyle(
-                                fontSize: 15, color: AppColors.pureBlack),
-                          ),
-                        ],
-                      ),
-                      trailing: Padding(
-                        padding: const EdgeInsets.only(bottom: 35),
-                        child: Text(
-                          'Edit',
+                        5.verticalSpace,
+                        Text(
+                          '+92 3323232456',
                           style: AppDecoration.mediumStyle(
-                              fontSize: 17, color: AppColors.lightPurple),
+                              fontSize: 15, color: AppColors.pureBlack),
                         ),
+                      ],
+                    ),
+                    trailing: Padding(
+                      padding: const EdgeInsets.only(bottom: 35),
+                      child: Text(
+                        'Edit',
+                        style: AppDecoration.mediumStyle(
+                            fontSize: 17, color: AppColors.lightPurple),
                       ),
                     ),
-                    25.verticalSpace,
-                    const ProfileOptionList(),
-                    Center(
+                    trailingOnTap: () {
+                      changePage(UpdateProfileScreen.routeName);
+                    },
+                  ),
+                  25.verticalSpace,
+                  const ProfileOptionList(),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(35),
+                    child: Center(
                       child: GestureDetector(
                         onTap: () {
                           changePage(LoginScreen.routeName, signOut: true);
@@ -84,8 +86,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

@@ -13,7 +13,7 @@ class ProfileOptionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 0.48.sh,
+      height: 0.35.sh,
       child: ListView.builder(
           itemCount: ProfileOption.allOptions.length,
           itemBuilder: (context, index) {

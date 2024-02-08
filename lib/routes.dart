@@ -1,5 +1,4 @@
-// ignore_for_file: unused_local_variable
-
+import 'package:e_commerce/helpers/widgets/item_detail/item_detail_screen.dart';
 import 'package:e_commerce/screens/auth/login/login_screen.dart';
 import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
@@ -8,15 +7,17 @@ import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/notification/notification_screen.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail.dart';
 import 'package:e_commerce/screens/order/order_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/address_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/help_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/support_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/address/add_address_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/address/address_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/add_card_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist/wishlist_screen.dart';
+import 'package:e_commerce/screens/profile/components/update_profile_screen.dart';
 import 'package:e_commerce/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'screens/profile/components/profile_sub_screens/wishlist/wishlist_collection_screen.dart';
 import 'screens/splash_screen/splash_screen.dart';
 
 class Routes {
@@ -74,6 +75,13 @@ class Routes {
           settings: settings,
           page: () => const ProfileScreen(),
         );
+      case UpdateProfileScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const UpdateProfileScreen(),
+        );
       case OrderScreen.routeName:
         return GetPageRoute(
           transition: Transition.fadeIn,
@@ -95,12 +103,26 @@ class Routes {
           settings: settings,
           page: () => const NotificationScreen(),
         );
+      case ItemDetailScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const ItemDetailScreen(),
+        );
       case AddressScreen.routeName:
         return GetPageRoute(
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const AddressScreen(),
+        );
+      case AddAddressScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const AddAddressScreen(),
         );
       case WishListScreen.routeName:
         return GetPageRoute(
@@ -109,6 +131,15 @@ class Routes {
           settings: settings,
           page: () => const WishListScreen(),
         );
+      case WishListCollectionScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => WishListCollectionScreen(
+            title: args['title'],
+          ),
+        );
       case PaymentScreen.routeName:
         return GetPageRoute(
           transition: Transition.fadeIn,
@@ -116,19 +147,12 @@ class Routes {
           settings: settings,
           page: () => const PaymentScreen(),
         );
-      case HelpScreen.routeName:
+      case AddCardScreen.routeName:
         return GetPageRoute(
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
-          page: () => const HelpScreen(),
-        );
-      case SupportScreen.routeName:
-        return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
-          settings: settings,
-          page: () => const SupportScreen(),
+          page: () => const AddCardScreen(),
         );
       default:
         return _errorRoute(settings);

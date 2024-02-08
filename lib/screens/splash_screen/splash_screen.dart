@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -31,8 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SafeArea(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Center(
-            child: Text('R A N D O M  I M A G E'),
-            // child: Image(height: 250, width: 300, image: AssetImage('')),
+            child: Image(
+              image: AssetImage(AppImages.logo),
+            ),
           )
         ]),
       ),

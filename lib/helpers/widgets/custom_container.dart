@@ -7,14 +7,14 @@ class CustomContainer extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.preFixIcon,
+    this.preFixImage,
     this.width,
     this.height,
     this.fontSize,
     required this.color,
     required this.textColor,
   });
-  final IconData? preFixIcon;
+  final String? preFixImage;
   final String text;
   final Function() onTap;
   final Color color;
@@ -37,14 +37,13 @@ class CustomContainer extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              if (preFixIcon != null)
+              if (preFixImage != null)
                 Positioned(
                   top: 10,
                   bottom: 10,
                   left: 25,
-                  child: Icon(
-                    preFixIcon,
-                    size: 25,
+                  child: Image(
+                    image: AssetImage(preFixImage!),
                   ),
                 ),
               Center(

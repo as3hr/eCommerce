@@ -1,12 +1,11 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
+import 'package:e_commerce/helpers/widgets/header.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_detail_container.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_status_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../helpers/widgets/back_button.dart';
 
 class OrderDetail extends StatelessWidget {
   static const routeName = '/order-detail';
@@ -21,20 +20,7 @@ class OrderDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             35.verticalSpace,
-            Row(
-              children: [
-                20.horizontalSpace,
-                const CustomBackButton(),
-                90.horizontalSpace,
-                Center(
-                  child: Text(
-                    'Order #34521',
-                    style: AppDecoration.boldStyle(
-                        fontSize: 23, color: AppColors.pureBlack),
-                  ),
-                ),
-              ],
-            ),
+            const Header(text: 'Order #34521'),
             const OrderStatusList(),
             Padding(
               padding: const EdgeInsets.only(left: 20),

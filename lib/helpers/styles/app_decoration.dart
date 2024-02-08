@@ -61,4 +61,8 @@ class AppDecoration {
       color: color,
     );
   }
+
+  static ColorScheme scheme(BuildContext context) {
+    return Theme.of(context).colorScheme;
+  }
 }

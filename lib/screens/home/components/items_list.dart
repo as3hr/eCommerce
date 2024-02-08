@@ -1,4 +1,6 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/widgets/item_container.dart';
+import 'package:e_commerce/helpers/widgets/item_detail/item_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +19,9 @@ class ItemsList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ItemContainer(
-                  onTap: () {},
+                  onTap: () {
+                    changePage(ItemDetailScreen.routeName);
+                  },
                   width: 0.5.sw,
                   image: '',
                   title: 'Mens t shirt',

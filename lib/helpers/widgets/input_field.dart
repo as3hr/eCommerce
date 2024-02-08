@@ -8,12 +8,14 @@ class InputField extends StatefulWidget {
     this.preFilledValue,
     this.isObsecure = false,
     this.hintText,
+    this.width,
     required this.onChanged,
   });
   final String? preFilledValue;
   final bool isObsecure;
   final String? hintText;
-  final Function(String) onChanged;
+  final double? width;
+  final void Function(String) onChanged;
   @override
   State<InputField> createState() => _InputFieldState();
 }
@@ -34,6 +36,7 @@ class _InputFieldState extends State<InputField> {
     return Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 8, left: 15, right: 15),
       child: Container(
+        width: widget.width,
         color: Colors.grey.shade100,
         child: TextFormField(
             controller: controller,
