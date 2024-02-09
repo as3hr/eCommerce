@@ -3,6 +3,8 @@ import 'package:e_commerce/screens/auth/login/login_screen.dart';
 import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_screen.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/checkout_screen.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/order_placed.dart';
 import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/notification/notification_screen.dart';
@@ -68,6 +70,20 @@ class Routes {
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const CartScreen(),
+        );
+      case CheckoutScreen.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const CheckoutScreen(),
+        );
+      case OrderPlaced.routeName:
+        return GetPageRoute(
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+          page: () => const OrderPlaced(),
         );
       case CategoriesScreen.routeName:
         return GetPageRoute(

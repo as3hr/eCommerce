@@ -1,9 +1,8 @@
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/helpers/widgets/header.dart';
+import 'package:e_commerce/screens/home/components/cart/cart_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'empty_cart.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart-screen';
@@ -21,7 +20,8 @@ class CartScreen extends StatelessWidget {
             text: 'Cart',
             extraSpace: 35,
           ),
-          const EmptyCart(),
+          // const EmptyCart(),
+          const Expanded(child: CartContent()),
         ],
       )),
     );

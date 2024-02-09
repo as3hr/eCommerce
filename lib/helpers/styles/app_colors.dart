@@ -15,5 +15,6 @@ class AppColors {
   static const yellow = Colors.yellow;
   static const blueGrey = Colors.blueGrey;
   static const darkBlue = Color(0xff02198B);
+  static final lightGrey = Colors.grey.shade400.withOpacity(0.7);
   static const transparent = Color(0x00ffffff);
 }

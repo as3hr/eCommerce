@@ -4,7 +4,7 @@ import 'package:e_commerce/helpers/widgets/search_field.dart';
 import 'package:e_commerce/screens/home/components/category/all_categories.dart';
 import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
 import 'package:e_commerce/screens/home/components/home_header/home_header.dart';
-import 'package:e_commerce/screens/home/components/spacer_row.dart';
+import 'package:e_commerce/helpers/widgets/spacer_row.dart';
 import 'package:e_commerce/screens/home/components/items_list.dart';
 import 'package:e_commerce/screens/home/home_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -45,11 +45,7 @@ class HomeScreen extends StatelessWidget {
                     15.verticalSpace,
                     const ItemsList(),
                     15.verticalSpace,
-                    const SpacerRow(
-                      text1: 'New in',
-                      text2: 'See All',
-                      text1Color: AppColors.lightPurple,
-                    ),
+                    const SpacerRow(text1: 'New in', text2: 'See All'),
                     15.verticalSpace,
                     const ItemsList(),
                     10.verticalSpace,

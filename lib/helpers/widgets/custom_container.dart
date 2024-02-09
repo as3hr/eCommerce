@@ -6,16 +6,18 @@ class CustomContainer extends StatelessWidget {
   const CustomContainer({
     super.key,
     required this.onTap,
-    required this.text,
+    this.text,
     this.preFixImage,
     this.width,
     this.height,
     this.fontSize,
+    this.widget,
     required this.color,
     required this.textColor,
   });
   final String? preFixImage;
-  final String text;
+  final String? text;
+  final Widget? widget;
   final Function() onTap;
   final Color color;
   final Color textColor;
@@ -46,13 +48,15 @@ class CustomContainer extends StatelessWidget {
                     image: AssetImage(preFixImage!),
                   ),
                 ),
-              Center(
-                child: Text(
-                  text,
-                  style: AppDecoration.semiBoldStyle(
-                      fontSize: fontSize ?? 20, color: textColor),
-                ),
-              ),
+              widget != null
+                  ? widget!
+                  : Center(
+                      child: Text(
+                        text ?? '',
+                        style: AppDecoration.semiBoldStyle(
+                            fontSize: fontSize ?? 20, color: textColor),
+                      ),
+                    ),
             ],
           ),
         ),
