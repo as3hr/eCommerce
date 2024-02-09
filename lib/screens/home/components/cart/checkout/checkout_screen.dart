@@ -5,6 +5,8 @@ import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/helpers/widgets/custom_tile.dart';
 import 'package:e_commerce/helpers/widgets/header.dart';
 import 'package:e_commerce/screens/home/components/cart/checkout/checkout_footer.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/address/add_address_screen.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/add_card_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,7 +41,7 @@ class CheckoutScreen extends StatelessWidget {
             ),
             trailing: const Image(image: AssetImage(AppImages.arrowForward)),
             trailingOnTap: () {
-              changePage('');
+              changePage(AddAddressScreen.routeName);
             },
           ),
           CustomTile(
@@ -60,7 +62,7 @@ class CheckoutScreen extends StatelessWidget {
             ),
             trailing: const Image(image: AssetImage(AppImages.arrowForward)),
             trailingOnTap: () {
-              changePage('');
+              changePage(AddCardScreen.routeName);
             },
           ),
           const Spacer(),
