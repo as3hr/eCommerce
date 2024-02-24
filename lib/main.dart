@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  runApp(const MyApp());
+  runApp(const Clot());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({
+class Clot extends StatelessWidget {
+  const Clot({
     super.key,
   });
   @override

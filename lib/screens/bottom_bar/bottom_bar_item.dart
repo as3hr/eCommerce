@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_bar.dart';
 import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar_controller.dart';
@@ -15,7 +16,7 @@ class BottomBarItem extends StatelessWidget {
       return GestureDetector(
           onTap: () {
             controller.setIndex(index);
-            item.onTap.call(context);
+            changePage(item.routeName, nested: true);
           },
           child: Image(
             image: AssetImage(item.image),

@@ -27,10 +27,6 @@ class WishListScreen extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: CustomTile(
                 width: 1.sw,
-                leading: const Image(
-                  image: AssetImage(AppImages.favIconUnfilled),
-                  color: AppColors.pureBlack,
-                ),
                 title: Text(
                   'My Favorite',
                   style: AppDecoration.mediumStyle(
@@ -55,10 +51,6 @@ class WishListScreen extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: CustomTile(
                 width: 1.sw,
-                leading: const Image(
-                  image: AssetImage(AppImages.favIconUnfilled),
-                  color: AppColors.pureBlack,
-                ),
                 title: Text(
                   'T-Shirts',
                   style: AppDecoration.mediumStyle(
