@@ -15,6 +15,7 @@ import {
   permissionRouter,
   uploadRouter,
   userRouter,
+  wishlistRouter,
 } from "./internal.js";
 import { logRouter } from "./routes/log.js";
 import { notificationRouter } from "./routes/notification.js";
@@ -85,6 +86,7 @@ app.use("/permissions", permissionRouter);
 app.use("/notifications", notificationRouter);
 app.use("/products", productRouter);
 app.use("/orders", orderRouter);
+app.use("/wishlists", wishlistRouter);
 
 app.use(errorHandler);
 

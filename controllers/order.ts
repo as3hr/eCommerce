@@ -14,6 +14,7 @@ const getOrderById = asyncHandler(
     async (req: Request, res:Response, next: NextFunction)=>{
         req.model = orderModel;
         req.modelName = 'orders';
+        req.populate = 'products';
         next();
     }
 );

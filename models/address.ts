@@ -1,24 +1,29 @@
 import { Schema, Document } from "mongoose";
 
 export interface IAddress extends Document {
-  addressLine1?: string;
-  longitude?: number;
-  latitude?: number;
+  streetAddress?: string;
+  city?: string;
+  state?: string;
+  zipCode?: number;
 }
 
 const addressSchema = new Schema<IAddress>(
   {
-    addressLine1: {
+    streetAddress: {
       type: String,
       cast: "address line datatype is incorrect",
     },
-    longitude: {
-      type: Number,
-      cast: "longitude datatype is incorrect",
+    city: {
+      type: String,
+      cast: "city datatype is incorrect",
     },
-    latitude: {
+    state: {
+      type: String,
+      cast: "state datatype is incorrect",
+    },
+    zipCode: {
       type: Number,
-      cast: "latitude datatype is incorrect",
+      cast: "zipCode datatype is incorrect",
     },
   },
   { timestamps: false, versionKey: false }
