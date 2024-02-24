@@ -11,6 +11,7 @@ import {
   IUser,
   authRouter,
   errorHandler,
+  orderRouter,
   permissionRouter,
   uploadRouter,
   userRouter,
@@ -83,6 +84,7 @@ app.use("/uploads", uploadRouter);
 app.use("/permissions", permissionRouter);
 app.use("/notifications", notificationRouter);
 app.use("/products", productRouter);
+app.use("/orders", orderRouter);
 
 app.use(errorHandler);
 

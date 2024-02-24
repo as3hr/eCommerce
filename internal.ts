@@ -19,6 +19,7 @@ export * from "./models/permission";
 export * from "./models/log";
 export * from "./models/notification";
 export * from "./models/product";
+export * from "./models/order";
 
 export * from "./controllers/auth";
 export * from "./controllers/upload";
@@ -27,6 +28,7 @@ export * from "./controllers/log";
 export * from "./controllers/permission";
 export * from "./controllers/notification";
 export * from "./controllers/product";
+export * from "./controllers/order";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
@@ -34,3 +36,4 @@ export * from "./routes/upload";
 export * from "./routes/user";
 export * from "./routes/notification";
 export * from "./routes/product";
+export * from "./routes/order";
