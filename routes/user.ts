@@ -19,7 +19,6 @@ router.get("/profile", checkToken, getUser);
 router.get(
   "/",
   checkToken,
-  // checkBooleanPermission("admin"),
   getAllUsers,
   pagination
 );
