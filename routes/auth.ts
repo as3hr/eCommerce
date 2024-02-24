@@ -9,11 +9,11 @@ router.post("/signUp", checkNecessaryParameters(["email", "password"]), signUp);
 
 router.post('/email', sendEmailVerification);
 
-router.post('/email/verify',verifyEmail);
+router.post('/email/verify', verifyEmail);
 
-router.post('/forget-password',forgotPassword);
+router.post('/forget-password', forgotPassword);
 
-router.post('/reset-password',resetPassword);
+router.post('/reset-password', resetPassword);
 
 router.post("/signout", signOut);
 

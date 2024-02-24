@@ -16,6 +16,8 @@ import {
   userRouter,
 } from "./internal.js";
 import { logRouter } from "./routes/log.js";
+import { notificationRouter } from "./routes/notification.js";
+import { productRouter } from "./routes/product.js";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -79,6 +81,8 @@ app.use("/users", userRouter);
 app.use("/logs", logRouter);
 app.use("/uploads", uploadRouter);
 app.use("/permissions", permissionRouter);
+app.use("/notifications", notificationRouter);
+app.use("/products", productRouter);
 
 app.use(errorHandler);
 

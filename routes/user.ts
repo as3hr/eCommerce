@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  checkBooleanPermission,
   checkNecessaryParameters,
   checkToken,
   cleanUpdates,
@@ -20,7 +19,7 @@ router.get("/profile", checkToken, getUser);
 router.get(
   "/",
   checkToken,
-  checkBooleanPermission("admin"),
+  // checkBooleanPermission("admin"),
   getAllUsers,
   pagination
 );

@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import mongoose, { Document, Schema, Types } from "mongoose";
 import { IAddress, address } from "../internal";
+import { ICard, card } from "./card";
 
 export interface IUser extends Document {
   username?: string;
@@ -8,15 +9,13 @@ export interface IUser extends Document {
   firstName?: string;
   lastName?: string;
   image?: string;
-  userType:string,
   contactNumber?: string;
   email?: string;
   isDisable:boolean,
   emailVerified: boolean,
-  address?: IAddress;
-  settings?: Object;
+  addresses?: IAddress[];
+  cards?: ICard[]; 
   fcmTokens?: Types.Array<string>;
-  vehicleDetails?:Types.Array<string>;
   resetCode?: string;
   resetCodeExpiry?: Date;
   verificationCode?: string;
@@ -37,14 +36,14 @@ const userSchema = new Schema<IUser>(
       default: false,
       cast: "emailVerified datatype is incorrect",
     },
-    userType: {  
-      type: String,
-      cast: "Invalid address",
-    },
-    address: {
+    addresses: [{
       type: address,
       cast: "Invalid address",
-    },
+    }],
+    cards: [{
+      type: card,
+      cast: "Invalid card",
+    }],
     permission: {
       type: Schema.Types.ObjectId,
       ref: "Permission",
@@ -100,20 +99,6 @@ const userSchema = new Schema<IUser>(
     verificationCodeExpiry: {
       type: Date,
       select: false,
-    },
-    vehicleDetails:[{
-      make: {type:String},
-      model: {type:String},
-      variant: {type:String},
-      vehicleNumber: {type:String},
-      color:{type:String}
-    }],
-    settings:{
-      notification: {
-        type:Boolean,
-        default:true,
-        cast:'notification data type must be a boolean'
-      },
     },
   },
   {
