@@ -1,5 +1,6 @@
 import Router from "express";
 import { 
+    checkNecessaryParameters,
     checkToken, 
     createDocument, 
     createProduct, 
@@ -17,7 +18,12 @@ const router = Router();
 
 router.get('/', checkToken, getProducts, pagination);
 
-router.post('/', checkToken, createProduct, createDocument);
+router.post('/', 
+    checkToken, 
+    checkNecessaryParameters(['title', 'description', 'price', 'gender', 'category']), 
+    createProduct, 
+    createDocument
+);
 
 router.get('/:id', checkToken, getProductById, fetchSingleDocument);
 

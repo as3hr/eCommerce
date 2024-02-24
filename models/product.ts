@@ -1,12 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-enum Size {
-    S = 'S',
-    M = 'M',
-    L = 'L',
-    XL = 'XL'
-}
-
 enum Gender {
     M = 'Men',
     W ='Women',
@@ -30,7 +23,7 @@ export interface IProduct extends Document{
     description?: string,
     price?: number,
     isFav?: boolean,
-    size?: Size,
+    size?: string[],
     rating?: number,
     quantity?: number,
     gender?: Gender,
@@ -52,21 +45,24 @@ const productSchema = new Schema<IProduct>({
     },
     isFav: { 
         type: Boolean,
+        default: false,
         cast: 'isFav type is invalid'
     },
     rating: { 
         type: Number,
+        default: 5,
+        min: 1,
+        max: 5,
         cast: 'rating type is invalid'
     },
     quantity: { 
         type: Number,
         cast: 'quantity type is invalid'
     },
-    size: { 
+    size: [{ 
         type: String,
-        enum: Object.values(Size),
         cast: 'size type is invalid'
-    },
+    }],
     gender: { 
         type: String,
         enum: Object.values(Gender),
@@ -79,6 +75,6 @@ const productSchema = new Schema<IProduct>({
     },
 });
 
-const productModel = mongoose.model<IProduct>("products",productSchema);
+const productModel = mongoose.model<IProduct>( "products", productSchema );
 
 export { productModel };
