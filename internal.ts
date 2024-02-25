@@ -31,6 +31,7 @@ export * from "./controllers/notification";
 export * from "./controllers/product";
 export * from "./controllers/order";
 export * from "./controllers/wishlist";
+export * from "./controllers/payment";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
@@ -40,3 +41,5 @@ export * from "./routes/notification";
 export * from "./routes/product";
 export * from "./routes/order";
 export * from "./routes/wishlist";
+export * from "./routes/payment";
+

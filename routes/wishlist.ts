@@ -1,5 +1,17 @@
 import Router from "express";
-import { checkToken, createDocument, createWishlist, deleteDocument, deleteWishlist, fetchSingleDocument, getWishlist, getWishlistByid, pagination, updateDocument, updateWishlist } from "../internal";
+import { 
+    checkToken, 
+    createDocument, 
+    createWishlist, 
+    deleteDocument, 
+    deleteWishlist, 
+    fetchSingleDocument, 
+    getWishlist, 
+    getWishlistByid, 
+    pagination, 
+    updateDocument, 
+    updateWishlist 
+} from "../internal";
 
 const router = Router();
 

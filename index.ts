@@ -12,6 +12,7 @@ import {
   authRouter,
   errorHandler,
   orderRouter,
+  paymentRouter,
   permissionRouter,
   uploadRouter,
   userRouter,
@@ -61,6 +62,9 @@ const mongoSession = {
   }),
   cookie: {
     maxAge: 14 * 24 * 60 * 60 * 1000, //14 days
+    // httpOnly: true,
+    // secure: true,
+    // sameSite: 'none'
   },
 };
 app.use(session(mongoSession));
@@ -87,6 +91,7 @@ app.use("/notifications", notificationRouter);
 app.use("/products", productRouter);
 app.use("/orders", orderRouter);
 app.use("/wishlists", wishlistRouter);
+app.use("/payments", paymentRouter);
 
 app.use(errorHandler);
 
