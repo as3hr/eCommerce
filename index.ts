@@ -52,22 +52,23 @@ app.use(cors({ origin: ["http://127.0.0.1:5000"], credentials: true }));
 
 app.use(express.json());
 
-const mongoSession = {
-  secret: process.env.SECRET!,
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URL,
-    stringify: false,
-  }),
-  cookie: {
-    maxAge: 14 * 24 * 60 * 60 * 1000, //14 days
-    // httpOnly: true,
-    // secure: true,
-    // sameSite: 'none'
-  },
-};
-app.use(session(mongoSession));
+app.use(
+  session({
+    secret: process.env.SECRET!,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+      stringify: false,
+    }),
+    cookie: {
+      maxAge: 14 * 24 * 60 * 60 * 1000, //14 days
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
+    },
+  })
+);
 
 app.use(
   queryParser({
