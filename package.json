@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/as3hr/E-commerce-Backend.git"
   },
-  "type": "module",
+  "type": "commonjs",
   "author": "",
   "license": "ISC",
   "homepage": "https://github.com/as3hr/E-commerce-Backend.git#readme",
