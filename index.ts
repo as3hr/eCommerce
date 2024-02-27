@@ -48,9 +48,11 @@ declare module "express-session" {
 dotenv.config({ path: ".env" });
 
 const app = express();
-app.use(cors({ origin: ["http://127.0.0.1:5000"], credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 
 app.use(express.json());
+
+app.enable("trust proxy");
 
 app.use(
   session({
