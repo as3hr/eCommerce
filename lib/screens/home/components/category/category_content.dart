@@ -1,11 +1,11 @@
-import 'package:e_commerce/helpers/functions/bottom_sheet.dart';
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
-import 'package:e_commerce/helpers/widgets/custom_bottom_sheet_body.dart';
-import 'package:e_commerce/helpers/widgets/custom_container.dart';
-import 'package:e_commerce/helpers/widgets/item_container.dart';
-import 'package:e_commerce/helpers/widgets/modal_drop_down.dart';
+import '../../../../helpers/functions/bottom_sheet.dart';
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
+import '../../../../helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
+import '../../../../helpers/widgets/custom_bottom_sheet_body.dart';
+import '../../../../helpers/widgets/custom_container.dart';
+import '../../../../helpers/widgets/item_container.dart';
+import '../../../../helpers/widgets/modal_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

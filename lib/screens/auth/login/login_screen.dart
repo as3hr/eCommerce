@@ -1,10 +1,10 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/helpers/widgets/custom_container.dart';
-import 'package:e_commerce/helpers/widgets/input_field.dart';
-import 'package:e_commerce/screens/auth/sign_up/sign_up.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
+import '../../../helpers/functions/change_page.dart';
+import '../../../helpers/styles/app_colors.dart';
+import '../../../helpers/styles/app_images.dart';
+import '../../../helpers/widgets/custom_container.dart';
+import '../../../helpers/widgets/input_field.dart';
+import '../sign_up/sign_up.dart';
+import '../../bottom_bar/bottom_nav_bar.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

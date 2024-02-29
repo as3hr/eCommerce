@@ -1,9 +1,9 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/widgets/spacer_row.dart';
-import 'package:e_commerce/screens/home/components/cart/cart_product_list.dart';
-import 'package:e_commerce/screens/home/components/cart/checkout/checkout_screen.dart';
+import '../../../../helpers/functions/change_page.dart';
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
+import '../../../../helpers/widgets/spacer_row.dart';
+import 'cart_product_list.dart';
+import 'checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

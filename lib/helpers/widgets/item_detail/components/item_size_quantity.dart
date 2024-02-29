@@ -1,6 +1,6 @@
-import 'package:e_commerce/helpers/functions/bottom_sheet.dart';
-import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
-import 'package:e_commerce/helpers/widgets/custom_bottom_sheet_body.dart';
+import '../../../functions/bottom_sheet.dart';
+import '../../bottom_sheet/bottom_sheet_container.dart';
+import '../../custom_bottom_sheet_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

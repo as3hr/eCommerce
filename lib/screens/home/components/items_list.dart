@@ -1,6 +1,6 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/widgets/item_container.dart';
-import 'package:e_commerce/helpers/widgets/item_detail/item_detail_screen.dart';
+import '../../../helpers/functions/change_page.dart';
+import '../../../helpers/widgets/item_container.dart';
+import '../../../helpers/widgets/item_detail/item_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

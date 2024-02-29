@@ -1,5 +1,5 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/screens/home/components/category/categories_screen.dart';
+import '../../../../helpers/functions/change_page.dart';
+import '../category/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,10 +1,10 @@
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/widgets/custom_tile.dart';
-import 'package:e_commerce/screens/auth/login/login_screen.dart';
-import 'package:e_commerce/screens/profile/components/profile_option_list.dart';
-import 'package:e_commerce/screens/profile/components/update_profile_screen.dart';
-import 'package:e_commerce/screens/profile/profile_image.dart';
-import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
+import '../../helpers/styles/app_decoration.dart';
+import '../../helpers/widgets/custom_tile.dart';
+import '../auth/login/login_screen.dart';
+import 'components/profile_option_list.dart';
+import 'components/update_profile_screen.dart';
+import 'profile_image.dart';
+import 'profile_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -1,9 +1,9 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/helpers/widgets/header.dart';
-import 'package:e_commerce/screens/order/components/order_detail/order_detail_container.dart';
-import 'package:e_commerce/screens/order/components/order_detail/order_status_list.dart';
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
+import '../../../../helpers/styles/app_images.dart';
+import '../../../../helpers/widgets/header.dart';
+import 'order_detail_container.dart';
+import 'order_status_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

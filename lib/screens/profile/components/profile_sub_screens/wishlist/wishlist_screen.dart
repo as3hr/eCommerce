@@ -1,8 +1,8 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/helpers/widgets/custom_tile.dart';
-import 'package:e_commerce/helpers/widgets/header.dart';
+import '../../../../../helpers/functions/change_page.dart';
+import '../../../../../helpers/styles/app_decoration.dart';
+import '../../../../../helpers/styles/app_images.dart';
+import '../../../../../helpers/widgets/custom_tile.dart';
+import '../../../../../helpers/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

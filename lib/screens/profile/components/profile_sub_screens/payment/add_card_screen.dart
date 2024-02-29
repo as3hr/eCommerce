@@ -1,4 +1,7 @@
-import 'package:e_commerce/helpers/widgets/custom_container.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_controller.dart';
+import 'package:get/get.dart';
+
+import '../../../../../helpers/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,49 +15,55 @@ class AddCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.pureWhite,
-      body: SafeArea(
-          child: Column(
-        children: [
-          35.verticalSpace,
-          const Header(text: 'Add Card'),
-          35.verticalSpace,
-          InputField(
-            onChanged: (val) {},
-            hintText: 'Card Number',
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InputField(
+    return GetBuilder(
+        init: PaymentController(),
+        builder: (controller) {
+          return Scaffold(
+            backgroundColor: AppColors.pureWhite,
+            body: SafeArea(
+                child: Column(
+              children: [
+                35.verticalSpace,
+                const Header(text: 'Add Card'),
+                35.verticalSpace,
+                InputField(
                   onChanged: (val) {},
-                  hintText: 'CVC',
+                  hintText: 'Card Number',
                 ),
-              ),
-              Expanded(
-                child: InputField(
+                Row(
+                  children: [
+                    Expanded(
+                      child: InputField(
+                        onChanged: (val) {},
+                        hintText: 'CVC',
+                      ),
+                    ),
+                    Expanded(
+                      child: InputField(
+                        onChanged: (val) {},
+                        hintText: 'Expiry',
+                      ),
+                    ),
+                  ],
+                ),
+                InputField(
                   onChanged: (val) {},
-                  hintText: 'Expiry',
+                  hintText: 'Cardholder Name',
                 ),
-              ),
-            ],
-          ),
-          InputField(
-            onChanged: (val) {},
-            hintText: 'Cardholder Name',
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomContainer(
-                onTap: () {},
-                text: 'Save',
-                color: AppColors.lightPurple,
-                textColor: AppColors.pureWhite),
-          ),
-        ],
-      )),
-    );
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomContainer(
+                      onTap: () async {
+                        await controller.createPayment();
+                      },
+                      text: 'Save',
+                      color: AppColors.lightPurple,
+                      textColor: AppColors.pureWhite),
+                ),
+              ],
+            )),
+          );
+        });
   }
 }

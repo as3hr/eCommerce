@@ -1,5 +1,5 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

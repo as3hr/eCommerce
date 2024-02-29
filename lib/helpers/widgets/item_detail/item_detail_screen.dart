@@ -1,7 +1,7 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/helpers/widgets/custom_tile.dart';
+import '../../styles/app_colors.dart';
+import '../../styles/app_decoration.dart';
+import '../../styles/app_images.dart';
+import '../custom_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,5 +1,5 @@
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/widgets/bottom_sheet/bottom_sheet_controller.dart';
+import '../../styles/app_decoration.dart';
+import 'bottom_sheet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

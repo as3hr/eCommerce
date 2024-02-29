@@ -1,9 +1,10 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/widgets/back_button.dart';
-import 'package:e_commerce/helpers/widgets/search_field.dart';
-import 'package:e_commerce/screens/home/components/category/category_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/widgets/back_button.dart';
+import '../../../../helpers/widgets/search_field.dart';
+import 'category_content.dart';
 
 class CategoriesScreen extends StatelessWidget {
   static const routeName = '/category-screen';

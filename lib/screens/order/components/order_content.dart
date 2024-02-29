@@ -1,5 +1,5 @@
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/screens/order/order_screen_controller.dart';
+import '../../../helpers/styles/app_decoration.dart';
+import '../order_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

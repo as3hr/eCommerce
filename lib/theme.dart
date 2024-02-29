@@ -1,4 +1,4 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(

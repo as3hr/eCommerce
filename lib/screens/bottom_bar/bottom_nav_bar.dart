@@ -1,9 +1,9 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/routes.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_bar.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_bar_item.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar_controller.dart';
-import 'package:e_commerce/screens/home/home_screen.dart';
+import '../../helpers/styles/app_colors.dart';
+import '../../routes.dart';
+import 'bottom_bar.dart';
+import 'bottom_bar_item.dart';
+import 'bottom_nav_bar_controller.dart';
+import '../home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

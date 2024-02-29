@@ -1,9 +1,9 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/helpers/styles/app_decoration.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/helpers/widgets/custom_tile.dart';
-import 'package:e_commerce/screens/order/components/order_detail/order_detail.dart';
+import '../../../../helpers/functions/change_page.dart';
+import '../../../../helpers/styles/app_colors.dart';
+import '../../../../helpers/styles/app_decoration.dart';
+import '../../../../helpers/styles/app_images.dart';
+import '../../../../helpers/widgets/custom_tile.dart';
+import '../order_detail/order_detail.dart';
 import 'package:flutter/material.dart';
 
 class OrderTabView extends StatelessWidget {

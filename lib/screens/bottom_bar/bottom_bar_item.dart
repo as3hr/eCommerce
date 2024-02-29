@@ -1,7 +1,7 @@
-import 'package:e_commerce/helpers/functions/change_page.dart';
-import 'package:e_commerce/helpers/styles/app_colors.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_bar.dart';
-import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar_controller.dart';
+import '../../helpers/functions/change_page.dart';
+import '../../helpers/styles/app_colors.dart';
+import 'bottom_bar.dart';
+import 'bottom_nav_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
