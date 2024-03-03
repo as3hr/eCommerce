@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/data/api.dart';
+import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/user.dart';
 import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -68,6 +70,10 @@ class AuthController extends GetxController {
     required User user,
   }) async {
     await Api.signUp(user: user);
+    showToast(
+      message: 'Account created Successfully!',
+      imagePath: AppImages.successful,
+    );
     changePage(LoginScreen.routeName);
   }
 

@@ -1,6 +1,8 @@
+import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/screens/auth/auth_controller.dart';
+
 import '../../helpers/styles/app_decoration.dart';
 import '../../helpers/widgets/custom_tile.dart';
-import '../auth/login/login_screen.dart';
 import 'components/profile_option_list.dart';
 import 'components/update_profile_screen.dart';
 import 'profile_image.dart';
@@ -77,7 +79,8 @@ class ProfileScreen extends StatelessWidget {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          changePage(LoginScreen.routeName, signOut: true);
+                          loadingWrapper(() async =>
+                              {Get.find<AuthController>().logout()});
                         },
                         child: Text(
                           'Sign Out',

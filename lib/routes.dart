@@ -1,3 +1,5 @@
+import 'package:e_commerce/binding.dart';
+
 import 'helpers/widgets/item_detail/item_detail_screen.dart';
 import 'screens/auth/login/login_screen.dart';
 import 'screens/auth/sign_up/sign_up.dart';
@@ -48,6 +50,7 @@ class Routes {
         return GetPageRoute(
           settings: settings,
           page: () => const BottomNavBar(),
+          binding: AllController(),
         );
       case HomeScreen.routeName:
         return GetPageRoute(

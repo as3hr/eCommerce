@@ -38,6 +38,8 @@ class SignUp extends StatelessWidget {
                 ),
                 20.verticalSpace,
                 InputField(
+                  validator: (val) =>
+                      (val?.isEmpty == true) ? 'First Name is required' : null,
                   onChanged: (val) {
                     user.firstName = val;
                   },
@@ -47,20 +49,22 @@ class SignUp extends StatelessWidget {
                   onChanged: (val) {
                     user.lastName = val;
                   },
-                  validator: (val) =>
-                      (val?.isEmpty == true) ? 'Enter a valid password!' : null,
                   hintText: 'Lastname',
                 ),
                 InputField(
                   onChanged: (val) {
                     user.email = val;
                   },
+                  validator: (val) =>
+                      (val?.isEmpty == true) ? 'Email is required' : null,
                   hintText: 'Email Address',
                 ),
                 InputField(
                   onChanged: (val) {
                     user.password = val;
                   },
+                  validator: (val) =>
+                      (val?.isEmpty == true) ? 'Enter a valid password!' : null,
                   hintText: 'Password',
                 ),
                 10.verticalSpace,
