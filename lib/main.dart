@@ -1,9 +1,9 @@
 import 'package:e_commerce/models/settings.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:flutter/services.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import 'routes.dart';
-import 'screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,14 +26,21 @@ class Clot extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: Size(context.width, context.height),
-        builder: (context, child) {
-          return const GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            initialRoute: SplashScreen.routeName,
-            onGenerateRoute: Routes.onGenerateRoute,
-          );
-        });
+    return GlobalLoaderOverlay(
+      child: ScreenUtilInit(
+          designSize: Size(context.width, context.height),
+          builder: (context, child) {
+            return Builder(builder: (context) {
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: Routes.onGenerateRoute,
+                defaultTransition: Transition.fadeIn,
+                scrollBehavior: const ScrollBehavior().copyWith(
+                  physics: const BouncingScrollPhysics(),
+                ),
+              );
+            });
+          }),
+    );
   }
 }

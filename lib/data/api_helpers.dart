@@ -23,6 +23,7 @@ class ApiHelpers {
   }
 
   static Map<String, dynamic> checkError(Response response) {
+    // ignore: avoid_print
     print(
       'Response: ${response.data}',
     );

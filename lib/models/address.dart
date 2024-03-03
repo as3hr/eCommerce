@@ -1,5 +1,3 @@
-import 'package:flutter_stripe/flutter_stripe.dart';
-
 class Address {
   String? id;
   String? streetAddress;

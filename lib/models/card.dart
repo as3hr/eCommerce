@@ -13,7 +13,7 @@ class Card {
     this.id,
   });
 
-  factory Card.fromJSon(Map<String, dynamic> json) {
+  factory Card.fromJson(Map<String, dynamic> json) {
     return Card(
       id: json['_id'],
       cardHolderName: json['cardholdername'],

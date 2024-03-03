@@ -4,7 +4,7 @@ import 'package:e_commerce/models/user.dart';
 
 class Api {
   static final dio = Dio(BaseOptions(
-      baseUrl: "http://localhost:3000",
+      baseUrl: "http://192.168.100.46:6000",
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json'));
@@ -30,7 +30,7 @@ class Api {
 
   static Future<User> signUp({required User user}) async {
     const url = '/auth/signUp';
-    final response = await dio.post(url, data: user.toJson());
+    final response = await dio.post(url, data: user.userSignUp());
     final data = ApiHelpers.checkError(response)['result'];
     return User.fromJson(data);
   }

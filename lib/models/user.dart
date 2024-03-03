@@ -1,3 +1,5 @@
+import 'package:e_commerce/data/api_helpers.dart';
+
 import 'address.dart';
 import 'card.dart';
 
@@ -47,18 +49,20 @@ class User {
       image: json['image'],
       email: json['email'],
       emailVerified: json['emailVerified'],
-      fcmTokens: json['fcmTokens']
-          .map((token) => token as String)
-          .toList()
-          .cast<String>(),
+      fcmTokens: json['fcmTokens'] != null
+          ? json['fcmTokens']
+              .map((token) => token as String)
+              .toList()
+              .cast<String>()
+          : [],
       resetCode: json['resetCode'],
       resetCodeExpiry: DateTime.tryParse(json['resetCodeExpiry'] ?? ''),
       verificationCode: json['verificationCode'],
       verificationCodeExpiry:
           DateTime.tryParse(json['verificationCodeExpiry'] ?? ''),
       contactNumber: json['contactNumber'],
-      addresses: json['addresses'],
-      cards: json['cards'],
+      addresses: ApiHelpers.parseList(json['addresses'], Address.fromJson),
+      cards: ApiHelpers.parseList(json['cards'], Card.fromJson),
     );
   }
 
@@ -71,8 +75,8 @@ class User {
       'email': email,
       'password': password,
       'contactNumber': contactNumber,
-      'card': cards?.map((card) => card.id).toList(),
-      'addresses': addresses?.map((address) => address.id).toList(),
+      'card': cards?.map((card) => card.id).toList() ?? [],
+      'addresses': addresses?.map((address) => address.id).toList() ?? [],
       'image': image,
       'emailVerified': emailVerified,
       'fcmTokens': fcmTokens,
@@ -80,6 +84,16 @@ class User {
       'verificationCodeExpiry': verificationCodeExpiry?.toIso8601String(),
       'resetCode': resetCode,
       'resetCodeExpiry': resetCodeExpiry?.toIso8601String(),
+    };
+  }
+
+  Map<String, dynamic> userSignUp() {
+    return {
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'password': password,
+      'contactNumber': contactNumber,
     };
   }
 }

@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../data/api_error.dart';
+import '../../helpers/functions/change_page.dart';
 import '../../models/token.dart';
+import 'login/login_screen.dart';
 
 class AuthController extends GetxController {
   final isInitialized = false.obs;
@@ -65,17 +67,17 @@ class AuthController extends GetxController {
   Future<void> signUp({
     required User user,
   }) async {
-    user = await Api.signUp(user: user);
-    update();
+    await Api.signUp(user: user);
+    changePage(LoginScreen.routeName);
   }
 
   Future<void> fetchProfile() async {
-    // user = await Api.getUser();
+    user = await Api.getUser();
     update();
   }
 
   Future<void> logout() async {
-    // await Api.logout();
+    await Api.logout();
     await Token.clearToken();
     token.value = null;
     user = null;

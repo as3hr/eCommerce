@@ -31,134 +31,96 @@ class Routes {
     switch (settings.name) {
       case SplashScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const SplashScreen(),
         );
       case SignUp.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
-          page: () => const SignUp(),
+          page: () => SignUp(),
         );
       case LoginScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const LoginScreen(),
         );
       case BottomNavBar.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const BottomNavBar(),
         );
       case HomeScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const HomeScreen(),
         );
       case CartScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const CartScreen(),
         );
       case CheckoutScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const CheckoutScreen(),
         );
       case OrderPlaced.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const OrderPlaced(),
         );
       case CategoriesScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const CategoriesScreen(),
         );
       case ProfileScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const ProfileScreen(),
         );
       case UpdateProfileScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const UpdateProfileScreen(),
         );
       case OrderScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const OrderScreen(),
         );
       case OrderDetail.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const OrderDetail(),
         );
       case NotificationScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const NotificationScreen(),
         );
       case ItemDetailScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const ItemDetailScreen(),
         );
       case AddressScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const AddressScreen(),
         );
       case AddAddressScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const AddAddressScreen(),
         );
       case WishListScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const WishListScreen(),
         );
       case WishListCollectionScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => WishListCollectionScreen(
             title: args['title'],
@@ -166,15 +128,11 @@ class Routes {
         );
       case PaymentScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const PaymentScreen(),
         );
       case AddCardScreen.routeName:
         return GetPageRoute(
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
           page: () => const AddCardScreen(),
         );

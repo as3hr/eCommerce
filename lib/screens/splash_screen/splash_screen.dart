@@ -1,12 +1,9 @@
 import '../../helpers/styles/app_colors.dart';
 import '../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import '../auth/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routeName = '/splash-screen';
+  static const routeName = '/';
   const SplashScreen({super.key});
 
   @override
@@ -17,12 +14,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-        (route) => false,
-      );
-    });
   }
 
   @override
