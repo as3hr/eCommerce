@@ -32,6 +32,15 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   final controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.preFilledValue != null) {
+      controller.text = '${widget.preFilledValue}';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +51,6 @@ class _InputFieldState extends State<InputField> {
         child: TextFormField(
             controller: controller,
             inputFormatters: widget.inputFormatters,
-            initialValue: widget.preFilledValue,
             obscureText: widget.isObsecure,
             readOnly: widget.readOnly,
             cursorColor: AppColors.lightPurple,

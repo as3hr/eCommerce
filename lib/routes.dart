@@ -128,7 +128,7 @@ class Routes {
         return GetPageRoute(
           settings: settings,
           page: () => WishListCollectionScreen(
-            title: args['title'],
+            wish: args['wish'],
           ),
         );
       case PaymentScreen.routeName:

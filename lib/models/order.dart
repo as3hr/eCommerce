@@ -1,3 +1,7 @@
+import 'package:e_commerce/models/product.dart';
+
+import '../data/api_helpers.dart';
+
 class Order {
   String? id;
   String? title;
@@ -7,7 +11,7 @@ class Order {
   int? shippingCost;
   int? tax;
   int? total;
-  List<String>? products;
+  List<Product>? products;
 
   Order({
     this.id,
@@ -31,12 +35,7 @@ class Order {
       total: json['total'],
       id: json['_id'],
       title: json['title'],
-      products: json['products'] != null
-          ? json['products']
-              .map((product) => product.toString())
-              .toList()
-              .cast<String>()
-          : [],
+      products: ApiHelpers.parseList(json['products'], Product.fromJson),
     );
   }
   Map<String, dynamic> toJson() {
@@ -49,7 +48,7 @@ class Order {
       'shippingCost': shippingCost,
       'tax': tax,
       'total': total,
-      'products': products,
+      'products': products?.map((product) => product.id).toList() ?? [],
     };
   }
 }

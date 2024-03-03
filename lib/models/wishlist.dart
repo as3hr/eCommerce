@@ -1,24 +1,22 @@
-class WishList {
+import 'package:e_commerce/data/api_helpers.dart';
+import 'package:e_commerce/models/product.dart';
+
+class Wish {
   String? id;
   String? title;
-  List<String>? products;
+  List<Product>? products;
 
-  WishList({
+  Wish({
     this.id,
     this.products,
     this.title,
   });
 
-  factory WishList.fromJson(Map<String, dynamic> json) {
-    return WishList(
+  factory Wish.fromJson(Map<String, dynamic> json) {
+    return Wish(
       id: json['_id'],
       title: json['title'],
-      products: json['products'] != null
-          ? json['products']
-              .map((product) => product.toString())
-              .toList()
-              .cast<String>()
-          : [],
+      products: ApiHelpers.parseList(json['products'], Product.fromJson),
     );
   }
 
@@ -26,7 +24,7 @@ class WishList {
     return {
       '_id': id,
       'title': title,
-      'products': products,
+      'products': products?.map((product) => product.id).toList() ?? [],
     };
   }
 }

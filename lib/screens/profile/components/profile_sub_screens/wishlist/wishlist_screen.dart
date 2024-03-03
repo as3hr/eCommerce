@@ -1,3 +1,7 @@
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist/empty_wishlist.dart';
+import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
+import 'package:get/get.dart';
+
 import '../../../../../helpers/functions/change_page.dart';
 import '../../../../../helpers/styles/app_decoration.dart';
 import '../../../../../helpers/styles/app_images.dart';
@@ -15,65 +19,52 @@ class WishListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.pureWhite,
-      body: SafeArea(
-        child: Column(
-          children: [
-            35.verticalSpace,
-            const Header(text: 'Wishlist'),
-            35.verticalSpace,
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: CustomTile(
-                width: 1.sw,
-                title: Text(
-                  'My Favorite',
-                  style: AppDecoration.mediumStyle(
-                      fontSize: 17, color: AppColors.pureBlack),
-                ),
-                subTitle: Text(
-                  '12 Products',
-                  style: AppDecoration.lightStyle(
-                      fontSize: 13, color: AppColors.lightBlack),
-                ),
-                trailing: const Image(
-                  image: AssetImage(AppImages.arrowForward),
-                  color: AppColors.pureBlack,
-                ),
-                trailingOnTap: () {
-                  changePage(WishListCollectionScreen.routeName,
-                      arguments: {'title': 'My Favorite'});
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: CustomTile(
-                width: 1.sw,
-                title: Text(
-                  'T-Shirts',
-                  style: AppDecoration.mediumStyle(
-                      fontSize: 17, color: AppColors.pureBlack),
-                ),
-                subTitle: Text(
-                  '4 Products',
-                  style: AppDecoration.lightStyle(
-                      fontSize: 13, color: AppColors.lightBlack),
-                ),
-                trailing: const Image(
-                  image: AssetImage(AppImages.arrowForward),
-                  color: AppColors.pureBlack,
-                ),
-                trailingOnTap: () {
-                  changePage(WishListCollectionScreen.routeName,
-                      arguments: {'title': 'T-Shirts'});
-                },
-              ),
-            ),
-          ],
+    return GetBuilder<ProfileScreenController>(builder: (controller) {
+      return Scaffold(
+        backgroundColor: AppColors.pureWhite,
+        body: SafeArea(
+          child: Column(
+            children: [
+              35.verticalSpace,
+              const Header(text: 'Wishlist'),
+              35.verticalSpace,
+              controller.wishLists.isEmpty
+                  ? const EmptyWishList()
+                  : Expanded(
+                      child: ListView.builder(
+                          itemCount: controller.wishLists.length,
+                          itemBuilder: (context, index) {
+                            final wish = controller.wishLists[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: CustomTile(
+                                width: 1.sw,
+                                title: Text(
+                                  wish.title ?? '',
+                                  style: AppDecoration.mediumStyle(
+                                      fontSize: 17, color: AppColors.pureBlack),
+                                ),
+                                subTitle: Text(
+                                  '${wish.products?.length} Products',
+                                  style: AppDecoration.lightStyle(
+                                      fontSize: 13,
+                                      color: AppColors.lightBlack),
+                                ),
+                                trailing: const Image(
+                                  image: AssetImage(AppImages.arrowForward),
+                                  color: AppColors.pureBlack,
+                                ),
+                                trailingOnTap: () {
+                                  changePage(WishListCollectionScreen.routeName,
+                                      arguments: {'wish': wish});
+                                },
+                              ),
+                            );
+                          })),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

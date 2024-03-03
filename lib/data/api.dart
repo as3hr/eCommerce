@@ -40,6 +40,12 @@ class Api {
     return User.fromJson(data);
   }
 
+  static Future<void> updateUser({required User user}) async {
+    final url = '/users/${user.id}';
+    final response = await dio.put(url, data: user.toJson());
+    ApiHelpers.checkError(response);
+  }
+
   //User API's
   static Future<User> getUser() async {
     const url = '/users/profile';
@@ -103,12 +109,12 @@ class Api {
   }
 
   //Wishlist API's
-  static Future<List<WishList>> getWishlists({
+  static Future<List<Wish>> getWishes({
     Map<String, dynamic>? extraQuery,
     int limit = 25,
     int page = 1,
   }) async {
-    const url = '/wishlists/';
+    const url = '/wishes/';
     final response = await dio.get(
       url,
       queryParameters: {
@@ -117,6 +123,13 @@ class Api {
         ...?extraQuery,
       },
     );
-    return ApiHelpers.parseResponse(response, WishList.fromJson);
+    return ApiHelpers.parseResponse(response, Wish.fromJson);
+  }
+
+  static Future<Wish> getWish({required String id}) async {
+    final url = '/wishes/$id';
+    final response = await dio.get(url);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Wish.fromJson(data);
   }
 }

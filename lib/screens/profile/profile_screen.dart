@@ -23,6 +23,7 @@ class ProfileScreen extends StatelessWidget {
     return GetBuilder(
         init: ProfileScreenController(),
         builder: (controller) {
+          final user = Get.find<AuthController>().user;
           return Scaffold(
             backgroundColor: AppColors.pureWhite,
             body: SafeArea(
@@ -37,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
                     title: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
-                        'Gilbert Jones',
+                        '${user?.firstName} ${user?.lastName}',
                         style: AppDecoration.mediumStyle(
                             fontSize: 17, color: AppColors.pureBlack),
                       ),
@@ -47,13 +48,13 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         3.verticalSpace,
                         Text(
-                          'GIlbertjones@gmail.com',
+                          user?.email ?? '',
                           style: AppDecoration.mediumStyle(
                               fontSize: 16, color: AppColors.pureBlack),
                         ),
                         5.verticalSpace,
                         Text(
-                          '+92 3323232456',
+                          user?.contactNumber ?? '',
                           style: AppDecoration.mediumStyle(
                               fontSize: 15, color: AppColors.pureBlack),
                         ),
@@ -80,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           loadingWrapper(() async =>
-                              {Get.find<AuthController>().logout()});
+                              {await Get.find<AuthController>().logout()});
                         },
                         child: Text(
                           'Sign Out',

@@ -60,7 +60,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> login() async {
-    user = await Api.login(email: email, password: password);
+    await Api.login(email: email, password: password);
     token.value?.persistToken();
     fetchProfile();
     update();
@@ -105,5 +105,16 @@ class AuthController extends GetxController {
       }
     }
     isInitialized.value = true;
+  }
+
+  Future<void> updateUser({
+    required User user,
+  }) async {
+    await Api.updateUser(user: user);
+    fetchProfile();
+    showToast(
+      message: 'Profile Updated!',
+      imagePath: AppImages.successful,
+    );
   }
 }

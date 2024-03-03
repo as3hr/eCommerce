@@ -1,3 +1,19 @@
+import 'package:e_commerce/data/api.dart';
 import 'package:get/get.dart';
 
-class ProfileScreenController extends GetxController {}
+import '../../models/wishlist.dart';
+
+class ProfileScreenController extends GetxController {
+  List<Wish> wishLists = [];
+
+  @override
+  void onInit() {
+    super.onInit();
+    getWishList();
+  }
+
+  Future<void> getWishList() async {
+    wishLists = await Api.getWishes();
+    update();
+  }
+}
