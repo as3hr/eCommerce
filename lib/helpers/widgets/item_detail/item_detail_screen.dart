@@ -1,3 +1,5 @@
+import 'package:e_commerce/models/product.dart';
+
 import '../../styles/app_colors.dart';
 import '../../styles/app_decoration.dart';
 import '../../styles/app_images.dart';
@@ -10,8 +12,8 @@ import 'components/item_size_quantity.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   static const routeName = '/item-detail';
-  const ItemDetailScreen({super.key});
-
+  const ItemDetailScreen({super.key, required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,10 @@ class ItemDetailScreen extends StatelessWidget {
                   20.horizontalSpace,
                   const CustomBackButton(),
                   const Spacer(),
-                  const Image(image: AssetImage(AppImages.favIconUnfilled)),
+                  product.isFav
+                      ? const Icon(Icons.favorite)
+                      : const Image(
+                          image: AssetImage(AppImages.favIconUnfilled)),
                   20.horizontalSpace
                 ],
               ),
@@ -54,7 +59,7 @@ class ItemDetailScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "Men's Harringtion Jacket",
+                  product.title ?? '',
                   style: AppDecoration.semiBoldStyle(
                       fontSize: 17, color: AppColors.pureBlack),
                 ),
@@ -63,7 +68,7 @@ class ItemDetailScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "\$148",
+                  "\$${product.price}",
                   style: AppDecoration.semiBoldStyle(
                       fontSize: 17, color: AppColors.lightPurple),
                 ),
@@ -73,7 +78,7 @@ class ItemDetailScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
-                  'Built for life and made to last, this full-zip corduroy jacket is part of our Nike Life collection. The spacious fit gives you plenty of room to layer underneath, while the soft corduroy keeps it casual and timeless.',
+                  product.description ?? '',
                   style: AppDecoration.lightStyle(
                       fontSize: 14, color: AppColors.lightBlack),
                 ),
@@ -100,7 +105,7 @@ class ItemDetailScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "4.5 Ratings",
+                  '${product.rating?.toDouble()}',
                   style: AppDecoration.boldStyle(
                       fontSize: 25, color: AppColors.pureBlack),
                 ),
@@ -112,7 +117,7 @@ class ItemDetailScreen extends StatelessWidget {
                   borderRadius: 30,
                   color: AppColors.lightPurple,
                   leading: Text(
-                    '\$148',
+                    '\$${product.price}',
                     style: AppDecoration.semiBoldStyle(
                         fontSize: 17, color: AppColors.pureWhite),
                   ),

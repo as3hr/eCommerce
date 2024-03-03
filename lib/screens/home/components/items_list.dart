@@ -1,11 +1,12 @@
-import '../../../helpers/functions/change_page.dart';
 import '../../../helpers/widgets/item_container.dart';
-import '../../../helpers/widgets/item_detail/item_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../models/product.dart';
+
 class ItemsList extends StatelessWidget {
-  const ItemsList({super.key});
+  const ItemsList({super.key, required this.products});
+  final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +15,15 @@ class ItemsList extends StatelessWidget {
       width: 1.sw,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
+          itemCount: products.length,
           itemBuilder: ((context, index) {
+            final product = products[index];
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ItemContainer(
-                  onTap: () {
-                    changePage(ItemDetailScreen.routeName);
-                  },
-                  width: 0.5.sw,
-                  image: '',
-                  title: 'Mens t shirt',
-                  price: 1200),
+                width: 0.5.sw,
+                product: product,
+              ),
             );
           })),
     );

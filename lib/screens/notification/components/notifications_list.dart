@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../helpers/styles/app_colors.dart';
+import '../../../models/notification.dart';
 
 class NotificationList extends StatelessWidget {
-  const NotificationList({super.key});
-
+  const NotificationList({super.key, required this.notifications});
+  final List<NotificationModel> notifications;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: notifications.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
+          final notification = notifications[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -31,7 +33,7 @@ class NotificationList extends StatelessWidget {
                   color: AppColors.pureBlack,
                 ),
                 title: Text(
-                  'This is just for testing the UI This is just for testing the UI This is just for testing the UI',
+                  notification.title ?? '',
                   style: AppDecoration.lightStyle(
                       fontSize: 15, color: AppColors.pureBlack),
                 ),

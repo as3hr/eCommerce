@@ -22,37 +22,46 @@ class HomeScreen extends StatelessWidget {
         builder: (controller) {
           return Scaffold(
             backgroundColor: AppColors.pureWhite,
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    25.verticalSpace,
-                    const HomeHeader(),
-                    15.verticalSpace,
-                    SearchField(onChanged: (val) {}),
-                    15.verticalSpace,
-                    SpacerRow(
-                      text1: 'Categories',
-                      text2: 'See All',
-                      text2Tap: () {
-                        changePage(CategoriesScreen.routeName);
-                      },
+            body: controller.productsList.isEmpty
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SafeArea(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          25.verticalSpace,
+                          const HomeHeader(),
+                          15.verticalSpace,
+                          SearchField(onChanged: (val) {}),
+                          15.verticalSpace,
+                          SpacerRow(
+                            text1: 'Categories',
+                            text2: 'See All',
+                            text2Tap: () {
+                              changePage(CategoriesScreen.routeName);
+                            },
+                          ),
+                          15.verticalSpace,
+                          const AllCategories(),
+                          15.verticalSpace,
+                          const SpacerRow(
+                              text1: 'Top Selling', text2: 'See All'),
+                          15.verticalSpace,
+                          ItemsList(
+                            products: controller.productsList,
+                          ),
+                          15.verticalSpace,
+                          const SpacerRow(text1: 'New in', text2: 'See All'),
+                          15.verticalSpace,
+                          ItemsList(
+                            products: controller.productsList,
+                          ),
+                          10.verticalSpace,
+                        ],
+                      ),
                     ),
-                    15.verticalSpace,
-                    const AllCategories(),
-                    15.verticalSpace,
-                    const SpacerRow(text1: 'Top Selling', text2: 'See All'),
-                    15.verticalSpace,
-                    const ItemsList(),
-                    15.verticalSpace,
-                    const SpacerRow(text1: 'New in', text2: 'See All'),
-                    15.verticalSpace,
-                    const ItemsList(),
-                    10.verticalSpace,
-                  ],
-                ),
-              ),
-            ),
+                  ),
           );
         });
   }

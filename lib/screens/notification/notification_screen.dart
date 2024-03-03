@@ -1,4 +1,5 @@
 import '../../helpers/styles/app_decoration.dart';
+import 'components/empty_notifications.dart';
 import 'components/notifications_list.dart';
 import 'notification_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,12 @@ class NotificationScreen extends StatelessWidget {
                       style: AppDecoration.boldStyle(
                           fontSize: 18, color: AppColors.pureBlack),
                     )),
-                    // const EmptyNotifications(),
-                    15.verticalSpace,
-                    const NotificationList(),
+                    20.verticalSpace,
+                    controller.notificationsList.isEmpty
+                        ? const EmptyNotifications()
+                        : NotificationList(
+                            notifications: controller.notificationsList,
+                          ),
                   ],
                 ),
               ),

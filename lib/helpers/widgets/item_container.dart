@@ -1,29 +1,28 @@
+import 'package:e_commerce/models/product.dart';
+
+import '../functions/change_page.dart';
 import '../styles/app_decoration.dart';
 import '../styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../styles/app_colors.dart';
+import 'item_detail/item_detail_screen.dart';
 
 class ItemContainer extends StatelessWidget {
-  const ItemContainer(
-      {super.key,
-      required this.image,
-      this.isFav = false,
-      required this.title,
-      this.width,
-      required this.onTap,
-      required this.price});
-  final String image;
-  final bool isFav;
-  final String title;
-  final Function() onTap;
-  final int price;
+  const ItemContainer({
+    super.key,
+    required this.product,
+    this.width,
+  });
   final double? width;
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        changePage(ItemDetailScreen.routeName, arguments: {'product': product});
+      },
       child: Container(
         height: 024.sh,
         width: width ?? 0.4.sw,
@@ -42,7 +41,7 @@ class ItemContainer extends StatelessWidget {
             Positioned(
               top: 10,
               right: 5,
-              child: isFav
+              child: product.isFav
                   ? const Icon(
                       Icons.favorite,
                       color: AppColors.redColor,
@@ -69,13 +68,13 @@ class ItemContainer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          product.title ?? '',
                           style: AppDecoration.semiMediumStyle(
                               fontSize: 17.5, color: AppColors.pureBlack),
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          '\$$price',
+                          '\$${product.price}',
                           style: AppDecoration.boldStyle(
                               fontSize: 16, color: AppColors.pureBlack),
                         ),

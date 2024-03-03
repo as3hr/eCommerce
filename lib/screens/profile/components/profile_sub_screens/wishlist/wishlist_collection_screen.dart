@@ -1,11 +1,11 @@
+import 'package:e_commerce/models/product.dart';
+
 import '../../../../../helpers/styles/app_colors.dart';
 import '../../../../../helpers/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../helpers/functions/change_page.dart';
 import '../../../../../helpers/widgets/item_container.dart';
-import '../../../../../helpers/widgets/item_detail/item_detail_screen.dart';
 
 class WishListCollectionScreen extends StatelessWidget {
   static const routeName = '/wishlist-collection';
@@ -33,14 +33,9 @@ class WishListCollectionScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8),
                       child: ItemContainer(
-                          isFav: true,
-                          image: '',
-                          width: 0.463.sw,
-                          title: 'T shirt',
-                          price: 3000,
-                          onTap: () {
-                            changePage(ItemDetailScreen.routeName);
-                          }),
+                        width: 0.463.sw,
+                        product: Product(),
+                      ),
                     );
                   }))
         ],

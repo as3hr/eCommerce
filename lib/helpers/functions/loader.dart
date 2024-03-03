@@ -9,7 +9,7 @@ import '../../data/api_error.dart';
 Future<T?> loadingWrapper<T>(
   Future<T> Function() func,
 ) async {
-  Get.context?.loaderOverlay.show();
+  Get.context?.loaderOverlay.show(showOverlay: false);
   try {
     final response = await func();
     return response;

@@ -1,11 +1,7 @@
-import 'package:e_commerce/data/api_helpers.dart';
-
-import 'product.dart';
-
 class WishList {
   String? id;
   String? title;
-  List<Product>? products;
+  List<String>? products;
 
   WishList({
     this.id,
@@ -17,7 +13,12 @@ class WishList {
     return WishList(
       id: json['_id'],
       title: json['title'],
-      products: ApiHelpers.parseList(json['products'], Product.fromJson),
+      products: json['products'] != null
+          ? json['products']
+              .map((product) => product.toString())
+              .toList()
+              .cast<String>()
+          : [],
     );
   }
 
@@ -25,7 +26,7 @@ class WishList {
     return {
       '_id': id,
       'title': title,
-      'products': products?.map((product) => product.id).toList() ?? [],
+      'products': products,
     };
   }
 }

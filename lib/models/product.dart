@@ -34,7 +34,10 @@ class Product {
         quantity: json['quantity'],
         rating: json['rating'],
         size: json['size'] != null
-            ? json['size'].map((size) => size as String).toList().cast<String>()
+            ? json['size']
+                .map((size) => size.toString())
+                .toList()
+                .cast<String>()
             : []);
   }
 

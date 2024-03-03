@@ -105,7 +105,9 @@ class Routes {
       case ItemDetailScreen.routeName:
         return GetPageRoute(
           settings: settings,
-          page: () => const ItemDetailScreen(),
+          page: () => ItemDetailScreen(
+            product: args['product'],
+          ),
         );
       case AddressScreen.routeName:
         return GetPageRoute(

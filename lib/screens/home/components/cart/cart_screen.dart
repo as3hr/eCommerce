@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/widgets/header.dart';
 import 'cart_content.dart';
@@ -21,7 +24,7 @@ class CartScreen extends StatelessWidget {
             extraSpace: 35,
           ),
           // const EmptyCart(),
-          const Expanded(child: CartContent()),
+          const CartContent(),
         ],
       )),
     );
