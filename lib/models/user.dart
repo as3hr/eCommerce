@@ -1,0 +1,85 @@
+import 'address.dart';
+import 'card.dart';
+
+class User {
+  String? id;
+  String? userName;
+  String? password;
+  String? firstName;
+  String? lastName;
+  String? image;
+  String? contactNumber;
+  String? email;
+  String? resetCode;
+  String? verificationCode;
+  bool emailVerified;
+  DateTime? verificationCodeExpiry;
+  DateTime? resetCodeExpiry;
+  List<String>? fcmTokens;
+  List<Address>? addresses;
+  List<Card>? cards;
+
+  User({
+    this.id,
+    this.emailVerified = false,
+    this.userName,
+    this.contactNumber,
+    this.email,
+    this.fcmTokens,
+    this.firstName,
+    this.lastName,
+    this.image,
+    this.password,
+    this.addresses,
+    this.cards,
+    this.resetCode,
+    this.resetCodeExpiry,
+    this.verificationCode,
+    this.verificationCodeExpiry,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['_id'],
+      userName: json['username'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      image: json['image'],
+      email: json['email'],
+      emailVerified: json['emailVerified'],
+      fcmTokens: json['fcmTokens']
+          .map((token) => token as String)
+          .toList()
+          .cast<String>(),
+      resetCode: json['resetCode'],
+      resetCodeExpiry: DateTime.tryParse(json['resetCodeExpiry'] ?? ''),
+      verificationCode: json['verificationCode'],
+      verificationCodeExpiry:
+          DateTime.tryParse(json['verificationCodeExpiry'] ?? ''),
+      contactNumber: json['contactNumber'],
+      addresses: json['addresses'],
+      cards: json['cards'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'userName': userName,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'password': password,
+      'contactNumber': contactNumber,
+      'card': cards?.map((card) => card.id).toList(),
+      'addresses': addresses?.map((address) => address.id).toList(),
+      'image': image,
+      'emailVerified': emailVerified,
+      'fcmTokens': fcmTokens,
+      'verificationCode': verificationCode,
+      'verificationCodeExpiry': verificationCodeExpiry?.toIso8601String(),
+      'resetCode': resetCode,
+      'resetCodeExpiry': resetCodeExpiry?.toIso8601String(),
+    };
+  }
+}
