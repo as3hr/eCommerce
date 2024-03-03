@@ -16,7 +16,6 @@ const pagination = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     // Copy req.query
     const reqQuery = { ...parse(req.query) };
-    console.log(reqQuery);
 
     // Fields to exclude
     const removeFields = ["select", "sort", "page", "limit"];

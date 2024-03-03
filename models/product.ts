@@ -23,7 +23,7 @@ export interface IProduct extends Document{
     description?: string,
     price?: number,
     isFav?: boolean,
-    size?: string[],
+    size?: Array<string>,
     rating?: number,
     quantity?: number,
     gender?: Gender,

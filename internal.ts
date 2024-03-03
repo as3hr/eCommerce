@@ -20,7 +20,7 @@ export * from "./models/log";
 export * from "./models/notification";
 export * from "./models/product";
 export * from "./models/order";
-export * from "./models/wishlist";
+export * from "./models/wish";
 
 export * from "./controllers/auth";
 export * from "./controllers/upload";
@@ -30,7 +30,7 @@ export * from "./controllers/permission";
 export * from "./controllers/notification";
 export * from "./controllers/product";
 export * from "./controllers/order";
-export * from "./controllers/wishlist";
+export * from "./controllers/wish";
 export * from "./controllers/payment";
 
 export * from "./routes/auth";
@@ -40,6 +40,6 @@ export * from "./routes/user";
 export * from "./routes/notification";
 export * from "./routes/product";
 export * from "./routes/order";
-export * from "./routes/wishlist";
+export * from "./routes/wish";
 export * from "./routes/payment";
 

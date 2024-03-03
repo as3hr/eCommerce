@@ -4,7 +4,7 @@ import { IAddress, address } from "../internal";
 import { ICard, card } from "./card";
 
 export interface IUser extends Document {
-  username?: string;
+  userName?: string;
   password?: string;
   firstName?: string;
   lastName?: string;

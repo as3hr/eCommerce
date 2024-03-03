@@ -1,11 +1,11 @@
 import mongoose, {Schema, Document }from "mongoose";
 
-export interface IWishlist extends Document{
+export interface IWish extends Document{
     title?: string,
     products?: Schema.Types.ObjectId[],
 }
 
-const wishlistSchema = new Schema<IWishlist>({
+const wishSchema = new Schema<IWish>({
     title: {
         type: String,
         cast: 'title type must be a string',
@@ -17,6 +17,6 @@ const wishlistSchema = new Schema<IWishlist>({
     }],
 });
 
-const wishlistModel = mongoose.model<IWishlist>( "wishlists",wishlistSchema );
+const wishModel = mongoose.model<IWish>( "wishes",wishSchema );
 
-export { wishlistModel };
+export { wishModel };
