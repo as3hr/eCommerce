@@ -2,11 +2,11 @@ class Product {
   String? id;
   String? title;
   String? description;
-  int? price;
+  int price;
   bool isFav;
   int? rating;
   List<String>? size;
-  int? quantity;
+  int quantity;
   String? gender;
   String? category;
 
@@ -16,8 +16,8 @@ class Product {
     this.description,
     this.gender,
     this.id,
-    this.price,
-    this.quantity,
+    this.price = 0,
+    this.quantity = 1,
     this.rating,
     this.size,
     this.title,
@@ -31,7 +31,7 @@ class Product {
         gender: json['gender'],
         category: json['category'],
         price: json['price'],
-        quantity: json['quantity'],
+        quantity: json['quantity'] ?? 1,
         rating: json['rating'],
         size: json['size'] != null
             ? json['size']

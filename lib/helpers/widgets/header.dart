@@ -6,9 +6,16 @@ import '../styles/app_decoration.dart';
 import 'back_button.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key, required this.text, this.extraSpace});
+  const Header(
+      {super.key,
+      required this.text,
+      this.extraSpace,
+      this.trailingTap,
+      this.showTrailing = false});
   final String text;
   final int? extraSpace;
+  final bool showTrailing;
+  final void Function()? trailingTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,6 +31,18 @@ class Header extends StatelessWidget {
                 fontSize: 23, color: AppColors.pureBlack),
           ),
         ),
+        if (showTrailing) ...[
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+                onTap: trailingTap,
+                child: const Icon(
+                  Icons.add_circle_outlined,
+                  color: AppColors.grayIV,
+                )),
+          ),
+        ]
       ],
     );
   }

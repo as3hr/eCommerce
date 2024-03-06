@@ -15,17 +15,18 @@ class OrderTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderScreenController>(builder: (controller) {
       return ListView.builder(
-          itemCount: 3,
+          itemCount: controller.ordersList.length,
           itemBuilder: (context, index) {
+            final order = controller.ordersList[index];
             return CustomTile(
               height: 65,
               leading: const Image(image: AssetImage(AppImages.order)),
               title: Text(
-                'This is just for testing the UI',
+                '${order.id?.substring(0, 8)}',
                 style: AppDecoration.semiBoldStyle(
                     fontSize: 16, color: AppColors.pureBlack),
               ),
-              subTitle: Text('4 items',
+              subTitle: Text('${order.products?.length} items',
                   style: AppDecoration.lightStyle(
                       fontSize: 13, color: AppColors.pureBlack)),
               trailing: const Image(
@@ -33,7 +34,7 @@ class OrderTabView extends StatelessWidget {
                 color: AppColors.pureBlack,
               ),
               trailingOnTap: () {
-                changePage(OrderDetail.routeName);
+                changePage(OrderDetail.routeName, arguments: {'order': order});
               },
             );
           });

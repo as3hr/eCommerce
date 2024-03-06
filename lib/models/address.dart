@@ -29,7 +29,7 @@ class Address {
       'streetAddress': streetAddress,
       'city': city,
       'state': state,
-      'zipCOde': zipCode,
+      'zipCode': zipCode,
     };
   }
 }

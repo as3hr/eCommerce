@@ -60,7 +60,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> login() async {
-    await Api.login(email: email, password: password);
+    await Api.login(email: email.trim(), password: password.trim());
     token.value?.persistToken();
     fetchProfile();
     update();

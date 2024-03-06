@@ -12,17 +12,21 @@ class InputField extends StatefulWidget {
     this.hintText,
     this.width,
     this.validator,
+    this.keyboardType,
     this.readOnly = false,
     this.inputFormatters,
     this.onSubmit,
+    this.maxLength,
     required this.onChanged,
   });
   final List<TextInputFormatter>? inputFormatters;
   final String? preFilledValue;
   final bool isObsecure;
+  final int? maxLength;
   final bool readOnly;
   final String? hintText;
   final double? width;
+  final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final void Function(String) onChanged;
   final void Function(String)? onSubmit;
@@ -49,6 +53,7 @@ class _InputFieldState extends State<InputField> {
         width: widget.width,
         color: Colors.grey.shade100,
         child: TextFormField(
+            keyboardType: widget.keyboardType,
             controller: controller,
             inputFormatters: widget.inputFormatters,
             obscureText: widget.isObsecure,

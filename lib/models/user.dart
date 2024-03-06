@@ -69,12 +69,12 @@ class User {
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
-      'userName': userName,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'password': password,
-      'contactNumber': contactNumber,
+      'userName': userName?.trim(),
+      'firstName': firstName?.trim(),
+      'lastName': lastName?.trim(),
+      'email': email?.trim(),
+      'password': password?.trim(),
+      'contactNumber': contactNumber?.trim(),
       'card': cards?.map((card) => card.id).toList() ?? [],
       'addresses': addresses?.map((address) => address.id).toList() ?? [],
       'image': image,
@@ -89,11 +89,11 @@ class User {
 
   Map<String, dynamic> userSignUp() {
     return {
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'password': password,
-      'contactNumber': contactNumber,
+      'firstName': firstName?.trim(),
+      'lastName': lastName?.trim(),
+      'email': email?.trim(),
+      'password': password?.trim(),
+      'contactNumber': contactNumber?.trim(),
     };
   }
 }

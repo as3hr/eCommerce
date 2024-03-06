@@ -95,7 +95,9 @@ class Routes {
       case OrderDetail.routeName:
         return GetPageRoute(
           settings: settings,
-          page: () => const OrderDetail(),
+          page: () => OrderDetail(
+            order: args['order'],
+          ),
         );
       case NotificationScreen.routeName:
         return GetPageRoute(
@@ -117,7 +119,9 @@ class Routes {
       case AddAddressScreen.routeName:
         return GetPageRoute(
           settings: settings,
-          page: () => const AddAddressScreen(),
+          page: () => AddAddressScreen(
+            address: args['address'],
+          ),
         );
       case WishListScreen.routeName:
         return GetPageRoute(

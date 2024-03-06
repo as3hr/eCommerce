@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/models/settings.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,7 @@ class Clot extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
       child: ScreenUtilInit(
-          designSize: Size(context.width, context.height),
+          designSize: Size(context.screenWidth, context.screenHeight),
           builder: (context, child) {
             return Builder(builder: (context) {
               return GetMaterialApp(

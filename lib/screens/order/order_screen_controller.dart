@@ -10,10 +10,10 @@ class OrderScreenController extends GetxController
   List<Order> ordersList = [];
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    await getOrders();
     tabController = TabController(length: 5, vsync: this);
-    getOrders();
   }
 
   Future<void> getOrders({bool refresh = false}) async {

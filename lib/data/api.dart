@@ -6,6 +6,8 @@ import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/models/wishlist.dart';
 
+import '../models/address.dart';
+
 class Api {
   static final dio = Dio(BaseOptions(
       baseUrl: "http://192.168.100.46:6000",
@@ -108,6 +110,12 @@ class Api {
     return ApiHelpers.parseResponse(response, Order.fromJson);
   }
 
+  static Future<void> createOrder({required Order order}) async {
+    const url = '/orders/';
+    final response = await dio.post(url, data: order.toJson());
+    ApiHelpers.checkError(response)['result'];
+  }
+
   //Wishlist API's
   static Future<List<Wish>> getWishes({
     Map<String, dynamic>? extraQuery,
@@ -131,5 +139,24 @@ class Api {
     final response = await dio.get(url);
     final data = ApiHelpers.checkError(response)['result'];
     return Wish.fromJson(data);
+  }
+
+  //address Api
+  static Future<List<Address>> getAddresses() async {
+    const url = '/addresses/';
+    final response = await dio.get(url);
+    return ApiHelpers.parseResponse(response, Address.fromJson);
+  }
+
+  static Future<void> updateAddress({required Address address}) async {
+    final url = '/addresses/${address.id}';
+    final response = await dio.put(url, data: address.toJson());
+    ApiHelpers.checkError(response)['result'];
+  }
+
+  static Future<void> createAddress({required Address address}) async {
+    const url = '/addresses/';
+    final response = await dio.post(url, data: address.toJson());
+    ApiHelpers.checkError(response)['result'];
   }
 }

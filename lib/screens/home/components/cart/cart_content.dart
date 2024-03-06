@@ -1,5 +1,7 @@
+import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/styles/app_colors.dart';
@@ -16,52 +18,59 @@ class CartContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'Remove All',
-              style: AppDecoration.semiBoldStyle(
-                  fontSize: 18, color: AppColors.lightBlack),
+    return GetBuilder<CartController>(builder: (controller) {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  controller.removeAllProducts();
+                },
+                child: Text(
+                  'Remove All',
+                  style: AppDecoration.semiBoldStyle(
+                      fontSize: 18, color: AppColors.lightBlack),
+                ),
+              ),
             ),
           ),
-        ),
-        const CartProductList(),
-        SpacerRow(
-          text1: 'Subtotal',
-          text1Color: AppColors.lightGrey,
-          text2: '\$200',
-          text2Color: AppColors.pureBlack,
-        ),
-        SpacerRow(
-          text1: 'Shipping Cost',
-          text1Color: AppColors.lightGrey,
-          text2: '\$8.00',
-          text2Color: AppColors.pureBlack,
-        ),
-        SpacerRow(
-          text1: 'Tax',
-          text1Color: AppColors.lightGrey,
-          text2: '\$0.00',
-          text2Color: AppColors.pureBlack,
-        ),
-        SpacerRow(
-          text1: 'Total',
-          text1Color: AppColors.lightGrey,
-          text2: '\$208',
-          text2Color: AppColors.pureBlack,
-        ),
-        CustomContainer(
-            onTap: () {
-              changePage(CheckoutScreen.routeName);
-            },
-            text: 'Checkout',
-            color: AppColors.lightPurple,
-            textColor: AppColors.pureWhite),
-      ],
-    );
+          const CartProductList(),
+          SpacerRow(
+            text1: 'Subtotal',
+            text1Color: AppColors.lightGrey,
+            text2: '\$${controller.order.subTotal.toDouble()}',
+            text2Color: AppColors.pureBlack,
+          ),
+          SpacerRow(
+            text1: 'Shipping Cost',
+            text1Color: AppColors.lightGrey,
+            text2: '\$${controller.order.shippingCost.toDouble()}',
+            text2Color: AppColors.pureBlack,
+          ),
+          SpacerRow(
+            text1: 'Tax',
+            text1Color: AppColors.lightGrey,
+            text2: '\$${controller.order.tax.toDouble()}',
+            text2Color: AppColors.pureBlack,
+          ),
+          SpacerRow(
+            text1: 'Total',
+            text1Color: AppColors.lightGrey,
+            text2: '\$${controller.order.total.toDouble()}',
+            text2Color: AppColors.pureBlack,
+          ),
+          CustomContainer(
+              onTap: () {
+                changePage(CheckoutScreen.routeName);
+              },
+              text: 'Checkout',
+              color: AppColors.lightPurple,
+              textColor: AppColors.pureWhite),
+        ],
+      );
+    });
   }
 }

@@ -45,14 +45,13 @@ class HomeScreen extends StatelessWidget {
                           15.verticalSpace,
                           const AllCategories(),
                           15.verticalSpace,
-                          const SpacerRow(
-                              text1: 'Top Selling', text2: 'See All'),
+                          const SpacerRow(text1: 'Top Selling'),
                           15.verticalSpace,
                           ItemsList(
                             products: controller.productsList,
                           ),
                           15.verticalSpace,
-                          const SpacerRow(text1: 'New in', text2: 'See All'),
+                          const SpacerRow(text1: 'New in'),
                           15.verticalSpace,
                           ItemsList(
                             products: controller.productsList,
