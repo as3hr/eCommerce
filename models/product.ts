@@ -6,6 +6,13 @@ enum Gender {
     K = 'Kids',
 };
 
+enum Size {
+    S = 'Small',
+    M = 'Medium',
+    L = 'Large',
+    Xl = 'Extra Large',
+}
+
 enum Category {
     Hoody = 'Hoodies', 
     Short= 'shorts', 
@@ -23,7 +30,7 @@ export interface IProduct extends Document{
     description?: string,
     price?: number,
     isFav?: boolean,
-    size?: Array<string>,
+    size: Size,
     rating?: number,
     quantity?: number,
     gender?: Gender,
@@ -59,10 +66,12 @@ const productSchema = new Schema<IProduct>({
         type: Number,
         cast: 'quantity type is invalid'
     },
-    size: [{ 
+    size: { 
         type: String,
+        enum: Object.values(Size),
+        default: Size.M,
         cast: 'size type is invalid'
-    }],
+    },
     gender: { 
         type: String,
         enum: Object.values(Gender),
