@@ -33,10 +33,20 @@ class ItemDetailScreen extends StatelessWidget {
                     20.horizontalSpace,
                     const CustomBackButton(),
                     const Spacer(),
-                    product.isFav
-                        ? const Icon(Icons.favorite)
-                        : const Image(
-                            image: AssetImage(AppImages.favIconUnfilled)),
+                    GestureDetector(
+                      onTap: () {
+                        product.isFav = !product.isFav;
+                        controller.update();
+                      },
+                      child: product.isFav
+                          ? const Icon(
+                              Icons.favorite,
+                              color: AppColors.redColor,
+                              size: 20,
+                            )
+                          : const Image(
+                              image: AssetImage(AppImages.favIconUnfilled)),
+                    ),
                     20.horizontalSpace
                   ],
                 ),
