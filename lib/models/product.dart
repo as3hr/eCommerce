@@ -5,7 +5,7 @@ class Product {
   int price;
   bool isFav;
   int? rating;
-  List<String>? size;
+  String? size;
   int quantity;
   String? gender;
   String? category;
@@ -33,12 +33,7 @@ class Product {
         price: json['price'],
         quantity: json['quantity'] ?? 1,
         rating: json['rating'],
-        size: json['size'] != null
-            ? json['size']
-                .map((size) => size.toString())
-                .toList()
-                .cast<String>()
-            : []);
+        size: json['size']);
   }
 
   Map<String, dynamic> toJson() {

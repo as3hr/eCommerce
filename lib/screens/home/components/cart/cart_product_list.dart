@@ -44,10 +44,10 @@ class CartProductList extends StatelessWidget {
                 subTitle: Padding(
                   padding: const EdgeInsets.only(bottom: 8, left: 8),
                   child: EasyRichText(
-                    product.size?.firstOrNull ?? 'M',
+                    product.size ?? 'M',
                     patternList: [
                       EasyRichTextPattern(
-                          targetString: product.size?.firstOrNull ?? 'M',
+                          targetString: product.size ?? 'M',
                           style: AppDecoration.boldStyle(
                               fontSize: 13, color: AppColors.pureBlack)),
                     ],
