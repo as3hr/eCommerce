@@ -1,5 +1,8 @@
+import 'package:e_commerce/screens/order/components/empty_orders.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/styles/app_colors.dart';
@@ -10,34 +13,78 @@ import '../order_detail/order_detail.dart';
 import 'package:flutter/material.dart';
 
 class OrderTabView extends StatelessWidget {
-  const OrderTabView({super.key});
+  OrderTabView({super.key, required this.status});
+  final String status;
+  final refreshController = RefreshController(
+    initialRefresh: false,
+  );
+
+  Future<bool> fetchOrders({bool refresh = false}) {
+    return Get.find<OrderScreenController>()
+        .fetchOrders(status: status, refresh: refresh);
+  }
+
+  Future<void> refreshList() async {
+    try {
+      if (!await fetchOrders(refresh: true)) {
+        refreshController.loadNoData();
+      }
+      refreshController.refreshCompleted();
+    } catch (e) {
+      refreshController.refreshFailed();
+    }
+  }
+
+  Future<void> onLoading() async {
+    try {
+      if (await fetchOrders()) {
+        refreshController.loadComplete();
+      } else {
+        refreshController.loadNoData();
+      }
+    } catch (e) {
+      refreshController.loadFailed();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderScreenController>(builder: (controller) {
-      return ListView.builder(
-          itemCount: controller.ordersList.length,
-          itemBuilder: (context, index) {
-            final order = controller.ordersList[index];
-            return CustomTile(
-              height: 65,
-              leading: const Image(image: AssetImage(AppImages.order)),
-              title: Text(
-                '${order.id?.substring(0, 8)}',
-                style: AppDecoration.semiBoldStyle(
-                    fontSize: 16, color: AppColors.pureBlack),
-              ),
-              subTitle: Text('${order.products?.length} items',
-                  style: AppDecoration.lightStyle(
-                      fontSize: 13, color: AppColors.pureBlack)),
-              trailing: const Image(
-                image: AssetImage(AppImages.arrowForward),
-                color: AppColors.pureBlack,
-              ),
-              trailingOnTap: () {
-                changePage(OrderDetail.routeName, arguments: {'order': order});
-              },
-            );
-          });
+      final orderList = controller.allOrdersList[status] ?? [];
+      return SmartRefresher(
+        enablePullDown: true,
+        onRefresh: refreshList,
+        onLoading: onLoading,
+        controller: refreshController,
+        header: const ClassicHeader(),
+        child: orderList.isEmpty
+            ? const EmptyOrders()
+            : ListView.builder(
+                itemCount: orderList.length,
+                itemBuilder: (context, index) {
+                  final order = orderList[index];
+                  return CustomTile(
+                    height: 65,
+                    leading: const Image(image: AssetImage(AppImages.order)),
+                    title: Text(
+                      '${order.id?.substring(0, 8)}',
+                      style: AppDecoration.semiBoldStyle(
+                          fontSize: 16, color: AppColors.pureBlack),
+                    ),
+                    subTitle: Text('${order.products?.length} items',
+                        style: AppDecoration.lightStyle(
+                            fontSize: 13, color: AppColors.pureBlack)),
+                    trailing: const Image(
+                      image: AssetImage(AppImages.arrowForward),
+                      color: AppColors.pureBlack,
+                    ),
+                    trailingOnTap: () {
+                      changePage(OrderDetail.routeName,
+                          arguments: {'order': order});
+                    },
+                  );
+                }),
+      );
     });
   }
 }

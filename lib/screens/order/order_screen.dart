@@ -1,5 +1,4 @@
 import '../../helpers/styles/app_decoration.dart';
-import 'components/empty_orders.dart';
 import 'components/order_content.dart';
 import 'order_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +30,7 @@ class OrderScreen extends StatelessWidget {
                     ),
                   ),
                   25.verticalSpace,
-                  controller.ordersList.isEmpty
-                      ? const EmptyOrders()
-                      : const OrderContent()
+                  const OrderContent()
                 ],
               ),
             ),

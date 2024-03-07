@@ -5,7 +5,6 @@ import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/styles/app_images.dart';
-import '../../../../helpers/widgets/custom_tile.dart';
 import '../../../../helpers/widgets/item_detail/item_detail_screen.dart';
 
 class OrderItems extends StatelessWidget {
@@ -37,13 +36,13 @@ class OrderItems extends StatelessWidget {
               fontSize: 12, color: AppColors.lightPurple),
         ),
         children: order.products?.map((product) {
-              return CustomTile(
+              return ListTile(
                 title: Text(
                   '${product.title}',
                   style: AppDecoration.boldStyle(
                       fontSize: 15, color: AppColors.pureBlack),
                 ),
-                subTitle: Text(
+                subtitle: Text(
                   '${product.price}',
                   style: AppDecoration.mediumStyle(
                       fontSize: 15, color: AppColors.pureBlack),

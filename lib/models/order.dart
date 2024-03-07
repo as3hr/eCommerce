@@ -47,7 +47,7 @@ class Order {
       '_id': id,
       'title': title,
       'shippingDetails': shippingDetails,
-      'status': status,
+      'status': 'pending',
       'subTotal': subTotal,
       'shippingCost': shippingCost,
       'tax': tax,

@@ -32,37 +32,21 @@ class OrderContent extends StatelessWidget {
                 controller: controller.tabController,
                 padding: const EdgeInsets.all(10),
                 tabs: [
-                  OrderTab(
-                    text: 'Processing',
-                    width: 0.24.sw,
-                  ),
-                  OrderTab(
-                    text: 'Shipped',
-                    width: 0.24.sw,
-                  ),
-                  OrderTab(
-                    text: 'Delivered',
-                    width: 0.24.sw,
-                  ),
-                  OrderTab(
-                    text: 'Returned',
-                    width: 0.24.sw,
-                  ),
-                  OrderTab(
-                    text: 'Cancelled',
-                    width: 0.24.sw,
-                  ),
+                  OrderTab(text: 'Processing', width: 0.24.sw),
+                  OrderTab(text: 'Shipped', width: 0.24.sw),
+                  OrderTab(text: 'Delivered', width: 0.24.sw),
+                  OrderTab(text: 'Returned', width: 0.24.sw),
+                  OrderTab(text: 'Cancelled', width: 0.24.sw),
                 ]),
             Expanded(
-                child: TabBarView(
-                    controller: controller.tabController,
-                    children: const [
-                  OrderTabView(),
-                  OrderTabView(),
-                  OrderTabView(),
-                  OrderTabView(),
-                  OrderTabView(),
-                ]))
+                child:
+                    TabBarView(controller: controller.tabController, children: [
+              OrderTabView(status: 'pending'),
+              OrderTabView(status: 'shipped'),
+              OrderTabView(status: 'delivered'),
+              OrderTabView(status: 'returned'),
+              OrderTabView(status: 'cancelled'),
+            ]))
           ],
         ),
       );
