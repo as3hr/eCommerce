@@ -32,6 +32,7 @@ export * from "./controllers/product";
 export * from "./controllers/order";
 export * from "./controllers/wish";
 export * from "./controllers/payment";
+export * from "./controllers/address";
 
 export * from "./routes/auth";
 export * from "./routes/permission";

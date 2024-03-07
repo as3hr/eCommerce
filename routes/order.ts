@@ -20,7 +20,7 @@ router.get('/', checkToken, getOrders, pagination);
 
 router.post('/', 
     checkToken, 
-    checkNecessaryParameters(['title','products','total','subTotal','shippingCost','tax']), 
+    checkNecessaryParameters(['products','total','subTotal','shippingCost','tax','address']), 
     createOrder, 
     createDocument 
 );

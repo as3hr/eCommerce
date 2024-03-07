@@ -77,4 +77,4 @@ const productSchema = new Schema<IProduct>({
 
 const productModel = mongoose.model<IProduct>( "products", productSchema );
 
-export { productModel };
+export { productModel, productSchema };

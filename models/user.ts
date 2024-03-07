@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import mongoose, { Document, Schema, Types } from "mongoose";
-import { IAddress, address } from "../internal";
 import { ICard, card } from "./card";
 
 export interface IUser extends Document {
@@ -13,7 +12,7 @@ export interface IUser extends Document {
   email?: string;
   isDisable:boolean,
   emailVerified: boolean,
-  addresses?: IAddress[];
+  addresses?: Schema.Types.ObjectId[];
   cards?: ICard[]; 
   fcmTokens?: Types.Array<string>;
   resetCode?: string;
@@ -37,7 +36,8 @@ const userSchema = new Schema<IUser>(
       cast: "emailVerified datatype is incorrect",
     },
     addresses: [{
-      type: address,
+      type: Schema.Types.ObjectId,
+      ref: 'addresses',
       cast: "Invalid address",
     }],
     cards: [{
@@ -46,7 +46,7 @@ const userSchema = new Schema<IUser>(
     }],
     permission: {
       type: Schema.Types.ObjectId,
-      ref: "Permission",
+      ref: "permissions",
       cast: "invalid permission id",
     },
     password: {

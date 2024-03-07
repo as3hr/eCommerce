@@ -1,14 +1,20 @@
-import { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface IAddress extends Document {
   streetAddress?: string;
   city?: string;
   state?: string;
   zipCode?: number;
+  user?: Schema.Types.ObjectId,
 }
 
 const addressSchema = new Schema<IAddress>(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      cast: 'Invalid user type'
+    },
     streetAddress: {
       type: String,
       cast: "address line datatype is incorrect",
@@ -28,5 +34,6 @@ const addressSchema = new Schema<IAddress>(
   },
   { timestamps: false, versionKey: false }
 );
-export const address = addressSchema;
+
+export const addressModel = mongoose.model('addresses',addressSchema);
 

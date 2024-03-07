@@ -6,7 +6,7 @@ const getOrders = asyncHandler(
     async (req: Request, res:Response, next: NextFunction)=>{
         req.model = orderModel;
         req.modelName = 'orders';
-        req.populate = 'products';
+        req.populate = 'address';
         next();
     }
 );
@@ -15,7 +15,7 @@ const getOrderById = asyncHandler(
     async (req: Request, res:Response, next: NextFunction)=>{
         req.model = orderModel;
         req.modelName = 'orders';
-        req.populate = 'products';
+        req.populate = 'address';
         next();
     }
 );

@@ -21,6 +21,7 @@ import {
 import { logRouter } from "./routes/log.js";
 import { notificationRouter } from "./routes/notification.js";
 import { productRouter } from "./routes/product.js";
+import { addressRouter } from "./routes/address.js";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -95,6 +96,7 @@ app.use("/products", productRouter);
 app.use("/orders", orderRouter);
 app.use("/wishes", wishRouter);
 app.use("/payments", paymentRouter);
+app.use("/addresses", addressRouter);
 
 app.use(errorHandler);
 
@@ -102,7 +104,7 @@ mongoose
   .connect(
     process.env.MONGO_URL!
     )
-  .then((val) => console.log("MongoDB connected"));
+  .then((_) => console.log("MongoDB connected"));
 
 app.listen(
   process.env.PORT

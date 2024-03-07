@@ -1,34 +1,34 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { IProduct, productSchema } from "./product";
 
 enum Status {
-    Pending = 'Pending',
-    Shipped = 'Shipped',
-    Delivered = 'Delivered',
-    Returned = 'Returned',
-    Cancelled = 'Cancelled',
+    Pending = "pending",
+    Shipped = "shipped",
+    Delivered = "delivered",
+    Returned = "returned",
+    Cancelled = "cancelled",
 }
-
 export interface IOrder extends Document{
-    title?: string,
-    products?: Schema.Types.ObjectId[],
+    products?: IProduct[],
     subTotal?: number,
     shippingCost?: number,
     tax?: number,
     total?: number,
-    shippingDetails?: string,
-    status?: Status,
+    address?: Schema.Types.ObjectId,
+    status: Status,
 }
 
 const orderSchema = new Schema<IOrder>({
-    title: {
-        type: String,
-        cast: 'title type is Invalid',
-    },
     products: [{
-            type: Schema.Types.ObjectId,
+            type: productSchema,
             ref: 'products',
             cast: 'product type is Invalid',
         }],
+    address: {
+        type: Schema.Types.ObjectId,
+        cast: 'Invalid address type',
+        ref: 'addresses',
+    },
     subTotal: {
         type: Number,
         cast: 'subTotal type is incorrect',

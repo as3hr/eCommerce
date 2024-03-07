@@ -34,7 +34,7 @@ const getAllUsers = asyncHandler(
 const getUserById = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
       const user = await userModel
-        .findOne({ _id: req.params.id })
+        .findOne({ _id: req.params.id }).populate('addresses');
       const newUser = user!.toJSON();
       res.json({ success: true, result: newUser });
   }
@@ -42,7 +42,7 @@ const getUserById = asyncHandler(
 
 const getUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-     const user = await userModel.findOne({ _id: req.session.user });
+     const user = await userModel.findOne({ _id: req.session.user }).populate('addresses');;
       const newUser = user!.toJSON();
       res.json({ success: true, result: newUser });
     }
@@ -66,7 +66,7 @@ const deleteUser = asyncHandler(
     await verifyDocument({ _id: req.params.id }, userModel, "user"),
       await userModel.findByIdAndUpdate(
         req.params.id,
-        { $set: { isDisable: true } },
+        { $set: { isDisable: true, email: ''} },
         { new: true }
       );
     createLogs(req.session.user, "users", "DELETE", req.params.id, {});
