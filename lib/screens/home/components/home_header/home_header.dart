@@ -1,5 +1,7 @@
+import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
+import 'package:e_commerce/screens/home/home_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../helpers/functions/bottom_sheet.dart';
@@ -18,6 +20,8 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
+      final homeController = Get.find<HomeScreenController>();
+      String gender = 'Men';
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,13 +33,21 @@ class HomeHeader extends StatelessWidget {
             ),
           ),
           ModalDropDown(
-            text: 'Men',
+            text: gender,
             onTap: () {
               viewBottomSheet(
                 context,
                 'Gender',
-                const CustomBottomSheetBody(
-                  containers: [
+                CustomBottomSheetBody(
+                  onTapped: (val) {
+                    gender = val;
+                    loadingWrapper(() async {
+                      await homeController.getProducts(
+                          query: {'gender': gender}, refresh: true);
+                    });
+                    Navigator.pop(context);
+                  },
+                  containers: const [
                     BottomSheetContainer(
                       index: 0,
                       title: 'Men',
@@ -50,6 +62,7 @@ class HomeHeader extends StatelessWidget {
                     ),
                   ],
                 ),
+                () {},
               );
             },
           ),

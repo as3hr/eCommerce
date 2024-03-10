@@ -28,9 +28,9 @@ class CartController extends GetxController {
   }
 
   void calculateCost() {
-    order.subTotal = getSubTotal().toInt();
-    order.shippingCost = ((3 / 100) * order.subTotal).toInt();
-    order.tax = ((5 / 100) * order.subTotal).toInt();
+    order.subTotal = getSubTotal();
+    order.shippingCost = ((3 / 100) * order.subTotal);
+    order.tax = ((5 / 100) * order.subTotal);
     order.total = order.tax + order.shippingCost + order.subTotal;
     update();
   }
@@ -45,7 +45,7 @@ class CartController extends GetxController {
   }
 
   void removeAllProducts() {
-    checkoutProducts.clear();
+    checkoutProducts = [];
     order = Order();
     calculateCost();
     update();
@@ -69,10 +69,9 @@ class CartController extends GetxController {
 
   Future<void> createOrder() async {
     order.products = checkoutProducts;
-    await Api.createOrder(order: order).then((_) {
-      changePage(OrderPlaced.routeName);
-      removeAllProducts();
-    });
-    Get.find<OrderScreenController>().getOrders(refresh: true);
+    await Api.createOrder(order: order);
+    changePage(OrderPlaced.routeName);
+    removeAllProducts();
+    await Get.find<OrderScreenController>().getOrders(refresh: true);
   }
 }

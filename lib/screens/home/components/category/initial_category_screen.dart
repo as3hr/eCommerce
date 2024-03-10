@@ -1,9 +1,13 @@
+import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/screens/home/components/category/category_content.dart';
+
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../helpers/widgets/back_button.dart';
 import 'category_item.dart';
 
 class InitialCategoryScreen extends StatelessWidget {
@@ -15,6 +19,11 @@ class InitialCategoryScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          10.horizontalSpace,
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CustomBackButton(),
+          ),
           20.verticalSpace,
           Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -32,22 +41,28 @@ class InitialCategoryScreen extends StatelessWidget {
                   final item = CategoryItem.allCategories[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 1.sw,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.grayI,
+                    child: GestureDetector(
+                      onTap: () {
+                        changePage(CategoryContent.routeName,
+                            arguments: {'category': item.title});
+                      },
+                      child: Container(
+                        width: 1.sw,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.grayI,
+                        ),
+                        child: Center(
+                            child: ListTile(
+                                leading: const Image(
+                                    image: AssetImage(AppImages.profile)),
+                                title: Text(
+                                  item.title,
+                                  style: AppDecoration.mediumStyle(
+                                      fontSize: 18, color: AppColors.pureBlack),
+                                ))),
                       ),
-                      child: Center(
-                          child: ListTile(
-                              leading: const Image(
-                                  image: AssetImage(AppImages.profile)),
-                              title: Text(
-                                item.title,
-                                style: AppDecoration.mediumStyle(
-                                    fontSize: 18, color: AppColors.pureBlack),
-                              ))),
                     ),
                   );
                 }),

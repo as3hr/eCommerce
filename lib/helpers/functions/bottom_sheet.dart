@@ -1,11 +1,13 @@
+import 'package:get/get.dart';
+
 import '../styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../styles/app_colors.dart';
 
-void viewBottomSheet(
-    BuildContext context, String titleText, Widget bottomSheetBody) {
+void viewBottomSheet(BuildContext context, String titleText,
+    Widget bottomSheetBody, Function() onClearTap) {
   showModalBottomSheet(
       enableDrag: true,
       useSafeArea: true,
@@ -20,10 +22,16 @@ void viewBottomSheet(
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Clear',
-                    style: AppDecoration.semiBoldStyle(
-                        fontSize: 20, color: AppColors.pureBlack),
+                  GestureDetector(
+                    onTap: () {
+                      onClearTap.call();
+                      Get.back();
+                    },
+                    child: Text(
+                      'Clear',
+                      style: AppDecoration.semiBoldStyle(
+                          fontSize: 20, color: AppColors.pureBlack),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
@@ -33,10 +41,13 @@ void viewBottomSheet(
                           fontSize: 23, color: AppColors.pureBlack),
                     ),
                   ),
-                  Text(
-                    'X',
-                    style: AppDecoration.semiBoldStyle(
-                        fontSize: 20, color: AppColors.pureBlack),
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Text(
+                      'X',
+                      style: AppDecoration.semiBoldStyle(
+                          fontSize: 20, color: AppColors.pureBlack),
+                    ),
                   ),
                 ],
               ),

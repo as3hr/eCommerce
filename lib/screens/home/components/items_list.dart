@@ -10,22 +10,26 @@ class ItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 280,
-      width: 1.sw,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: products.length,
-          itemBuilder: ((context, index) {
-            final product = products[index];
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ItemContainer(
-                width: 0.5.sw,
-                product: product,
-              ),
-            );
-          })),
-    );
+    return products.isEmpty
+        ? const Center(
+            child: Text('No Items to Display!!'),
+          )
+        : SizedBox(
+            height: 280,
+            width: 1.sw,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                itemBuilder: ((context, index) {
+                  final product = products[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ItemContainer(
+                      width: 0.5.sw,
+                      product: product,
+                    ),
+                  );
+                })),
+          );
   }
 }

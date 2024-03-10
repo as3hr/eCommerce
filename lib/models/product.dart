@@ -1,8 +1,10 @@
+import 'package:e_commerce/helpers/functions/parse_val.dart';
+
 class Product {
   String? id;
   String? title;
   String? description;
-  int price;
+  double price;
   bool isFav;
   int? rating;
   String? size;
@@ -30,7 +32,7 @@ class Product {
         description: json['description'],
         gender: json['gender'],
         category: json['category'],
-        price: json['price'],
+        price: parseValToDouble(json['price']),
         quantity: json['quantity'] ?? 1,
         rating: json['rating'],
         size: json['size']);

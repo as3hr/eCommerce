@@ -8,6 +8,7 @@ import 'screens/home/components/cart/cart_screen.dart';
 import 'screens/home/components/cart/checkout/checkout_screen.dart';
 import 'screens/home/components/cart/checkout/order_placed.dart';
 import 'screens/home/components/category/categories_screen.dart';
+import 'screens/home/components/category/category_content.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/notification/notification_screen.dart';
 import 'screens/order/components/order_detail/order_detail.dart';
@@ -50,7 +51,7 @@ class Routes {
         return GetPageRoute(
           settings: settings,
           page: () => const BottomNavBar(),
-          binding: AllController(),
+          binding: Binding(),
         );
       case HomeScreen.routeName:
         return GetPageRoute(
@@ -76,6 +77,13 @@ class Routes {
         return GetPageRoute(
           settings: settings,
           page: () => const CategoriesScreen(),
+        );
+      case CategoryContent.routeName:
+        return GetPageRoute(
+          settings: settings,
+          page: () => CategoryContent(
+            category: args['category'],
+          ),
         );
       case ProfileScreen.routeName:
         return GetPageRoute(

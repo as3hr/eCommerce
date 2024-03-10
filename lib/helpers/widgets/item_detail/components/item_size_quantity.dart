@@ -27,15 +27,17 @@ class ItemSizeQuantity extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 viewBottomSheet(
-                    context,
-                    'Size',
-                    const CustomBottomSheetBody(containers: [
-                      BottomSheetContainer(title: 'S', index: 0),
-                      BottomSheetContainer(title: 'M', index: 1),
-                      BottomSheetContainer(title: 'L', index: 2),
-                      BottomSheetContainer(title: 'XL', index: 3),
-                      BottomSheetContainer(title: '2XL', index: 4),
-                    ]));
+                  context,
+                  'Size',
+                  const CustomBottomSheetBody(containers: [
+                    BottomSheetContainer(title: 'S', index: 0),
+                    BottomSheetContainer(title: 'M', index: 1),
+                    BottomSheetContainer(title: 'L', index: 2),
+                    BottomSheetContainer(title: 'XL', index: 3),
+                    BottomSheetContainer(title: '2XL', index: 4),
+                  ]),
+                  () {},
+                );
               },
               child: CustomTile(
                 borderRadius: 20,

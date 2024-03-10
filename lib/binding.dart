@@ -5,7 +5,7 @@ import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
-class AllController extends Bindings {
+class Binding extends Bindings {
   @override
   void dependencies() {
     Get.put(HomeScreenController());

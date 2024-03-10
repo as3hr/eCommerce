@@ -52,27 +52,6 @@ class CheckoutScreen extends StatelessWidget {
                     arguments: {'address': controller.order.address});
               },
             ),
-            // CustomTile(
-            //   width: 1.sw,
-            //   title: Row(
-            //     children: [
-            //       Text(
-            //         '**** 4187',
-            //         style: AppDecoration.semiBoldStyle(
-            //             fontSize: 18, color: AppColors.pureBlack),
-            //       ),
-            //       5.horizontalSpace,
-            //       const Image(
-            //         image: AssetImage(AppImages.cardLogo),
-            //         height: 35,
-            //       ),
-            //     ],
-            //   ),
-            //   trailing: const Image(image: AssetImage(AppImages.arrowForward)),
-            //   trailingOnTap: () {
-            //     changePage(AddCardScreen.routeName);
-            //   },
-            // ),
             const Spacer(),
             const CheckoutFooter(),
           ],

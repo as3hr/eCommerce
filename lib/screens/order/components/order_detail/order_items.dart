@@ -43,7 +43,7 @@ class OrderItems extends StatelessWidget {
                       fontSize: 15, color: AppColors.pureBlack),
                 ),
                 subtitle: Text(
-                  '${product.price}',
+                  '\$${product.price}',
                   style: AppDecoration.mediumStyle(
                       fontSize: 15, color: AppColors.pureBlack),
                 ),

@@ -1,8 +1,9 @@
+import 'package:get/get.dart';
+
 import '../../../../../helpers/styles/app_colors.dart';
 import '../../../../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import '../../../../../helpers/styles/app_decoration.dart';
 
@@ -27,45 +28,48 @@ class _OrderPlacedState extends State<OrderPlaced> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.lightPurple,
-      body: Column(
-        children: [
-          const Spacer(),
-          const Image(image: AssetImage(AppImages.orderPlaced)),
-          const Spacer(),
-          Container(
-            height: 0.4.sh,
-            width: 1.sw,
-            decoration: const BoxDecoration(
-              color: AppColors.pureWhite,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: AppColors.lightPurple,
+        body: Column(
+          children: [
+            const Spacer(),
+            const Image(image: AssetImage(AppImages.orderPlaced)),
+            const Spacer(),
+            Container(
+              height: 0.4.sh,
+              width: 1.sw,
+              decoration: const BoxDecoration(
+                color: AppColors.pureWhite,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              child: Column(
+                children: [
+                  30.verticalSpace,
+                  Center(
+                    child: Text(
+                      "Order Placed Successfully!",
+                      style: AppDecoration.boldStyle(
+                          fontSize: 29, color: AppColors.pureBlack),
+                    ),
+                  ),
+                  10.verticalSpace,
+                  Center(
+                    child: Text(
+                      "You will receive an email confirmation shortly.",
+                      style: AppDecoration.semiBoldStyle(
+                          fontSize: 19, color: AppColors.lightBlack),
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: Column(
-              children: [
-                30.verticalSpace,
-                Center(
-                  child: Text(
-                    "Order Placed Successfully!",
-                    style: AppDecoration.boldStyle(
-                        fontSize: 29, color: AppColors.pureBlack),
-                  ),
-                ),
-                10.verticalSpace,
-                Center(
-                  child: Text(
-                    "You will receive an email confirmation shortly.",
-                    style: AppDecoration.semiBoldStyle(
-                        fontSize: 19, color: AppColors.lightBlack),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

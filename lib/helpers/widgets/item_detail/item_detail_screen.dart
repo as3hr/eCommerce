@@ -140,6 +140,7 @@ class ItemDetailScreen extends StatelessWidget {
                             message: 'Cannot add this product anymore!',
                             imagePath: AppImages.unsuccessful);
                       }
+                      controller.update();
                     },
                     child: CustomTile(
                       width: 1.sw,

@@ -20,9 +20,12 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder(
         init: HomeScreenController(),
         builder: (controller) {
+          final listLength = controller.productsList.length;
+          final firstlistLength = (listLength / 2).floor();
+          final secondListLength = listLength - 1;
           return Scaffold(
             backgroundColor: AppColors.pureWhite,
-            body: controller.productsList.isEmpty
+            body: !controller.fetchedData
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
@@ -33,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                           25.verticalSpace,
                           const HomeHeader(),
                           15.verticalSpace,
-                          SearchField(onChanged: (val) {}),
+                          SearchField(onChanged: controller.searchProducts),
                           15.verticalSpace,
                           SpacerRow(
                             text1: 'Categories',
@@ -48,13 +51,15 @@ class HomeScreen extends StatelessWidget {
                           const SpacerRow(text1: 'Top Selling'),
                           15.verticalSpace,
                           ItemsList(
-                            products: controller.productsList,
+                            products: controller.productsList
+                                .sublist(0, firstlistLength),
                           ),
                           15.verticalSpace,
                           const SpacerRow(text1: 'New in'),
                           15.verticalSpace,
                           ItemsList(
-                            products: controller.productsList,
+                            products: controller.productsList
+                                .sublist(firstlistLength, secondListLength),
                           ),
                           10.verticalSpace,
                         ],

@@ -25,7 +25,9 @@ class OrderDetail extends StatelessWidget {
             children: [
               35.verticalSpace,
               Header(text: 'Order #${order.id?.substring(0, 8)}'),
-              const OrderStatusList(),
+              OrderStatusList(
+                status: order.status ?? '',
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
@@ -47,15 +49,17 @@ class OrderDetail extends StatelessWidget {
               ),
               15.verticalSpace,
               OrderDetailContainer(
-                child: Center(
-                    child: Padding(
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${order.address?.streetAddress}',
-                    style: AppDecoration.boldStyle(
-                        fontSize: 13, color: AppColors.lightBlack),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '${order.address?.streetAddress}',
+                      style: AppDecoration.boldStyle(
+                          fontSize: 13, color: AppColors.lightBlack),
+                    ),
                   ),
-                )),
+                ),
               ),
             ],
           ),

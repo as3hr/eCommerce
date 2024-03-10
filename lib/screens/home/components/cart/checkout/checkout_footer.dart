@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/functions/parse_val.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:get/get.dart';
 
@@ -21,25 +22,25 @@ class CheckoutFooter extends StatelessWidget {
           SpacerRow(
             text1: 'Subtotal',
             text1Color: AppColors.lightGrey,
-            text2: '\$${controller.order.subTotal.toDouble()}',
+            text2: '\$${parseValToDouble(controller.order.subTotal)}',
             text2Color: AppColors.pureBlack,
           ),
           SpacerRow(
             text1: 'Shipping Cost',
             text1Color: AppColors.lightGrey,
-            text2: '\$${controller.order.shippingCost.toDouble()}',
+            text2: '\$${parseValToDouble(controller.order.shippingCost)}',
             text2Color: AppColors.pureBlack,
           ),
           SpacerRow(
             text1: 'Tax',
             text1Color: AppColors.lightGrey,
-            text2: '\$${controller.order.tax.toDouble()}',
+            text2: '\$${parseValToDouble(controller.order.tax)}',
             text2Color: AppColors.pureBlack,
           ),
           SpacerRow(
             text1: 'Total',
             text1Color: AppColors.lightGrey,
-            text2: '\$${controller.order.total.toDouble()}',
+            text2: '\$${parseValToDouble(controller.order.total)}',
             text2Color: AppColors.pureBlack,
           ),
           30.verticalSpace,

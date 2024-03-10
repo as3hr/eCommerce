@@ -1,7 +1,6 @@
 import 'package:e_commerce/screens/order/components/empty_orders.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../../../helpers/functions/change_page.dart';

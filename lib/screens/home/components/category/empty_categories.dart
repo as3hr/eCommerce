@@ -1,3 +1,6 @@
+import 'package:e_commerce/screens/home/home_screen_controller.dart';
+import 'package:get/get.dart';
+
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
@@ -13,28 +16,30 @@ class EmptyCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        90.verticalSpace,
-        const Image(image: AssetImage(AppImages.categorySearch)),
-        5.verticalSpace,
-        Text(
-          "Sorry, we couldn't find any\n  matching result for your\n                Search.",
-          style: AppDecoration.semiBoldStyle(
-              fontSize: 25, color: AppColors.pureBlack),
-        ),
-        5.verticalSpace,
-        CustomContainer(
-          onTap: () {
-            changePage(CategoriesScreen.routeName);
-          },
-          text: 'Explore Categories',
-          color: AppColors.lightPurple,
-          textColor: AppColors.grayI,
-          width: 0.45.sw,
-          height: 55,
-        ),
-      ],
-    );
+    return GetBuilder<HomeScreenController>(builder: (controller) {
+      return Column(
+        children: [
+          90.verticalSpace,
+          const Image(image: AssetImage(AppImages.categorySearch)),
+          5.verticalSpace,
+          Text(
+            "Sorry, we couldn't find any\n  matching result for your\n                Search.",
+            style: AppDecoration.semiBoldStyle(
+                fontSize: 25, color: AppColors.pureBlack),
+          ),
+          5.verticalSpace,
+          CustomContainer(
+            onTap: () {
+              changePage(CategoriesScreen.routeName);
+            },
+            text: 'Explore Categories',
+            color: AppColors.lightPurple,
+            textColor: AppColors.grayI,
+            width: 0.45.sw,
+            height: 55,
+          ),
+        ],
+      );
+    });
   }
 }

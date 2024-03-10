@@ -110,10 +110,11 @@ class Api {
     return ApiHelpers.parseResponse(response, Order.fromJson);
   }
 
-  static Future<void> createOrder({required Order order}) async {
+  static Future<Order> createOrder({required Order order}) async {
     const url = '/orders/';
     final response = await dio.post(url, data: order.toJson());
-    ApiHelpers.checkError(response)['result'];
+    final data = ApiHelpers.checkError(response)['result'];
+    return Order.fromJson(data);
   }
 
   //Wishlist API's
