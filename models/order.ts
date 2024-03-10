@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 import { IProduct, productSchema } from "./product";
+import { IAddress, addressSchema } from "./address";
 
 enum Status {
     Pending = "pending",
@@ -14,7 +15,7 @@ export interface IOrder extends Document{
     shippingCost?: number,
     tax?: number,
     total?: number,
-    address?: Schema.Types.ObjectId,
+    address?: IAddress,
     status: Status,
 }
 
@@ -25,7 +26,7 @@ const orderSchema = new Schema<IOrder>({
             cast: 'product type is Invalid',
         }],
     address: {
-        type: Schema.Types.ObjectId,
+        type: addressSchema,
         cast: 'Invalid address type',
         ref: 'addresses',
     },
@@ -55,4 +56,4 @@ const orderSchema = new Schema<IOrder>({
 
 const orderModel = mongoose.model<IOrder>( "orders",orderSchema );
 
-export { orderModel };
+export { orderModel, Status as orderStatus };

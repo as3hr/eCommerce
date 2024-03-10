@@ -15,7 +15,7 @@ enum Size {
 
 enum Category {
     Hoody = 'Hoodies', 
-    Short= 'shorts', 
+    Short= 'Shorts', 
     Shoe = 'Shoes', 
     Bag = 'Bag', 
     Acc = 'Accessories', 

@@ -35,5 +35,6 @@ const addressSchema = new Schema<IAddress>(
   { timestamps: false, versionKey: false }
 );
 
-export const addressModel = mongoose.model('addresses',addressSchema);
+const addressModel = mongoose.model('addresses',addressSchema);
 
+export { addressModel, addressSchema };
