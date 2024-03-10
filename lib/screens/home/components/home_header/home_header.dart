@@ -14,14 +14,19 @@ import 'package:flutter/material.dart';
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
 
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+  String gender = 'Men';
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
       final homeController = Get.find<HomeScreenController>();
-      String gender = 'Men';
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,7 +34,7 @@ class HomeHeader extends StatelessWidget {
             padding: EdgeInsets.only(left: 8),
             child: CircleAvatar(
               radius: 30,
-              backgroundColor: AppColors.grayI,
+              backgroundColor: Color.fromRGBO(244, 244, 244, 1),
             ),
           ),
           ModalDropDown(
@@ -45,6 +50,7 @@ class HomeHeader extends StatelessWidget {
                       await homeController.getProducts(
                           query: {'gender': gender}, refresh: true);
                     });
+                    controller.update();
                     Navigator.pop(context);
                   },
                   containers: const [

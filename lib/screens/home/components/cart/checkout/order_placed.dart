@@ -60,7 +60,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
                   10.verticalSpace,
                   Center(
                     child: Text(
-                      "You will receive an email confirmation shortly.",
+                      "You will receive an email confirmation shortly!!",
                       style: AppDecoration.semiBoldStyle(
                           fontSize: 19, color: AppColors.lightBlack),
                     ),

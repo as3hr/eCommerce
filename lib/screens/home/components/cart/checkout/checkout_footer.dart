@@ -59,7 +59,7 @@ class CheckoutFooter extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Text(
-                          '\$${controller.order.total.toDouble()}',
+                          '\$${parseValToDouble(controller.order.total)}',
                           style: AppDecoration.boldStyle(
                               fontSize: 17, color: AppColors.pureWhite),
                         ),
