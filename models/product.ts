@@ -64,6 +64,7 @@ const productSchema = new Schema<IProduct>({
     },
     quantity: { 
         type: Number,
+        default: 1,
         cast: 'quantity type is invalid'
     },
     size: { 

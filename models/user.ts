@@ -107,19 +107,19 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-userSchema.pre("save", function (next) {
-  bcrypt.hash(
-    this.password!,
-    parseInt(process.env.SALT_WORK_FACTOR!),
-    (err: any, hashedPass: string | undefined) => {
-      if (err) {
-        throw err;
-      }
-      this.password = hashedPass;
-      next();
-    }
-  );
-});
+// userSchema.pre("save", function (next) {
+//   bcrypt.hash(
+//     this.password!,
+//     parseInt(process.env.SALT_WORK_FACTOR!),
+//     (err: any, hashedPass: string | undefined) => {
+//       if (err) {
+//         throw err;
+//       }
+//       this.password = hashedPass;
+//       next();
+//     }
+//   );
+// });
 
 userSchema.method<IUser>(
   "comparePassword",

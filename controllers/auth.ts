@@ -28,6 +28,29 @@ const signIn = asyncHandler(
   }
 );
 
+const socialAuth = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = await userModel.findOne({ email: req.body.email });
+    if(user){
+      if (!user?._id) {
+        throw HttpError.notFound('User not found!');
+      } else {
+        req.session.user = user._id;
+        res.json({ success: true, user });
+      }  
+    }else {
+      await userModel.create(req.body);
+      const result = await userModel.findOne({ email: req.body.email });
+      if (!result?._id) {
+        throw HttpError.notFound('User not found!');
+      } else {
+        req.session.user = result._id;
+        res.json({ success: true, result });
+      }
+    }
+  }
+);
+
 const signUp = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     if (
@@ -151,4 +174,4 @@ const signOut = asyncHandler(
   }
 );
 
-export { signIn, signOut, signUp, sendEmailVerification, verifyEmail, resetPassword, forgotPassword };
+export { signIn, signOut, signUp, sendEmailVerification, verifyEmail, resetPassword, forgotPassword, socialAuth };
