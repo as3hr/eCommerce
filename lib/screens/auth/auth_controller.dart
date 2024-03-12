@@ -3,7 +3,9 @@ import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fire;
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../data/api_error.dart';
@@ -66,6 +68,33 @@ class AuthController extends GetxController {
     update();
   }
 
+  Future<void> googleSignIn() async {
+    final googleUser = await GoogleSignIn().signIn();
+    final googleAuth = await googleUser?.authentication;
+
+    final credential = fire.GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    final result =
+        await fire.FirebaseAuth.instance.signInWithCredential(credential);
+
+    final user = User(
+        firstName: result.user?.displayName ?? '',
+        email: result.user?.email ?? '',
+        image: result.user?.photoURL ?? '');
+
+    socialAuth(user);
+  }
+
+  Future<void> socialAuth(User user) async {
+    await Api.socialAuth(user: user);
+    token.value?.persistToken();
+    fetchProfile();
+    update();
+  }
+
   Future<void> signUp({
     required User user,
   }) async {
@@ -83,6 +112,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
+    await GoogleSignIn().signOut();
     await Api.logout();
     await Token.clearToken();
     token.value = null;

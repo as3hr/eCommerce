@@ -86,16 +86,9 @@ class LoginScreen extends StatelessWidget {
                   CustomContainer(
                     height: 65,
                     width: 0.97.sw,
-                    onTap: () {},
-                    preFixImage: AppImages.apple,
-                    text: 'Continue With Apple',
-                    color: AppColors.grayI,
-                    textColor: AppColors.pureBlack,
-                  ),
-                  CustomContainer(
-                    height: 65,
-                    width: 0.97.sw,
-                    onTap: () {},
+                    onTap: () {
+                      loadingWrapper(controller.googleSignIn);
+                    },
                     preFixImage: AppImages.google,
                     text: 'Continue With Google',
                     color: AppColors.grayI,

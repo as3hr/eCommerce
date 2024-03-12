@@ -1,6 +1,8 @@
+import 'package:e_commerce/firebase_options.dart';
 import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/models/settings.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -11,10 +13,11 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final themeMode = await AdaptiveTheme.getThemeMode();
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final auth = AuthController();
   Get.put(auth);
   Get.put(SettingsController(auth: auth));

@@ -68,7 +68,13 @@ class _HomeHeaderState extends State<HomeHeader> {
                     ),
                   ],
                 ),
-                () {},
+                () {
+                  loadingWrapper(() async {
+                    await homeController.getProducts(refresh: true);
+                  });
+                  controller.update();
+                  Navigator.pop(context);
+                },
               );
             },
           ),

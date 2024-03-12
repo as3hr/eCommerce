@@ -42,6 +42,12 @@ class Api {
     return User.fromJson(data);
   }
 
+  static Future<void> socialAuth({required User user}) async {
+    const url = '/auth/social';
+    final response = await dio.post(url, data: user.toJson());
+    ApiHelpers.checkError(response);
+  }
+
   static Future<void> updateUser({required User user}) async {
     final url = '/users/${user.id}';
     final response = await dio.put(url, data: user.toJson());

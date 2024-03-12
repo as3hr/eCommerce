@@ -38,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
                     title: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
-                        '${user?.firstName} ${user?.lastName}',
+                        '${user?.firstName ?? ''} ${user?.lastName ?? ''}',
                         style: AppDecoration.mediumStyle(
                             fontSize: 17, color: AppColors.pureBlack),
                       ),
