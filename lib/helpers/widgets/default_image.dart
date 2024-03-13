@@ -28,7 +28,6 @@ class DefaultImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius ?? size),
           border: showBorder
               ? Border.all(
-                  color: Theme.of(context).colorScheme.primary,
                   width: 2,
                 )
               : null,
@@ -41,7 +40,8 @@ class DefaultImage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             child: Text(
-              (text ?? ''),
+              (text?.split(' ').map((word) => word[0]).join().toUpperCase() ??
+                  ''),
             ),
           ),
         ),

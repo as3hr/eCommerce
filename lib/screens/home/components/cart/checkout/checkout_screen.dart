@@ -1,3 +1,4 @@
+import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class CheckoutScreen extends StatelessWidget {
     return GetBuilder<CartController>(builder: (controller) {
       final userAddress =
           Get.find<ProfileScreenController>().addresses.firstOrNull;
-      controller.order.address = userAddress;
+      controller.order.address = userAddress ?? Address();
       return Scaffold(
         backgroundColor: AppColors.pureWhite,
         body: SafeArea(

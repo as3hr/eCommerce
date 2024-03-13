@@ -1,4 +1,10 @@
+import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/widgets/rounded_image.dart';
+import 'package:e_commerce/screens/auth/auth_controller.dart';
+import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../helpers/styles/app_colors.dart';
 
@@ -7,25 +13,33 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          const CircleAvatar(
-            radius: 40,
-            backgroundColor: AppColors.grayI,
-          ),
-          Positioned(
-              right: 7,
-              bottom: 10,
-              child: GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.edit,
-                  color: AppColors.lightBlack,
-                ),
-              )),
-        ],
-      ),
-    );
+    return GetBuilder<ProfileScreenController>(builder: (controller) {
+      final name = Get.find<AuthController>().user?.firstName;
+      return Center(
+        child: Stack(
+          children: [
+            RoundedImage(
+              file: controller.userFile,
+              iconText: name,
+              radius: 50.w,
+            ),
+            Positioned(
+                right: 7,
+                bottom: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    loadingWrapper(() async {
+                      await controller.showOptions(context);
+                    });
+                  },
+                  child: const Icon(
+                    Icons.edit,
+                    color: AppColors.lightBlack,
+                  ),
+                )),
+          ],
+        ),
+      );
+    });
   }
 }

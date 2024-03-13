@@ -88,6 +88,23 @@ class AuthController extends GetxController {
     socialAuth(user);
   }
 
+  Future<void> facebookSignIn() async {
+    // final facebookUser = await FacebookAuth.instance.login();
+    // final facebookAuthCredential = fire.FacebookAuthProvider.credential(
+    //     facebookUser.accessToken?.token ?? '');
+
+    // final result = await fire.FirebaseAuth.instance
+    //     .signInWithCredential(facebookAuthCredential);
+
+    // final user = User(
+    //     firstName: result.user?.displayName ?? '',
+    //     email: result.user?.email ?? '',
+    //     image: result.user?.photoURL ?? '');
+
+    // socialAuth(user);
+    showToast(message: 'Incoming Feature!', imagePath: AppImages.access);
+  }
+
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
@@ -112,6 +129,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
+    // await FacebookAuth.instance.logOut();
     await GoogleSignIn().signOut();
     await Api.logout();
     await Token.clearToken();
