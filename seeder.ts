@@ -121,7 +121,7 @@ const addOrders = async () => {
 
   for(let order = 1; order<=19; order++){
     
-    if(productStartIndex > 75){
+    if(productStartIndex > 45){
       productStartIndex = 0;
       productEndIndex = 5;
     }
@@ -150,7 +150,7 @@ const addOrders = async () => {
   }
 };
 
-const deleteDb =async()=>{
+const deleteDb =async() => {
   await productModel.deleteMany();
   await orderModel.deleteMany();
   await addressModel.deleteMany();
