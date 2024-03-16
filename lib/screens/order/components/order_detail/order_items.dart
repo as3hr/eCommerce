@@ -51,6 +51,7 @@ class OrderItems extends StatelessWidget {
                   onTap: () =>
                       changePage(ItemDetailScreen.routeName, arguments: {
                     'product': product,
+                    'changable': false,
                   }),
                   child: const Image(image: AssetImage(AppImages.arrowForward)),
                 ),

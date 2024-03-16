@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/styles/app_images.dart';
+
 class CategoryItem {
   final String title;
   final String image;
@@ -9,23 +11,23 @@ class CategoryItem {
 
   static final allCategories = [
     CategoryItem(
-      image: '',
+      image: AppImages.hoodie,
       title: 'Hoodies',
     ),
     CategoryItem(
-      image: '',
+      image: AppImages.shorts,
       title: 'Shorts',
     ),
     CategoryItem(
-      image: '',
+      image: AppImages.shoes,
       title: 'Shoes',
     ),
     CategoryItem(
-      image: '',
+      image: AppImages.bag,
       title: 'Bag',
     ),
     CategoryItem(
-      image: '',
+      image: AppImages.accessories,
       title: 'Accessories',
     ),
   ];

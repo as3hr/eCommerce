@@ -117,6 +117,7 @@ class Routes {
           settings: settings,
           page: () => ItemDetailScreen(
             product: args['product'],
+            changable: args['changable'] ?? true,
           ),
         );
       case AddressScreen.routeName:

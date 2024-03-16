@@ -7,9 +7,12 @@ import 'package:loader_overlay/loader_overlay.dart';
 import '../../data/api_error.dart';
 
 Future<T?> loadingWrapper<T>(
-  Future<T> Function() func,
-) async {
-  Get.context?.loaderOverlay.show(showOverlay: false);
+  Future<T> Function() func, {
+  bool showLoader = true,
+}) async {
+  if (showLoader) {
+    Get.context?.loaderOverlay.show(showOverlay: false);
+  }
   try {
     final response = await func();
     return response;

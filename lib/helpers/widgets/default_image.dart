@@ -27,9 +27,7 @@ class DefaultImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius ?? size),
           border: showBorder
-              ? Border.all(
-                  width: 2,
-                )
+              ? Border.all(width: 2, color: AppColors.grayIII)
               : null,
         ),
         child: Center(

@@ -1,8 +1,10 @@
+import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../helpers/styles/app_colors.dart';
+import 'category_content.dart';
 import 'category_item.dart';
 
 class AllCategories extends StatelessWidget {
@@ -23,22 +25,29 @@ class AllCategories extends StatelessWidget {
           itemCount: CategoryItem.allCategories.length,
           itemBuilder: (context, index) {
             final category = CategoryItem.allCategories[index];
-            return SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
-                child: Column(
-                  children: [
-                    const CircleAvatar(
-                      backgroundColor: AppColors.grayI,
-                      radius: 30,
-                    ),
-                    3.verticalSpace,
-                    Text(
-                      category.title,
-                      style: AppDecoration.mediumStyle(
-                          fontSize: 15, color: AppColors.pureBlack),
-                    ),
-                  ],
+            return GestureDetector(
+              onTap: () {
+                changePage(CategoryContent.routeName,
+                    arguments: {'category': category.title});
+              },
+              child: SizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(category.image),
+                        backgroundColor: AppColors.grayI,
+                        radius: 30,
+                      ),
+                      3.verticalSpace,
+                      Text(
+                        category.title,
+                        style: AppDecoration.mediumStyle(
+                            fontSize: 15, color: AppColors.pureBlack),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );

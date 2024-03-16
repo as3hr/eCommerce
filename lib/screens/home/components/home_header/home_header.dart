@@ -2,12 +2,15 @@ import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/home/home_screen_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../helpers/functions/bottom_sheet.dart';
 import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/widgets/modal_drop_down.dart';
 import '../../../../helpers/widgets/custom_bottom_sheet_body.dart';
+import '../../../../helpers/widgets/rounded_image.dart';
+import '../../../auth/auth_controller.dart';
 import '../cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,14 +30,15 @@ class _HomeHeaderState extends State<HomeHeader> {
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
       final homeController = Get.find<HomeScreenController>();
+      final name = Get.find<AuthController>().user?.firstName;
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 8),
-            child: CircleAvatar(
-              radius: 30,
-              backgroundColor: Color.fromRGBO(244, 244, 244, 1),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: RoundedImage(
+              iconText: name,
+              radius: 30.w,
             ),
           ),
           ModalDropDown(
@@ -48,7 +52,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                     gender = val;
                     loadingWrapper(() async {
                       await homeController.getProducts(
-                          query: {'gender': gender}, refresh: true);
+                        query: {'gender': gender},
+                        refresh: true,
+                      );
                     });
                     controller.update();
                     Navigator.pop(context);
@@ -70,7 +76,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                 ),
                 () {
                   loadingWrapper(() async {
-                    await homeController.getProducts(refresh: true);
+                    await homeController.getProducts(
+                      refresh: true,
+                    );
                   });
                   controller.update();
                   Navigator.pop(context);

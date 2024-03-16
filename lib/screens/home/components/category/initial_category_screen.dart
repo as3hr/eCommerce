@@ -3,7 +3,6 @@ import 'package:e_commerce/screens/home/components/category/category_content.dar
 
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
-import '../../../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -55,8 +54,11 @@ class InitialCategoryScreen extends StatelessWidget {
                         ),
                         child: Center(
                             child: ListTile(
-                                leading: const Image(
-                                    image: AssetImage(AppImages.profile)),
+                                leading: CircleAvatar(
+                                  backgroundImage: AssetImage(item.image),
+                                  backgroundColor: AppColors.grayI,
+                                  radius: 30,
+                                ),
                                 title: Text(
                                   item.title,
                                   style: AppDecoration.mediumStyle(

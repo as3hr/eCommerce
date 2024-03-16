@@ -15,7 +15,9 @@ import 'components/item_size_quantity.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   static const routeName = '/item-detail';
-  const ItemDetailScreen({super.key, required this.product});
+  const ItemDetailScreen(
+      {super.key, required this.product, this.changable = true});
+  final bool changable;
   final Product product;
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,23 @@ class ItemDetailScreen extends StatelessWidget {
                   children: [
                     20.horizontalSpace,
                     const CustomBackButton(),
+                    if (!changable) ...[
+                      const Spacer(),
+                      Text(
+                        'You cannot update this product anymore!',
+                        style: AppDecoration.mediumStyle(
+                            fontSize: 14, color: AppColors.pureBlack),
+                      ),
+                    ],
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        product.isFav = !product.isFav;
-                        controller.update();
+                        if (changable) {
+                          product.isFav = !product.isFav;
+                          controller.update();
+                        }
                       },
-                      child: product.isFav
+                      child: product.isFav && changable
                           ? const Icon(
                               Icons.favorite,
                               color: AppColors.redColor,
@@ -90,6 +102,7 @@ class ItemDetailScreen extends StatelessWidget {
                 20.verticalSpace,
                 ItemSizeQuantity(
                   product: product,
+                  changable: changable,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
@@ -130,17 +143,19 @@ class ItemDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: GestureDetector(
                     onTap: () {
-                      final resp = controller.addProduct(product);
-                      if (resp) {
-                        showToast(
-                            message: 'Added Successfully',
-                            imagePath: AppImages.successful);
-                      } else {
-                        showToast(
-                            message: 'Cannot add this product anymore!',
-                            imagePath: AppImages.unsuccessful);
+                      if (changable) {
+                        final resp = controller.addProduct(product);
+                        if (resp) {
+                          showToast(
+                              message: 'Added Successfully',
+                              imagePath: AppImages.successful);
+                        } else {
+                          showToast(
+                              message: 'Cannot add this product anymore!',
+                              imagePath: AppImages.unsuccessful);
+                        }
+                        controller.update();
                       }
-                      controller.update();
                     },
                     child: CustomTile(
                       width: 1.sw,

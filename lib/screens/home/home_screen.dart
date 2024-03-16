@@ -1,5 +1,6 @@
 import '../../helpers/functions/change_page.dart';
 import '../../helpers/styles/app_colors.dart';
+import '../../helpers/styles/app_decoration.dart';
 import '../../helpers/widgets/search_field.dart';
 import 'components/category/all_categories.dart';
 import 'components/category/categories_screen.dart';
@@ -20,9 +21,6 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder(
         init: HomeScreenController(),
         builder: (controller) {
-          final listLength = controller.productsList.length;
-          final firstlistLength = (listLength / 2).floor();
-          final secondListLength = listLength - 1;
           return Scaffold(
             backgroundColor: AppColors.pureWhite,
             body: !controller.fetchedData
@@ -36,7 +34,10 @@ class HomeScreen extends StatelessWidget {
                           25.verticalSpace,
                           const HomeHeader(),
                           15.verticalSpace,
-                          SearchField(onChanged: controller.searchProducts),
+                          SearchField(onChanged: (val) {
+                            controller.title = val;
+                            controller.searchProducts(controller.title);
+                          }),
                           15.verticalSpace,
                           SpacerRow(
                             text1: 'Categories',
@@ -48,20 +49,32 @@ class HomeScreen extends StatelessWidget {
                           15.verticalSpace,
                           const AllCategories(),
                           15.verticalSpace,
-                          const SpacerRow(text1: 'Top Selling'),
-                          15.verticalSpace,
-                          ItemsList(
-                            products: controller.productsList
-                                .sublist(0, firstlistLength),
-                          ),
-                          15.verticalSpace,
-                          const SpacerRow(text1: 'New in'),
-                          15.verticalSpace,
-                          ItemsList(
-                            products: controller.productsList
-                                .sublist(firstlistLength, secondListLength),
-                          ),
-                          10.verticalSpace,
+                          controller.productsList.isEmpty ||
+                                  (controller.title.isNotEmpty &&
+                                      controller.filteredProducts.isEmpty)
+                              ? Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'No Items to Display!!',
+                                      style: AppDecoration.mediumStyle(
+                                          fontSize: 25,
+                                          color: AppColors.pureBlack),
+                                    ),
+                                  ),
+                                )
+                              : Column(
+                                  children: [
+                                    const SpacerRow(text1: 'Top Selling'),
+                                    15.verticalSpace,
+                                    const ItemsList(),
+                                    15.verticalSpace,
+                                    const SpacerRow(text1: 'New in'),
+                                    15.verticalSpace,
+                                    const ItemsList(),
+                                    10.verticalSpace,
+                                  ],
+                                ),
                         ],
                       ),
                     ),

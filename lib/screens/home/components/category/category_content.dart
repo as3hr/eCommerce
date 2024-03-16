@@ -31,6 +31,7 @@ class _CategoryContentState extends State<CategoryContent> {
   Map<String, dynamic> query = {};
   final controller = Get.find<HomeScreenController>();
   List<Product> products = [];
+  List<Product> filteredProducts = [];
   bool fetchedData = false;
 
   @override
@@ -39,21 +40,44 @@ class _CategoryContentState extends State<CategoryContent> {
     getData();
   }
 
-  Future<void> getData() async {
+  void getData({bool refresh = false}) async {
     fetchedData = false;
     query['category'] = widget.category;
-    await loadingWrapper(() async {
-      await controller.getProducts(
-        query: query,
-        byCategory: true,
-        refresh: true,
-      );
-    });
-    if (controller.productsByCategory.isNotEmpty) {
-      products = controller.productsByCategory;
+    if (refresh) {
+      await loadingWrapper(() async {
+        await controller.getProducts();
+      }, showLoader: false);
+    } else {
+      await loadingWrapper(() async {
+        await controller.getProducts(
+          query: query,
+        );
+      });
+    }
+    if (controller.productsList.isNotEmpty) {
+      products = controller.productsList;
     }
     fetchedData = true;
+
     controller.update();
+  }
+
+  void onChanged(String query) {
+    if (query.isEmpty) {
+      getData();
+    }
+    filteredProducts = products
+        .where((product) =>
+            (product.title?.toLowerCase() ?? '').contains(query.toLowerCase()))
+        .toList();
+    products = filteredProducts;
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    getData(refresh: true);
+    super.dispose();
   }
 
   @override
@@ -76,8 +100,7 @@ class _CategoryContentState extends State<CategoryContent> {
                         Expanded(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child:
-                              SearchField(onChanged: controller.searchProducts),
+                          child: SearchField(onChanged: onChanged),
                         )),
                       ],
                     ),
@@ -113,7 +136,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                           onTapped: (val) async {
                                             // query['price'] = val;
                                             loadingWrapper(() async {
-                                              await getData();
+                                              getData();
                                             });
                                           },
                                           containers: const [
@@ -127,7 +150,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                       () {
                                         query.remove('price');
                                         loadingWrapper(() async {
-                                          await getData();
+                                          getData();
                                         });
                                       },
                                     );
@@ -143,7 +166,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                           onTapped: (val) async {
                                             query['sort'] = val;
                                             loadingWrapper(() async {
-                                              await getData();
+                                              getData();
                                             });
                                           },
                                           containers: const [
@@ -155,7 +178,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                       () {
                                         query.remove('sort');
                                         loadingWrapper(() async {
-                                          await getData();
+                                          getData();
                                         });
                                       },
                                     );
@@ -173,7 +196,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                           onTapped: (val) async {
                                             query['gender'] = val;
                                             loadingWrapper(() async {
-                                              await getData();
+                                              getData();
                                             });
                                           },
                                           containers: const [
@@ -187,7 +210,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                       () {
                                         query.remove('gender');
                                         loadingWrapper(() async {
-                                          await getData();
+                                          getData();
                                         });
                                       },
                                     );

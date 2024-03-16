@@ -22,4 +22,9 @@ class AppImages {
   static const emptyCart = '$basePath/empty_cart.png';
   static const orderPlaced = '$basePath/order_placed.png';
   static const cardLogo = '$basePath/card_logo.png';
+  static const hoodie = '$basePath/hoodie.jpg';
+  static const shorts = '$basePath/shorts.jpg';
+  static const shoes = '$basePath/shoes.jpg';
+  static const bag = '$basePath/bag.jpg';
+  static const accessories = '$basePath/accessories.jpg';
 }

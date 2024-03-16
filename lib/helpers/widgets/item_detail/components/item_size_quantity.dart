@@ -14,8 +14,10 @@ import '../../../styles/app_images.dart';
 import '../../custom_tile.dart';
 
 class ItemSizeQuantity extends StatelessWidget {
-  const ItemSizeQuantity({super.key, required this.product});
+  const ItemSizeQuantity(
+      {super.key, required this.product, required this.changable});
   final Product product;
+  final bool changable;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
@@ -76,7 +78,11 @@ class ItemSizeQuantity extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
-                    onTap: () => controller.increaseQuantity(product),
+                    onTap: () {
+                      if (changable) {
+                        controller.increaseQuantity(product);
+                      }
+                    },
                     child: CircleAvatar(
                       backgroundColor: AppColors.lightPurple,
                       child: Center(
@@ -95,7 +101,11 @@ class ItemSizeQuantity extends StatelessWidget {
                   ),
                   15.horizontalSpace,
                   GestureDetector(
-                    onTap: () => controller.decreaseQuantity(product),
+                    onTap: () {
+                      if (changable) {
+                        controller.decreaseQuantity(product);
+                      }
+                    },
                     child: CircleAvatar(
                       backgroundColor: AppColors.lightPurple,
                       child: Center(
