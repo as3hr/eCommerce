@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
@@ -29,17 +31,33 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
+      final authController = Get.find<AuthController>();
       final homeController = Get.find<HomeScreenController>();
-      final name = Get.find<AuthController>().user?.firstName;
+      final name = authController.user.firstName;
+      final image = authController.image;
+      final isSocial = authController.user.isSocial;
+      final isEmptyImage = image.isEmpty == true;
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8),
-            child: RoundedImage(
-              iconText: name,
-              radius: 30.w,
-            ),
+            child: (isSocial && !isEmptyImage)
+                ? RoundedImage(
+                    imageUrl: image,
+                    iconText: name,
+                    radius: 30.w,
+                  )
+                : (!isEmptyImage)
+                    ? RoundedImage(
+                        file: File(image),
+                        iconText: name,
+                        radius: 30.w,
+                      )
+                    : RoundedImage(
+                        iconText: name,
+                        radius: 30.w,
+                      ),
           ),
           ModalDropDown(
             text: gender,

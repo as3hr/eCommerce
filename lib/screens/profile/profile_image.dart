@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/widgets/rounded_image.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
@@ -14,15 +16,30 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
-      final name = Get.find<AuthController>().user?.firstName;
+      final authController = Get.find<AuthController>();
+      final name = authController.user.firstName;
+      final image = authController.image;
+      final isSocial = authController.user.isSocial;
+      final isEmptyImage = image.isEmpty == true;
       return Center(
         child: Stack(
           children: [
-            RoundedImage(
-              file: controller.userFile,
-              iconText: name,
-              radius: 50.w,
-            ),
+            (isSocial && !isEmptyImage)
+                ? RoundedImage(
+                    imageUrl: image,
+                    iconText: name,
+                    radius: 50.w,
+                  )
+                : (!isEmptyImage)
+                    ? RoundedImage(
+                        file: File(image),
+                        iconText: name,
+                        radius: 50.w,
+                      )
+                    : RoundedImage(
+                        iconText: name,
+                        radius: 50.w,
+                      ),
             Positioned(
                 right: 7,
                 bottom: 10,

@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart' as fire;
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/api_error.dart';
 import '../../helpers/functions/change_page.dart';
@@ -15,7 +16,8 @@ import 'login/login_screen.dart';
 
 class AuthController extends GetxController {
   final isInitialized = false.obs;
-  User? user;
+  User user = User();
+  String image = '';
   final token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
   String email = '';
@@ -81,6 +83,7 @@ class AuthController extends GetxController {
         await fire.FirebaseAuth.instance.signInWithCredential(credential);
 
     final user = User(
+        isSocial: true,
         firstName: result.user?.displayName ?? '',
         email: result.user?.email ?? '',
         image: result.user?.photoURL ?? '');
@@ -88,27 +91,41 @@ class AuthController extends GetxController {
     socialAuth(user);
   }
 
-  Future<void> facebookSignIn() async {
-    // final facebookUser = await FacebookAuth.instance.login();
-    // final facebookAuthCredential = fire.FacebookAuthProvider.credential(
-    //     facebookUser.accessToken?.token ?? '');
+  Future<void> saveImage(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await Future.wait([
+      prefs.setString('image', path),
+      prefs.setString('email', user.email ?? ''),
+    ]);
+    image = await getImage();
+  }
 
-    // final result = await fire.FirebaseAuth.instance
-    //     .signInWithCredential(facebookAuthCredential);
+  Future<void> removeImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    await Future.wait([
+      prefs.remove('image'),
+    ]);
+    image = '';
+    update();
+  }
 
-    // final user = User(
-    //     firstName: result.user?.displayName ?? '',
-    //     email: result.user?.email ?? '',
-    //     image: result.user?.photoURL ?? '');
-
-    // socialAuth(user);
-    showToast(message: 'Incoming Feature!', imagePath: AppImages.access);
+  Future<String> getImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final image = prefs.getString('image');
+    final email = prefs.getString('email');
+    if (email == user.email) {
+      return image ?? '';
+    } else {
+      removeImage();
+      return '';
+    }
   }
 
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
-    fetchProfile();
+    await fetchProfile(isSocial: true);
+    await saveImage(user.image ?? '');
     update();
   }
 
@@ -123,18 +140,21 @@ class AuthController extends GetxController {
     changePage(LoginScreen.routeName);
   }
 
-  Future<void> fetchProfile() async {
+  Future<void> fetchProfile({bool isSocial = false}) async {
     user = await Api.getUser();
+    if (isSocial) {
+      user.isSocial = true;
+    }
+    image = await getImage();
     update();
   }
 
   Future<void> logout() async {
-    // await FacebookAuth.instance.logOut();
     await GoogleSignIn().signOut();
     await Api.logout();
     await Token.clearToken();
     token.value = null;
-    user = null;
+    user = User();
     update();
   }
 

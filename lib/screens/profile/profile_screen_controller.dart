@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
@@ -13,7 +11,7 @@ import '../../models/wishlist.dart';
 import '../auth/auth_controller.dart';
 
 class ProfileScreenController extends GetxController {
-  File? userFile;
+  static final authController = Get.find<AuthController>();
   final picker = ImagePicker();
 
   List<Wish> wishLists = [];
@@ -109,19 +107,21 @@ class ProfileScreenController extends GetxController {
     }
   }
 
-  Future<void> uploadImage(String file) async {
+  Future<void> uploadImage(String path) async {
     try {
-      userFile = File(file);
-      update();
-      // await Api.uploadImage(file);
-      await Get.find<AuthController>().fetchProfile();
-      Get.find<AuthController>().update();
-      update();
+      final authController = Get.find<AuthController>();
+      if (authController.user.isSocial) {
+        await authController.removeImage();
+        authController.user.isSocial = false;
+      }
+      await authController.saveImage(path);
       showToast(message: 'Image Uploaded!');
     } catch (_) {
       showToast(
           message: 'Could not upload the image!',
           imagePath: AppImages.unsuccessful);
     }
+    authController.update();
+    update();
   }
 }

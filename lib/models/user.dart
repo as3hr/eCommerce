@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:e_commerce/data/api_helpers.dart';
 
 import 'address.dart';
@@ -10,6 +12,7 @@ class User {
   String? firstName;
   String? lastName;
   String? image;
+  File? imageFile;
   String? contactNumber;
   String? email;
   String? resetCode;
@@ -20,9 +23,11 @@ class User {
   List<String>? fcmTokens;
   List<Address>? addresses;
   List<Card>? cards;
-
+  bool isSocial;
   User({
+    this.isSocial = false,
     this.id,
+    this.imageFile,
     this.emailVerified = false,
     this.userName,
     this.contactNumber,

@@ -94,17 +94,6 @@ class LoginScreen extends StatelessWidget {
                     color: AppColors.grayI,
                     textColor: AppColors.pureBlack,
                   ),
-                  CustomContainer(
-                    height: 65,
-                    width: 0.97.sw,
-                    onTap: () {
-                      loadingWrapper(controller.facebookSignIn);
-                    },
-                    preFixImage: AppImages.facebook,
-                    text: 'Continue With Facebook',
-                    color: AppColors.grayI,
-                    textColor: AppColors.pureBlack,
-                  ),
                 ],
               ),
             ),

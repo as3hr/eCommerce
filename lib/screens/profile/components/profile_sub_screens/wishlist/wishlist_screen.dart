@@ -26,7 +26,9 @@ class WishListScreen extends StatelessWidget {
           child: Column(
             children: [
               35.verticalSpace,
-              const Header(text: 'Wishlist'),
+              const Header(
+                text: 'Wishlist',
+              ),
               35.verticalSpace,
               controller.wishLists.isEmpty
                   ? const EmptyWishList()
