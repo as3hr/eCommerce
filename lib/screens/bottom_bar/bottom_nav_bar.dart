@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import '../../helpers/styles/app_colors.dart';
 import '../../routes.dart';
 import 'bottom_bar.dart';
@@ -18,8 +20,8 @@ class BottomNavBar extends StatelessWidget {
     return GetBuilder(
         init: BottomNavBarController(),
         builder: (controller) {
-          return PopScope(
-            canPop: false,
+          return WillPopScope(
+            onWillPop: controller.onWillPop,
             child: Scaffold(
               backgroundColor: AppColors.pureWhite,
               body: Navigator(

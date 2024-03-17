@@ -11,10 +11,10 @@ class Header extends StatelessWidget {
       required this.text,
       this.extraSpace,
       this.trailingTap,
-      this.showTrailing = false});
+      this.trailingIcon});
   final String text;
   final int? extraSpace;
-  final bool showTrailing;
+  final IconData? trailingIcon;
   final void Function()? trailingTap;
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class Header extends StatelessWidget {
                 fontSize: 23, color: AppColors.pureBlack),
           ),
         ),
-        if (showTrailing) ...[
+        if (trailingIcon != null && trailingTap != null) ...[
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
                 onTap: trailingTap,
-                child: const Icon(
-                  Icons.add_circle_outlined,
+                child: Icon(
+                  trailingIcon,
                   color: AppColors.grayIV,
                 )),
           ),

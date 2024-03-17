@@ -1,5 +1,4 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
-import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +16,7 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthController>(builder: (controller) {
-      final user = controller.user ?? User();
+      final user = controller.user;
       return Scaffold(
         backgroundColor: AppColors.pureWhite,
         body: SafeArea(

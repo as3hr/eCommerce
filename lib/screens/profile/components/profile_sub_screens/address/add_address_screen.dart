@@ -26,7 +26,10 @@ class AddAddressScreen extends StatelessWidget {
             child: Column(
           children: [
             35.verticalSpace,
-            Header(text: address.id == null ? 'Add Address' : 'Update Address'),
+            Header(
+                text: address.id == null ? 'Add Address' : 'Update Address',
+                trailingIcon: Icons.delete,
+                trailingTap: () {}),
             35.verticalSpace,
             InputField(
               preFilledValue: address.streetAddress,

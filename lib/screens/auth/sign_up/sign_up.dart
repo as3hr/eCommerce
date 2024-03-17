@@ -1,4 +1,5 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/widgets/back_button.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,12 @@ class SignUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                80.verticalSpace,
+                30.verticalSpace,
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: CustomBackButton(),
+                ),
+                35.verticalSpace,
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(

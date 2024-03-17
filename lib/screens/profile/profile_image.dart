@@ -51,7 +51,7 @@ class ProfileImage extends StatelessWidget {
                   },
                   child: const Icon(
                     Icons.edit,
-                    color: AppColors.lightBlack,
+                    color: AppColors.grayIV,
                   ),
                 )),
           ],

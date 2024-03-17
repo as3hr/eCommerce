@@ -27,7 +27,7 @@ class AddressScreen extends StatelessWidget {
               35.verticalSpace,
               Header(
                 text: 'Address',
-                showTrailing: true,
+                trailingIcon: Icons.add_circle_outlined,
                 trailingTap: () {
                   changePage(AddAddressScreen.routeName, arguments: {
                     'address': Address(),

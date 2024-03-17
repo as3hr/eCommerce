@@ -32,7 +32,9 @@ class _CategoryContentState extends State<CategoryContent> {
   final controller = Get.find<HomeScreenController>();
   List<Product> products = [];
   List<Product> filteredProducts = [];
+  List<Product> allProducts = [];
   bool fetchedData = false;
+  String title = '';
 
   @override
   void initState() {
@@ -54,23 +56,20 @@ class _CategoryContentState extends State<CategoryContent> {
         );
       });
     }
-    if (controller.productsList.isNotEmpty) {
-      products = controller.productsList;
-    }
+    products = controller.productsList;
     fetchedData = true;
-
     controller.update();
   }
 
   void onChanged(String query) {
     if (query.isEmpty) {
       getData();
+      controller.update();
     }
     filteredProducts = products
         .where((product) =>
             (product.title?.toLowerCase() ?? '').contains(query.toLowerCase()))
         .toList();
-    products = filteredProducts;
     setState(() {});
   }
 
@@ -83,6 +82,7 @@ class _CategoryContentState extends State<CategoryContent> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeScreenController>(builder: (controller) {
+      allProducts = title.isEmpty ? products : filteredProducts;
       return Scaffold(
         body: !fetchedData && products.isEmpty
             ? const Center(
@@ -100,7 +100,10 @@ class _CategoryContentState extends State<CategoryContent> {
                         Expanded(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SearchField(onChanged: onChanged),
+                          child: SearchField(onChanged: (val) {
+                            title = val;
+                            onChanged(title);
+                          }),
                         )),
                       ],
                     ),
@@ -223,13 +226,13 @@ class _CategoryContentState extends State<CategoryContent> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text(
-                              '${products.length} Results found',
+                              '${allProducts.length} Results found',
                               style: AppDecoration.semiMediumStyle(
                                   fontSize: 18, color: AppColors.lightBlack),
                             ),
                           ),
                           10.verticalSpace,
-                          products.isEmpty && fetchedData
+                          allProducts.isEmpty && fetchedData
                               ? const Center(child: EmptyCategories())
                               : Expanded(
                                   child: GridView.builder(
@@ -239,9 +242,9 @@ class _CategoryContentState extends State<CategoryContent> {
                                         childAspectRatio: 0.7,
                                       ),
                                       padding: EdgeInsets.zero,
-                                      itemCount: products.length,
+                                      itemCount: allProducts.length,
                                       itemBuilder: (context, index) {
-                                        final product = products[index];
+                                        final product = allProducts[index];
                                         return Padding(
                                           padding: const EdgeInsets.all(8),
                                           child: ItemContainer(

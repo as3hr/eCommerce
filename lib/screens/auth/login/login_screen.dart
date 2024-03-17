@@ -87,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                     height: 65,
                     width: 0.97.sw,
                     onTap: () {
-                      loadingWrapper(controller.googleSignIn);
+                      loadingWrapper(controller.googleSignIn, showLogs: true);
                     },
                     preFixImage: AppImages.google,
                     text: 'Continue With Google',

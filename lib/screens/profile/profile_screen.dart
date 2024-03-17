@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/functions/dialog.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 
@@ -38,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                     title: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
-                        '${user?.firstName ?? ''} ${user?.lastName ?? ''}',
+                        '${user.firstName ?? ''} ${user.lastName ?? ''}',
                         style: AppDecoration.mediumStyle(
                             fontSize: 17, color: AppColors.pureBlack),
                       ),
@@ -48,13 +49,13 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         3.verticalSpace,
                         Text(
-                          user?.email ?? '',
+                          user.email ?? '',
                           style: AppDecoration.mediumStyle(
                               fontSize: 16, color: AppColors.pureBlack),
                         ),
                         5.verticalSpace,
                         Text(
-                          user?.contactNumber ?? '',
+                          user.contactNumber ?? '',
                           style: AppDecoration.mediumStyle(
                               fontSize: 15, color: AppColors.pureBlack),
                         ),
@@ -79,9 +80,14 @@ class ProfileScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(35),
                     child: Center(
                       child: GestureDetector(
-                        onTap: () {
-                          loadingWrapper(() async =>
-                              {await Get.find<AuthController>().logout()});
+                        onTap: () async {
+                          final response = await confirmationDialog(
+                              title: 'Sign out',
+                              message: 'Are you sure you want to sign Out?');
+                          if (response) {
+                            loadingWrapper(() async =>
+                                {await Get.find<AuthController>().logout()});
+                          }
                         },
                         child: Text(
                           'Sign Out',

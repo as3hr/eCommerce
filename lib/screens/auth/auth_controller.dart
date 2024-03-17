@@ -83,7 +83,6 @@ class AuthController extends GetxController {
         await fire.FirebaseAuth.instance.signInWithCredential(credential);
 
     final user = User(
-        isSocial: true,
         firstName: result.user?.displayName ?? '',
         email: result.user?.email ?? '',
         image: result.user?.photoURL ?? '');
@@ -91,11 +90,12 @@ class AuthController extends GetxController {
     socialAuth(user);
   }
 
-  Future<void> saveImage(String path) async {
+  Future<void> saveImage(String path, {bool isSocial = false}) async {
     final prefs = await SharedPreferences.getInstance();
     await Future.wait([
       prefs.setString('image', path),
       prefs.setString('email', user.email ?? ''),
+      prefs.setBool('isSocial', isSocial),
     ]);
     image = await getImage();
   }
@@ -116,7 +116,7 @@ class AuthController extends GetxController {
     if (email == user.email) {
       return image ?? '';
     } else {
-      removeImage();
+      await removeImage();
       return '';
     }
   }
@@ -124,8 +124,8 @@ class AuthController extends GetxController {
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
-    await fetchProfile(isSocial: true);
-    await saveImage(user.image ?? '');
+    await fetchProfile();
+    await saveImage(user.image ?? '', isSocial: true);
     update();
   }
 
@@ -140,18 +140,20 @@ class AuthController extends GetxController {
     changePage(LoginScreen.routeName);
   }
 
-  Future<void> fetchProfile({bool isSocial = false}) async {
+  Future<void> fetchProfile() async {
     user = await Api.getUser();
-    if (isSocial) {
+    final prefs = await SharedPreferences.getInstance();
+    final isSocial = prefs.getBool('isSocial');
+    if (isSocial == true) {
       user.isSocial = true;
     }
-    image = await getImage();
     update();
   }
 
   Future<void> logout() async {
     await GoogleSignIn().signOut();
     await Api.logout();
+    await removeImage();
     await Token.clearToken();
     token.value = null;
     user = User();
@@ -164,6 +166,8 @@ class AuthController extends GetxController {
       try {
         token.value = storedTokens;
         await fetchProfile();
+        image = await getImage();
+        update();
       } on ApiError catch (e) {
         if (e.type == ErrorType.invalidCredentials ||
             e.type == ErrorType.unAuthorized) {

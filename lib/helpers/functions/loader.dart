@@ -9,6 +9,7 @@ import '../../data/api_error.dart';
 Future<T?> loadingWrapper<T>(
   Future<T> Function() func, {
   bool showLoader = true,
+  bool showLogs = false,
 }) async {
   if (showLoader) {
     Get.context?.loaderOverlay.show(showOverlay: false);
@@ -22,10 +23,14 @@ Future<T?> loadingWrapper<T>(
       imagePath: AppImages.unsuccessful,
     );
   } catch (e) {
-    showToast(
-      message: e.toString(),
-      imagePath: AppImages.unsuccessful,
-    );
+    if (showLogs) {
+      print(e.toString());
+    } else {
+      showToast(
+        message: e.toString(),
+        imagePath: AppImages.unsuccessful,
+      );
+    }
   } finally {
     Get.context?.loaderOverlay.hide();
   }
