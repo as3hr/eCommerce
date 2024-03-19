@@ -1,7 +1,7 @@
 import { userModel } from "../models/user";
 
 const getAddressData = async(): Promise<any> =>{
-    let addresses: any;
+    let addresses: any = [];
     const users = await userModel.find();
     
     users.map((user) => {

@@ -17,9 +17,9 @@ const signIn = asyncHandler(
     const result = await userModel
       .findOne({ email: req.body.email });
     if (
-      !result ||
-      !(await result.comparePassword(req.body.password))
-    ) {
+      !result || !(await result.comparePassword(req.body.password))
+    )
+     {
       throw HttpError.invalidCredentials();
     } else {
       req.session.user = result._id;

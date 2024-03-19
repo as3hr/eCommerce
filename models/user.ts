@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import mongoose, { Document, Schema, Types } from "mongoose";
 import { ICard, card } from "./card";
+import { HttpError } from "../internal";
 
 export interface IUser extends Document {
   userName?: string;
@@ -107,19 +108,19 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-// userSchema.pre("save", function (next) {
-//   bcrypt.hash(
-//     this.password!,
-//     parseInt(process.env.SALT_WORK_FACTOR!),
-//     (err: any, hashedPass: string | undefined) => {
-//       if (err) {
-//         throw err;
-//       }
-//       this.password = hashedPass;
-//       next();
-//     }
-//   );
-// });
+userSchema.pre("save", function (next) {
+  bcrypt.hash(
+    this.password!,
+    parseInt(process.env.SALT_WORK_FACTOR!),
+    (err: any, hashedPass: string | undefined) => {
+      if (err) {
+        throw err;
+      }
+      this.password = hashedPass;
+      next();
+    }
+  );
+});
 
 userSchema.method<IUser>(
   "comparePassword",
@@ -127,7 +128,11 @@ userSchema.method<IUser>(
     const user: IUser = await userModel
       .findOne({ _id: this._id })
       .select("+password");
-    return bcrypt.compare(password, user.password!);
+    if(!user.password){
+      throw HttpError.invalidCredentials();
+    }
+    const val = await bcrypt.compare(password, user.password!);
+    return val;
   }
 );
 

@@ -112,8 +112,10 @@ const getSubTotal = (products: IProduct[]): number => {
   return sum;
 }
 
-const addOrders = async () => {
-  await createAddress();
+const addOrders = async (address?: boolean) => {
+  if(address){
+    await createAddress();
+  }
   const products = await addProducts("../products.xlsx");
   let productStartIndex = 0;
   let productEndIndex = 5;
@@ -158,7 +160,9 @@ const deleteDb =async() => {
 
 
 if(process.argv[2]=='--start'){
-  addOrders().then((_)=>{
+  
+  const address = process.argv[3]=='--address';
+  addOrders(address).then((_)=>{
     console.log('Done!');
     process.exit(0);
   });

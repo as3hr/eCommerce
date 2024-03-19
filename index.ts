@@ -5,8 +5,7 @@ import express from "express";
 import { queryParser } from "express-query-parser";
 import session from "express-session";
 import mongoose, { Schema } from "mongoose";
-
-
+import admin from "firebase-admin";
 import {
   IUser,
   authRouter,
@@ -45,6 +44,10 @@ declare module "express-session" {
     user: Schema.Types.ObjectId;
   }
 }
+
+admin.initializeApp({
+  credential: admin.credential.cert("serviceAccountKey.json"),
+});
 
 dotenv.config({ path: ".env" });
 
