@@ -28,8 +28,14 @@ class AddAddressScreen extends StatelessWidget {
             35.verticalSpace,
             Header(
                 text: address.id == null ? 'Add Address' : 'Update Address',
-                trailingIcon: Icons.delete,
-                trailingTap: () {}),
+                trailingIcon: address.id != null ? Icons.delete : null,
+                trailingTap: address.id != null
+                    ? () {
+                        loadingWrapper(() async {
+                          await controller.deleteAddress(address);
+                        });
+                      }
+                    : null),
             35.verticalSpace,
             InputField(
               preFilledValue: address.streetAddress,

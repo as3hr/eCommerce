@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_decoration.dart';
+import 'package:e_commerce/helpers/widgets/bottom_sheet/sheet.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/home/home_screen_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,14 +11,13 @@ import 'package:get/get.dart';
 import '../../../../helpers/functions/bottom_sheet.dart';
 import '../../../../helpers/functions/change_page.dart';
 import '../../../../helpers/widgets/modal_drop_down.dart';
-import '../../../../helpers/widgets/custom_bottom_sheet_body.dart';
+import '../../../../helpers/widgets/bottom_sheet/custom_bottom_sheet_body.dart';
 import '../../../../helpers/widgets/rounded_image.dart';
 import '../../../auth/auth_controller.dart';
 import '../cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../helpers/styles/app_colors.dart';
-import '../../../../helpers/widgets/bottom_sheet/bottom_sheet_container.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -28,6 +28,8 @@ class HomeHeader extends StatefulWidget {
 
 class _HomeHeaderState extends State<HomeHeader> {
   String gender = 'Men';
+  int bottomSheetCurrentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
@@ -66,8 +68,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                 context,
                 'Gender',
                 CustomBottomSheetBody(
-                  onTapped: (val) {
+                  onTapped: (val, index) {
                     gender = val;
+                    bottomSheetCurrentIndex = index;
                     loadingWrapper(() async {
                       await homeController.getProducts(
                         query: {'gender': gender},
@@ -77,20 +80,21 @@ class _HomeHeaderState extends State<HomeHeader> {
                     controller.update();
                     Navigator.pop(context);
                   },
-                  containers: const [
-                    BottomSheetContainer(
+                  containers: [
+                    Sheet(
                       index: 0,
                       title: 'Men',
                     ),
-                    BottomSheetContainer(
+                    Sheet(
                       index: 1,
                       title: 'Women',
                     ),
-                    BottomSheetContainer(
+                    Sheet(
                       index: 2,
                       title: 'Kids',
                     ),
                   ],
+                  currentIndex: bottomSheetCurrentIndex,
                 ),
                 () {
                   loadingWrapper(() async {

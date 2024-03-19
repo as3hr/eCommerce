@@ -66,6 +66,8 @@ class AuthController extends GetxController {
   Future<void> login() async {
     await Api.login(email: email.trim(), password: password.trim());
     token.value?.persistToken();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isSocial', false);
     fetchProfile();
     update();
   }
@@ -90,20 +92,22 @@ class AuthController extends GetxController {
     socialAuth(user);
   }
 
-  Future<void> saveImage(String path, {bool isSocial = false}) async {
+  Future<void> saveImage(String path) async {
     final prefs = await SharedPreferences.getInstance();
     await Future.wait([
       prefs.setString('image', path),
       prefs.setString('email', user.email ?? ''),
-      prefs.setBool('isSocial', isSocial),
     ]);
     image = await getImage();
+    update();
   }
 
   Future<void> removeImage() async {
     final prefs = await SharedPreferences.getInstance();
     await Future.wait([
       prefs.remove('image'),
+      prefs.remove('email'),
+      prefs.remove('isSocial'),
     ]);
     image = '';
     update();
@@ -124,8 +128,10 @@ class AuthController extends GetxController {
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isSocial', true);
     await fetchProfile();
-    await saveImage(user.image ?? '', isSocial: true);
+    await saveImage(user.image ?? '');
     update();
   }
 

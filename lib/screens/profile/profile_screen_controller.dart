@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../helpers/functions/change_page.dart';
 import '../../models/address.dart';
 import '../../models/wishlist.dart';
 import '../auth/auth_controller.dart';
+import 'components/profile_sub_screens/address/address_screen.dart';
 
 class ProfileScreenController extends GetxController {
   static final authController = Get.find<AuthController>();
@@ -54,6 +56,14 @@ class ProfileScreenController extends GetxController {
     showToast(message: 'Updated Successfully', imagePath: AppImages.successful);
     getAddresses(refresh: true);
     update();
+  }
+
+  Future<void> deleteAddress(Address address) async {
+    await Api.deleteAddress(address: address);
+    showToast(message: 'Deleted Successfully', imagePath: AppImages.successful);
+    await getAddresses(refresh: true);
+    update();
+    changePage(AddressScreen.routeName);
   }
 
   Future<void> createAddress(Address address) async {

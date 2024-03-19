@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 
 import '../../../../screens/home/components/cart/cart_controller.dart';
 import '../../../functions/bottom_sheet.dart';
-import '../../bottom_sheet/bottom_sheet_container.dart';
-import '../../custom_bottom_sheet_body.dart';
+import '../../bottom_sheet/custom_bottom_sheet_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../styles/app_colors.dart';
 import '../../../styles/app_decoration.dart';
 import '../../../styles/app_images.dart';
+import '../../bottom_sheet/sheet.dart';
 import '../../custom_tile.dart';
 
 class ItemSizeQuantity extends StatelessWidget {
@@ -31,12 +31,12 @@ class ItemSizeQuantity extends StatelessWidget {
                 viewBottomSheet(
                   context,
                   'Size',
-                  const CustomBottomSheetBody(containers: [
-                    BottomSheetContainer(title: 'S', index: 0),
-                    BottomSheetContainer(title: 'M', index: 1),
-                    BottomSheetContainer(title: 'L', index: 2),
-                    BottomSheetContainer(title: 'XL', index: 3),
-                    BottomSheetContainer(title: '2XL', index: 4),
+                  CustomBottomSheetBody(containers: [
+                    Sheet(title: 'S', index: 0),
+                    Sheet(title: 'M', index: 1),
+                    Sheet(title: 'L', index: 2),
+                    Sheet(title: 'XL', index: 3),
+                    Sheet(title: '2XL', index: 4),
                   ]),
                   () {},
                 );

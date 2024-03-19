@@ -10,7 +10,7 @@ import '../models/address.dart';
 
 class Api {
   static final dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.100.46:6000",
+      baseUrl: "http://192.168.100.49:6000",
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json'));
@@ -165,5 +165,11 @@ class Api {
     const url = '/addresses/';
     final response = await dio.post(url, data: address.toJson());
     ApiHelpers.checkError(response)['result'];
+  }
+
+  static Future<void> deleteAddress({required Address address}) async {
+    final url = '/addresses/${address.id}';
+    final response = await dio.delete(url);
+    ApiHelpers.checkError(response);
   }
 }
