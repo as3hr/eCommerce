@@ -7,30 +7,21 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../../functions/loading_wrapper.dart';
 import '../../functions/show_toast.dart';
 import 'base_form_button.dart';
-import 'form_action_button.dart';
 import 'form_controller.dart';
 import 'form_fields.dart';
 import 'functions/form_helpers.dart';
 
 class BaseForm<T> extends StatefulWidget {
   final List<BaseFormFieldModel> formFieldsList;
-  final Future Function()? nextPage;
   final Future Function()? savefunction;
   final Future Function()? updatefunction;
   final Future Function()? deletefunction;
   final Future Function()? getFormData;
-  final List<FormActionButton>? actionButtons;
   final bool isNew;
-  final bool hideFotter;
-  final bool alreadyHasData;
   const BaseForm({
     super.key,
-    this.hideFotter = false,
-    this.alreadyHasData = false,
     this.isNew = true,
     this.getFormData,
-    this.nextPage,
-    this.actionButtons,
     required this.formFieldsList,
     this.savefunction,
     this.updatefunction,
@@ -77,9 +68,6 @@ class _BaseFormState extends State<BaseForm> {
       await loadingWrapper(() async {
         await widget.savefunction!.call();
         showToast(message: 'Record created successfully');
-        if (widget.nextPage != null) {
-          widget.nextPage?.call();
-        }
       });
     }
   }
@@ -89,9 +77,6 @@ class _BaseFormState extends State<BaseForm> {
       await loadingWrapper(() async {
         await widget.updatefunction!.call();
         showToast(message: 'Record updated successfully');
-        if (widget.nextPage != null) {
-          widget.nextPage?.call();
-        }
       });
     }
   }
@@ -141,94 +126,40 @@ class _BaseFormState extends State<BaseForm> {
                 autofocus: true,
                 child: Column(
                   children: [
-                    if (!widget.hideFotter && hasData || widget.alreadyHasData)
-                      SizedBox(
-                        height: 0.08.sh,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: widget.actionButtons != null
-                              ? widget.actionButtons!.map(
-                                    (button) {
-                                      return BaseFormButton(
-                                        showCheck: button.showCheck,
-                                        text: button.title,
-                                        textColor: button.textColor,
-                                        toolTipText: button.toolTipText,
-                                        onPressed: button.onTap,
-                                      );
-                                    },
-                                  ).toList() +
-                                  [
-                                    BaseFormButton(
-                                      text: 'Delete',
-                                      textColor: Colors.red,
-                                      toolTipText:
-                                          widget.isNew ? null : 'Delete',
-                                      onPressed: widget.isNew ||
-                                              widget.deletefunction == null
-                                          ? null
-                                          : deleteForm,
-                                    ),
-                                    BaseFormButton(
-                                      text: widget.nextPage != null &&
-                                              !widget.isNew
-                                          ? 'Next'
-                                          : 'Update',
-                                      toolTipText:
-                                          widget.isNew ? null : 'Update',
-                                      onPressed: widget.isNew ||
-                                              widget.updatefunction == null
-                                          ? null
-                                          : updateForm,
-                                    ),
-                                    BaseFormButton(
-                                      text: widget.nextPage != null &&
-                                              widget.isNew
-                                          ? 'Next'
-                                          : 'Save',
-                                      toolTipText: widget.isNew ? 'Save' : null,
-                                      onPressed: widget.isNew &&
-                                              widget.savefunction != null
-                                          ? saveForm
-                                          : null,
-                                    ),
-                                  ]
-                              : [
-                                  BaseFormButton(
-                                    text: 'Delete',
-                                    textColor: Colors.red,
-                                    toolTipText: widget.isNew ? null : 'Delete',
-                                    onPressed: widget.isNew ||
-                                            widget.deletefunction == null
-                                        ? null
-                                        : deleteForm,
-                                  ),
-                                  BaseFormButton(
-                                    text:
-                                        widget.nextPage != null && !widget.isNew
-                                            ? 'Next'
-                                            : 'Update',
-                                    toolTipText: widget.isNew ? null : 'Update',
-                                    onPressed: widget.isNew ||
-                                            widget.updatefunction == null
-                                        ? null
-                                        : updateForm,
-                                  ),
-                                  BaseFormButton(
-                                    text:
-                                        widget.nextPage != null && widget.isNew
-                                            ? 'Next'
-                                            : 'Save',
-                                    toolTipText: widget.isNew ? 'Save' : null,
-                                    onPressed: widget.isNew &&
-                                            widget.savefunction != null
-                                        ? saveForm
-                                        : null,
-                                  ),
-                                ],
-                        ),
+                    SizedBox(
+                      height: 0.08.sh,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          BaseFormButton(
+                            text: 'Delete',
+                            textColor: Colors.red,
+                            toolTipText: widget.isNew ? null : 'Delete',
+                            onPressed:
+                                widget.isNew || widget.deletefunction == null
+                                    ? null
+                                    : deleteForm,
+                          ),
+                          BaseFormButton(
+                            text: 'Update',
+                            toolTipText: widget.isNew ? null : 'Update',
+                            onPressed:
+                                widget.isNew || widget.updatefunction == null
+                                    ? null
+                                    : updateForm,
+                          ),
+                          BaseFormButton(
+                            text: 'Save',
+                            toolTipText: widget.isNew ? 'Save' : null,
+                            onPressed:
+                                widget.isNew && widget.savefunction != null
+                                    ? saveForm
+                                    : null,
+                          ),
+                        ],
                       ),
-                    if (hasData || widget.alreadyHasData)
+                    ),
+                    if (hasData)
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(12),

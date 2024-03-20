@@ -40,11 +40,33 @@ class Api {
   }
 
   static Future<User> fetchProfile() async {
-    const url = '/users/';
+    const url = '/users/profile';
     final response = await dio.get(
       url,
     );
     final data = ApiHelpers.checkError(response)['result'];
     return User.fromJson(data);
+  }
+
+  static Future<List<User>> getAllUsers({
+    int page = 1,
+    int limit = 25,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/users/';
+    final response = await dio.get(url, queryParameters: {
+      'page': page,
+      'limit': limit,
+      ...?extraQuery,
+    });
+    return ApiHelpers.parseResponse(response, User.fromJson);
+  }
+
+  static Future<void> deleteUser(String id) async {
+    final url = '/users/$id';
+    final response = await dio.delete(
+      url,
+    );
+    ApiHelpers.checkError(response);
   }
 }

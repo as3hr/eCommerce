@@ -5,9 +5,8 @@ import 'package:go_router/go_router.dart';
 
 Future<void> changePage(
   BuildContext context,
-  String routeName,
-) async {
-  context.goNamed(
-    routeName,
-  );
+  String routeName, {
+  Object? extra,
+}) async {
+  context.goNamed(routeName, extra: extra);
 }

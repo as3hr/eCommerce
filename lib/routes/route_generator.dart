@@ -19,6 +19,8 @@ import 'package:ecommerce_admin_panel/screens/user/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../models/user.dart';
+
 class AppRouter {
   static var url = window.location.href;
   static final navigatorKey = GlobalKey<NavigatorState>();
@@ -94,7 +96,10 @@ class AppRouter {
                   path: 'users-screen',
                   // redirect: (context, state) => redirect(context, state),
                   builder: (context, state) {
-                    return const UserScreen();
+                    final user = state.extra as User;
+                    return UserScreen(
+                      user: user,
+                    );
                   },
                 ),
               ]),
