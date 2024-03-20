@@ -1,204 +1,102 @@
-class User {
-  int? title;
-  String? id;
-  String? contact;
-  String? name;
-  String? password;
-  String? email;
-  String? image;
-  bool? approved;
-  bool? archived;
-  String? names;
-  String? surname;
-  String? initials;
-  String? rsaId;
-  int? gender;
-  int? race;
-  DateTime? birthDate;
-  int? userId;
-  int? countryOfOriginId;
-  int? userType;
-  int? maritalStatus;
-  int? marriageType;
-  DateTime? marriageDate;
-  int? language;
-  int? userBranchId;
-  int? userStatusId;
-  int? userStatus;
-  String? ncrReferenceNo;
-  DateTime? ncrRegistrationDate;
-  DateTime? applicationDate;
-  DateTime? proposalSentDate;
-  String? motivationforRestructuring;
-  int? userWorkflowStatus;
-  bool? isForm16Signed;
-  DateTime? form16SignedDate;
-  DateTime? form171SentDate;
-  DateTime? form172SentDate;
-  String? ncrDcNumber;
-  String? userBranchName;
-  int? ncrStatus;
-  String? courtDistrict;
-  String? caseNumber;
-  DateTime? dateCaseNumberObtained;
-  DateTime? firstCourtOrderDate;
-  DateTime? nextCourtOrderDate;
-  DateTime? dateCourtOrderGranted;
-  String? internalRefNumber;
-  DateTime? createdDate;
+import 'dart:io';
+import 'address.dart';
+import 'card.dart';
+import 'data/api_helpers.dart';
 
+class User {
+  String? id;
+  String? userName;
+  String? password;
+  String? firstName;
+  String? lastName;
+  String? image;
+  File? imageFile;
+  String? contactNumber;
+  String? email;
+  String? resetCode;
+  String? verificationCode;
+  bool emailVerified;
+  DateTime? verificationCodeExpiry;
+  DateTime? resetCodeExpiry;
+  List<String>? fcmTokens;
+  List<Address>? addresses;
+  List<Card>? cards;
+  bool isSocial;
   User({
+    this.isSocial = false,
     this.id,
-    this.contact,
+    this.imageFile,
+    this.emailVerified = false,
+    this.userName,
+    this.contactNumber,
     this.email,
-    this.name,
+    this.fcmTokens,
+    this.firstName,
+    this.lastName,
     this.image,
     this.password,
-    this.approved,
-    this.archived,
-    this.title,
-    this.names,
-    this.surname,
-    this.initials,
-    this.rsaId,
-    this.gender,
-    this.race,
-    this.birthDate,
-    this.userId,
-    this.countryOfOriginId,
-    this.userType,
-    this.maritalStatus,
-    this.marriageType,
-    this.marriageDate,
-    this.language,
-    this.userBranchId,
-    this.userStatusId,
-    this.userStatus,
-    this.ncrReferenceNo,
-    this.ncrRegistrationDate,
-    this.applicationDate,
-    this.proposalSentDate,
-    this.motivationforRestructuring,
-    this.userWorkflowStatus,
-    this.isForm16Signed,
-    this.form16SignedDate,
-    this.form171SentDate,
-    this.form172SentDate,
-    this.ncrDcNumber,
-    this.userBranchName,
-    this.ncrStatus,
-    this.courtDistrict,
-    this.caseNumber,
-    this.dateCaseNumberObtained,
-    this.firstCourtOrderDate,
-    this.nextCourtOrderDate,
-    this.dateCourtOrderGranted,
-    this.internalRefNumber,
-    this.createdDate,
+    this.addresses,
+    this.cards,
+    this.resetCode,
+    this.resetCodeExpiry,
+    this.verificationCode,
+    this.verificationCodeExpiry,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json['_id'],
-        email: json['email'],
-        name: json['name'],
-        image: json['image'],
-        contact: json['contact'],
-        approved: json['approved'],
-        archived: json['archived'],
-        title: json['title'],
-        names: json['names'],
-        surname: json['surname'],
-        initials: json['initials'],
-        rsaId: json['rsaId'],
-        gender: json['gender'],
-        race: json['race'],
-        birthDate: DateTime.tryParse(json['birthDate'] ?? ''),
-        userId: json['userId'],
-        countryOfOriginId: json['countryOfOriginId'],
-        userType: json['userType'],
-        maritalStatus: json['maritalStatus'],
-        marriageType: json['marriageType'],
-        marriageDate: DateTime.tryParse(json['marriageDate'] ?? ''),
-        language: json['language'],
-        userBranchId: json['userBranchId'],
-        userStatusId: json['userStatusId'],
-        userStatus: json['UsurStatus'],
-        ncrReferenceNo: json['ncrReferenceNo'],
-        ncrRegistrationDate:
-            DateTime.tryParse(json['ncrRegistrationDate'] ?? ''),
-        applicationDate: DateTime.tryParse(json['applicationDate'] ?? ''),
-        proposalSentDate: DateTime.tryParse(json['proposalSentDate'] ?? ''),
-        motivationforRestructuring: json['motivationforRestructuring'],
-        userWorkflowStatus: json['userWorkflowStatus'],
-        isForm16Signed: json['isForm16Signed'],
-        form16SignedDate: DateTime.tryParse(json['form16SignedDate'] ?? ''),
-        form171SentDate: DateTime.tryParse(json['form171SentDate'] ?? ''),
-        form172SentDate: DateTime.tryParse(json['form172SentDate'] ?? ''),
-        ncrDcNumber: json['ncrDCNumber'],
-        userBranchName: json['userBranchName'],
-        ncrStatus: json['ncrStatus'],
-        courtDistrict: json['courtDistrict'],
-        caseNumber: json['caseNumber'],
-        dateCaseNumberObtained:
-            DateTime.tryParse(json['dateCaseNumberObtained'] ?? ''),
-        firstCourtOrderDate:
-            DateTime.tryParse(json['firstCourtOrderDate'] ?? ''),
-        nextCourtOrderDate: DateTime.tryParse(json['nextCourtOrderDate'] ?? ''),
-        dateCourtOrderGranted:
-            DateTime.tryParse(json['dateCourtOrderGranted'] ?? ''),
-        internalRefNumber: json['internalRefNumber'],
-        createdDate: DateTime.tryParse(json['createdDate'] ?? ''),
-      );
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['_id'],
+      userName: json['username'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      image: json['image'],
+      email: json['email'],
+      emailVerified: json['emailVerified'],
+      fcmTokens: json['fcmTokens'] != null
+          ? json['fcmTokens']
+              .map((token) => token as String)
+              .toList()
+              .cast<String>()
+          : [],
+      resetCode: json['resetCode'],
+      resetCodeExpiry: DateTime.tryParse(json['resetCodeExpiry'] ?? ''),
+      verificationCode: json['verificationCode'],
+      verificationCodeExpiry:
+          DateTime.tryParse(json['verificationCodeExpiry'] ?? ''),
+      contactNumber: json['contactNumber'],
+      addresses: ApiHelpers.parseList(json['addresses'], Address.fromJson),
+      cards: ApiHelpers.parseList(json['cards'], Card.fromJson),
+    );
+  }
 
-  Map<String, dynamic> toApiJson() => {
-        'rsaId': rsaId,
-        'email': email,
-        'password': password,
-        'name': name,
-        'image': image,
-        'contact': contact,
-      }..removeWhere((key, value) => value == null || value == '');
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'userName': userName?.trim(),
+      'firstName': firstName?.trim(),
+      'lastName': lastName?.trim(),
+      'email': email?.trim(),
+      'password': password?.trim(),
+      'contactNumber': contactNumber?.trim(),
+      'card': cards?.map((card) => card.id).toList() ?? [],
+      'addresses': addresses?.map((address) => address.id).toList() ?? [],
+      'image': image,
+      'emailVerified': emailVerified,
+      'fcmTokens': fcmTokens,
+      'verificationCode': verificationCode,
+      'verificationCodeExpiry': verificationCodeExpiry?.toIso8601String(),
+      'resetCode': resetCode,
+      'resetCodeExpiry': resetCodeExpiry?.toIso8601String(),
+    };
+  }
 
-  Map<String, dynamic> toJson() => {
-        'contact': contact,
-        'title': title,
-        'names': names,
-        'surname': surname,
-        'initials': initials,
-        'rsaId': rsaId,
-        'gender': gender,
-        'race': race,
-        'birthDate': birthDate?.toIso8601String(),
-        'userId': userId,
-        'countryOfOriginId': countryOfOriginId,
-        'userType': userType,
-        'maritalStatus': maritalStatus,
-        'marriageType': marriageType,
-        'marriageDate': marriageDate?.toIso8601String(),
-        'language': language,
-        'userBranchId': userBranchId,
-        'userStatusId': userStatusId,
-        'userStatus': userStatus,
-        'ncrReferenceNo': ncrReferenceNo,
-        'ncrRegistrationDate': ncrRegistrationDate?.toIso8601String(),
-        'applicationDate': applicationDate?.toIso8601String(),
-        'proposalSentDate': proposalSentDate?.toIso8601String(),
-        'motivationforRestructuring': motivationforRestructuring,
-        'userWorkflowStatus': userWorkflowStatus,
-        'isForm16Signed': isForm16Signed,
-        'form16SignedDate': form16SignedDate?.toIso8601String(),
-        'form171SentDate': form171SentDate?.toIso8601String(),
-        'form172SentDate': form172SentDate?.toIso8601String(),
-        'ncrDCNumber': ncrDcNumber,
-        'userBranchName': userBranchName,
-        'ncrStatus': ncrStatus,
-        'courtDistrict': courtDistrict,
-        'caseNumber': caseNumber,
-        'dateCaseNumberObtained': dateCaseNumberObtained?.toIso8601String(),
-        'firstCourtOrderDate': firstCourtOrderDate?.toIso8601String(),
-        'nextCourtOrderDate': nextCourtOrderDate?.toIso8601String(),
-        'dateCourtOrderGranted': dateCourtOrderGranted?.toIso8601String(),
-        'internalRefNumber': internalRefNumber,
-        'createdDate': createdDate?.toIso8601String(),
-      };
+  Map<String, dynamic> userSignUp() {
+    return {
+      'firstName': firstName?.trim(),
+      'lastName': lastName?.trim(),
+      'email': email?.trim(),
+      'password': password?.trim(),
+      'contactNumber': contactNumber?.trim(),
+    };
+  }
 }
