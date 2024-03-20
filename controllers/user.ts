@@ -88,28 +88,6 @@ const createUser = asyncHandler(
   }
 );
 
-// const changePassword = asyncHandler(
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     const user = await userModel.findById(req.session.user);
-//     console.log(user);
-//     const compare = await bcrypt.compare(req.body.oldPassword, user!.password!);
-//     if (!compare) {
-//       throw HttpError.invalidParameters("Your password is not correct");
-//     }
-//     bcrypt.hash(
-//       req.body.newPassword,
-//       parseInt(process.env.SALT_WORK_FACTOR!),
-//       async (err: any, hashedPass: string | undefined) => {
-//         if (err) {
-//           throw err;
-//         }
-//         await userModel.findByIdAndUpdate(user!._id, { password: hashedPass });
-//       }
-//     );
-//     res.json({ success: true });
-//   }
-// );
-
 export {
   createUser,
   deleteUser,

@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import mongoose, { Document, Schema, Types } from "mongoose";
 import { ICard, card } from "./card";
-import { HttpError } from "../internal";
 
 export interface IUser extends Document {
   userName?: string;
@@ -12,16 +11,10 @@ export interface IUser extends Document {
   contactNumber?: string;
   email?: string;
   isDisable:boolean,
-  emailVerified: boolean,
   addresses?: Schema.Types.ObjectId[];
   cards?: ICard[]; 
   fcmTokens?: Types.Array<string>;
-  resetCode?: string;
-  resetCodeExpiry?: Date;
-  verificationCode?: string;
-  verificationCodeExpiry?: Date;
-  permission?: any;
-  comparePassword(password: string): Promise<boolean>;
+  isAdmin: boolean,
 }
 
 const userSchema = new Schema<IUser>(
@@ -30,11 +23,6 @@ const userSchema = new Schema<IUser>(
       type: Boolean,
       default: false,
       cast: "isDisable datatype is incorrect",
-    },
-    emailVerified: {
-      type: Boolean,
-      default: false,
-      cast: "emailVerified datatype is incorrect",
     },
     addresses: [{
       type: Schema.Types.ObjectId,
@@ -45,10 +33,10 @@ const userSchema = new Schema<IUser>(
       type: card,
       cast: "Invalid card",
     }],
-    permission: {
-      type: Schema.Types.ObjectId,
-      ref: "permissions",
-      cast: "invalid permission id",
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      cast: "invalid isAdmin type",
     },
     password: {
       type: String,
@@ -85,22 +73,6 @@ const userSchema = new Schema<IUser>(
         select: false,
       },
     ],
-    resetCode: {
-      type: String,
-      select: false,
-    },
-    resetCodeExpiry: {
-      type: Date,
-      select: false,
-    },
-    verificationCode: {
-      type: String,
-      select: false,
-    },
-    verificationCodeExpiry: {
-      type: Date,
-      select: false,
-    },
   },
   {
     timestamps: true,
@@ -121,19 +93,5 @@ userSchema.pre("save", function (next) {
     }
   );
 });
-
-userSchema.method<IUser>(
-  "comparePassword",
-  async function comparePassword(password: string) {
-    const user: IUser = await userModel
-      .findOne({ _id: this._id })
-      .select("+password");
-    if(!user.password){
-      throw HttpError.invalidCredentials();
-    }
-    const val = await bcrypt.compare(password, user.password!);
-    return val;
-  }
-);
 
 export const userModel = mongoose.model<IUser>("users", userSchema);

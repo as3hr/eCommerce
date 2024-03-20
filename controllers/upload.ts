@@ -21,7 +21,7 @@ const uploadImage = asyncHandler(
         throw HttpError.notFound("File not found");
       }
       const fileContent = req.file.buffer;
-      const key = `${process.env.KEY}/${req.file!.originalname}`;
+      const key = `${req.file!.originalname}`;
       const params = {
         Bucket: process.env.BUCKET_NAME!,
         Key: key,
@@ -34,7 +34,7 @@ const uploadImage = asyncHandler(
       }).done();
       res.json({
         success: true,
-        result: result,
+        result: result.Location,
       });
     });
   }
