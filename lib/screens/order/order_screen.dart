@@ -35,11 +35,12 @@ class OrderScreen extends StatelessWidget {
                       .then((value) => context.goNamed(RouteName.ordersList));
                 },
                 formFieldsList: [
-                  BaseTextFieldModel(
-                    title: 'Order id',
-                    prefixText: order.id ?? '',
-                    readOnly: true,
-                  ),
+                  if (!isNew)
+                    BaseTextFieldModel(
+                      title: 'Order id',
+                      prefixText: order.id ?? '',
+                      readOnly: true,
+                    ),
                   BaseTextFieldModel(
                     title: 'Products',
                     prefixText: '${order.products?.length}',

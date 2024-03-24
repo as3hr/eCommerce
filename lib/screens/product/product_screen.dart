@@ -36,10 +36,11 @@ class ProductScreen extends StatelessWidget {
                     updatefunction: controller.updateProduct,
                     isNew: isNew,
                     formFieldsList: [
-                  BaseTextFieldModel(
-                      title: 'Product Id',
-                      prefixText: product.id,
-                      readOnly: true),
+                  if (!isNew)
+                    BaseTextFieldModel(
+                        title: 'Product Id',
+                        prefixText: product.id,
+                        readOnly: true),
                   BaseTextFieldModel(
                     title: 'Product title',
                     prefixText: product.title,

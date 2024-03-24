@@ -119,6 +119,7 @@ class FormHelpers {
         width: isScreenLarge ? 0.5.sw : 0.3.sw,
         isMultiLineField: formField.isMultiLineField,
         preFilledValue: formField.prefixText,
+        readOnly: formField.readOnly,
         title: formField.title,
         hintText: formField.hintText,
         onChanged: formField.onSelected,
