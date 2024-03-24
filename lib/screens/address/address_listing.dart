@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/functions/change_page.dart';
 
-class LeadListing extends StatelessWidget {
-  static const routeName = '/leads-list';
-  const LeadListing({super.key});
+class AddressListing extends StatelessWidget {
+  const AddressListing({super.key});
 
   @override
   Widget build(BuildContext context) {

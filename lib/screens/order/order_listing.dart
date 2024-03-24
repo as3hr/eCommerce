@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/functions/change_page.dart';
 
-class CredentialListing extends StatelessWidget {
-  static const routeName = '/credentiallist';
-  const CredentialListing({super.key});
+class OrderListing extends StatelessWidget {
+  const OrderListing({super.key});
 
   @override
   Widget build(BuildContext context) {

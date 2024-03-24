@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/functions/change_page.dart';
 
-class LogListing extends StatelessWidget {
-  static const routeName = '/logs-list';
-  const LogListing({super.key});
+class ProductListing extends StatelessWidget {
+  const ProductListing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +20,14 @@ class LogListing extends StatelessWidget {
         children: [
           CustomHeader(
             onPressed: () {
-              changePage(context, RouteName.notificationsScreen);
+              changePage(context, RouteName.productsScreen);
             },
           ),
           Expanded(
               child: ListingTable(rows: [
             ListingRow(
               onTap: () {
-                changePage(context, RouteName.notificationsScreen);
+                changePage(context, RouteName.productsScreen);
               },
               cells: [
                 ListingCell(

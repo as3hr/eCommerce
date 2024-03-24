@@ -4,6 +4,7 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_cell
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_column.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_row.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_table.dart';
+import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/user/user_controller.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
@@ -11,10 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helpers/functions/change_page.dart';
-import '../../models/user.dart';
 
 class UserListing extends StatelessWidget {
-  static const routeName = '/users-list';
   const UserListing({super.key});
 
   @override
@@ -28,7 +27,8 @@ class UserListing extends StatelessWidget {
               children: [
                 CustomHeader(
                   onPressed: () {
-                    changePage(context, RouteName.userScreen, extra: User());
+                    changePage(context, RouteName.userScreen);
+                    controller.setUser = User();
                   },
                 ),
                 Expanded(
@@ -44,48 +44,48 @@ class UserListing extends StatelessWidget {
                         },
                         rows: controller.allUsers.mapIndexed((index, user) {
                           return ListingRow(
-                            onTap: () {
+                            onTap: () async {
                               changePage(
                                 context,
                                 RouteName.userScreen,
-                                extra: user,
                               );
+                              await controller.getUserById(user.id ?? '');
                             },
                             cells: [
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 1"),
+                                  child: Center(
+                                child: Text(user.firstName ?? '-'),
                               )),
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 2"),
+                                  child: Center(
+                                child: Text(user.lastName ?? '-'),
                               )),
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 3"),
+                                  child: Center(
+                                child: Text(user.contactNumber ?? '-'),
                               )),
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 4"),
+                                  child: Center(
+                                child: Text(user.userName ?? '-'),
                               )),
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 5"),
+                                  child: Center(
+                                child: Text(user.email ?? '-'),
                               )),
                               ListingCell(
-                                  child: const Center(
-                                child: Text("Text 6"),
+                                  child: Center(
+                                child: Text("${user.addresses?.length}"),
                               )),
                             ],
                           );
                         }).toList(),
                         columns: [
-                      ListingColumn(title: const Text('Column 1')),
-                      ListingColumn(title: const Text('Column 2')),
-                      ListingColumn(title: const Text('Column 3')),
-                      ListingColumn(title: const Text('Column 4')),
-                      ListingColumn(title: const Text('Column 5')),
-                      ListingColumn(title: const Text('Column 6')),
+                      ListingColumn(title: const Text('First Name')),
+                      ListingColumn(title: const Text('Last Name')),
+                      ListingColumn(title: const Text('Contact Number')),
+                      ListingColumn(title: const Text('Username')),
+                      ListingColumn(title: const Text('email')),
+                      ListingColumn(title: const Text('Addresses')),
                     ])),
               ],
             ),

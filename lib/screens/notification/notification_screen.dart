@@ -6,9 +6,9 @@ import '../../helpers/widgets/form/form_fields.dart';
 import '../../routes/route_name.dart';
 import '../../theme.dart';
 
-class LogScreen extends StatelessWidget {
+class NotificationScreen extends StatelessWidget {
   static const routeName = '/logs';
-  const LogScreen({super.key});
+  const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class LogScreen extends StatelessWidget {
         children: [
           CustomHeader(
             previousRoute: RouteName.notificationsList,
-            formTitle: 'Logs',
+            formTitle: 'Notifications',
             onPressed: () {},
           ),
           Expanded(

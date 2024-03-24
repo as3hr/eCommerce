@@ -7,13 +7,13 @@ class Api {
     BaseOptions(
       extra: {
         "withCredentials": true,
-        // "Access-Control-Allow-Credentials": true,
-        // "Access-Control-Allow-Headers": '*',
-        // "Access-Control-Allow-Origin": "https://debtreview.app/api/v1",
-        // "Set-Cookie":
-        //     "session=[session_id]; Expires=[expire_time]; Secure; SameSite=None"
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Headers": '*',
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Set-Cookie":
+            "session=[session_id]; Expires=[expire_time]; Secure; SameSite=None"
       },
-      baseUrl: 'http:/192.168.100.49:6000',
+      baseUrl: 'http://localhost:3000',
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json',
@@ -48,6 +48,15 @@ class Api {
     return User.fromJson(data);
   }
 
+  static Future<User> getUserById(String id) async {
+    final url = '/users/$id';
+    final response = await dio.get(
+      url,
+    );
+    final data = ApiHelpers.checkError(response)['result'];
+    return User.fromJson(data);
+  }
+
   static Future<List<User>> getAllUsers({
     int page = 1,
     int limit = 25,
@@ -59,6 +68,7 @@ class Api {
       'limit': limit,
       ...?extraQuery,
     });
+    print('Response user: $response');
     return ApiHelpers.parseResponse(response, User.fromJson);
   }
 

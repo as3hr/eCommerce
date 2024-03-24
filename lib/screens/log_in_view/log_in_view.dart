@@ -1,11 +1,9 @@
+import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/log_in_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../helpers/extensions/theme_colors.dart';
-import '../../helpers/functions/loading_wrapper.dart';
-import '../../routes/route_name.dart';
 import '../../theme.dart';
 
 class LoginView extends StatelessWidget {
@@ -67,9 +65,7 @@ class LoginView extends StatelessWidget {
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await loadingWrapper(() async {
-                                        await controller.submit();
-                                      }).then((value) =>
+                                      await controller.submit().then((value) =>
                                           context.goNamed(RouteName.home));
                                     },
                                     child: Container(
@@ -90,14 +86,9 @@ class LoginView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            onEditingComplete: () {
-                              // await loadingWrapper(() async {
-                              //   await controller.submit();
-                              // }).then(
-                              //     (value) =>
-                              context.goNamed(RouteName.home)
-                                  // )
-                                  ;
+                            onEditingComplete: () async {
+                              await controller.submit().then(
+                                  (value) => context.goNamed(RouteName.home));
                             },
                             obscureText: true,
                             validator: (value) {

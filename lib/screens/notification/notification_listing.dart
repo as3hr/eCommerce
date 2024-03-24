@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/functions/change_page.dart';
 
-class PermissionListing extends StatelessWidget {
-  static const routeName = '/permissions-list';
-  const PermissionListing({super.key});
+class NotificationListing extends StatelessWidget {
+  static const routeName = '/logs-list';
+  const NotificationListing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class PermissionListing extends StatelessWidget {
         children: [
           CustomHeader(
             onPressed: () {
-              changePage(context, RouteName.productsScreen);
+              changePage(context, RouteName.notificationsScreen);
             },
           ),
           Expanded(
               child: ListingTable(rows: [
             ListingRow(
               onTap: () {
-                changePage(context, RouteName.productsScreen);
+                changePage(context, RouteName.notificationsScreen);
               },
               cells: [
                 ListingCell(

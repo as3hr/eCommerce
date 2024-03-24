@@ -3,23 +3,21 @@
 import 'dart:html';
 
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
-import 'package:ecommerce_admin_panel/screens/credential/credential_listing.dart';
-import 'package:ecommerce_admin_panel/screens/credential/credential_screen.dart';
+import 'package:ecommerce_admin_panel/screens/order/order_listing.dart';
+import 'package:ecommerce_admin_panel/screens/order/order_screen.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_page.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_screen.dart';
-import 'package:ecommerce_admin_panel/screens/lead/lead_listing.dart';
-import 'package:ecommerce_admin_panel/screens/lead/lead_screen.dart';
-import 'package:ecommerce_admin_panel/screens/log/log_listing.dart';
-import 'package:ecommerce_admin_panel/screens/log/log_screen.dart';
+import 'package:ecommerce_admin_panel/screens/address/address_listing.dart';
+import 'package:ecommerce_admin_panel/screens/address/address_screen.dart';
+import 'package:ecommerce_admin_panel/screens/notification/notification_listing.dart';
+import 'package:ecommerce_admin_panel/screens/notification/notification_screen.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/log_in_view.dart';
-import 'package:ecommerce_admin_panel/screens/permission/permission_listings.dart';
-import 'package:ecommerce_admin_panel/screens/permission/permission_screen.dart';
+import 'package:ecommerce_admin_panel/screens/product/product_listings.dart';
+import 'package:ecommerce_admin_panel/screens/product/product_screen.dart';
 import 'package:ecommerce_admin_panel/screens/user/user_listings.dart';
 import 'package:ecommerce_admin_panel/screens/user/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../models/user.dart';
 
 class AppRouter {
   static var url = window.location.href;
@@ -52,35 +50,35 @@ class AppRouter {
           ),
           GoRoute(
               name: RouteName.ordersList,
-              path: '/credentials',
+              path: '/orders',
               // redirect: (context, state) => redirect(context, state),
               routes: [
                 GoRoute(
                     name: RouteName.orderScreen,
-                    path: 'credential-screen',
+                    path: 'order-screen',
                     // redirect: (context, state) => redirect(context, state),
                     builder: (context, state) {
-                      return const CredentialScreen();
+                      return const OrderScreen();
                     }),
               ],
               builder: (context, state) {
-                return const CredentialListing();
+                return const OrderListing();
               }),
           GoRoute(
             name: RouteName.addressesList,
             // redirect: (context, state) => redirect(context, state),
-            path: '/leads',
+            path: '/addresses',
             routes: [
               GoRoute(
                   name: RouteName.addressesScreen,
                   // redirect: (context, state) => redirect(context, state),
-                  path: 'leads-screen',
+                  path: 'address-screen',
                   builder: (context, state) {
-                    return const LeadScreen();
+                    return const AddressScreen();
                   }),
             ],
             builder: (context, state) {
-              return const LeadListing();
+              return const AddressListing();
             },
           ),
           GoRoute(
@@ -96,43 +94,40 @@ class AppRouter {
                   path: 'users-screen',
                   // redirect: (context, state) => redirect(context, state),
                   builder: (context, state) {
-                    final user = state.extra as User;
-                    return UserScreen(
-                      user: user,
-                    );
+                    return const UserScreen();
                   },
                 ),
               ]),
           GoRoute(
               name: RouteName.notificationsList,
-              path: '/logs',
+              path: '/notifications',
               // redirect: (context, state) => redirect(context, state),
               builder: (context, state) {
-                return const LogListing();
+                return const NotificationListing();
               },
               routes: [
                 GoRoute(
                     name: RouteName.notificationsScreen,
-                    path: 'logs-screen',
+                    path: 'notifications-screen',
                     // redirect: (context, state) => redirect(context, state),
                     builder: (context, state) {
-                      return const LogScreen();
+                      return const NotificationScreen();
                     }),
               ]),
           GoRoute(
               name: RouteName.productsList,
-              path: '/permissions',
+              path: '/products',
               // redirect: (context, state) => redirect(context, state),
               builder: (context, state) {
-                return const PermissionListing();
+                return const ProductListing();
               },
               routes: [
                 GoRoute(
                     // redirect: (context, state) => redirect(context, state),
-                    path: 'permissions-screen',
+                    path: 'product-screen',
                     name: RouteName.productsScreen,
                     builder: (context, state) {
-                      return const PermissionScreen();
+                      return const ProductScreen();
                     }),
               ]),
         ],

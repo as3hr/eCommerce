@@ -5,9 +5,9 @@ import '../../models/user.dart';
 
 class UserController extends GetxController {
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getAllUsers();
+    await getAllUsers();
   }
 
   List<User> allUsers = [];
@@ -38,6 +38,11 @@ class UserController extends GetxController {
       return true;
     }
     return false;
+  }
+
+  Future<void> getUserById(String id) async {
+    user = await Api.getUserById(id);
+    update();
   }
 
   Future<void> deleteUser() async {

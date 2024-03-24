@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import '../../helpers/extensions/theme_colors.dart';
 import '../../helpers/widgets/header/custom_header.dart';
 
-class CredentialScreen extends StatelessWidget {
-  static const routeName = '/credentials';
-  const CredentialScreen({super.key});
+class OrderScreen extends StatelessWidget {
+  const OrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class CredentialScreen extends StatelessWidget {
         children: [
           CustomHeader(
             previousRoute: RouteName.ordersList,
-            formTitle: 'Credentials',
+            formTitle: 'Orders',
             onPressed: () {},
           ),
           Expanded(

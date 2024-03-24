@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+import 'models/auth.dart';
 import 'routes/route_generator.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -23,7 +24,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final themeMode = await AdaptiveTheme.getThemeMode();
   HttpOverrides.global = MyHttpOverrides();
-  // Get.put(Auth());
+  Get.put(Auth());
   runApp(AdminPanel(initialThemeMode: themeMode));
 }
 

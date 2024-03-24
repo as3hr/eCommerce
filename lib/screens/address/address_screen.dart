@@ -6,9 +6,8 @@ import '../../helpers/widgets/header/custom_header.dart';
 import '../../routes/route_name.dart';
 import '../../theme.dart';
 
-class LeadScreen extends StatelessWidget {
-  static const routeName = '/leads';
-  const LeadScreen({super.key});
+class AddressScreen extends StatelessWidget {
+  const AddressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class LeadScreen extends StatelessWidget {
         children: [
           CustomHeader(
             previousRoute: RouteName.addressesList,
-            formTitle: 'Leads',
+            formTitle: 'Address',
             onPressed: () {},
           ),
           Expanded(

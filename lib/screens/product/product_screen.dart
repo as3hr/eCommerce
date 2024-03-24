@@ -6,9 +6,8 @@ import '../../helpers/widgets/form/form_fields.dart';
 import '../../routes/route_name.dart';
 import '../../theme.dart';
 
-class PermissionScreen extends StatelessWidget {
-  static const routeName = '/permission';
-  const PermissionScreen({super.key});
+class ProductScreen extends StatelessWidget {
+  const ProductScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class PermissionScreen extends StatelessWidget {
       body: Column(
         children: [
           CustomHeader(
-            formTitle: 'Permissions',
+            formTitle: 'Products',
             onPressed: () {},
             previousRoute: RouteName.productsList,
           ),
