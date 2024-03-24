@@ -2,7 +2,7 @@ import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/all_screens.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/screen_item.dart';
-import 'package:ecommerce_admin_panel/models/auth.dart';
+import 'package:ecommerce_admin_panel/screens/log_in_view/auth_controller.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,11 +28,15 @@ class _SideBarState extends State<SideBar> {
       child: Container(
         width: 280,
         height: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white, border: Border.all(color: ThemeColors.grayI)),
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            border: Border(
+                bottom: BorderSide(color: ThemeColors.grayI),
+                top: BorderSide(color: ThemeColors.grayI),
+                right: BorderSide(color: ThemeColors.grayI))),
         child: Column(
           children: [
-            35.verticalSpace,
+            20.verticalSpace,
             InkWell(
                 onTap: () {
                   context.goNamed(RouteName.home);
@@ -91,7 +95,7 @@ class _SideBarState extends State<SideBar> {
             Center(
               child: InkWell(
                 onTap: () {
-                  final controller = Get.find<Auth>();
+                  final controller = Get.find<AuthController>();
                   loadingWrapper(controller.logout)
                       .then((value) => context.goNamed(RouteName.login));
                 },

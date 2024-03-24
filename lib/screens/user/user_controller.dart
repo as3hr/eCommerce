@@ -4,12 +4,6 @@ import 'package:get/get.dart';
 import '../../models/user.dart';
 
 class UserController extends GetxController {
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-    await getAllUsers();
-  }
-
   List<User> allUsers = [];
   User? user;
   int limit = 25;

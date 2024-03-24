@@ -6,10 +6,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../helpers/error.dart';
-import 'token.dart';
+import '../../helpers/error.dart';
+import '../../models/token.dart';
 
-class Auth extends GetxController {
+class AuthController extends GetxController {
   final token = Rx<Token?>(null);
   final isAuthenticated = Rx<bool>(false);
   User? _user;
@@ -53,7 +53,7 @@ class Auth extends GetxController {
       PrettyDioLogger(
         request: true,
         requestHeader: false,
-        requestBody: false,
+        requestBody: true,
         responseBody: false,
         responseHeader: false,
         error: true,

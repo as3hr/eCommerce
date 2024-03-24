@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/window_title_bar.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'models/auth.dart';
+import 'screens/log_in_view/auth_controller.dart';
 import 'routes/route_generator.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -25,7 +27,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final themeMode = await AdaptiveTheme.getThemeMode();
   HttpOverrides.global = MyHttpOverrides();
-  Get.put(Auth());
+  Get.put(AuthController());
   doWhenWindowReady(() {
     appWindow.minSize = const Size(1200, 675);
     appWindow.maximizeOrRestore();
@@ -48,18 +50,22 @@ class AdminPanel extends StatelessWidget {
               initial: initialThemeMode ?? AdaptiveThemeMode.system,
               builder: (light, dark) {
                 return GlobalLoaderOverlay(
-                  overlayOpacity: 0,
                   overlayColor: ThemeColors.black,
-                  child: GetMaterialApp.router(
-                    defaultTransition: Transition.fadeIn,
-                    transitionDuration: const Duration(milliseconds: 500),
-                    routeInformationParser:
-                        AppRouter.router.routeInformationParser,
-                    routeInformationProvider:
-                        AppRouter.router.routeInformationProvider,
-                    routerDelegate: AppRouter.router.routerDelegate,
-                    debugShowCheckedModeBanner: false,
-                    title: 'Admin Panel',
+                  child: Column(
+                    children: [
+                      WindowTitleBar(),
+                      Expanded(
+                        child: GetMaterialApp.router(
+                          routeInformationParser:
+                              AppRouter.router.routeInformationParser,
+                          routeInformationProvider:
+                              AppRouter.router.routeInformationProvider,
+                          routerDelegate: AppRouter.router.routerDelegate,
+                          debugShowCheckedModeBanner: false,
+                          title: 'Admin Panel',
+                        ),
+                      )
+                    ],
                   ),
                 );
               });

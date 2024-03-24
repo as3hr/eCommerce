@@ -2,7 +2,7 @@ import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/auth.dart';
+import '../../screens/log_in_view/auth_controller.dart';
 import '../extensions/theme_colors.dart';
 
 class TitleBar extends StatelessWidget {
@@ -16,7 +16,9 @@ class TitleBar extends StatelessWidget {
         height: 70,
         decoration: const BoxDecoration(
             color: Colors.white,
-            border: Border(bottom: BorderSide(color: ThemeColors.grayI))),
+            border: Border(
+                bottom: BorderSide(color: ThemeColors.grayI),
+                top: BorderSide(color: ThemeColors.grayI))),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -25,7 +27,7 @@ class TitleBar extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: Text(
-                  Get.put(Auth()).user?.email ?? '',
+                  Get.put(AuthController()).user?.email ?? '',
                   style: mediumTextStyle,
                 ),
               ),

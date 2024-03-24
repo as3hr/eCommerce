@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/auth.dart';
+import 'auth_controller.dart';
 
 class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -18,7 +18,7 @@ class LoginController extends GetxController {
 
   Future<void> submit() async {
     if (formKey.currentState?.validate() ?? false) {
-      await Get.find<Auth>().login(
+      await Get.find<AuthController>().login(
         email,
         password,
       );

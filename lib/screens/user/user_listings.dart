@@ -33,6 +33,7 @@ class UserListing extends StatelessWidget {
                 ),
                 Expanded(
                     child: ListingTable(
+                        fetchOnInit: true,
                         fetchMoreData: ({
                           bool refresh = false,
                           Map<String, dynamic>? extraQuery,
