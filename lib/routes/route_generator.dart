@@ -3,8 +3,6 @@ import 'package:ecommerce_admin_panel/screens/order/order_listing.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_screen.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_page.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_screen.dart';
-import 'package:ecommerce_admin_panel/screens/address/address_listing.dart';
-import 'package:ecommerce_admin_panel/screens/address/address_screen.dart';
 import 'package:ecommerce_admin_panel/screens/notification/notification_listing.dart';
 import 'package:ecommerce_admin_panel/screens/notification/notification_screen.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/log_in_view.dart';
@@ -59,23 +57,6 @@ class AppRouter {
               builder: (context, state) {
                 return const OrderListing();
               }),
-          GoRoute(
-            name: RouteName.addressesList,
-            // redirect: (context, state) => redirect(context, state),
-            path: '/addresses',
-            routes: [
-              GoRoute(
-                  name: RouteName.addressesScreen,
-                  // redirect: (context, state) => redirect(context, state),
-                  path: 'address-screen',
-                  builder: (context, state) {
-                    return const AddressScreen();
-                  }),
-            ],
-            builder: (context, state) {
-              return const AddressListing();
-            },
-          ),
           GoRoute(
               name: RouteName.userList,
               path: '/users',
