@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/log_in_view_controller.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,11 @@ class LoginView extends StatelessWidget {
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await controller.submit().then((value) =>
-                                          context.goNamed(RouteName.home));
+                                      loadingWrapper(() async {
+                                        await controller.submit().then(
+                                            (value) => context
+                                                .goNamed(RouteName.home));
+                                      });
                                     },
                                     child: Container(
                                       decoration: const BoxDecoration(
@@ -87,8 +91,10 @@ class LoginView extends StatelessWidget {
                               ),
                             ),
                             onEditingComplete: () async {
-                              await controller.submit().then(
-                                  (value) => context.goNamed(RouteName.home));
+                              loadingWrapper(() async {
+                                await controller.submit().then(
+                                    (value) => context.goNamed(RouteName.home));
+                              });
                             },
                             obscureText: true,
                             validator: (value) {

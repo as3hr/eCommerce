@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/widgets/side_bar/side_bar.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               // Title Bar
+              WindowTitleBar(),
               const TitleBar(),
 
               Expanded(child: child)

@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,27 +55,35 @@ class _BaseFormState extends State<BaseForm> {
 
   Future<void> getFormData() async {
     if (widget.getFormData != null) {
-      await widget.getFormData!.call().then((value) => setState(() {}));
+      loadingWrapper(() async {
+        await widget.getFormData!.call().then((value) => setState(() {}));
+      });
     }
   }
 
   Future<void> saveForm() async {
     if (widget.savefunction != null) {
-      await widget.savefunction!.call();
+      await loadingWrapper(() async {
+        await widget.savefunction!.call();
+      });
       showToast(message: 'Record created successfully');
     }
   }
 
   Future<void> updateForm() async {
     if (widget.updatefunction != null) {
-      await widget.updatefunction!.call();
+      await loadingWrapper(() async {
+        await widget.updatefunction!.call();
+      });
       showToast(message: 'Record updated successfully');
     }
   }
 
   Future<void> deleteForm() async {
     if (widget.deletefunction != null) {
-      await widget.deletefunction!.call();
+      await loadingWrapper(() async {
+        await widget.deletefunction!.call();
+      });
       showToast(message: 'Record deleted successfully');
     }
   }

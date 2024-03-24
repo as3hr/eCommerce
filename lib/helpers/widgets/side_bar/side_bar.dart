@@ -1,10 +1,15 @@
 import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/all_screens.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/screen_item.dart';
+import 'package:ecommerce_admin_panel/models/auth.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class SideBar extends StatefulWidget {
@@ -27,7 +32,7 @@ class _SideBarState extends State<SideBar> {
             color: Colors.white, border: Border.all(color: ThemeColors.grayI)),
         child: Column(
           children: [
-            13.verticalSpace,
+            35.verticalSpace,
             InkWell(
                 onTap: () {
                   context.goNamed(RouteName.home);
@@ -81,6 +86,25 @@ class _SideBarState extends State<SideBar> {
                         final screen = AllScreens.allScreens[index];
                         return ScreenItem(screen: screen);
                       })),
+            const Spacer(),
+            const Divider(),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  final controller = Get.find<Auth>();
+                  loadingWrapper(controller.logout)
+                      .then((value) => context.goNamed(RouteName.login));
+                },
+                child: const Text(
+                  'Sign out!',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            20.verticalSpace,
           ],
         ),
       ),

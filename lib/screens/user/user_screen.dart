@@ -9,20 +9,8 @@ import '../../helpers/widgets/form/form_fields.dart';
 import '../../routes/route_name.dart';
 import '../../theme.dart';
 
-class UserScreen extends StatefulWidget {
+class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
-
-  @override
-  State<UserScreen> createState() => _UserScreenState();
-}
-
-class _UserScreenState extends State<UserScreen> {
-  @override
-  void initState() {
-    super.initState();
-    final controller = Get.put(UserController());
-    controller.getUserById();
-  }
 
   @override
   Widget build(BuildContext context) {

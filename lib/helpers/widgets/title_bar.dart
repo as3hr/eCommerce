@@ -1,6 +1,8 @@
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../models/auth.dart';
 import '../extensions/theme_colors.dart';
 
 class TitleBar extends StatelessWidget {
@@ -23,7 +25,7 @@ class TitleBar extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: Text(
-                  'admin@gmail.com',
+                  Get.put(Auth()).user?.email ?? '',
                   style: mediumTextStyle,
                 ),
               ),

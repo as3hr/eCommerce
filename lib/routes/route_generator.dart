@@ -1,7 +1,3 @@
-// ignore_for_file: unused_local_variable, avoid_web_libraries_in_flutter
-
-import 'dart:html';
-
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_listing.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_screen.dart';
@@ -20,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
-  static var url = window.location.href;
   static final navigatorKey = GlobalKey<NavigatorState>();
   static final router = GoRouter(
     routes: [

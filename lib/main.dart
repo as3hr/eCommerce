@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,11 @@ void main() async {
   final themeMode = await AdaptiveTheme.getThemeMode();
   HttpOverrides.global = MyHttpOverrides();
   Get.put(Auth());
+  doWhenWindowReady(() {
+    appWindow.minSize = const Size(1200, 675);
+    appWindow.maximizeOrRestore();
+    appWindow.show();
+  });
   runApp(AdminPanel(initialThemeMode: themeMode));
 }
 
