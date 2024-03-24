@@ -2,14 +2,27 @@ import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart'
 import 'package:ecommerce_admin_panel/screens/user/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../helpers/widgets/form/base_form.dart';
 import '../../helpers/widgets/form/form_fields.dart';
 import '../../routes/route_name.dart';
 import '../../theme.dart';
 
-class UserScreen extends StatelessWidget {
+class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
+
+  @override
+  State<UserScreen> createState() => _UserScreenState();
+}
+
+class _UserScreenState extends State<UserScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final controller = Get.put(UserController());
+    controller.getUserById();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +37,16 @@ class UserScreen extends StatelessWidget {
               children: [
                 CustomHeader(
                   previousRoute: RouteName.userList,
-                  formTitle: 'Users',
+                  formTitle: 'User',
                   onPressed: () {},
                 ),
                 Expanded(
                     child: BaseForm(
                         isNew: isNew,
-                        deletefunction: () async {},
-                        getFormData: () async {},
+                        deletefunction: () async {
+                          await controller.deleteUser().then(
+                              (value) => context.goNamed(RouteName.userList));
+                        },
                         formFieldsList: [
                       BaseTextFieldModel(
                         title: 'User Name',

@@ -40,8 +40,8 @@ class UserController extends GetxController {
     return false;
   }
 
-  Future<void> getUserById(String id) async {
-    user = await Api.getUserById(id);
+  Future<void> getUserById() async {
+    user = await Api.getUserById(user?.id ?? '');
     update();
   }
 

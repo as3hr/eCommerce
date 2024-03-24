@@ -31,7 +31,6 @@ class Auth extends GetxController {
     Api.dio.interceptors.addAll([
       InterceptorsWrapper(
         onResponse: (response, handler) async {
-          print(response.headers.map);
           if (response.headers.map.containsKey('Set-Cookie')) {
             final tokenVal = Token(
               accessToken: (response.headers['Set-Cookie'] as List)[0],
@@ -42,7 +41,6 @@ class Auth extends GetxController {
           return handler.next(response);
         },
         onRequest: (options, handler) async {
-          print('REquest headers: ${options.headers}');
           if (token.value != null) {
             options.headers['Cookie'] = token.value;
           }

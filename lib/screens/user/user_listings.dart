@@ -49,7 +49,7 @@ class UserListing extends StatelessWidget {
                                 context,
                                 RouteName.userScreen,
                               );
-                              await controller.getUserById(user.id ?? '');
+                              controller.setUser = user;
                             },
                             cells: [
                               ListingCell(

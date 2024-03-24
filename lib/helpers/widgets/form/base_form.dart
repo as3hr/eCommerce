@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-import '../../functions/loading_wrapper.dart';
 import '../../functions/show_toast.dart';
 import 'base_form_button.dart';
 import 'form_controller.dart';
@@ -32,8 +31,6 @@ class BaseForm<T> extends StatefulWidget {
 }
 
 class _BaseFormState extends State<BaseForm> {
-  bool hasData = true;
-
   @override
   void initState() {
     super.initState();
@@ -57,36 +54,28 @@ class _BaseFormState extends State<BaseForm> {
 
   Future<void> getFormData() async {
     if (widget.getFormData != null) {
-      await loadingWrapper(() async {
-        await widget.getFormData!.call();
-      }).then((value) => setState(() => hasData = true));
+      await widget.getFormData!.call().then((value) => setState(() {}));
     }
   }
 
   Future<void> saveForm() async {
     if (widget.savefunction != null) {
-      await loadingWrapper(() async {
-        await widget.savefunction!.call();
-        showToast(message: 'Record created successfully');
-      });
+      await widget.savefunction!.call();
+      showToast(message: 'Record created successfully');
     }
   }
 
   Future<void> updateForm() async {
     if (widget.updatefunction != null) {
-      await loadingWrapper(() async {
-        await widget.updatefunction!.call();
-        showToast(message: 'Record updated successfully');
-      });
+      await widget.updatefunction!.call();
+      showToast(message: 'Record updated successfully');
     }
   }
 
   Future<void> deleteForm() async {
     if (widget.deletefunction != null) {
-      await loadingWrapper(() async {
-        await widget.deletefunction!.call();
-        showToast(message: 'Record deleted successfully');
-      });
+      await widget.deletefunction!.call();
+      showToast(message: 'Record deleted successfully');
     }
   }
 
@@ -159,38 +148,37 @@ class _BaseFormState extends State<BaseForm> {
                         ],
                       ),
                     ),
-                    if (hasData)
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Container(
-                            color: ThemeColors.white,
-                            width: 1.sw,
-                            child: Form(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: ListView.builder(
-                                        itemCount: widget.formFieldsList.length,
-                                        itemBuilder: (context, listIndex) {
-                                          final item =
-                                              widget.formFieldsList[listIndex];
-                                          return SizedBox(
-                                            child: FormHelpers.getFieldWidget(
-                                                item, context),
-                                          );
-                                        },
-                                      ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Container(
+                          color: ThemeColors.white,
+                          width: 1.sw,
+                          child: Form(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: ListView.builder(
+                                      itemCount: widget.formFieldsList.length,
+                                      itemBuilder: (context, listIndex) {
+                                        final item =
+                                            widget.formFieldsList[listIndex];
+                                        return SizedBox(
+                                          child: FormHelpers.getFieldWidget(
+                                              item, context),
+                                        );
+                                      },
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
+                    ),
                   ],
                 ),
               )),
