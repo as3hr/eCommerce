@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/models/data/api_helpers.dart';
+import 'package:ecommerce_admin_panel/models/user_notification.dart';
 import 'package:ecommerce_admin_panel/models/order.dart';
 import 'package:ecommerce_admin_panel/models/product.dart';
 import 'package:ecommerce_admin_panel/models/user.dart';
@@ -122,7 +123,7 @@ class Api {
   }
 
   static Future<Product> createProduct(Product product) async {
-    final url = '/products/${product.id}';
+    const url = '/products/';
     final response = await dio.post(url, data: product.toJson());
     final data = ApiHelpers.checkError(response)['result'];
     return Product.fromJson(data);
@@ -155,5 +156,27 @@ class Api {
       url,
     );
     ApiHelpers.checkError(response);
+  }
+
+  static Future<UserNotification> createNotification(
+      UserNotification notification) async {
+    const url = '/notifications/';
+    final response = await dio.post(url, data: notification.toJson());
+    final data = ApiHelpers.checkError(response)['result'];
+    return UserNotification.fromJson(data);
+  }
+
+  static Future<List<UserNotification>> getAllNotifications({
+    int page = 1,
+    int limit = 25,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/notifications/';
+    final response = await dio.get(url, queryParameters: {
+      'page': page,
+      'limit': limit,
+      ...?extraQuery,
+    });
+    return ApiHelpers.parseResponse(response, UserNotification.fromJson);
   }
 }

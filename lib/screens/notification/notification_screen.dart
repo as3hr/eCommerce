@@ -1,5 +1,8 @@
 import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart';
+import 'package:ecommerce_admin_panel/screens/notification/notification_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../helpers/widgets/form/base_form.dart';
 import '../../helpers/widgets/form/form_fields.dart';
@@ -12,24 +15,46 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: lightColorScheme.onBackground,
-      body: Column(
-        children: [
-          CustomHeader(
-            previousRoute: RouteName.notificationsList,
-            formTitle: 'Notifications',
-            onPressed: () {},
-          ),
-          Expanded(
-              child: BaseForm(formFieldsList: [
-            BaseTextFieldModel(title: 'Field 1'),
-            BaseTextFieldModel(title: 'Field 2'),
-            BaseImageFieldModel(
-                imageUrl: 'new image', preFixImage: 'image prefix')
-          ]))
-        ],
-      ),
-    );
+    return GetBuilder<NotificationController>(builder: (controller) {
+      final notification = controller.notification;
+      return Scaffold(
+        backgroundColor: lightColorScheme.onBackground,
+        body: Column(
+          children: [
+            CustomHeader(
+              previousRoute: RouteName.notificationsList,
+              formTitle: 'Notifications',
+              onPressed: () {},
+            ),
+            Expanded(
+                child: BaseForm(
+                    savefunction: () async {
+                      controller.createNotification().then((value) =>
+                          context.goNamed(RouteName.notificationsList));
+                    },
+                    formFieldsList: [
+                  BaseTextFieldModel(
+                      title: 'Title',
+                      prefixText: notification.title,
+                      onSelected: (val) {
+                        notification.title = val;
+                      }),
+                  BaseTextFieldModel(
+                      title: 'Description',
+                      prefixText: notification.description,
+                      onSelected: (val) {
+                        notification.description = val;
+                      }),
+                  BaseDateFieldModel(
+                      title: 'Date',
+                      preFilledDate: notification.date,
+                      onSelected: (val) {
+                        notification.date = val;
+                      }),
+                ]))
+          ],
+        ),
+      );
+    });
   }
 }

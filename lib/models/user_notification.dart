@@ -1,18 +1,18 @@
-class NotificationModel {
+class UserNotification {
   String? id;
   String? title;
   String? description;
   DateTime? date;
 
-  NotificationModel({
+  UserNotification({
     this.id,
     this.description,
     this.date,
     this.title,
   });
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) {
-    return NotificationModel(
+  factory UserNotification.fromJson(Map<String, dynamic> json) {
+    return UserNotification(
       id: json['_id'],
       title: json['title'],
       description: json['description'],
