@@ -74,18 +74,10 @@ class BaseNestedFieldModel<T> extends BaseFormFieldModel<T> {
   });
 }
 
-class BaseEditableFieldModel<T> extends BaseFormFieldModel<T> {
-  BaseEditableFieldModel({
-    required super.childrens,
-  });
-}
-
 class BaseImageFieldModel<T> extends BaseFormFieldModel<T> {
-  String imageUrl;
-  String preFixImage;
+  List<String> preFixImages;
   BaseImageFieldModel({
-    required this.imageUrl,
-    required this.preFixImage,
+    required this.preFixImages,
   });
 }
 

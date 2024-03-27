@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ecommerce_admin_panel/models/data/api_helpers.dart';
 import 'package:ecommerce_admin_panel/models/user_notification.dart';
 import 'package:ecommerce_admin_panel/models/order.dart';
@@ -72,6 +74,20 @@ class Api {
       ...?extraQuery,
     });
     return ApiHelpers.parseResponse(response, User.fromJson);
+  }
+
+  static Future<String> uploadImage(String file) async {
+    final random = Random().nextInt(99);
+    final data = FormData.fromMap({
+      'file': await MultipartFile.fromFile(file, filename: '$random.jpg'),
+    });
+    const url = '/users/upload';
+    final response = await dio.post(
+      url,
+      data: data,
+    );
+    final image = ApiHelpers.checkError(response)['Location'];
+    return image;
   }
 
   static Future<void> deleteUser(String id) async {

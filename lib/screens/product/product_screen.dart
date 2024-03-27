@@ -27,15 +27,16 @@ class ProductScreen extends StatelessWidget {
               previousRoute: RouteName.productsList,
             ),
             Expanded(
-                child: BaseForm(
-                    deletefunction: () async {
-                      controller.deleteProduct().then(
-                          (value) => context.goNamed(RouteName.productsList));
-                    },
-                    savefunction: controller.createProduct,
-                    updatefunction: controller.updateProduct,
-                    isNew: isNew,
-                    formFieldsList: [
+              child: BaseForm(
+                deletefunction: () async {
+                  controller
+                      .deleteProduct()
+                      .then((value) => context.goNamed(RouteName.productsList));
+                },
+                savefunction: controller.createProduct,
+                updatefunction: controller.updateProduct,
+                isNew: isNew,
+                formFieldsList: [
                   if (!isNew)
                     BaseTextFieldModel(
                         title: 'Product Id',
@@ -91,8 +92,11 @@ class ProductScreen extends StatelessWidget {
                       preFilledVal: product.size,
                       onSelected: (val) {
                         product.size = val;
-                      })
-                ]))
+                      }),
+                  BaseImageFieldModel(preFixImages: []),
+                ],
+              ),
+            ),
           ],
         ),
       );

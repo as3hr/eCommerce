@@ -1,6 +1,5 @@
 import 'package:ecommerce_admin_panel/helpers/extensions/extension.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/base_nested_form_field.dart';
-import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/editable_field/base_editable_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,13 +21,9 @@ class FormHelpers {
     if (formField is BaseNestedFieldModel) {
       return BaseNestedFormField(formFieldList: formField.childrens ?? []);
     }
-    if (formField is BaseEditableFieldModel) {
-      return BaseEditableFormField(formFieldList: formField.childrens ?? []);
-    }
     if (formField is BaseImageFieldModel) {
       return BaseImageFormField(
-        imageUrl: formField.imageUrl,
-        prefixImage: formField.preFixImage,
+        prefixImages: formField.preFixImages,
       );
     }
     if (formField is BaseDropDownFieldModel) {

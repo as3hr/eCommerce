@@ -50,6 +50,7 @@ class AdminPanel extends StatelessWidget {
               initial: initialThemeMode ?? AdaptiveThemeMode.system,
               builder: (light, dark) {
                 return GlobalLoaderOverlay(
+                  overlayOpacity: 0,
                   overlayColor: ThemeColors.black,
                   child: Column(
                     children: [
