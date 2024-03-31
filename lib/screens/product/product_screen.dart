@@ -78,7 +78,7 @@ class ProductScreen extends StatelessWidget {
                     title: 'Product Price',
                     prefixNumber: product.price,
                     onSelected: (val) {
-                      product.price = val;
+                      product.price = double.parse(val.toString());
                     },
                   ),
                   BaseDropDownFieldModel(
