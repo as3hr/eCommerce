@@ -39,13 +39,9 @@ class ProductController extends GetxController {
   void distributeImages(List<ImageFeature> newImages) {
     final fileImages = newImages;
     images = fileImages.where((image) => image.hasPath == true).toList();
-    List<String> simpleImages = newImages.map((image) {
-      if (image.hasPath == false) {
-        return image.image;
-      }
-      return '';
-    }).toList();
-    product.images = simpleImages;
+    final simpleImages =
+        newImages.where((image) => image.hasPath == false).toList();
+    product.images = simpleImages.map((image) => image.image).toList();
   }
 
   Future<void> getProductById() async {

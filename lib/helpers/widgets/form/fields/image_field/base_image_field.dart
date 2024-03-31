@@ -22,6 +22,7 @@ class BaseImageFormField extends StatefulWidget {
 class _BaseImageFormFieldState extends State<BaseImageFormField> {
   final picker = ImagePicker();
   List<ImageFeature> images = [];
+  List<XFile> imageFiles = [];
 
   @override
   void initState() {
@@ -38,7 +39,6 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
   }
 
   Future<void> addImages() async {
-    List<XFile> imageFiles = [];
     imageFiles = await picker.pickMultiImage();
     for (var image in imageFiles) {
       images.add(ImageFeature(image: image.path, hasPath: true));
