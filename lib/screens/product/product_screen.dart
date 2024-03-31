@@ -93,7 +93,12 @@ class ProductScreen extends StatelessWidget {
                       onSelected: (val) {
                         product.size = val;
                       }),
-                  BaseImageFieldModel(preFixImages: []),
+                  BaseImageFieldModel(
+                    preFixImages: product.images,
+                    getImages: (images) {
+                      controller.distributeImages(images);
+                    },
+                  ),
                 ],
               ),
             ),

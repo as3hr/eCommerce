@@ -81,12 +81,12 @@ class Api {
     final data = FormData.fromMap({
       'file': await MultipartFile.fromFile(file, filename: '$random.jpg'),
     });
-    const url = '/users/upload';
+    const url = '/uploads/';
     final response = await dio.post(
       url,
       data: data,
     );
-    final image = ApiHelpers.checkError(response)['Location'];
+    final image = ApiHelpers.checkError(response)['result'];
     return image;
   }
 

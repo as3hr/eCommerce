@@ -160,6 +160,7 @@ class _ListingTableState extends State<ListingTable> {
                 datarowCheckboxTheme: checkBoxTheme,
                 scrollController: _scrollController,
                 columnSpacing: 23,
+                isVerticalScrollBarVisible: true,
                 headingTextStyle: mediumTextStyle,
                 decoration: listingTableDecoration,
                 onSelectAll: (selected) {

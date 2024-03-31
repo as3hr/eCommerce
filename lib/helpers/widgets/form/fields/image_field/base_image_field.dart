@@ -5,19 +5,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
-class BaseImageFormField extends StatefulWidget {
-  const BaseImageFormField({super.key, required this.prefixImages});
-  final List<String> prefixImages;
+import 'image_feature.dart';
 
+class BaseImageFormField extends StatefulWidget {
+  const BaseImageFormField({
+    super.key,
+    required this.prefixImages,
+    required this.getImages,
+  });
+  final List<String> prefixImages;
+  final Function(List<ImageFeature> images) getImages;
   @override
   State<BaseImageFormField> createState() => _BaseImageFormFieldState();
 }
 
 class _BaseImageFormFieldState extends State<BaseImageFormField> {
-  final ImagePicker picker = ImagePicker();
-  List<XFile> images = [];
+  final picker = ImagePicker();
+  List<ImageFeature> images = [];
+
+  @override
+  void initState() {
+    initializeImages();
+    super.initState();
+  }
+
+  void initializeImages() {
+    if (widget.prefixImages.isNotEmpty) {
+      for (var image in widget.prefixImages) {
+        images.add(ImageFeature(image: image));
+      }
+    }
+  }
+
+  Future<void> addImages() async {
+    List<XFile> imageFiles = [];
+    imageFiles = await picker.pickMultiImage();
+    for (var image in imageFiles) {
+      images.add(ImageFeature(image: image.path, hasPath: true));
+    }
+    setState(() {});
+    widget.getImages.call(images);
+  }
+
+  void removeImage(int index) {
+    images.removeAt(index);
+    setState(() {});
+    widget.getImages.call(images);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final lengthExceeded = images.length >= 4;
+    images = lengthExceeded ? images.sublist(0, 4) : images;
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -29,7 +68,7 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
               BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
           child: Column(
             children: [
-              widget.prefixImages.isEmpty && images.isEmpty
+              images.isEmpty
                   ? const Expanded(
                       child: Center(
                         child: Text('No images selected!'),
@@ -40,19 +79,28 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
                         return Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.file(
-                                File(image.path),
-                                width: 120,
-                              ),
-                            ),
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width: 120,
+                                  height: 160,
+                                  child: image.hasPath
+                                      ? Image.file(
+                                          File(image.image),
+                                          fit: BoxFit.cover,
+                                          width: 120,
+                                        )
+                                      : Image.network(
+                                          image.image,
+                                          fit: BoxFit.cover,
+                                          width: 120,
+                                        ),
+                                )),
                             Positioned(
                                 top: 0,
                                 right: 5,
                                 child: InkWell(
                                   onTap: () {
-                                    images.removeAt(index);
-                                    setState(() {});
+                                    removeImage(index);
                                   },
                                   child: const Icon(
                                     Icons.cancel,
@@ -69,10 +117,7 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
                 child: Align(
                     alignment: Alignment.bottomRight,
                     child: InkWell(
-                      onTap: () async {
-                        images = await picker.pickMultiImage();
-                        setState(() {});
-                      },
+                      onTap: lengthExceeded ? null : addImages,
                       child: const Icon(
                         Icons.file_copy,
                         color: Colors.black,

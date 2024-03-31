@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../fields/base_date_field.dart';
-import '../fields/base_image_field.dart';
+import '../fields/image_field/base_image_field.dart';
 import '../fields/base_multi_select.dart';
 import '../fields/base_number_field.dart';
 import '../fields/base_suggestion_field.dart';
@@ -24,6 +24,7 @@ class FormHelpers {
     if (formField is BaseImageFieldModel) {
       return BaseImageFormField(
         prefixImages: formField.preFixImages,
+        getImages: formField.getImages,
       );
     }
     if (formField is BaseDropDownFieldModel) {

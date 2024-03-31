@@ -9,10 +9,12 @@ class Product {
   int? rating;
   String? size;
   int quantity;
+  List<String> images;
   String? gender;
   String? category;
 
   Product({
+    this.images = const [],
     this.isFav = false,
     this.category,
     this.description,
@@ -26,6 +28,12 @@ class Product {
   });
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
+        images: json['images'] != null
+            ? json['images']
+                .map((image) => image as String)
+                .toList()
+                .cast<String>()
+            : [],
         id: json['_id'],
         isFav: json['isFav'],
         title: json['title'],
@@ -42,6 +50,7 @@ class Product {
     return {
       '_id': id,
       'title': title,
+      'images': images,
       'description': description,
       'price': price,
       'isFav': isFav,
