@@ -27,16 +27,16 @@ class _DropDownFieldState<T> extends State<DropDownField<T>> {
   @override
   void initState() {
     super.initState();
-    // if (widget.dropdownItems!.isNotEmpty) {
-    //   if (widget.preFilledVal != null) {
-    //     valueSelected = widget.preFilledVal;
-    //   } else {
-    //     valueSelected = widget.dropdownItems![0];
-    //   }
-    //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //     widget.onChanged!(valueSelected as T);
-    //   });
-    // }
+    if (widget.dropdownItems!.isNotEmpty) {
+      if (widget.preFilledVal != null) {
+        valueSelected = widget.preFilledVal;
+      } else {
+        valueSelected = widget.dropdownItems![0];
+      }
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        widget.onChanged!(valueSelected as T);
+      });
+    }
   }
 
   @override

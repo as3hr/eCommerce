@@ -7,39 +7,52 @@ import '../extensions/asset_images.dart';
 void showToast({
   required String message,
   Function(SnackbarStatus?)? snackbarStatus,
-  String image = AssetImages.successful,
+  String? title,
+  Widget? imageWidget,
+  String imagePath = AssetImages.successful,
+  SnackPosition snackPosition = SnackPosition.BOTTOM,
 }) {
-  Get.showSnackbar(
-    GetSnackBar(
-      snackbarStatus: (status) => snackbarStatus,
-      maxWidth: 0.2.sw,
-      icon: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset(
-          image,
-          color: Get.theme.colorScheme.onSurface,
-        ),
-      ),
-      duration: const Duration(seconds: 3),
-      margin: const EdgeInsets.all(10),
-      backgroundGradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Get.theme.colorScheme.background,
-          Get.theme.colorScheme.onBackground,
-        ],
-      ),
-      borderRadius: 10,
-      backgroundColor: Get.theme.colorScheme.primary,
-      message: message,
-      messageText: Text(
-        message,
-        maxLines: 5,
-        style: TextStyle(
-          color: Get.theme.colorScheme.onSurface,
-        ),
+  Get.snackbar(
+    title ?? '',
+    message,
+    messageText: Text(
+      message,
+      maxLines: 2,
+      style: TextStyle(
+        color: Get.theme.colorScheme.onSurface,
       ),
     ),
+    titleText: title != null
+        ? Text(
+            title,
+            maxLines: 1,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Get.theme.colorScheme.onSurface,
+            ),
+          )
+        : null,
+    maxWidth: 0.8.sw,
+    icon: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: imageWidget ??
+          Image.asset(
+            imagePath,
+            color: Get.theme.colorScheme.onSurface,
+          ),
+    ),
+    duration: const Duration(seconds: 3),
+    margin: const EdgeInsets.all(10),
+    backgroundGradient: LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [
+        Get.theme.colorScheme.onPrimary,
+        Get.theme.colorScheme.primary,
+      ],
+    ),
+    borderRadius: 10,
+    backgroundColor: Get.theme.colorScheme.primary,
+    snackPosition: snackPosition,
   );
 }

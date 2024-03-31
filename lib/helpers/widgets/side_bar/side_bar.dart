@@ -94,7 +94,7 @@ class _SideBarState extends State<SideBar> {
               child: InkWell(
                 onTap: () {
                   final controller = Get.find<AuthController>();
-                  loadingWrapper(controller.logout)
+                  loadingWrapper(controller.logout, context)
                       .then((value) => context.goNamed(RouteName.login));
                 },
                 child: const Text(

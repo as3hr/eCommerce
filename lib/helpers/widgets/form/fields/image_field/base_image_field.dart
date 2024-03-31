@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'image_feature.dart';
+import 'image_type.dart';
 
 class BaseImageFormField extends StatefulWidget {
   const BaseImageFormField({
@@ -14,14 +14,14 @@ class BaseImageFormField extends StatefulWidget {
     required this.getImages,
   });
   final List<String> prefixImages;
-  final Function(List<ImageFeature> images) getImages;
+  final Function(List<ImageType> images) getImages;
   @override
   State<BaseImageFormField> createState() => _BaseImageFormFieldState();
 }
 
 class _BaseImageFormFieldState extends State<BaseImageFormField> {
   final picker = ImagePicker();
-  List<ImageFeature> images = [];
+  List<ImageType> images = [];
   List<XFile> imageFiles = [];
 
   @override
@@ -33,7 +33,7 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
   void initializeImages() {
     if (widget.prefixImages.isNotEmpty) {
       for (var image in widget.prefixImages) {
-        images.add(ImageFeature(image: image));
+        images.add(ImageType(image: image));
       }
     }
   }
@@ -41,7 +41,7 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
   Future<void> addImages() async {
     imageFiles = await picker.pickMultiImage();
     for (var image in imageFiles) {
-      images.add(ImageFeature(image: image.path, hasPath: true));
+      images.add(ImageType(image: image.path, hasPath: true));
     }
     setState(() {});
     widget.getImages.call(images);

@@ -70,7 +70,7 @@ class LoginView extends StatelessWidget {
                                         await controller.submit().then(
                                             (value) => context
                                                 .goNamed(RouteName.home));
-                                      });
+                                      }, context);
                                     },
                                     child: Container(
                                       decoration: const BoxDecoration(
@@ -94,7 +94,7 @@ class LoginView extends StatelessWidget {
                               loadingWrapper(() async {
                                 await controller.submit().then(
                                     (value) => context.goNamed(RouteName.home));
-                              });
+                              }, context);
                             },
                             obscureText: true,
                             validator: (value) {

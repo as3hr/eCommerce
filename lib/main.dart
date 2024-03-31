@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/window_title_bar.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -50,8 +48,7 @@ class AdminPanel extends StatelessWidget {
               initial: initialThemeMode ?? AdaptiveThemeMode.system,
               builder: (light, dark) {
                 return GlobalLoaderOverlay(
-                  overlayOpacity: 0,
-                  overlayColor: ThemeColors.black,
+                  overlayColor: Colors.transparent,
                   child: Column(
                     children: [
                       WindowTitleBar(),

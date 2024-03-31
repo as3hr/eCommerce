@@ -57,7 +57,7 @@ class _BaseFormState extends State<BaseForm> {
     if (widget.getFormData != null) {
       loadingWrapper(() async {
         await widget.getFormData!.call().then((value) => setState(() {}));
-      });
+      }, context);
     }
   }
 
@@ -65,7 +65,7 @@ class _BaseFormState extends State<BaseForm> {
     if (widget.savefunction != null) {
       await loadingWrapper(() async {
         await widget.savefunction!.call();
-      });
+      }, context);
       showToast(message: 'Record created successfully');
     }
   }
@@ -74,7 +74,7 @@ class _BaseFormState extends State<BaseForm> {
     if (widget.updatefunction != null) {
       await loadingWrapper(() async {
         await widget.updatefunction!.call();
-      });
+      }, context);
       showToast(message: 'Record updated successfully');
     }
   }
@@ -83,7 +83,7 @@ class _BaseFormState extends State<BaseForm> {
     if (widget.deletefunction != null) {
       await loadingWrapper(() async {
         await widget.deletefunction!.call();
-      });
+      }, context);
       showToast(message: 'Record deleted successfully');
     }
   }

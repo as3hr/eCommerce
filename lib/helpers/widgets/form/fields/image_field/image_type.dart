@@ -1,7 +1,7 @@
-class ImageFeature {
+class ImageType {
   String image;
   bool hasPath;
-  ImageFeature({
+  ImageType({
     this.hasPath = false,
     required this.image,
   });

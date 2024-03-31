@@ -66,6 +66,7 @@ class _ListingTableState extends State<ListingTable> {
           () => fetchData(
             refresh: true,
           ),
+          context,
         );
       }
     }
@@ -160,7 +161,6 @@ class _ListingTableState extends State<ListingTable> {
                 datarowCheckboxTheme: checkBoxTheme,
                 scrollController: _scrollController,
                 columnSpacing: 23,
-                isVerticalScrollBarVisible: true,
                 headingTextStyle: mediumTextStyle,
                 decoration: listingTableDecoration,
                 onSelectAll: (selected) {
@@ -192,8 +192,7 @@ class _ListingTableState extends State<ListingTable> {
                                   sortAscending = ascending;
                                 });
                                 loadingWrapper(
-                                  () => fetchData(refresh: true),
-                                );
+                                    () => fetchData(refresh: true), context);
                               }
                             : null,
                       ),

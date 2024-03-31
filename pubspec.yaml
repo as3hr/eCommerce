@@ -31,8 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
-  loader_overlay: ^2.1.0
-  loading_overlay: ^0.3.0
+  loader_overlay: ^4.0.0
   data_table_2: ^2.5.8
   flutter_screenutil: ^5.8.4
   intl: ^0.18.0

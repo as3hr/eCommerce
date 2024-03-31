@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/image_field/image_feature.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/image_field/image_type.dart';
 
 class BaseFormFieldModel<T> {
   String? title;
@@ -78,7 +78,7 @@ class BaseNestedFieldModel<T> extends BaseFormFieldModel<T> {
 
 class BaseImageFieldModel<T> extends BaseFormFieldModel<T> {
   List<String> preFixImages;
-  Function(List<ImageFeature>) getImages;
+  Function(List<ImageType>) getImages;
   BaseImageFieldModel({
     required this.preFixImages,
     required this.getImages,

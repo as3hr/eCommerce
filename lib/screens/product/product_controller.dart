@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/image_field/image_feature.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/image_field/image_type.dart';
 import 'package:ecommerce_admin_panel/models/product.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +6,7 @@ import '../../models/data/api.dart';
 
 class ProductController extends GetxController {
   int limit = 25;
-  List<ImageFeature> images = [];
+  List<ImageType> images = [];
   Product product = Product();
   Product get getCurrentProduct => product;
   set setProduct(Product newProduct) {
@@ -36,7 +36,7 @@ class ProductController extends GetxController {
     return false;
   }
 
-  void distributeImages(List<ImageFeature> newImages) {
+  void distributeImages(List<ImageType> newImages) {
     final fileImages = newImages;
     images = fileImages.where((image) => image.hasPath == true).toList();
     final simpleImages =
@@ -77,7 +77,7 @@ class ProductController extends GetxController {
     update();
   }
 
-  Future<void> uploadImages(List<ImageFeature> images) async {
+  Future<void> uploadImages(List<ImageType> images) async {
     for (final image in images) {
       final resultedImage = await Api.uploadImage(image.image);
       product.images.add(resultedImage);

@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: back_button_interceptor
-      sha256: e47660f2178a4392eb72001f9594d3fdcb5efde93e59d2819d61fda499e781c8
+      sha256: "8354b03320043db546e3f446af171faaa71384100486444113628f7db1e7fe9b"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.2"
+    version: "7.0.3"
   bitsdojo_window:
     dependency: "direct main"
     description:
@@ -545,18 +545,10 @@ packages:
     dependency: "direct main"
     description:
       name: loader_overlay
-      sha256: "74fab08c4f2f686e2cc32887cbc76a90d685afd2ffb79526221fc9e7cf027320"
+      sha256: "02deeeed0d4eaaeeada6ce7bb13426d7548acad1f71e4884ec4a010e0e4824d6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
-  loading_overlay:
-    dependency: "direct main"
-    description:
-      name: loading_overlay
-      sha256: a4dd5a790e0d60568d4c684e46eed00de883db0dc660f90ffd583aca8f4a1d91
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
+    version: "4.0.0"
   logging:
     dependency: transitive
     description:

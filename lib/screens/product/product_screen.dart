@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart';
 import 'package:ecommerce_admin_panel/screens/product/product_controller.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +30,23 @@ class ProductScreen extends StatelessWidget {
             Expanded(
               child: BaseForm(
                 deletefunction: () async {
-                  controller
-                      .deleteProduct()
-                      .then((value) => context.goNamed(RouteName.productsList));
+                  await loadingWrapper(
+                      () => controller.deleteProduct().then(
+                          (value) => context.goNamed(RouteName.productsList)),
+                      context);
                 },
-                savefunction: controller.createProduct,
-                updatefunction: controller.updateProduct,
+                savefunction: () async {
+                  await loadingWrapper(
+                      () => controller.createProduct().then(
+                          (value) => context.goNamed(RouteName.productsList)),
+                      context);
+                },
+                updatefunction: () async {
+                  await loadingWrapper(
+                      () => controller.updateProduct().then(
+                          (value) => context.goNamed(RouteName.productsList)),
+                      context);
+                },
                 isNew: isNew,
                 formFieldsList: [
                   if (!isNew)
@@ -57,6 +69,17 @@ class ProductScreen extends StatelessWidget {
                     },
                   ),
                   BaseDropDownFieldModel(
+                      title: 'Gender',
+                      preFilledVal: product.gender,
+                      onSelected: (val) {
+                        product.gender = val;
+                      },
+                      dropdownItems: [
+                        'Men',
+                        'Women',
+                        'Kids',
+                      ]),
+                  BaseDropDownFieldModel(
                     title: 'Product category',
                     onSelected: (val) {
                       product.category = val;
@@ -78,9 +101,18 @@ class ProductScreen extends StatelessWidget {
                     title: 'Product Price',
                     prefixNumber: product.price,
                     onSelected: (val) {
-                      product.price = double.parse(val.toString());
+                      if (val != '') {
+                        product.price = double.parse(val as String);
+                      }
                     },
                   ),
+                  BaseDropDownFieldModel(
+                      title: 'Product Rating',
+                      preFilledVal: product.rating,
+                      onSelected: (val) {
+                        product.rating = int.parse(val.toString());
+                      },
+                      dropdownItems: [1, 2, 3, 4, 5]),
                   BaseDropDownFieldModel(
                       title: 'Size',
                       dropdownItems: [

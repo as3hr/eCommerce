@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import '../error.dart';
@@ -9,24 +9,32 @@ import 'show_toast.dart';
 
 Future<T?> loadingWrapper<T>(
   Future<T> Function() func,
+  BuildContext context,
 ) async {
-  Get.context?.loaderOverlay.show();
+  context.loaderOverlay.show(
+    widgetBuilder: (progress) => const Center(
+      child: CircularProgressIndicator(
+        color: Colors.deepPurple,
+      ),
+    ),
+  );
   try {
     final response = await func();
     return response;
   } on ApiError catch (e) {
     showToast(
-      message: '${e.errorCode ?? e.type.name}\n${e.toString()}',
-      image: AssetImages.unsuccessful,
+      message: e.displayMessage,
+      imagePath: AssetImages.unsuccessful,
     );
-  } catch (e, s) {
-    print('loadingWrapper unknown error: ${e.toString()}\n${s.toString()}');
+  } catch (e) {
     showToast(
-      message: '${e.toString()}}',
-      image: AssetImages.unsuccessful,
+      message: e.toString(),
+      imagePath: AssetImages.unsuccessful,
     );
   } finally {
-    Get.context?.loaderOverlay.hide();
+    if (context.mounted) {
+      context.loaderOverlay.hide();
+    }
   }
   return null;
 }

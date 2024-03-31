@@ -61,10 +61,6 @@ class ProductListing extends StatelessWidget {
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text(product.description ?? '-'),
-                              )),
-                              ListingCell(
-                                  child: Center(
                                 child: Text("${product.price}"),
                               )),
                               ListingCell(
@@ -81,7 +77,6 @@ class ProductListing extends StatelessWidget {
                         columns: [
                       ListingColumn(title: const Text('Product Id')),
                       ListingColumn(title: const Text('Product Title')),
-                      ListingColumn(title: const Text('Description')),
                       ListingColumn(title: const Text('Product Price')),
                       ListingColumn(title: const Text('Category')),
                       ListingColumn(title: const Text('Product Rating')),
