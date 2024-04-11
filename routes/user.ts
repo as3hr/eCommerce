@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  checkBooleanPermission,
   checkNecessaryParameters,
   checkToken,
   cleanUpdates,
@@ -19,6 +20,7 @@ router.get("/profile", checkToken, getUser);
 router.get(
   "/",
   checkToken,
+  checkBooleanPermission(),
   getAllUsers,
   pagination
 );
@@ -33,6 +35,7 @@ router.post(
     "firstName",
     "lastName",
   ]),
+  checkBooleanPermission(),
   cleanUpdates(["isDisable", "_id",]),
   createUser
 );
@@ -50,7 +53,12 @@ router.put(
   updateUser,
 );
 
-router.delete("/:id", checkToken, deleteUser);
+router.delete(
+  "/:id", 
+  checkToken, 
+  checkBooleanPermission(), 
+  deleteUser
+);
 
 router.get("/:id", checkToken, getUserById);
 

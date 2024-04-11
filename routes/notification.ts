@@ -15,7 +15,7 @@ const router = Router();
 
 router.get('/', checkToken, getNotification, pagination);
 
-router.get('/', checkToken, createNotification, createDocument);
+router.post('/', checkToken, createNotification, createDocument);
 
 router.put('/:id', checkToken, updateNotification, updateDocument);
 

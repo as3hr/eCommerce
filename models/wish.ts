@@ -1,11 +1,17 @@
 import mongoose, {Schema, Document }from "mongoose";
 
 export interface IWish extends Document{
+    user: Schema.Types.ObjectId,
     title?: string,
     products?: Schema.Types.ObjectId[],
 }
 
 const wishSchema = new Schema<IWish>({
+    user: {
+        type: Schema.Types.ObjectId,
+        cast: 'Invalid userId',
+        ref: 'users',
+    },
     title: {
         type: String,
         cast: 'title type must be a string',

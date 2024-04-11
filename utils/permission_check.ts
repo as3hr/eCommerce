@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { HttpError, asyncHandler, permissionModel } from "../internal";
+import { HttpError, asyncHandler } from "../internal";
 
-const checkBooleanPermission = (val: string) =>
+const checkBooleanPermission = () =>
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    const permission = await permissionModel.findById(req.user?.permission);
-    if (permission && (permission as any)[val] == true) {
+    const isAdminPermission = req.user.isAdmin === true;
+    if (isAdminPermission) {
       next();
     } else {
       throw HttpError.unAuthorized();

@@ -36,7 +36,6 @@ const sendTemplateMail = async (
   }
 } 
   catch(error: any){
-    console.log(error.response.data.errors);
     return error;
   }
   

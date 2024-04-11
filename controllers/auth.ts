@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { HttpError, asyncHandler, userModel } from "../internal";
+import { HttpError, asyncHandler, userModel, wishModel } from "../internal";
 import { sendTemplateMail } from "../utils/send_mail";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
@@ -16,14 +16,20 @@ const signIn = asyncHandler(
     }
     const result = await userModel
       .findOne({ email: req.body.email });
-    if (
-      !result || !(await result.comparePassword(req.body.password))
-    )
-     {
+      
+    if(result){
+      const checkPass = await result.comparePassword(req.body.password);
+      if(result.isSocial){
+       req.session.user = result._id;
+       res.json({ success: true, result });
+      }else if (!checkPass){
+        throw HttpError.invalidCredentials();
+      } else {
+        req.session.user = result._id;
+        res.json({ success: true, result });
+      }
+    }else{
       throw HttpError.invalidCredentials();
-    } else {
-      req.session.user = result._id;
-      res.json({ success: true, result });
     }
   }
 );
@@ -31,22 +37,23 @@ const signIn = asyncHandler(
 const socialAuth = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await userModel.findOne({ email: req.body.email });
-    if(user){
-      if (!user?._id) {
-        throw HttpError.notFound('User not found!');
-      } else {
-        req.session.user = user._id;
-        res.json({ success: true, user });
-      }  
-    }else {
+    if (!user) {
+      console.log('first');
       await userModel.create(req.body);
       const result = await userModel.findOne({ email: req.body.email });
-      if (!result?._id) {
-        throw HttpError.notFound('User not found!');
-      } else {
-        req.session.user = result._id;
-        res.json({ success: true, result });
-      }
+      req.session.user = result!._id;
+      await wishModel.create({
+        user: result!._id,
+        title: 'Favorites',
+        products: [],
+      });
+      res.json({
+        success: true,
+        result,
+      });
+    }else{
+      req.session.user = user!._id;
+      res.json({ success: true, user });
     }
   }
 );
@@ -61,7 +68,14 @@ const signUp = asyncHandler(
         "Password and Email must be of type String"
       );
     }
-    const result = await userModel.create(req.body);
+    await userModel.create(req.body);
+    const result = await userModel.findOne({ email: req.body.email });
+    req.session.user = result!._id;
+    await wishModel.create({
+      user: result!._id,
+      title: 'Favorites',
+      products: [],
+    });
     res.json({
       success: true,
       result,

@@ -35,14 +35,6 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URL!);
 
-const getFav = (favourite: string) => {
-  let isFav: boolean = false;
-  if ( favourite === "true" ){
-      isFav = true;
-  }
-  return isFav;
-}
-
 const addProducts = async (path: any) => {
   const data = await readExcelFile(path);
   const products: IProduct[] = [];
@@ -54,7 +46,6 @@ const addProducts = async (path: any) => {
       'title': row[0],
       'description': row[1],
       'price': row[2],
-      'isFav': getFav(row[3]),
       'rating': row[4],
       'quantity': row[5],
       'size': row[6],
@@ -153,9 +144,7 @@ const addOrders = async (address?: boolean) => {
 };
 
 const deleteDb =async() => {
-  await productModel.deleteMany();
   await orderModel.deleteMany();
-  await addressModel.deleteMany();
 }
 
 

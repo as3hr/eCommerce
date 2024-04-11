@@ -7,6 +7,7 @@ const getWish = asyncHandler(
         req.model = wishModel;
         req.modelName = "wishes";
         req.populate = 'products';
+        req.query.user = req.user._id;
         next();
     }
 );
@@ -16,6 +17,7 @@ const getWishByid = asyncHandler(
         req.model = wishModel;
         req.modelName = "wishes";
         req.populate = 'products';
+        req.query.user = req.user._id;
         next();
     }
 );
@@ -24,6 +26,7 @@ const createWish = asyncHandler(
     async (req: Request,res: Response, next: NextFunction)=>{
         req.model = wishModel;
         req.modelName = "wishes";
+        req.body.user =req.user._id;
         next();
     }
 );
@@ -32,6 +35,7 @@ const updateWish = asyncHandler(
     async (req: Request,res: Response, next: NextFunction)=>{
         req.model = wishModel;
         req.modelName = "wishes";
+        req.populate = 'products';
         next();
     }
 );

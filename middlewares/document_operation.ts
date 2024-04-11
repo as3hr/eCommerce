@@ -29,7 +29,7 @@ const updateDocument = asyncHandler(
       req.params.id,
       { $set: req.body },
       { new: true, runValidators: true }
-    );
+    ).populate(req.populate);
     createLogs(
       req.session.user,
       req.modelName,

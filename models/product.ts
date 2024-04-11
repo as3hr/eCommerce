@@ -35,12 +35,17 @@ export interface IProduct extends Document{
     quantity?: number,
     gender?: Gender,
     category?: Category,
+    images: string[],
 }
 
 const productSchema = new Schema<IProduct>({
     title: { 
         type: String,
         cast: 'title type is invalid'
+    },
+    images: {
+        type: [String],
+        cast: "Invalid images type"
     },
     description: { 
         type: String,

@@ -10,7 +10,7 @@ router.post("/signUp", checkNecessaryParameters(["email", "password"]), signUp);
 router.post(
     "/social", 
     checkNecessaryParameters(["email", "firstName"]), 
-    socialAuth
+    socialAuth,
 );
 
 router.post('/email', sendEmailVerification);

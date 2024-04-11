@@ -11,6 +11,7 @@ enum Status {
 }
 export interface IOrder extends Document{
     products?: IProduct[],
+    userId: Schema.Types.ObjectId,
     subTotal?: number,
     shippingCost?: number,
     tax?: number,
@@ -20,6 +21,11 @@ export interface IOrder extends Document{
 }
 
 const orderSchema = new Schema<IOrder>({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        cast: 'userId is Invalid',
+    },
     products: [{
             type: productSchema,
             ref: 'products',

@@ -8,6 +8,7 @@ export interface IUser extends Document {
   firstName?: string;
   lastName?: string;
   image?: string;
+  isSocial: boolean,
   contactNumber?: string;
   email?: string;
   isDisable:boolean,
@@ -15,6 +16,7 @@ export interface IUser extends Document {
   cards?: ICard[]; 
   fcmTokens?: Types.Array<string>;
   isAdmin: boolean,
+  comparePassword(password: string): Promise<boolean>;
 }
 
 const userSchema = new Schema<IUser>(
@@ -23,6 +25,11 @@ const userSchema = new Schema<IUser>(
       type: Boolean,
       default: false,
       cast: "isDisable datatype is incorrect",
+    },
+    isSocial: {
+      type: Boolean,
+      default: false,
+      cast: "isSocial datatype is incorrect",
     },
     addresses: [{
       type: Schema.Types.ObjectId,
@@ -81,17 +88,32 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.pre("save", function (next) {
-  bcrypt.hash(
-    this.password!,
-    parseInt(process.env.SALT_WORK_FACTOR!),
-    (err: any, hashedPass: string | undefined) => {
-      if (err) {
-        throw err;
+  if(this.isSocial){
+    next();
+  }else{
+    bcrypt.hash(
+      this.password!,
+      parseInt(process.env.SALT_WORK_FACTOR!),
+      (err: any, hashedPass: string) => {
+        if (err) {
+          throw err;
+        }
+        this.password = hashedPass;
+        next();
       }
-      this.password = hashedPass;
-      next();
-    }
-  );
+    );
+  }
 });
+
+userSchema.method<IUser>(
+  "comparePassword",
+  async function comparePassword(password: string) {
+    const user: IUser = await userModel
+      .findOne({ _id: this._id })
+      .select("+password");
+    const result = await bcrypt.compare(password, user.password!);
+    return result;
+  }
+);
 
 export const userModel = mongoose.model<IUser>("users", userSchema);
