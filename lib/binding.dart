@@ -9,9 +9,9 @@ class Binding extends Bindings {
   @override
   void dependencies() {
     Get.put(HomeScreenController());
-    Get.put(OrderScreenController());
     Get.put(ProfileScreenController());
-    Get.put(NotificationScreenController());
     Get.put(CartController());
+    Get.put(OrderScreenController());
+    Get.put(NotificationScreenController());
   }
 }

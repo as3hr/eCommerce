@@ -1,6 +1,7 @@
 import 'package:e_commerce/helpers/widgets/item_detail/components/item_detail_content.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
+import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../../styles/app_colors.dart';
@@ -12,21 +13,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../back_button.dart';
 import 'components/photo_slider.dart';
 
-class ItemDetailScreen extends StatelessWidget {
+class ItemDetailScreen extends StatefulWidget {
   static const routeName = '/item-detail';
-  const ItemDetailScreen(
-      {super.key, required this.product, this.changable = true});
+  const ItemDetailScreen({
+    super.key,
+    required this.product,
+    this.changable = true,
+  });
   final bool changable;
   final Product product;
 
-  static final pageController = PageController();
+  @override
+  State<ItemDetailScreen> createState() => _ItemDetailScreenState();
+}
+
+class _ItemDetailScreenState extends State<ItemDetailScreen> {
+  final pageController = PageController();
+  bool showPageView = false;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
+      final profileController = Get.find<ProfileScreenController>();
+      widget.product.isFav = profileController.favourites.products
+              ?.any((element) => element.title == widget.product.title) ==
+          true;
       return GestureDetector(
         onTap: () {
-          controller.showPageView = false;
+          showPageView = false;
           controller.update();
         },
         child: Scaffold(
@@ -43,7 +57,7 @@ class ItemDetailScreen extends StatelessWidget {
                       children: [
                         20.horizontalSpace,
                         const CustomBackButton(),
-                        if (!changable) ...[
+                        if (!widget.changable) ...[
                           const Spacer(),
                           Text(
                             'You cannot update this product anymore!',
@@ -54,12 +68,12 @@ class ItemDetailScreen extends StatelessWidget {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            if (changable) {
-                              product.isFav = !product.isFav;
+                            if (widget.changable) {
+                              profileController.toggleFav(widget.product);
                               controller.update();
                             }
                           },
-                          child: product.isFav && changable
+                          child: widget.product.isFav && widget.changable
                               ? const Icon(
                                   Icons.favorite,
                                   color: AppColors.redColor,
@@ -71,17 +85,24 @@ class ItemDetailScreen extends StatelessWidget {
                         20.horizontalSpace
                       ],
                     ),
-                    ItemDetailContent(product: product, changable: changable)
+                    ItemDetailContent(
+                      product: widget.product,
+                      changable: widget.changable,
+                      onTap: () {
+                        showPageView = true;
+                        controller.update();
+                      },
+                    )
                   ],
                 ),
-                if (controller.showPageView)
+                if (showPageView)
                   Positioned(
                       top: 10,
                       right: 10,
                       bottom: 10,
                       left: 10,
                       child: PhotoSlider(
-                        images: product.images,
+                        images: widget.product.images,
                         pageController: pageController,
                       )),
               ],

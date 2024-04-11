@@ -113,8 +113,8 @@ class AuthController extends GetxController {
     update();
   }
 
-  Future<void> uploadImage(String path) async {
-    user.image = await Api.uploadImage(path);
+  Future<void> uploadImage(String path, String fileName) async {
+    user.image = await Api.uploadImage(path, fileName);
     await Api.updateUser(user: user);
   }
 

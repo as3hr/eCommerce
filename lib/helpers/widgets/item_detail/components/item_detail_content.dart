@@ -14,8 +14,12 @@ import 'item_size_quantity.dart';
 
 class ItemDetailContent extends StatelessWidget {
   const ItemDetailContent(
-      {super.key, required this.product, required this.changable});
+      {super.key,
+      required this.product,
+      required this.changable,
+      required this.onTap});
   final Product product;
+  final void Function() onTap;
   final bool changable;
   @override
   Widget build(BuildContext context) {
@@ -33,10 +37,7 @@ class ItemDetailContent extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        onTap: () {
-                          controller.showPageView = true;
-                          controller.update();
-                        },
+                        onTap: onTap,
                         child: Container(
                             height: 0.45.sh,
                             width: 0.55.sw,

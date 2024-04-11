@@ -35,7 +35,6 @@ class Product {
                 .toList()
                 .cast<String>()
             : [],
-        isFav: json['isFav'],
         title: json['title'],
         description: json['description'],
         gender: json['gender'],
@@ -43,6 +42,7 @@ class Product {
         price: parseValToDouble(json['price']),
         quantity: json['quantity'] ?? 1,
         rating: json['rating'],
+        isFav: json['isFav'],
         size: json['size']);
   }
 
@@ -52,11 +52,11 @@ class Product {
       'title': title,
       'description': description,
       'price': price,
-      'isFav': isFav,
       'rating': rating,
       'size': size,
       'quantity': quantity,
       'gender': gender,
+      'isFav': isFav,
       'category': category,
       'images': images,
     };

@@ -60,7 +60,7 @@ void showToast({
               color: Get.theme.colorScheme.onSurface,
             ),
       ),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(milliseconds: 1200),
       margin: const EdgeInsets.all(10),
       backgroundGradient: LinearGradient(
         begin: Alignment.centerLeft,

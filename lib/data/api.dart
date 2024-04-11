@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:e_commerce/data/api_helpers.dart';
 import 'package:e_commerce/models/notification.dart';
@@ -44,10 +42,12 @@ class Api {
     return User.fromJson(data);
   }
 
-  static Future<String> uploadImage(String file) async {
-    final random = Random().nextInt(99);
+  static Future<String> uploadImage(String file, String fileName) async {
     final data = FormData.fromMap({
-      'file': await MultipartFile.fromFile(file, filename: '$random.jpg'),
+      'file': await MultipartFile.fromFile(
+        file,
+        filename: fileName,
+      ),
     });
     const url = '/uploads/';
     final response = await dio.post(
@@ -160,6 +160,13 @@ class Api {
   static Future<Wish> getWish({required String id}) async {
     final url = '/wishes/$id';
     final response = await dio.get(url);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Wish.fromJson(data);
+  }
+
+  static Future<Wish> updateWish({required Wish wish}) async {
+    final url = '/wishes/${wish.id}';
+    final response = await dio.put(url, data: wish.toJson());
     final data = ApiHelpers.checkError(response)['result'];
     return Wish.fromJson(data);
   }

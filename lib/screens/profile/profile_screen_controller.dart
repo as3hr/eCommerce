@@ -1,7 +1,7 @@
 import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/screens/home/home_screen_controller.dart';
+import 'package:e_commerce/models/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,6 +18,7 @@ class ProfileScreenController extends GetxController {
 
   List<Wish> wishLists = [];
   List<Address> addresses = [];
+  var favourites = Wish();
 
   @override
   void onInit() async {
@@ -28,21 +29,44 @@ class ProfileScreenController extends GetxController {
   Future<void> getWishList({bool refresh = false}) async {
     if (refresh) wishLists.clear();
     wishLists = await Api.getWishes();
-    // getInitialWish();
+    getFavouriteWish();
     update();
   }
 
-  void getInitialWish() {
-    final products = Get.find<HomeScreenController>()
-        .productsList
-        .where((product) => product.isFav == true)
-        .toList();
-    wishLists.insert(
-        0,
-        Wish(
-          products: products,
-          title: 'Favourites',
-        ));
+  void getFavouriteWish() {
+    if (wishLists.isNotEmpty) {
+      favourites = wishLists.firstWhere((wish) => wish.title == 'Favorites');
+    }
+  }
+
+  Future<void> toggleFav(Product product) async {
+    final hasProduct =
+        favourites.products?.any((element) => element.title == product.title) ==
+            true;
+    loadingWrapper(() async {
+      if (hasProduct) {
+        favourites.products!
+            .removeWhere((element) => element.title == product.title);
+        await updateWishList(favourites);
+        showToast(
+          message: 'Removed from Favourites!',
+          imagePath: AppImages.access,
+        );
+      } else {
+        favourites.products?.add(product);
+        await updateWishList(favourites);
+        showToast(
+          message: 'Added to Favourites!',
+          imagePath: AppImages.successful,
+        );
+      }
+    });
+  }
+
+  Future<void> updateWishList(Wish wish) async {
+    await Api.updateWish(wish: wish);
+    getWishList(refresh: true);
+    update();
   }
 
   Future<void> getAddresses({bool refresh = false}) async {
@@ -105,7 +129,7 @@ class ProfileScreenController extends GetxController {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      await uploadImage(pickedFile.path);
+      await uploadImage(pickedFile.path, pickedFile.name);
     }
   }
 
@@ -113,14 +137,14 @@ class ProfileScreenController extends GetxController {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      await uploadImage(pickedFile.path);
+      await uploadImage(pickedFile.path, pickedFile.name);
     }
   }
 
-  Future<void> uploadImage(String path) async {
+  Future<void> uploadImage(String path, String name) async {
     try {
       final authController = Get.find<AuthController>();
-      await authController.uploadImage(path);
+      await authController.uploadImage(path, name);
       await authController.fetchProfile();
       showToast(message: 'Image Uploaded!');
     } catch (_) {

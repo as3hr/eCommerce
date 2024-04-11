@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
+import 'package:get/get.dart';
 
 import '../functions/change_page.dart';
 import '../styles/app_decoration.dart';
@@ -23,6 +24,10 @@ class ItemContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
+      final profileController = Get.find<ProfileScreenController>();
+      product.isFav = profileController.favourites.products
+              ?.any((element) => element.title == product.title) ==
+          true;
       return GestureDetector(
         onTap: () {
           changePage(ItemDetailScreen.routeName,
@@ -60,7 +65,7 @@ class ItemContainer extends StatelessWidget {
                 right: 5,
                 child: GestureDetector(
                   onTap: () {
-                    product.isFav = !product.isFav;
+                    profileController.toggleFav(product);
                     controller.update();
                   },
                   child: product.isFav

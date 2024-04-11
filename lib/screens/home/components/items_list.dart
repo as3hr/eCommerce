@@ -14,7 +14,6 @@ class ItemsList extends StatelessWidget {
       final products = controller.title.isEmpty
           ? controller.productsList
           : controller.filteredProducts;
-
       return SizedBox(
         height: 280,
         width: 1.sw,

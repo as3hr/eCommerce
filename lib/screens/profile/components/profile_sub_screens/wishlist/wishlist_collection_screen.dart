@@ -1,5 +1,6 @@
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/models/wishlist.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishlist/empty_wishlist.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -18,33 +19,39 @@ class WishListCollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
+      final wishItem = controller.favourites.title == wish.title
+          ? controller.favourites
+          : wish;
       return Scaffold(
         backgroundColor: AppColors.pureWhite,
         body: SafeArea(
             child: Column(
           children: [
             35.verticalSpace,
-            Header(text: wish.title ?? ''),
+            Header(text: wishItem.title ?? ''),
             35.verticalSpace,
-            Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.7,
-                    ),
-                    padding: EdgeInsets.zero,
-                    itemCount: wish.products?.length,
-                    itemBuilder: (context, index) {
-                      final product = wish.products?[index] ?? Product();
-                      return Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: ItemContainer(
-                          width: 0.463.sw,
-                          product: product,
+            wishItem.products?.isEmpty == true
+                ? const EmptyWishList()
+                : Expanded(
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7,
                         ),
-                      );
-                    }))
+                        padding: EdgeInsets.zero,
+                        itemCount: wishItem.products?.length,
+                        itemBuilder: (context, index) {
+                          final product =
+                              wishItem.products?[index] ?? Product();
+                          return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: ItemContainer(
+                              width: 0.463.sw,
+                              product: product,
+                            ),
+                          );
+                        }))
           ],
         )),
       );
