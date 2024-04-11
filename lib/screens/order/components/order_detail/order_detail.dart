@@ -54,7 +54,7 @@ class OrderDetail extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '${order.address?.streetAddress}',
+                      order.address?.streetAddress ?? '',
                       style: AppDecoration.boldStyle(
                           fontSize: 13, color: AppColors.lightBlack),
                     ),

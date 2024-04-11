@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../../../models/product.dart';
 
 class CartController extends GetxController {
+  bool showPageView = false;
   Order order = Order();
   List<Product> checkoutProducts = [];
 

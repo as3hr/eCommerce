@@ -7,17 +7,13 @@ import 'package:firebase_auth/firebase_auth.dart' as fire;
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/api_error.dart';
-import '../../helpers/functions/change_page.dart';
 import '../../models/token.dart';
-import 'login/login_screen.dart';
 
 class AuthController extends GetxController {
   final isInitialized = false.obs;
   User user = User();
-  String image = '';
   final token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
   String email = '';
@@ -66,8 +62,6 @@ class AuthController extends GetxController {
   Future<void> login() async {
     await Api.login(email: email.trim(), password: password.trim());
     token.value?.persistToken();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isSocial', false);
     fetchProfile();
     update();
   }
@@ -85,53 +79,19 @@ class AuthController extends GetxController {
         await fire.FirebaseAuth.instance.signInWithCredential(credential);
 
     final user = User(
-        firstName: result.user?.displayName ?? '',
-        email: result.user?.email ?? '',
-        image: result.user?.photoURL ?? '');
+      firstName: result.user?.displayName ?? '',
+      email: result.user?.email ?? '',
+      image: result.user?.photoURL ?? '',
+      isSocial: true,
+    );
 
     socialAuth(user);
-  }
-
-  Future<void> saveImage(String path) async {
-    final prefs = await SharedPreferences.getInstance();
-    await Future.wait([
-      prefs.setString('image', path),
-      prefs.setString('email', user.email ?? ''),
-    ]);
-    image = await getImage();
-    update();
-  }
-
-  Future<void> removeImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    await Future.wait([
-      prefs.remove('image'),
-      prefs.remove('email'),
-      prefs.remove('isSocial'),
-    ]);
-    image = '';
-    update();
-  }
-
-  Future<String> getImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final image = prefs.getString('image');
-    final email = prefs.getString('email');
-    if (email == user.email) {
-      return image ?? '';
-    } else {
-      await removeImage();
-      return '';
-    }
   }
 
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isSocial', true);
-    await fetchProfile();
-    await saveImage(user.image ?? '');
+    fetchProfile();
     update();
   }
 
@@ -143,23 +103,24 @@ class AuthController extends GetxController {
       message: 'Account created Successfully!',
       imagePath: AppImages.successful,
     );
-    changePage(LoginScreen.routeName);
+    token.value?.persistToken();
+    fetchProfile();
+    update();
   }
 
   Future<void> fetchProfile() async {
     user = await Api.getUser();
-    final prefs = await SharedPreferences.getInstance();
-    final isSocial = prefs.getBool('isSocial');
-    if (isSocial == true) {
-      user.isSocial = true;
-    }
     update();
+  }
+
+  Future<void> uploadImage(String path) async {
+    user.image = await Api.uploadImage(path);
+    await Api.updateUser(user: user);
   }
 
   Future<void> logout() async {
     await GoogleSignIn().signOut();
     await Api.logout();
-    await removeImage();
     await Token.clearToken();
     token.value = null;
     user = User();
@@ -172,7 +133,6 @@ class AuthController extends GetxController {
       try {
         token.value = storedTokens;
         await fetchProfile();
-        image = await getImage();
         update();
       } on ApiError catch (e) {
         if (e.type == ErrorType.invalidCredentials ||

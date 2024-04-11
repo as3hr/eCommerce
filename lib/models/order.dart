@@ -6,7 +6,6 @@ import '../data/api_helpers.dart';
 
 class Order {
   String? id;
-  String? shippingDetails;
   String? status;
   double subTotal;
   Address? address;
@@ -20,7 +19,6 @@ class Order {
     this.address,
     this.products,
     this.shippingCost = 0.0,
-    this.shippingDetails,
     this.status,
     this.subTotal = 0.0,
     this.tax = 0.0,
@@ -29,9 +27,8 @@ class Order {
 
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
-      address: Address.fromJson(json['address']),
+      address: parseJsonToObject(json['address'], Address.fromJson),
       shippingCost: parseValToDouble(json['shippingCost']),
-      shippingDetails: json['shippingDetails'],
       status: json['status'],
       subTotal: parseValToDouble(json['subTotal']),
       tax: parseValToDouble(json['tax']),
@@ -43,7 +40,6 @@ class Order {
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
-      'shippingDetails': shippingDetails,
       'status': 'pending',
       'subTotal': subTotal,
       'shippingCost': shippingCost,

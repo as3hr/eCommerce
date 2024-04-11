@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -36,7 +37,24 @@ class ItemContainer extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              const Center(child: Text('I M A G E  H E R E')),
+              if (product.images.isNotEmpty)
+                Center(
+                  child: CachedNetworkImage(
+                    imageUrl: product.images.firstOrNull ?? '',
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
               Positioned(
                 top: 10,
                 right: 5,

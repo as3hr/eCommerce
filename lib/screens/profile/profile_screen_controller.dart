@@ -120,11 +120,8 @@ class ProfileScreenController extends GetxController {
   Future<void> uploadImage(String path) async {
     try {
       final authController = Get.find<AuthController>();
-      if (authController.user.isSocial) {
-        await authController.removeImage();
-        authController.user.isSocial = false;
-      }
-      await authController.saveImage(path);
+      await authController.uploadImage(path);
+      await authController.fetchProfile();
       showToast(message: 'Image Uploaded!');
     } catch (_) {
       showToast(

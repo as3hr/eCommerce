@@ -19,8 +19,8 @@ class OrderScreenController extends GetxController
   @override
   void onInit() async {
     super.onInit();
-    await getOrders();
     tabController = TabController(length: 5, vsync: this);
+    await getOrders();
   }
 
   Future<void> getOrders({bool refresh = false}) async {

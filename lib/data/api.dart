@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:e_commerce/data/api_helpers.dart';
 import 'package:e_commerce/models/notification.dart';
@@ -10,7 +12,7 @@ import '../models/address.dart';
 
 class Api {
   static final dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.100.49:6000",
+      baseUrl: "http://192.168.100.49:3000",
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json'));
@@ -40,6 +42,20 @@ class Api {
     final response = await dio.post(url, data: user.userSignUp());
     final data = ApiHelpers.checkError(response)['result'];
     return User.fromJson(data);
+  }
+
+  static Future<String> uploadImage(String file) async {
+    final random = Random().nextInt(99);
+    final data = FormData.fromMap({
+      'file': await MultipartFile.fromFile(file, filename: '$random.jpg'),
+    });
+    const url = '/uploads/';
+    final response = await dio.post(
+      url,
+      data: data,
+    );
+    final image = ApiHelpers.checkError(response)['result'];
+    return image;
   }
 
   static Future<void> socialAuth({required User user}) async {

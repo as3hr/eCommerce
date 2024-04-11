@@ -1,4 +1,4 @@
-import 'package:e_commerce/screens/home/home_screen_controller.dart';
+import 'package:e_commerce/screens/home/components/category/category_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../helpers/styles/app_decoration.dart';
@@ -16,7 +16,7 @@ class EmptyCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeScreenController>(builder: (controller) {
+    return GetBuilder<CategoryScreenController>(builder: (controller) {
       return Column(
         children: [
           90.verticalSpace,
@@ -30,7 +30,9 @@ class EmptyCategories extends StatelessWidget {
           5.verticalSpace,
           CustomContainer(
             onTap: () {
-              changePage(CategoriesScreen.routeName);
+              controller.extraQuery = {};
+              changePage(CategoriesScreen.routeName)
+                  .then((value) => Get.delete<CategoryScreenController>());
             },
             text: 'Explore Categories',
             color: AppColors.lightPurple,
