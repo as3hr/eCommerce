@@ -6,6 +6,7 @@ import { queryParser } from "express-query-parser";
 import session from "express-session";
 import mongoose, { Schema } from "mongoose";
 import admin from "firebase-admin";
+
 import {
   IUser,
   authRouter,
@@ -21,6 +22,7 @@ import { logRouter } from "./routes/log.js";
 import { notificationRouter } from "./routes/notification.js";
 import { productRouter } from "./routes/product.js";
 import { addressRouter } from "./routes/address.js";
+import { Server } from "socket.io";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -109,8 +111,10 @@ mongoose
     )
   .then((_) => console.log("MongoDB connected"));
 
-app.listen(
+const server = app.listen(
   process.env.PORT
   , () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
+
+export const io = new Server(server);

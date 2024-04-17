@@ -33,6 +33,7 @@ export * from "./controllers/order";
 export * from "./controllers/wish";
 export * from "./controllers/payment";
 export * from "./controllers/address";
+export * from "./controllers/chat_support";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
