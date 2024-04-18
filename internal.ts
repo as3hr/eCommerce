@@ -21,6 +21,8 @@ export * from "./models/notification";
 export * from "./models/product";
 export * from "./models/order";
 export * from "./models/wish";
+export * from "./models/message";
+export * from "./models/chat";
 
 export * from "./controllers/auth";
 export * from "./controllers/upload";
@@ -34,6 +36,7 @@ export * from "./controllers/wish";
 export * from "./controllers/payment";
 export * from "./controllers/address";
 export * from "./controllers/chat_support";
+export * from "./controllers/chat";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
@@ -44,4 +47,8 @@ export * from "./routes/product";
 export * from "./routes/order";
 export * from "./routes/wish";
 export * from "./routes/payment";
+export * from "./routes/address";
+export * from "./routes/log";
+export * from "./routes/chat";
+
 

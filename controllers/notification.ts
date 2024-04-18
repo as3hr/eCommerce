@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { asyncHandler, notificationModel, userModel } from "../internal";
 import admin from "firebase-admin";
-import Schema from "mongoose";
+import mongoose from "mongoose";
 
 
 const getNotification = asyncHandler(
@@ -20,16 +20,19 @@ const createNotification = asyncHandler(
 );
 
 
-const sendPushNotification = async (title: string, body: any, notifyUsers: Schema.Types.ObjectId[], data : any) => {
-    const users = await userModel.find( { _id: { $in: notifyUsers } } );
-    const fcmTokens = users.map((user)=>user.fcmTokens).flat() as string[];
+const sendPushNotification = async (title: string, body: any, notifyUser: mongoose.Schema.Types.ObjectId, data?: any) => {
+    const user = await userModel.findById(notifyUser).select('fcmTokens');
+    const fcmTokens = user?.fcmTokens;
     
     if(fcmTokens && fcmTokens.length > 0){
       const response = await admin.messaging().sendMulticast({
-        data: {},
+        data: {
+          title: title ?? "Test Title",
+          body: body ?? "Test Body",
+        },
         notification: {
-          title: title || "Test Title",
-          body: body || "Test Body",
+          title: title ?? "Test Title",
+          body: body ?? "Test Body",
         },
         android: { priority: "high" },
         apns: { payload: { aps: { contentAvailable: true } } },
@@ -42,8 +45,8 @@ const sendPushNotification = async (title: string, body: any, notifyUsers: Schem
             failedTokens.push(fcmTokens[idx]);
           }
         });
-        await userModel.updateMany(
-          { _id: { $in: notifyUsers } },
+        await userModel.updateOne(
+          { _id: notifyUser },
           { $pullAll: { fcmTokens: failedTokens } })
       }  
     }

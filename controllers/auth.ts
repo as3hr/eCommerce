@@ -38,7 +38,6 @@ const socialAuth = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
-      console.log('first');
       await userModel.create(req.body);
       const result = await userModel.findOne({ email: req.body.email });
       req.session.user = result!._id;
