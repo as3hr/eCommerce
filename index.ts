@@ -79,7 +79,6 @@ mongoose
   .then((_) => console.log("MongoDB connected"));
 
 const io = new Server(httpServer);
-io.engine.use(createSessionStore());
 chatSupport(io);
 
 httpServer.listen(
