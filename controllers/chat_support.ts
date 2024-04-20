@@ -3,21 +3,21 @@ import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { IChat, chatModel } from "../models/chat";
 import { IMessage, messageModel } from "../models/message";
 import { HttpError, sendPushNotification, userModel } from "../internal";
+import { client } from "../config/db_config";
 import mongoose from "mongoose";
-import { Request } from "express";
+
 export interface ISocket extends Socket {
     userId?: mongoose.Schema.Types.ObjectId;
 }
 
 export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
     
-    io.use((socket: ISocket, next) => {
-        const req = socket.request as Request;
-        if (!req.session.user) {
-            return next(HttpError.invalidTokens());
+    io.use(async (socket: ISocket, next) => {
+        const value = await client.get('user-session');
+        if(!value){
+            throw HttpError.unAuthorized();
         }
-        const userId = req.session.user;
-        socket.userId = userId;
+        socket.userId = JSON.parse(value);
         next();
     });
   
@@ -28,8 +28,9 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             console.error('Socket.io error:', error);
         });
 
-        socket.on('adminJoinRoom', async (data: IChat) => {
-            const user = await userModel.findOne({_id: data.user, isAdmin: true});
+        socket.on('adminJoinRoom', async (data) => {
+            const chatJson: IChat = JSON.parse(data);
+            const user = await userModel.findOne({_id: chatJson.user, isAdmin: true});
             if(!user){
                 //cannot join room
                 throw HttpError.unAuthorized();
@@ -45,8 +46,9 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             }
         });
 
-        socket.on('userJoinRoom', async (data: IChat) => {
-            const user = await userModel.findOne({_id: data.user, isAdmin: false});
+        socket.on('userJoinRoom', async (data) => {
+            const chatJson: IChat = JSON.parse(data);
+            const user = await userModel.findOne({_id: chatJson.user, isAdmin: false});
             if(!user){
                 //cannot join room
                 // user does not exist
@@ -56,6 +58,7 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             if(!chat){
                 // chat does not exist
                 // throw error
+                console.log('no chat found!')
             }
             if(chat){
                 socket.join(chat._id.toString());
@@ -63,25 +66,27 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             }
         });
 
-        socket.on('sendUserMessage', async (data: IMessage) => {
+        socket.on('sendUserMessage', async (data) => {
+            const messageJson: IMessage = JSON.parse(data);
             const chat = await chatModel.findOne({ user: socket.userId, closed: false });
             if(chat){
-                const message = await messageModel.create(data);
-                io.to(data.chatId.toString()).emit("newUserMessage", message.toJSON());
+                const message = await messageModel.create(messageJson);
+                io.to(messageJson.chatId.toString()).emit("newUserMessage", message.toJSON());
                 console.log('Message sent successfully!');
             }
         });
 
-        socket.on('sendAdminMessage',async (data: IMessage) => {
+        socket.on('sendAdminMessage',async (data) => {
+            const messageJson: IMessage = JSON.parse(data);
             const user = await userModel.findOne({_id: socket.userId, isAdmin: false});
             if(!user){
                 //cannot join room
                 throw HttpError.unAuthorized();
             }
-            const chat = await chatModel.findOne({ _id: data.chatId, closed: false });
+            const chat = await chatModel.findOne({ _id: messageJson.chatId, closed: false });
             if(chat){
-                const message = await messageModel.create(data);
-                io.to(data.chatId.toString()).emit("newAdminMessage", message.toJSON());
+                const message = await messageModel.create(messageJson);
+                io.to(messageJson.chatId.toString()).emit("newAdminMessage", message.toJSON());
                 sendPushNotification(
                     `${user.firstName}`, 
                     `${message.text}`,  
@@ -100,11 +105,12 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             socket.leave(chat._id);
           });
       
-          socket.on("leaveRoomAdmin", (data: IMessage) => {
-            socket.leave(data.chatId.toString());
+          socket.on("leaveRoomAdmin", (data) => {
+            const messageJson: IMessage = JSON.parse(data);
+            socket.leave(messageJson.chatId.toString());
           });
       
-          socket.on("disconnect", () => {
+          socket.on("disconnect", (_) => {
             console.log("A user disconnected: ", socket.userId);
           });
 

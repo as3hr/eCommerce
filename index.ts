@@ -1,15 +1,12 @@
 import { Server } from "socket.io";
-import MongoStore from "connect-mongo";
 import dotenv from "dotenv";
 import cors from "cors";
-import express, { NextFunction, Request } from "express";
+import express from "express";
 import { queryParser } from "express-query-parser";
-import session from "express-session";
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import admin from "firebase-admin";
 
 import {
-  IUser,
   addressRouter,
   authRouter,
   errorHandler,
@@ -26,29 +23,10 @@ import {
   chatsRouter,
 } from "./internal.js";
 import { createServer } from "http";
+import { configureRedis } from "./config/db_config.js";
+import { createSessionStore } from "./config/session_store.js";
 
-declare module "express-serve-static-core" {
-  interface Request {
-    model: mongoose.Model<any>;
-    modelName: string;
-    name: string;
-    type: string;
-    propertyName: string;
-    populate: any;
-    select: any;
-    prefix: string;
-    user: IUser;
-    changeModel: any;
-    chargeValue: string;
-    extraStages: mongoose.PipelineStage[];
-  }
-}
-
-declare module "express-session" {
-  interface Session {
-    user: Schema.Types.ObjectId;
-  }
-}
+configureRedis();
 
 admin.initializeApp({
   credential: admin.credential.cert("serviceAccountKey.json"),
@@ -64,23 +42,7 @@ app.use(express.json());
 
 app.enable("trust proxy");
 
-const appSession = session({
-  secret: process.env.SECRET!,
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URL,
-    stringify: false,
-  }),
-  cookie: {
-    maxAge: 14 * 24 * 60 * 60 * 1000, //14 days
-    // secure: true,
-    // httpOnly: true,
-    // sameSite: "none",
-  },
-})
-
-app.use(appSession);
+app.use(createSessionStore());
 
 app.use(
   queryParser({
@@ -116,13 +78,8 @@ mongoose
     )
   .then((_) => console.log("MongoDB connected"));
 
-const io = new Server( httpServer);
-io.use((socket, next) => {
-  const req = socket.request as Request;
-  const nextFunc = next as  NextFunction;
-  appSession(req, {} as any, nextFunc);
-});
-
+const io = new Server(httpServer);
+io.engine.use(createSessionStore());
 chatSupport(io);
 
 httpServer.listen(

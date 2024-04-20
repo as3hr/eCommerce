@@ -37,6 +37,7 @@ export * from "./controllers/payment";
 export * from "./controllers/address";
 export * from "./controllers/chat_support";
 export * from "./controllers/chat";
+export * from "./controllers/message";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
@@ -50,5 +51,6 @@ export * from "./routes/payment";
 export * from "./routes/address";
 export * from "./routes/log";
 export * from "./routes/chat";
+export * from "./routes/message";
 
 
