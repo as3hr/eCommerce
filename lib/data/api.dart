@@ -231,11 +231,10 @@ class Api {
   }
 
   //Chat Api's
-  static Future<Chat> createChat() async {
+  static Future<void> createChat() async {
     const url = '/chats/';
     final response = await dio.post(url);
-    final data = ApiHelpers.checkError(response)['result'];
-    return Chat.fromJson(data);
+    ApiHelpers.checkError(response)['result'];
   }
 
   static Future<Chat> getMyChat() async {

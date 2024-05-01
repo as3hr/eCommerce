@@ -19,7 +19,7 @@ class ChatScreen extends StatelessWidget {
             body: SafeArea(
                 child: controller.isLoading
                     ? const SizedBox()
-                    : controller.myChat?.id != null
+                    : controller.myChat.id != null
                         ? ChatContent()
                         : const StartChat()),
           );

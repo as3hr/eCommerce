@@ -21,7 +21,7 @@ class ChatController extends GetxController {
   }
 
   //initial declarations
-  Chat? myChat;
+  var myChat = Chat();
   bool showImage = false;
   List<Message> messages = [];
   String currentImage = '';
@@ -42,7 +42,8 @@ class ChatController extends GetxController {
 
   Future<void> createChat() async {
     await Api.createChat();
-    getMyChat();
+    await getMyChat();
+    socketConnect();
   }
 
   Future<bool> getMessages({bool refresh = false}) async {
@@ -50,11 +51,11 @@ class ChatController extends GetxController {
       messages.clear();
     }
     int page = (messages.length / limit).ceil() + 1;
-    if (myChat != null) {
+    if (myChat.id != null) {
       messages.addAll(await Api.getMessages(
           limit: limit,
           page: page,
-          chatId: myChat!.id!,
+          chatId: myChat.id!,
           extraQuery: {
             'sort': {'date': -1}
           }));
@@ -65,6 +66,7 @@ class ChatController extends GetxController {
   }
 
   void socketConnect() {
+    if (myChat.id == null) return;
     socket = io.io('http://192.168.100.49:3000', {
       'autoConnect': false,
       'transports': ['websocket'],
@@ -75,7 +77,7 @@ class ChatController extends GetxController {
     });
     final joinRoom = {
       'userId': user.id,
-      'chatId': myChat?.id,
+      'chatId': myChat.id,
     };
     socket.emit('userJoinRoom', joinRoom);
     socket.on('newAdminMessage', (data) {
@@ -96,7 +98,7 @@ class ChatController extends GetxController {
         text: messageController.text,
         image: currentImage.isNotEmpty ? currentImage : null,
         date: DateTime.now(),
-        chatId: myChat!.id,
+        chatId: myChat.id,
         isUser: true,
       );
       messages.insert(0, message);
@@ -158,14 +160,18 @@ class ChatController extends GetxController {
 
   @override
   void onClose() {
-    socket.disconnect();
-    socket.close();
+    if (myChat.id != null) {
+      socket.disconnect();
+      socket.close();
+    }
     super.onClose();
   }
 
   @override
   void dispose() {
-    socket.dispose();
+    if (myChat.id != null) {
+      socket.dispose();
+    }
     super.dispose();
   }
 }

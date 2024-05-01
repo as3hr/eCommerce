@@ -59,7 +59,7 @@ class _InputFieldState extends State<InputField> {
             keyboardType: widget.keyboardType,
             controller: controller,
             inputFormatters: widget.inputFormatters,
-            obscureText: isObsecure,
+            obscureText: widget.passwordField ? isObsecure : false,
             readOnly: widget.readOnly,
             cursorColor: AppColors.lightPurple,
             onChanged: widget.onChanged,
