@@ -1,3 +1,5 @@
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_screen.dart';
+
 import '../../../helpers/functions/change_page.dart';
 import 'profile_sub_screens/address/address_screen.dart';
 import 'profile_sub_screens/wishlist/wishlist_screen.dart';
@@ -10,19 +12,27 @@ class ProfileOption {
 
   static final allOptions = [
     ProfileOption(
-        onTap: () {
-          changePage(AddressScreen.routeName);
-        },
-        title: 'Address'),
+      onTap: () {
+        changePage(AddressScreen.routeName);
+      },
+      title: 'Address',
+    ),
     ProfileOption(
-        onTap: () {
-          changePage(WishListScreen.routeName);
-        },
-        title: 'Wishlist'),
+      onTap: () {
+        changePage(WishListScreen.routeName);
+      },
+      title: 'Wishlist',
+    ),
+    ProfileOption(
+      onTap: () {
+        changePage(ChatScreen.routeName);
+      },
+      title: 'Chat Support',
+    ),
     // ProfileOption(
     //     onTap: () {
     //       changePage(PaymentScreen.routeName);
     //     },
-    //     title: 'Payment'),
+    //     title: 'Payment',),
   ];
 }

@@ -72,6 +72,7 @@ class SignUp extends StatelessWidget {
                   validator: (val) =>
                       (val?.isEmpty == true) ? 'Enter a valid password!' : null,
                   hintText: 'Password',
+                  passwordField: true,
                 ),
                 10.verticalSpace,
                 InputField(

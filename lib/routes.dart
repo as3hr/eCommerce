@@ -1,4 +1,5 @@
 import 'package:e_commerce/binding.dart';
+import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_screen.dart';
 
 import 'helpers/widgets/item_detail/item_detail_screen.dart';
 import 'screens/auth/login/login_screen.dart';
@@ -148,6 +149,11 @@ class Routes {
         return GetPageRoute(
           settings: settings,
           page: () => const PaymentScreen(),
+        );
+      case ChatScreen.routeName:
+        return GetPageRoute(
+          settings: settings,
+          page: () => const ChatScreen(),
         );
       case AddCardScreen.routeName:
         return GetPageRoute(

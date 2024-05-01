@@ -44,20 +44,23 @@ class ItemContainer extends StatelessWidget {
             children: [
               if (product.images.isNotEmpty)
                 Center(
-                  child: CachedNetworkImage(
-                    imageUrl: product.images.firstOrNull ?? '',
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      imageUrl: product.images.firstOrNull ?? '',
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
                   ),
                 ),
               Positioned(

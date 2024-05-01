@@ -51,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                     onChanged: (val) {
                       controller.password = val;
                     },
+                    passwordField: true,
                     hintText: 'Password',
                   ),
                   10.verticalSpace,

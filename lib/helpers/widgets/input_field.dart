@@ -8,7 +8,7 @@ class InputField extends StatefulWidget {
   const InputField({
     super.key,
     this.preFilledValue,
-    this.isObsecure = false,
+    this.passwordField = false,
     this.hintText,
     this.width,
     this.validator,
@@ -17,16 +17,18 @@ class InputField extends StatefulWidget {
     this.inputFormatters,
     this.onSubmit,
     this.maxLength,
+    this.suffixIcon,
     required this.onChanged,
   });
   final List<TextInputFormatter>? inputFormatters;
   final String? preFilledValue;
-  final bool isObsecure;
+  final bool passwordField;
   final int? maxLength;
   final bool readOnly;
   final String? hintText;
   final double? width;
   final TextInputType? keyboardType;
+  final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final void Function(String) onChanged;
   final void Function(String)? onSubmit;
@@ -36,6 +38,7 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   final controller = TextEditingController();
+  bool isObsecure = true;
 
   @override
   void initState() {
@@ -56,14 +59,27 @@ class _InputFieldState extends State<InputField> {
             keyboardType: widget.keyboardType,
             controller: controller,
             inputFormatters: widget.inputFormatters,
-            obscureText: widget.isObsecure,
+            obscureText: isObsecure,
             readOnly: widget.readOnly,
             cursorColor: AppColors.lightPurple,
             onChanged: widget.onChanged,
             validator: widget.validator,
             onFieldSubmitted: widget.onSubmit,
-            decoration:
-                AppDecoration.inputFieldDecoration(widget.hintText ?? '')),
+            decoration: AppDecoration.inputFieldDecoration(
+              widget.hintText ?? '',
+              suffixIcon: widget.passwordField
+                  ? GestureDetector(
+                      onTap: () {
+                        isObsecure = !isObsecure;
+                        setState(() {});
+                      },
+                      child: Icon(
+                        isObsecure
+                            ? Icons.visibility_off
+                            : Icons.remove_red_eye_rounded,
+                      ))
+                  : null,
+            )),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/data/api_helpers.dart';
+import 'package:e_commerce/models/message.dart';
 import 'package:e_commerce/models/notification.dart';
 import 'package:e_commerce/models/order.dart';
 import 'package:e_commerce/models/product.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/models/wishlist.dart';
 
 import '../models/address.dart';
+import '../models/chat.dart';
 
 class Api {
   static final dio = Dio(BaseOptions(
@@ -194,5 +196,55 @@ class Api {
     final url = '/addresses/${address.id}';
     final response = await dio.delete(url);
     ApiHelpers.checkError(response);
+  }
+
+  //Message API's
+  static Future<List<Message>> getMessages({
+    required String chatId,
+    int limit = 25,
+    int page = 1,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/messages/';
+    final response = await dio.get(
+      url,
+      queryParameters: {
+        'limit': limit,
+        'page': page,
+        'chatId': chatId,
+        ...?extraQuery
+      },
+    );
+    return ApiHelpers.parseResponse(response, Message.fromJson);
+  }
+
+  static Future<void> updateMessage({required Message message}) async {
+    final url = '/messages/${message.id}';
+    final response = await dio.put(url, data: message.toJson());
+    ApiHelpers.checkError(response)['result'];
+  }
+
+  static Future<void> deleteMessage({required Message message}) async {
+    final url = '/messages/${message.id}';
+    final response = await dio.delete(url);
+    ApiHelpers.checkError(response);
+  }
+
+  //Chat Api's
+  static Future<Chat> createChat() async {
+    const url = '/chats/';
+    final response = await dio.post(url);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Chat.fromJson(data);
+  }
+
+  static Future<Chat> getMyChat() async {
+    const url = '/chats/';
+    final response = await dio.get(url);
+    final data = ApiHelpers.checkError(response)['result']['data'] as List;
+    if (data.isNotEmpty) {
+      return Chat.fromJson(data.first);
+    }
+    return Chat();
   }
 }

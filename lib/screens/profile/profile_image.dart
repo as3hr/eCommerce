@@ -1,4 +1,3 @@
-import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/widgets/rounded_image.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
@@ -29,10 +28,8 @@ class ProfileImage extends StatelessWidget {
                 right: 7,
                 bottom: 10,
                 child: GestureDetector(
-                  onTap: () {
-                    loadingWrapper(() async {
-                      await controller.showOptions(context);
-                    });
+                  onTap: () async {
+                    await controller.showOptions(context);
                   },
                   child: const Icon(
                     Icons.edit,

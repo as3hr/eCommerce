@@ -39,7 +39,9 @@ class _PhotoSliderState extends State<PhotoSlider> {
               ),
               filterQuality: FilterQuality.high,
               imageProvider: NetworkImage(widget.images[index]),
-              initialScale: PhotoViewComputedScale.contained * 0.8,
+              initialScale: PhotoViewComputedScale.covered * 0.4,
+              minScale: PhotoViewComputedScale.contained * 1.2,
+              maxScale: PhotoViewComputedScale.covered * 0.8,
             );
           },
           itemCount: widget.images.length,

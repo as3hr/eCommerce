@@ -107,7 +107,7 @@ class ProfileScreenController extends GetxController {
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {
-                await getImageFromGallery();
+                await getImage(ImageSource.gallery);
               });
             },
           ),
@@ -116,7 +116,7 @@ class ProfileScreenController extends GetxController {
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {
-                await getImageFromCamera();
+                await getImage(ImageSource.camera);
               });
             },
           ),
@@ -125,19 +125,13 @@ class ProfileScreenController extends GetxController {
     );
   }
 
-  Future getImageFromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      await uploadImage(pickedFile.path, pickedFile.name);
-    }
-  }
-
-  Future getImageFromCamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    if (pickedFile != null) {
-      await uploadImage(pickedFile.path, pickedFile.name);
+  Future getImage(ImageSource source) async {
+    final file = await picker.pickImage(source: source);
+    if (file != null) {
+      await uploadImage(
+        file.path,
+        file.name,
+      );
     }
   }
 
