@@ -5,6 +5,7 @@ import 'package:e_commerce/models/settings.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:e_commerce/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -51,7 +52,7 @@ class Clot extends StatelessWidget {
                     return GetMaterialApp(
                       theme: light,
                       darkTheme: dark,
-                      debugShowCheckedModeBanner: false,
+                      debugShowCheckedModeBanner: kDebugMode,
                       onGenerateRoute: Routes.onGenerateRoute,
                       defaultTransition: Transition.fadeIn,
                       scrollBehavior: const ScrollBehavior().copyWith(

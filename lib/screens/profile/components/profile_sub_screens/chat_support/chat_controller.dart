@@ -27,6 +27,7 @@ class ChatController extends GetxController {
   String currentImage = '';
   String selectedImage = '';
   bool isLoading = true;
+  bool messagesFetched = false;
   bool filePicked = false;
   int limit = 25;
   final messageController = TextEditingController();
@@ -59,9 +60,12 @@ class ChatController extends GetxController {
           extraQuery: {
             'sort': {'date': -1}
           }));
+      messagesFetched = true;
       update();
       if (messages.length < limit) return false;
     }
+    messagesFetched = true;
+    update();
     return true;
   }
 

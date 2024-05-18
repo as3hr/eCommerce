@@ -14,7 +14,7 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Expanded(
-          child: controller.messages.isEmpty
+          child: controller.messages.isEmpty && controller.messagesFetched
               ? Center(
                   child: Text(
                     'No Messages to Show !',

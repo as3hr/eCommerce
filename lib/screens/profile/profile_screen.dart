@@ -91,8 +91,11 @@ class ProfileScreen extends StatelessWidget {
                               title: 'Sign out',
                               message: 'Are you sure you want to sign Out?');
                           if (response) {
-                            loadingWrapper(() async =>
-                                {await Get.find<AuthController>().logout()});
+                            loadingWrapper(
+                                () async => {
+                                      await Get.find<AuthController>().logout()
+                                    }).then((value) =>
+                                showToast(message: 'Signed Out Successfully!'));
                           }
                         },
                         child: Text(
