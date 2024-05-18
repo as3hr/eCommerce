@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
@@ -10,7 +11,6 @@ import '../styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../styles/app_colors.dart';
 import 'item_detail/item_detail_screen.dart';
 
 class ItemContainer extends StatelessWidget {
@@ -37,7 +37,6 @@ class ItemContainer extends StatelessWidget {
           height: 024.sh,
           width: width ?? 0.4.sw,
           decoration: BoxDecoration(
-            color: AppColors.grayI,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Stack(
@@ -56,8 +55,7 @@ class ItemContainer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
+                      placeholder: (context, url) => const Indicator(),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),
@@ -72,9 +70,9 @@ class ItemContainer extends StatelessWidget {
                     controller.update();
                   },
                   child: product.isFav
-                      ? const Icon(
+                      ? Icon(
                           Icons.favorite,
-                          color: AppColors.redColor,
+                          color: Theme.of(context).colorScheme.error,
                           size: 20,
                         )
                       : const Image(
@@ -86,9 +84,9 @@ class ItemContainer extends StatelessWidget {
                   child: Container(
                     height: 55,
                     width: width ?? 0.4.sw,
-                    decoration: const BoxDecoration(
-                      color: AppColors.grayIII,
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10)),
                     ),
@@ -101,13 +99,17 @@ class ItemContainer extends StatelessWidget {
                           Text(
                             product.title ?? '',
                             style: AppDecoration.semiMediumStyle(
-                                fontSize: 17.5, color: AppColors.pureBlack),
+                                fontSize: 17.5,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             '\$${product.price}',
                             style: AppDecoration.boldStyle(
-                                fontSize: 16, color: AppColors.pureBlack),
+                                fontSize: 16,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
                           ),
                         ],
                       ),

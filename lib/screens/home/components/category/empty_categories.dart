@@ -25,7 +25,7 @@ class EmptyCategories extends StatelessWidget {
           Text(
             "Sorry, we couldn't find any\n  matching result for your\n                Search.",
             style: AppDecoration.semiBoldStyle(
-                fontSize: 25, color: AppColors.pureBlack),
+                fontSize: 25, color: Theme.of(context).colorScheme.onSecondary),
           ),
           5.verticalSpace,
           CustomContainer(

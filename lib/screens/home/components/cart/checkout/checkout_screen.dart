@@ -4,7 +4,6 @@ import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helpers/functions/change_page.dart';
-import '../../../../../helpers/styles/app_colors.dart';
 import '../../../../../helpers/styles/app_decoration.dart';
 import '../../../../../helpers/styles/app_images.dart';
 import '../../../../../helpers/widgets/custom_tile.dart';
@@ -25,7 +24,7 @@ class CheckoutScreen extends StatelessWidget {
           Get.find<ProfileScreenController>().addresses.firstOrNull;
       controller.order.address = userAddress ?? Address();
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Column(
           children: [
@@ -37,17 +36,20 @@ class CheckoutScreen extends StatelessWidget {
               title: Text(
                 'Shipping Address',
                 style: AppDecoration.mediumStyle(
-                    fontSize: 16, color: AppColors.lightBlack),
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.onSecondary),
               ),
               subTitle: Text(
                 controller.order.address?.streetAddress ?? '',
                 style: AppDecoration.mediumStyle(
                   fontSize: 15,
-                  color: AppColors.pureBlack,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
-              trailing: const Image(image: AssetImage(AppImages.arrowForward)),
+              trailing: Image(
+                  image: const AssetImage(AppImages.arrowForward),
+                  color: Theme.of(context).colorScheme.onSecondary),
               trailingOnTap: () {
                 changePage(AddAddressScreen.routeName,
                     arguments: {'address': controller.order.address});

@@ -12,7 +12,7 @@ import '../models/chat.dart';
 
 class Api {
   static final dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.100.49:3000",
+      baseUrl: "http://192.168.100.55:3000",
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json'));

@@ -12,7 +12,7 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.grayI,
+        color: Theme.of(context).colorScheme.onPrimary,
         borderRadius: BorderRadius.circular(30),
       ),
       height: 45,
@@ -20,7 +20,10 @@ class SearchField extends StatelessWidget {
       child: Row(
         children: [
           13.horizontalSpace,
-          const Image(image: AssetImage(AppImages.search)),
+          Image(
+            image: const AssetImage(AppImages.search),
+            color: Theme.of(context).colorScheme.onSecondary,
+          ),
           10.horizontalSpace,
           Expanded(
             child: Padding(
@@ -32,7 +35,8 @@ class SearchField extends StatelessWidget {
                     contentPadding: const EdgeInsets.all(0),
                     hintText: 'Search',
                     hintStyle: AppDecoration.mediumStyle(
-                        fontSize: 16.sp, color: AppColors.lightBlack),
+                        fontSize: 16.sp,
+                        color: Theme.of(context).colorScheme.onSecondary),
                     focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Colors.transparent,

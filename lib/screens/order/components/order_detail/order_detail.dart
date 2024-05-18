@@ -1,7 +1,6 @@
 import 'package:e_commerce/models/order.dart';
 import 'package:e_commerce/screens/order/components/order_detail/order_items.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/widgets/header.dart';
 import 'order_detail_container.dart';
@@ -17,7 +16,7 @@ class OrderDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.pureWhite,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -33,7 +32,8 @@ class OrderDetail extends StatelessWidget {
                 child: Text(
                   'Order Items',
                   style: AppDecoration.boldStyle(
-                      fontSize: 17, color: AppColors.pureBlack),
+                      fontSize: 17,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ),
               15.verticalSpace,
@@ -44,7 +44,8 @@ class OrderDetail extends StatelessWidget {
                 child: Text(
                   'Shipping Details',
                   style: AppDecoration.boldStyle(
-                      fontSize: 17, color: AppColors.pureBlack),
+                      fontSize: 17,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ),
               15.verticalSpace,
@@ -56,7 +57,8 @@ class OrderDetail extends StatelessWidget {
                     child: Text(
                       order.address?.streetAddress ?? '',
                       style: AppDecoration.boldStyle(
-                          fontSize: 13, color: AppColors.lightBlack),
+                          fontSize: 13,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                 ),

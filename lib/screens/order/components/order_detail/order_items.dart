@@ -18,17 +18,17 @@ class OrderItems extends StatelessWidget {
       child: Center(
           child: ExpansionTile(
         shape: const Border(),
-        backgroundColor: AppColors.grayI,
-        collapsedBackgroundColor: AppColors.grayI,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        collapsedBackgroundColor: Theme.of(context).colorScheme.onPrimary,
         expansionAnimationStyle: AnimationStyle(curve: Curves.easeIn),
-        leading: const Image(
-          image: AssetImage(AppImages.order),
-          color: AppColors.pureBlack,
+        leading: Image(
+          image: const AssetImage(AppImages.order),
+          color: Theme.of(context).colorScheme.onSecondary,
         ),
         title: Text(
           '${order.products?.length} items',
           style: AppDecoration.mediumStyle(
-              fontSize: 15, color: AppColors.pureBlack),
+              fontSize: 15, color: Theme.of(context).colorScheme.onSecondary),
         ),
         trailing: Text(
           'View all',
@@ -40,12 +40,14 @@ class OrderItems extends StatelessWidget {
                 title: Text(
                   '${product.title}',
                   style: AppDecoration.boldStyle(
-                      fontSize: 15, color: AppColors.pureBlack),
+                      fontSize: 15,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 subtitle: Text(
                   '\$${product.price}',
                   style: AppDecoration.mediumStyle(
-                      fontSize: 15, color: AppColors.pureBlack),
+                      fontSize: 15,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 trailing: GestureDetector(
                   onTap: () =>
@@ -53,7 +55,10 @@ class OrderItems extends StatelessWidget {
                     'product': product,
                     'changable': false,
                   }),
-                  child: const Image(image: AssetImage(AppImages.arrowForward)),
+                  child: Image(
+                    image: const AssetImage(AppImages.arrowForward),
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
                 ),
               );
             }).toList() ??

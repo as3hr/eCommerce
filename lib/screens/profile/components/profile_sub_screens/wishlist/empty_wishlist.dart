@@ -1,4 +1,3 @@
-import '../../../../../helpers/styles/app_colors.dart';
 import '../../../../../helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,17 +10,17 @@ class EmptyWishList extends StatelessWidget {
     return Column(
       children: [
         250.verticalSpace,
-        const Center(
+        Center(
             child: Icon(
           Icons.heart_broken_sharp,
-          color: Colors.redAccent,
+          color: Theme.of(context).colorScheme.error,
           size: 40,
         )),
         5.verticalSpace,
         Text(
           "NO ITEMS TO SHOW :(",
           style: AppDecoration.semiBoldStyle(
-              fontSize: 25, color: AppColors.pureBlack),
+              fontSize: 25, color: Theme.of(context).colorScheme.onSecondary),
         ),
       ],
     );

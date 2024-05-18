@@ -21,7 +21,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AuthController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -39,7 +39,8 @@ class SignUp extends StatelessWidget {
                   child: Text(
                     'Create Account',
                     style: AppDecoration.boldStyle(
-                        fontSize: 35, color: AppColors.pureBlack),
+                        fontSize: 35,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
                 ),
                 20.verticalSpace,

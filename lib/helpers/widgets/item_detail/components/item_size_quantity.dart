@@ -47,7 +47,8 @@ class ItemSizeQuantity extends StatelessWidget {
                 leading: Text(
                   'Size',
                   style: AppDecoration.semiBoldStyle(
-                      fontSize: 19, color: AppColors.lightBlack),
+                      fontSize: 19,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -55,10 +56,14 @@ class ItemSizeQuantity extends StatelessWidget {
                     Text(
                       'S',
                       style: AppDecoration.boldStyle(
-                          fontSize: 17, color: AppColors.pureBlack),
+                          fontSize: 17,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     20.horizontalSpace,
-                    const Image(image: AssetImage(AppImages.arrowDropDown))
+                    Image(
+                      image: const AssetImage(AppImages.arrowDropDown),
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    )
                   ],
                 ),
               ),
@@ -72,7 +77,8 @@ class ItemSizeQuantity extends StatelessWidget {
               leading: Text(
                 'Quantity',
                 style: AppDecoration.semiBoldStyle(
-                    fontSize: 19, color: AppColors.lightBlack),
+                    fontSize: 19,
+                    color: Theme.of(context).colorScheme.onSecondary),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -97,7 +103,8 @@ class ItemSizeQuantity extends StatelessWidget {
                   Text(
                     '${product.quantity}',
                     style: AppDecoration.boldStyle(
-                        fontSize: 17, color: AppColors.pureBlack),
+                        fontSize: 17,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
                   15.horizontalSpace,
                   GestureDetector(

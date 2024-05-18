@@ -23,7 +23,7 @@ class EmptyCart extends StatelessWidget {
         Text(
           "Your Cart is Empty",
           style: AppDecoration.semiBoldStyle(
-              fontSize: 25, color: AppColors.pureBlack),
+              fontSize: 25, color: Theme.of(context).colorScheme.onSecondary),
         ),
         5.verticalSpace,
         CustomContainer(

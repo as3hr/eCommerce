@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../styles/app_colors.dart';
-
 class CustomTile extends StatelessWidget {
   const CustomTile({
     super.key,
@@ -33,7 +31,7 @@ class CustomTile extends StatelessWidget {
         height: height ?? 60,
         width: width ?? 0.85.sw,
         decoration: BoxDecoration(
-          color: color ?? AppColors.grayI,
+          color: color ?? Theme.of(context).colorScheme.onPrimary,
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(borderRadius ?? 10),
         ),

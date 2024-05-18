@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:e_commerce/helpers/styles/app_images.dart';
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,8 @@ Future<T?> loadingWrapper<T>(
   bool showLogs = false,
 }) async {
   if (showLoader) {
-    Get.context?.loaderOverlay.show(showOverlay: false);
+    Get.context?.loaderOverlay
+        .show(showOverlay: false, widgetBuilder: (_) => const Indicator());
   }
   try {
     final response = await func();

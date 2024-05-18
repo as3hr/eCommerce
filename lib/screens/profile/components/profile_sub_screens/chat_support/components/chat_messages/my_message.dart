@@ -1,9 +1,9 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../helpers/functions/date_helper.dart';
-import '../../../../../../../helpers/styles/app_colors.dart';
 
 class MyMessage extends StatelessWidget {
   const MyMessage({super.key, required this.message});
@@ -23,15 +23,20 @@ class MyMessage extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxWidth: 0.65.sw,
                 ),
-                decoration: const BoxDecoration(
-                    color: AppColors.grayIII,
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.zero,
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12),
                     )),
-                child: Text(message.text ?? ''),
+                child: Text(
+                  message.text ?? '',
+                  style: AppDecoration.mediumStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
               ),
               5.verticalSpace,
               Row(

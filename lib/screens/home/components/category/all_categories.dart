@@ -37,14 +37,14 @@ class AllCategories extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         backgroundImage: AssetImage(category.image),
-                        backgroundColor: AppColors.grayI,
                         radius: 30,
                       ),
                       3.verticalSpace,
                       Text(
                         category.title,
                         style: AppDecoration.mediumStyle(
-                            fontSize: 15, color: AppColors.pureBlack),
+                            fontSize: 15,
+                            color: Theme.of(context).colorScheme.onSecondary),
                       ),
                     ],
                   ),

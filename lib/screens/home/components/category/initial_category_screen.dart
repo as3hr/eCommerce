@@ -1,7 +1,6 @@
 import 'package:e_commerce/helpers/functions/change_page.dart';
 import 'package:e_commerce/screens/home/components/category/category_content.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +28,8 @@ class InitialCategoryScreen extends StatelessWidget {
             child: Text(
               'Shop By Categories',
               style: AppDecoration.boldStyle(
-                  fontSize: 25, color: AppColors.pureBlack),
+                  fontSize: 25,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           10.verticalSpace,
@@ -50,19 +50,23 @@ class InitialCategoryScreen extends StatelessWidget {
                         height: 55,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.grayI,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                         child: Center(
                             child: ListTile(
                                 leading: CircleAvatar(
                                   backgroundImage: AssetImage(item.image),
-                                  backgroundColor: AppColors.grayI,
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.onPrimary,
                                   radius: 30,
                                 ),
                                 title: Text(
                                   item.title,
                                   style: AppDecoration.mediumStyle(
-                                      fontSize: 18, color: AppColors.pureBlack),
+                                      fontSize: 18,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
                                 ))),
                       ),
                     ),

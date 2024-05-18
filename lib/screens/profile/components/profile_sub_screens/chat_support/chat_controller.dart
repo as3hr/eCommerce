@@ -67,7 +67,7 @@ class ChatController extends GetxController {
 
   void socketConnect() {
     if (myChat.id == null) return;
-    socket = io.io('http://192.168.100.49:3000', {
+    socket = io.io('http://192.168.100.55:3000', {
       'autoConnect': false,
       'transports': ['websocket'],
     });

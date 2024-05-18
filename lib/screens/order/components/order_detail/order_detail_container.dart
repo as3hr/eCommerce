@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
-
 class OrderDetailContainer extends StatelessWidget {
   const OrderDetailContainer({super.key, required this.child});
   final Widget child;
@@ -14,7 +12,8 @@ class OrderDetailContainer extends StatelessWidget {
         height: 65,
         width: 1.sw,
         decoration: BoxDecoration(
-            color: AppColors.grayI, borderRadius: BorderRadius.circular(10)),
+            color: Theme.of(context).colorScheme.onPrimary,
+            borderRadius: BorderRadius.circular(10)),
         child: child,
       ),
     );

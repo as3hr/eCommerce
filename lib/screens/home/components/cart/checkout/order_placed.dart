@@ -29,7 +29,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
+      // canPop: false,
       child: Scaffold(
         backgroundColor: AppColors.lightPurple,
         body: Column(
@@ -40,9 +40,9 @@ class _OrderPlacedState extends State<OrderPlaced> {
             Container(
               height: 0.4.sh,
               width: 1.sw,
-              decoration: const BoxDecoration(
-                color: AppColors.pureWhite,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
@@ -54,7 +54,8 @@ class _OrderPlacedState extends State<OrderPlaced> {
                     child: Text(
                       "Order Placed Successfully!",
                       style: AppDecoration.boldStyle(
-                          fontSize: 29, color: AppColors.pureBlack),
+                          fontSize: 29,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                   10.verticalSpace,
@@ -62,7 +63,8 @@ class _OrderPlacedState extends State<OrderPlaced> {
                     child: Text(
                       "You will receive an email confirmation shortly!!",
                       style: AppDecoration.semiBoldStyle(
-                          fontSize: 19, color: AppColors.lightBlack),
+                          fontSize: 19,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                 ],

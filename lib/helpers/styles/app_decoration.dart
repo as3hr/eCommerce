@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppDecoration {
-  static InputDecoration inputFieldDecoration(String hintText,
+  static InputDecoration inputFieldDecoration(
+      String hintText, BuildContext context,
       {Widget? suffixIcon}) {
     return InputDecoration(
       hintText: hintText,
@@ -11,11 +12,11 @@ class AppDecoration {
       hintStyle: const TextStyle(color: AppColors.grayIV),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-        color: Colors.grey.shade100,
+        color: Theme.of(context).colorScheme.onPrimary,
       )),
       enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-        color: Colors.grey.shade100,
+        color: Theme.of(context).colorScheme.onPrimary,
       )),
     );
   }

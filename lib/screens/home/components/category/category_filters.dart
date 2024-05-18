@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/screens/home/components/category/category_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,14 +21,18 @@ class CategoryFilters extends StatelessWidget {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomContainer(
                   onTap: () {},
                   text: 'On Sale',
-                  color: AppColors.grayI,
-                  textColor: AppColors.pureBlack,
+                  color:
+                      context.isDark ? AppColors.lightIndigo : AppColors.grayI,
+                  textColor: context.isDark
+                      ? AppColors.pureWhite
+                      : AppColors.pureBlack,
                   height: 35,
                   width: 0.19.sw,
                   fontSize: 15.5,

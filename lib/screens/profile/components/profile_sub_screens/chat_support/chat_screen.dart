@@ -1,4 +1,3 @@
-import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_content.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/start_chat.dart';
@@ -15,7 +14,7 @@ class ChatScreen extends StatelessWidget {
         init: ChatController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
                 child: controller.isLoading
                     ? const SizedBox()

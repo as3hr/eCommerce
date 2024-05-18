@@ -3,7 +3,6 @@ import '../../../helpers/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../helpers/styles/app_colors.dart';
 import '../../../models/notification.dart';
 
 class NotificationList extends StatelessWidget {
@@ -23,19 +22,20 @@ class NotificationList extends StatelessWidget {
               height: 60,
               width: 0.85.sw,
               decoration: BoxDecoration(
-                color: AppColors.grayI,
+                color: Theme.of(context).colorScheme.onPrimary,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
-                leading: const Image(
-                  image: AssetImage(AppImages.notification),
-                  color: AppColors.pureBlack,
+                leading: Image(
+                  image: const AssetImage(AppImages.notification),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 title: Text(
                   notification.title ?? '',
                   style: AppDecoration.lightStyle(
-                      fontSize: 15, color: AppColors.pureBlack),
+                      fontSize: 15,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ),
             ),

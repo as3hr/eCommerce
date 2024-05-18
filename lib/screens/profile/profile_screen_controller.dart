@@ -1,8 +1,10 @@
 import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -103,7 +105,12 @@ class ProfileScreenController extends GetxController {
       builder: (context) => CupertinoActionSheet(
         actions: [
           CupertinoActionSheetAction(
-            child: const Text('Photo Gallery'),
+            child: Text(
+              'Photo Gallery',
+              style: AppDecoration.semiBoldStyle(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSecondary),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {
@@ -112,7 +119,12 @@ class ProfileScreenController extends GetxController {
             },
           ),
           CupertinoActionSheetAction(
-            child: const Text('Camera'),
+            child: Text(
+              'Camera',
+              style: AppDecoration.semiBoldStyle(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSecondary),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {

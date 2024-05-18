@@ -1,3 +1,5 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
+
 import '../../helpers/functions/change_page.dart';
 import '../../helpers/styles/app_colors.dart';
 import 'bottom_bar.dart';
@@ -22,7 +24,9 @@ class BottomBarItem extends StatelessWidget {
             image: AssetImage(item.image),
             color: controller.currentIndex == index
                 ? AppColors.lightPurple
-                : AppColors.lightBlack,
+                : context.isDark
+                    ? AppColors.grayI
+                    : AppColors.lightBlack,
           ));
     });
   }

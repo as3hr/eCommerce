@@ -21,7 +21,7 @@ class AddAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Column(
           children: [

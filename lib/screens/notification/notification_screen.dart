@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../helpers/styles/app_colors.dart';
-
 class NotificationScreen extends StatelessWidget {
   static const routeName = '/notification-screen';
   const NotificationScreen({super.key});
@@ -18,7 +16,7 @@ class NotificationScreen extends StatelessWidget {
         init: NotificationScreenController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -28,7 +26,8 @@ class NotificationScreen extends StatelessWidget {
                         child: Text(
                       'Notifications',
                       style: AppDecoration.boldStyle(
-                          fontSize: 18, color: AppColors.pureBlack),
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     )),
                     20.verticalSpace,
                     controller.notificationsList.isEmpty

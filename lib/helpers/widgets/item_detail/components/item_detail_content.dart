@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +42,8 @@ class ItemDetailContent extends StatelessWidget {
                         child: Container(
                             height: 0.45.sh,
                             width: 0.55.sw,
-                            decoration: const BoxDecoration(
-                              color: AppColors.grayI,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.onPrimary,
                             ),
                             child: Center(
                               child: CachedNetworkImage(
@@ -50,21 +51,20 @@ class ItemDetailContent extends StatelessWidget {
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                   decoration: BoxDecoration(
-                                    color: AppColors.grayI,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
                                     image: DecorationImage(
                                       image: imageProvider,
                                       fit: BoxFit.cover,
-                                      colorFilter: const ColorFilter.mode(
-                                        AppColors.grayI,
+                                      colorFilter: ColorFilter.mode(
+                                        Theme.of(context).colorScheme.onPrimary,
                                         BlendMode.dst,
                                       ),
                                     ),
                                   ),
                                 ),
                                 placeholder: (context, url) =>
-                                    const CircularProgressIndicator(
-                                  color: AppColors.lightBlack,
-                                ),
+                                    const Indicator(),
                                 errorWidget: (context, url, error) =>
                                     const Icon(Icons.error),
                               ),
@@ -78,7 +78,8 @@ class ItemDetailContent extends StatelessWidget {
             child: Text(
               product.title ?? '',
               style: AppDecoration.semiBoldStyle(
-                  fontSize: 17, color: AppColors.pureBlack),
+                  fontSize: 17,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           10.verticalSpace,
@@ -100,7 +101,8 @@ class ItemDetailContent extends StatelessWidget {
             child: Text(
               product.description ?? '',
               style: AppDecoration.lightStyle(
-                  fontSize: 14, color: AppColors.lightBlack),
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           15.verticalSpace,
@@ -109,7 +111,8 @@ class ItemDetailContent extends StatelessWidget {
             child: Text(
               "Shipping & Returns",
               style: AppDecoration.semiBoldStyle(
-                  fontSize: 17, color: AppColors.pureBlack),
+                  fontSize: 17,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           10.verticalSpace,
@@ -118,7 +121,8 @@ class ItemDetailContent extends StatelessWidget {
             child: Text(
               "Free standard shipping and free 60-day returns",
               style: AppDecoration.lightStyle(
-                  fontSize: 14, color: AppColors.pureBlack),
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           15.verticalSpace,
@@ -127,7 +131,8 @@ class ItemDetailContent extends StatelessWidget {
             child: Text(
               '${product.rating?.toDouble()}',
               style: AppDecoration.boldStyle(
-                  fontSize: 25, color: AppColors.pureBlack),
+                  fontSize: 25,
+                  color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
           Padding(

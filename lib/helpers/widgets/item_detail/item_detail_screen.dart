@@ -4,7 +4,6 @@ import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
-import '../../styles/app_colors.dart';
 import '../../styles/app_decoration.dart';
 import '../../styles/app_images.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
           controller.update();
         },
         child: Scaffold(
-          backgroundColor: AppColors.pureWhite,
+          backgroundColor: Theme.of(context).colorScheme.background,
           body: SafeArea(
               child: SingleChildScrollView(
             child: Stack(
@@ -62,7 +61,9 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           Text(
                             'You cannot update this product anymore!',
                             style: AppDecoration.mediumStyle(
-                                fontSize: 14, color: AppColors.pureBlack),
+                                fontSize: 14,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
                           ),
                         ],
                         const Spacer(),
@@ -74,13 +75,17 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                             }
                           },
                           child: widget.product.isFav && widget.changable
-                              ? const Icon(
+                              ? Icon(
                                   Icons.favorite,
-                                  color: AppColors.redColor,
+                                  color: Theme.of(context).colorScheme.error,
                                   size: 20,
                                 )
-                              : const Image(
-                                  image: AssetImage(AppImages.favIconUnfilled)),
+                              : Image(
+                                  image: const AssetImage(
+                                      AppImages.favIconUnfilled),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondary),
                         ),
                         20.horizontalSpace
                       ],

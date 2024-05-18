@@ -40,10 +40,12 @@ class _OrderStatusListState extends State<OrderStatusList> {
                   ),
                   title: Text(status.title,
                       style: AppDecoration.mediumStyle(
-                          fontSize: 18, color: AppColors.pureBlack)),
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.onSecondary)),
                   trailing: Text('28 May',
                       style: AppDecoration.mediumStyle(
-                          fontSize: 15, color: AppColors.pureBlack)),
+                          fontSize: 15,
+                          color: Theme.of(context).colorScheme.onSecondary)),
                 ),
                 8.verticalSpace,
               ],

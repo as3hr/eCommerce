@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../styles/app_colors.dart';
@@ -27,19 +28,21 @@ class DefaultImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius ?? size),
           border: showBorder
-              ? Border.all(width: 2, color: AppColors.grayIII)
+              ? Border.all(
+                  width: 2,
+                  color: context.isDark
+                      ? AppColors.lightIndigo
+                      : AppColors.grayIII)
               : null,
         ),
         child: Center(
-          child: DefaultTextStyle(
+          child: Text(
+            (text?.split(' ').map((word) => word[0]).join().toUpperCase() ??
+                ''),
             style: TextStyle(
               fontSize: size / 2.5,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: context.isDark ? AppColors.lightIndigo : AppColors.grayIV,
               fontWeight: FontWeight.bold,
-            ),
-            child: Text(
-              (text?.split(' ').map((word) => word[0]).join().toUpperCase() ??
-                  ''),
             ),
           ),
         ),

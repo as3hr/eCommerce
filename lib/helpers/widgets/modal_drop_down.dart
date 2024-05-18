@@ -1,4 +1,3 @@
-import '../styles/app_colors.dart';
 import '../styles/app_decoration.dart';
 import '../styles/app_images.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class ModalDropDown extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: color ?? AppColors.grayI,
+                  color: color ?? Theme.of(context).colorScheme.onPrimary,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -38,14 +37,16 @@ class ModalDropDown extends StatelessWidget {
                           text,
                           style: AppDecoration.mediumStyle(
                               fontSize: 15,
-                              color: textColor ?? AppColors.pureBlack),
+                              color: textColor ??
+                                  Theme.of(context).colorScheme.onSecondary),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image(
                           image: const AssetImage(AppImages.arrowDropDown),
-                          color: textColor ?? AppColors.pureBlack,
+                          color: textColor ??
+                              Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                     ],

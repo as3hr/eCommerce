@@ -33,7 +33,8 @@ class CartContent extends StatelessWidget {
                 child: Text(
                   'Remove All',
                   style: AppDecoration.semiBoldStyle(
-                      fontSize: 18, color: AppColors.lightBlack),
+                      fontSize: 18,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ),
             ),
@@ -43,25 +44,25 @@ class CartContent extends StatelessWidget {
             text1: 'Subtotal',
             text1Color: AppColors.lightGrey,
             text2: '\$${parseValToDouble(controller.order.subTotal)}',
-            text2Color: AppColors.pureBlack,
+            text2Color: Theme.of(context).colorScheme.onSecondary,
           ),
           SpacerRow(
             text1: 'Shipping Cost',
             text1Color: AppColors.lightGrey,
             text2: '\$${parseValToDouble(controller.order.shippingCost)}',
-            text2Color: AppColors.pureBlack,
+            text2Color: Theme.of(context).colorScheme.onSecondary,
           ),
           SpacerRow(
             text1: 'Tax',
             text1Color: AppColors.lightGrey,
             text2: '\$${parseValToDouble(controller.order.tax)}',
-            text2Color: AppColors.pureBlack,
+            text2Color: Theme.of(context).colorScheme.onSecondary,
           ),
           SpacerRow(
             text1: 'Total',
             text1Color: AppColors.lightGrey,
             text2: '\$${parseValToDouble(controller.order.total)}',
-            text2Color: AppColors.pureBlack,
+            text2Color: Theme.of(context).colorScheme.onSecondary,
           ),
           CustomContainer(
               onTap: () {

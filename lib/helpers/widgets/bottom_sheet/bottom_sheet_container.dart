@@ -29,7 +29,9 @@ class BottomSheetContainer extends StatelessWidget {
           width: 0.9.sw,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35),
-            color: isSelected ? AppColors.lightPurple : AppColors.grayI,
+            color: isSelected
+                ? AppColors.lightPurple
+                : Theme.of(context).colorScheme.onPrimary,
           ),
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -42,7 +44,7 @@ class BottomSheetContainer extends StatelessWidget {
                       fontSize: 20,
                       color: isSelected
                           ? AppColors.pureWhite
-                          : AppColors.pureBlack),
+                          : Theme.of(context).colorScheme.onSecondary),
                 ),
                 if (isSelected)
                   const Icon(

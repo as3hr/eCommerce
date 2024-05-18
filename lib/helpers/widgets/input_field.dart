@@ -54,7 +54,7 @@ class _InputFieldState extends State<InputField> {
       padding: const EdgeInsets.only(top: 8, bottom: 8, left: 15, right: 15),
       child: Container(
         width: widget.width,
-        color: Colors.grey.shade100,
+        color: Theme.of(context).colorScheme.onPrimary,
         child: TextFormField(
             keyboardType: widget.keyboardType,
             controller: controller,
@@ -67,6 +67,7 @@ class _InputFieldState extends State<InputField> {
             onFieldSubmitted: widget.onSubmit,
             decoration: AppDecoration.inputFieldDecoration(
               widget.hintText ?? '',
+              context,
               suffixIcon: widget.passwordField
                   ? GestureDetector(
                       onTap: () {
@@ -77,6 +78,7 @@ class _InputFieldState extends State<InputField> {
                         isObsecure
                             ? Icons.visibility_off
                             : Icons.remove_red_eye_rounded,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ))
                   : null,
             )),

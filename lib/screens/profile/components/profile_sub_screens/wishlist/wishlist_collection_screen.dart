@@ -4,7 +4,6 @@ import 'package:e_commerce/screens/profile/components/profile_sub_screens/wishli
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
-import '../../../../../helpers/styles/app_colors.dart';
 import '../../../../../helpers/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +22,7 @@ class WishListCollectionScreen extends StatelessWidget {
           ? controller.favourites
           : wish;
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Column(
           children: [

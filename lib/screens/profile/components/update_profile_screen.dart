@@ -18,7 +18,7 @@ class UpdateProfileScreen extends StatelessWidget {
     return GetBuilder<AuthController>(builder: (controller) {
       final user = controller.user;
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Column(
           children: [

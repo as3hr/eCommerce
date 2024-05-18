@@ -1,6 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
-import '../../helpers/styles/app_colors.dart';
 import '../../routes.dart';
 import 'bottom_bar.dart';
 import 'bottom_bar_item.dart';
@@ -23,14 +21,14 @@ class BottomNavBar extends StatelessWidget {
           return WillPopScope(
             onWillPop: controller.onWillPop,
             child: Scaffold(
-              backgroundColor: AppColors.pureWhite,
+              backgroundColor: Theme.of(context).colorScheme.background,
               body: Navigator(
                 key: Get.nestedKey(1),
                 initialRoute: HomeScreen.routeName,
                 onGenerateRoute: Routes.onGenerateRoute,
               ),
               bottomNavigationBar: Container(
-                color: AppColors.pureWhite,
+                color: Theme.of(context).colorScheme.background,
                 height: 65,
                 width: 1.sw,
                 child: Row(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../helpers/styles/app_colors.dart';
 import '../../../helpers/styles/app_decoration.dart';
 import '../../../helpers/styles/app_images.dart';
 import '../../../helpers/widgets/custom_tile.dart';
@@ -26,11 +25,12 @@ class ProfileOptionList extends StatelessWidget {
                   leading: Text(
                     option.title,
                     style: AppDecoration.mediumStyle(
-                        fontSize: 17, color: AppColors.pureBlack),
+                        fontSize: 17,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
-                  trailing: const Image(
-                    image: AssetImage(AppImages.arrowForward),
-                    color: AppColors.pureBlack,
+                  trailing: Image(
+                    image: const AssetImage(AppImages.arrowForward),
+                    color: Theme.of(context).colorScheme.onSecondary,
                   ),
                 ),
               ),

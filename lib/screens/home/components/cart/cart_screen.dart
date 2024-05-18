@@ -1,7 +1,6 @@
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:get/get.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/widgets/header.dart';
 import 'cart_content.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Column(
           children: [

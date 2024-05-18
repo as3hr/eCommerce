@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../helpers/styles/app_colors.dart';
-
 class OrderScreen extends StatelessWidget {
   static const routeName = '/order-screen';
   const OrderScreen({super.key});
@@ -17,7 +15,7 @@ class OrderScreen extends StatelessWidget {
         init: OrderScreenController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
               child: Column(
                 children: [
@@ -26,7 +24,8 @@ class OrderScreen extends StatelessWidget {
                     child: Text(
                       'Orders',
                       style: AppDecoration.boldStyle(
-                          fontSize: 18, color: AppColors.pureBlack),
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                   25.verticalSpace,

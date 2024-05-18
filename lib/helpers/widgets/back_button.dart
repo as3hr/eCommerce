@@ -1,4 +1,3 @@
-import '../styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +12,12 @@ class CustomBackButton extends StatelessWidget {
       onTap: () {
         Get.back();
       },
-      child: const CircleAvatar(
-        backgroundColor: AppColors.grayI,
+      child: CircleAvatar(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         radius: 20,
         child: Image(
-          image: AssetImage(AppImages.arrowBackward),
-          color: AppColors.pureBlack,
+          image: const AssetImage(AppImages.arrowBackward),
+          color: Theme.of(context).colorScheme.onSecondary,
         ),
       ),
     );

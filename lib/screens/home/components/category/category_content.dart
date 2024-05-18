@@ -1,8 +1,8 @@
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:e_commerce/screens/home/components/category/category_filters.dart';
 import 'package:e_commerce/screens/home/components/category/empty_categories.dart';
 import 'package:get/get.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/widgets/back_button.dart';
 import '../../../../helpers/widgets/item_container.dart';
@@ -27,9 +27,7 @@ class CategoryContent extends StatelessWidget {
               : controller.filteredProducts;
           return Scaffold(
             body: !controller.fetchedData && controller.productsList.isEmpty
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ? const Indicator()
                 : SafeArea(
                     child: Column(
                       children: [
@@ -62,7 +60,9 @@ class CategoryContent extends StatelessWidget {
                                   '${allProducts.length} Results found',
                                   style: AppDecoration.semiMediumStyle(
                                       fontSize: 18,
-                                      color: AppColors.lightBlack),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
                                 ),
                               ),
                               10.verticalSpace,

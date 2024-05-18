@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../helpers/functions/date_helper.dart';
-import '../../../../../../../helpers/styles/app_colors.dart';
+import '../../../../../../../helpers/styles/app_decoration.dart';
 import '../../../../../../../models/message.dart';
 
 class ImageMessage extends StatelessWidget {
@@ -27,9 +28,9 @@ class ImageMessage extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxWidth: 0.65.sw,
                 ),
-                decoration: const BoxDecoration(
-                    color: AppColors.grayIII,
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.elliptical(5, -10),
                       bottomLeft: Radius.circular(12),
@@ -61,8 +62,7 @@ class ImageMessage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
+                              placeholder: (context, url) => const Indicator(),
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
                             ),
@@ -74,7 +74,13 @@ class ImageMessage extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 7),
-                          child: Text(message.text ?? ''),
+                          child: Text(
+                            message.text ?? '',
+                            style: AppDecoration.mediumStyle(
+                                fontSize: 14,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
+                          ),
                         )),
                   ],
                 ),

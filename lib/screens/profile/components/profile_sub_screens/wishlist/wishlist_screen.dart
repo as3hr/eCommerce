@@ -10,7 +10,6 @@ import '../../../../../helpers/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../helpers/styles/app_colors.dart';
 import 'wishlist_collection_screen.dart';
 
 class WishListScreen extends StatelessWidget {
@@ -21,7 +20,7 @@ class WishListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Column(
             children: [
@@ -44,17 +43,24 @@ class WishListScreen extends StatelessWidget {
                                 title: Text(
                                   wish.title ?? '',
                                   style: AppDecoration.mediumStyle(
-                                      fontSize: 17, color: AppColors.pureBlack),
+                                      fontSize: 17,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
                                 ),
                                 subTitle: Text(
                                   '${wish.products?.length} Products',
                                   style: AppDecoration.lightStyle(
                                       fontSize: 13,
-                                      color: AppColors.lightBlack),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
                                 ),
-                                trailing: const Image(
-                                  image: AssetImage(AppImages.arrowForward),
-                                  color: AppColors.pureBlack,
+                                trailing: Image(
+                                  image:
+                                      const AssetImage(AppImages.arrowForward),
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
                                 ),
                                 trailingOnTap: () {
                                   changePage(WishListCollectionScreen.routeName,

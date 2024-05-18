@@ -11,7 +11,7 @@ void viewBottomSheet(BuildContext context, String titleText,
   showModalBottomSheet(
       enableDrag: true,
       useSafeArea: true,
-      backgroundColor: AppColors.pureWhite,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       context: context,
       builder: (context) {
         return SizedBox(
@@ -30,7 +30,8 @@ void viewBottomSheet(BuildContext context, String titleText,
                     child: Text(
                       'Clear',
                       style: AppDecoration.semiBoldStyle(
-                          fontSize: 20, color: AppColors.pureBlack),
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                   Padding(
@@ -38,7 +39,8 @@ void viewBottomSheet(BuildContext context, String titleText,
                     child: Text(
                       titleText,
                       style: AppDecoration.boldStyle(
-                          fontSize: 23, color: AppColors.pureBlack),
+                          fontSize: 23,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                   GestureDetector(

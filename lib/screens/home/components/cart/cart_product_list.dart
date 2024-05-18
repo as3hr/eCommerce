@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/widgets/rounded_image.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
-import '../../../../helpers/styles/app_images.dart';
 import '../../../../helpers/widgets/custom_tile.dart';
 
 class CartProductList extends StatelessWidget {
@@ -32,13 +32,17 @@ class CartProductList extends StatelessWidget {
                       changePage(ItemDetailScreen.routeName,
                           arguments: {'product': product});
                     },
-                    child: const Image(image: AssetImage(AppImages.profile))),
+                    child: RoundedImage(
+                      imageUrl: product.images.first,
+                      radius: 25,
+                    )),
                 title: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     product.title ?? '',
                     style: AppDecoration.boldStyle(
-                        fontSize: 15, color: AppColors.lightBlack),
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
                 ),
                 subTitle: Padding(
@@ -49,7 +53,9 @@ class CartProductList extends StatelessWidget {
                       EasyRichTextPattern(
                           targetString: product.size ?? 'M',
                           style: AppDecoration.boldStyle(
-                              fontSize: 13, color: AppColors.pureBlack)),
+                              fontSize: 13,
+                              color:
+                                  Theme.of(context).colorScheme.onSecondary)),
                     ],
                   ),
                 ),
@@ -58,7 +64,8 @@ class CartProductList extends StatelessWidget {
                   children: [
                     Text('\$${product.price}',
                         style: AppDecoration.boldStyle(
-                            fontSize: 16, color: AppColors.pureBlack)),
+                            fontSize: 16,
+                            color: Theme.of(context).colorScheme.onSecondary)),
                     5.verticalSpace,
                     Row(
                       mainAxisSize: MainAxisSize.min,
@@ -79,7 +86,9 @@ class CartProductList extends StatelessWidget {
                         5.horizontalSpace,
                         Text('${product.quantity}',
                             style: AppDecoration.boldStyle(
-                                fontSize: 14, color: AppColors.pureBlack)),
+                                fontSize: 14,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary)),
                         5.horizontalSpace,
                         GestureDetector(
                           onTap: () => controller.decreaseQuantity(product),

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../../../helpers/functions/change_page.dart';
-import '../../../../helpers/styles/app_colors.dart';
 import '../../../../helpers/styles/app_decoration.dart';
 import '../../../../helpers/styles/app_images.dart';
 import '../../../../helpers/widgets/custom_tile.dart';
@@ -64,18 +63,22 @@ class OrderTabView extends StatelessWidget {
                   final order = orderList[index];
                   return CustomTile(
                     height: 65,
-                    leading: const Image(image: AssetImage(AppImages.order)),
+                    leading: Image(
+                        image: const AssetImage(AppImages.order),
+                        color: Theme.of(context).colorScheme.onSecondary),
                     title: Text(
                       '${order.id?.substring(0, 8)}',
                       style: AppDecoration.semiBoldStyle(
-                          fontSize: 16, color: AppColors.pureBlack),
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     subTitle: Text('${order.products?.length} items',
                         style: AppDecoration.lightStyle(
-                            fontSize: 13, color: AppColors.pureBlack)),
-                    trailing: const Image(
-                      image: AssetImage(AppImages.arrowForward),
-                      color: AppColors.pureBlack,
+                            fontSize: 13,
+                            color: Theme.of(context).colorScheme.onSecondary)),
+                    trailing: Image(
+                      image: const AssetImage(AppImages.arrowForward),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                     trailingOnTap: () {
                       changePage(OrderDetail.routeName,

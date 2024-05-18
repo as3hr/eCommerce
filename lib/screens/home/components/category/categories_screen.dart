@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../helpers/styles/app_colors.dart';
 import 'initial_category_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -14,7 +13,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Column(
             children: [

@@ -1,4 +1,3 @@
-import '../styles/app_colors.dart';
 import '../styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 
@@ -25,14 +24,17 @@ class SpacerRow extends StatelessWidget {
           Text(
             text1,
             style: AppDecoration.boldStyle(
-                fontSize: 20, color: text1Color ?? AppColors.pureBlack),
+                fontSize: 20,
+                color: text1Color ?? Theme.of(context).colorScheme.onSecondary),
           ),
           GestureDetector(
             onTap: text2Tap,
             child: Text(
               text2 ?? '',
               style: AppDecoration.semiBoldStyle(
-                  fontSize: 17, color: text2Color ?? AppColors.pureBlack),
+                  fontSize: 17,
+                  color:
+                      text2Color ?? Theme.of(context).colorScheme.onSecondary),
             ),
           ),
         ],

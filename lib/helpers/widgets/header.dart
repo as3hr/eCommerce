@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../styles/app_colors.dart';
 import '../styles/app_decoration.dart';
 import 'back_button.dart';
 
@@ -28,7 +27,7 @@ class Header extends StatelessWidget {
           child: Text(
             text,
             style: AppDecoration.boldStyle(
-                fontSize: 23, color: AppColors.pureBlack),
+                fontSize: 23, color: Theme.of(context).colorScheme.onSecondary),
           ),
         ),
         if (trailingIcon != null && trailingTap != null) ...[
@@ -39,7 +38,7 @@ class Header extends StatelessWidget {
                 onTap: trailingTap,
                 child: Icon(
                   trailingIcon,
-                  color: AppColors.grayIV,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 )),
           ),
         ]

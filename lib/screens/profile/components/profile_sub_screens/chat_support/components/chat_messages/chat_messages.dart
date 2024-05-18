@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/styles/app_decoration.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/components/chat_messages/admin_message.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/components/chat_messages/image_message.dart';
@@ -13,17 +14,26 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Expanded(
-          child: ListView.builder(
-              reverse: true,
-              itemCount: controller.messages.length,
-              itemBuilder: (context, index) {
-                final message = controller.messages[index];
-                return message.isUser && message.image == null
-                    ? MyMessage(message: message)
-                    : message.isUser && message.image != null
-                        ? ImageMessage(message: message)
-                        : AdminMessage(message: message);
-              }));
+          child: controller.messages.isEmpty
+              ? Center(
+                  child: Text(
+                    'No Messages to Show !',
+                    style: AppDecoration.boldStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.onSecondary),
+                  ),
+                )
+              : ListView.builder(
+                  reverse: true,
+                  itemCount: controller.messages.length,
+                  itemBuilder: (context, index) {
+                    final message = controller.messages[index];
+                    return message.isUser && message.image == null
+                        ? MyMessage(message: message)
+                        : message.isUser && message.image != null
+                            ? ImageMessage(message: message)
+                            : AdminMessage(message: message);
+                  }));
     });
   }
 }

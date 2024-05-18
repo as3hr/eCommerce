@@ -14,7 +14,7 @@ class ChatAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Container(
-        color: AppColors.pureWhite,
+        color: Theme.of(context).colorScheme.background,
         width: 1.sw,
         height: 80,
         child: Row(
@@ -27,12 +27,14 @@ class ChatAppBar extends StatelessWidget {
                       onTap: () => Get.back(),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(AppImages.arrowBackward),
+                        child: Image.asset(AppImages.arrowBackward,
+                            color: Theme.of(context).colorScheme.onSecondary),
                       )),
                   10.horizontalSpace,
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 12,
-                    child: Icon(Icons.person),
+                    child: Icon(Icons.person,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
                 ],
               ),
@@ -43,7 +45,10 @@ class ChatAppBar extends StatelessWidget {
               width: 0.75.sw,
               child: ListTile(
                 contentPadding: const EdgeInsets.all(3),
-                title: const Text('Admin, Customer Support'),
+                title: Text('Admin, Customer Support',
+                    style: AppDecoration.mediumStyle(
+                        fontSize: 13,
+                        color: Theme.of(context).colorScheme.onSecondary)),
                 subtitle: Text(
                   'Online',
                   style: AppDecoration.semiMediumStyle(

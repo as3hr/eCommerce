@@ -18,7 +18,7 @@ class EmptyAddress extends StatelessWidget {
       title: Text(
         'Create a new Address',
         style: AppDecoration.semiBoldStyle(
-            fontSize: 18, color: AppColors.lightBlack),
+            fontSize: 18, color: Theme.of(context).colorScheme.onSecondary),
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Text(

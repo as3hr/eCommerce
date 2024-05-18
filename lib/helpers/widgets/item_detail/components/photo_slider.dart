@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:e_commerce/helpers/styles/app_colors.dart';
+import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_view/photo_view.dart';
@@ -50,7 +51,7 @@ class _PhotoSliderState extends State<PhotoSlider> {
               child: SizedBox(
                 width: 40.0,
                 height: 40.0,
-                child: CircularProgressIndicator(),
+                child: Indicator(),
               ),
             );
           },

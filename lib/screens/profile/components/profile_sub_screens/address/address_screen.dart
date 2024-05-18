@@ -20,7 +20,7 @@ class AddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.pureWhite,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Column(
             children: [
@@ -47,7 +47,10 @@ class AddressScreen extends StatelessWidget {
                               title: Text(
                                 address.streetAddress ?? '',
                                 style: AppDecoration.semiBoldStyle(
-                                    fontSize: 18, color: AppColors.lightBlack),
+                                    fontSize: 18,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               trailing: Text(

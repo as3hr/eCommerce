@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       return PopScope(
         canPop: false,
         child: Scaffold(
-          backgroundColor: AppColors.pureWhite,
+          backgroundColor: Theme.of(context).colorScheme.background,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -37,7 +38,8 @@ class LoginScreen extends StatelessWidget {
                     child: Text(
                       'Sign in',
                       style: AppDecoration.boldStyle(
-                          fontSize: 35, color: AppColors.pureBlack),
+                          fontSize: 35,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                   10.verticalSpace,
@@ -74,11 +76,19 @@ class LoginScreen extends StatelessWidget {
                       },
                       child: EasyRichText(
                         "Don't have an Account ? Create One",
+                        defaultStyle: AppDecoration.mediumStyle(
+                            fontSize: 14,
+                            color: context.isDark
+                                ? AppColors.grayIII
+                                : AppColors.lightBlack),
                         patternList: [
                           EasyPattern(
                               targetString: 'Create One',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold))
+                              style: AppDecoration.boldStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondary))
                         ],
                       ),
                     ),
@@ -92,8 +102,8 @@ class LoginScreen extends StatelessWidget {
                     },
                     preFixImage: AppImages.google,
                     text: 'Continue With Google',
-                    color: AppColors.grayI,
-                    textColor: AppColors.pureBlack,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    textColor: Theme.of(context).colorScheme.onSecondary,
                   ),
                 ],
               ),

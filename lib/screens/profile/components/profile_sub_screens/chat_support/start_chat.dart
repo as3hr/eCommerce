@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_colors.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
@@ -12,7 +13,8 @@ class StartChat extends StatelessWidget {
     return GetBuilder<ChatController>(
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.deepPurple.shade100,
+          backgroundColor:
+              context.isDark ? AppColors.indigo : Colors.deepPurple.shade100,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -54,6 +56,7 @@ class StartChat extends StatelessWidget {
                   onPressed: () =>
                       loadingWrapper(() => controller.createChat()),
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.grayI,
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 20),
                     shape: RoundedRectangleBorder(

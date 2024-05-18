@@ -1,6 +1,7 @@
 import 'package:e_commerce/helpers/functions/dialog.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
+import 'package:e_commerce/screens/profile/components/theme_switch.dart';
 
 import '../../helpers/styles/app_decoration.dart';
 import '../../helpers/widgets/custom_tile.dart';
@@ -26,11 +27,13 @@ class ProfileScreen extends StatelessWidget {
         builder: (controller) {
           final user = Get.find<AuthController>().user;
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
               child: Column(
                 children: [
-                  55.verticalSpace,
+                  10.verticalSpace,
+                  const ThemeSwitch(),
+                  15.verticalSpace,
                   const ProfileImage(),
                   20.verticalSpace,
                   CustomTile(
@@ -41,7 +44,8 @@ class ProfileScreen extends StatelessWidget {
                       child: Text(
                         '${user.firstName ?? ''} ${user.lastName ?? ''}',
                         style: AppDecoration.mediumStyle(
-                            fontSize: 17, color: AppColors.pureBlack),
+                            fontSize: 17,
+                            color: Theme.of(context).colorScheme.onSecondary),
                       ),
                     ),
                     subTitle: Column(
@@ -51,13 +55,15 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           user.email ?? '',
                           style: AppDecoration.mediumStyle(
-                              fontSize: 16, color: AppColors.pureBlack),
+                              fontSize: 16,
+                              color: Theme.of(context).colorScheme.onSecondary),
                         ),
                         5.verticalSpace,
                         Text(
                           user.contactNumber ?? '',
                           style: AppDecoration.mediumStyle(
-                              fontSize: 15, color: AppColors.pureBlack),
+                              fontSize: 15,
+                              color: Theme.of(context).colorScheme.onSecondary),
                         ),
                       ],
                     ),
@@ -92,7 +98,8 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           'Sign Out',
                           style: AppDecoration.semiBoldStyle(
-                              fontSize: 23, color: AppColors.redColor),
+                              fontSize: 23,
+                              color: Theme.of(context).colorScheme.error),
                         ),
                       ),
                     ),

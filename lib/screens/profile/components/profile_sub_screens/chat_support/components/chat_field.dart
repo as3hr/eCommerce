@@ -19,16 +19,18 @@ class ChatField extends StatelessWidget {
               width: 0.75.sw,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.lightBlack, width: 1.7)),
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      width: 1.7)),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: GestureDetector(
                       onTap: () => controller.showOptions(context),
-                      child: const Icon(
+                      child: Icon(
                         Icons.add,
-                        color: AppColors.lightBlack,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                     ),
                   ),
@@ -36,6 +38,8 @@ class ChatField extends StatelessWidget {
                       child: TextFormField(
                           maxLines: 3,
                           minLines: 1,
+                          cursorColor:
+                              Theme.of(context).colorScheme.onSecondary,
                           controller: controller.messageController,
                           keyboardType: TextInputType.multiline,
                           decoration: const InputDecoration(
@@ -58,7 +62,7 @@ class ChatField extends StatelessWidget {
             height: 40,
             width: 40,
             decoration: BoxDecoration(
-              color: AppColors.grayII,
+              color: Theme.of(context).colorScheme.onPrimary,
               borderRadius: BorderRadius.circular(20),
               boxShadow: const [
                 BoxShadow(

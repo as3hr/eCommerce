@@ -24,9 +24,11 @@ class OrderContent extends StatelessWidget {
                   return Colors.transparent;
                 }),
                 labelStyle: AppDecoration.mediumStyle(
-                    fontSize: 16, color: AppColors.lightPurple),
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.onSecondary),
                 unselectedLabelStyle: AppDecoration.mediumStyle(
-                    fontSize: 14, color: AppColors.pureBlack),
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.onSecondary),
                 dividerColor: AppColors.transparent,
                 indicatorColor: AppColors.transparent,
                 controller: controller.tabController,

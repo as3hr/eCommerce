@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,7 @@ class OrderTab extends StatelessWidget {
       width: width ?? 0.23.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: AppColors.grayI,
+        color: context.isDark ? AppColors.lightIndigo : AppColors.grayI,
       ),
       child: Center(
           child: Text(

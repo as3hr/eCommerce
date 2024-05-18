@@ -1,4 +1,3 @@
-import '../../../helpers/styles/app_colors.dart';
 import '../../../helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,8 +19,8 @@ class EmptyNotifications extends StatelessWidget {
         Center(
             child: Text(
           'No Notification yet',
-          style:
-              AppDecoration.boldStyle(fontSize: 20, color: AppColors.pureBlack),
+          style: AppDecoration.boldStyle(
+              fontSize: 20, color: Theme.of(context).colorScheme.onSecondary),
         )),
       ],
     );

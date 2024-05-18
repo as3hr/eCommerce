@@ -1,5 +1,6 @@
+import 'package:e_commerce/helpers/widgets/indicator.dart';
+
 import '../../helpers/functions/change_page.dart';
-import '../../helpers/styles/app_colors.dart';
 import '../../helpers/styles/app_decoration.dart';
 import '../../helpers/widgets/search_field.dart';
 import 'components/category/all_categories.dart';
@@ -22,11 +23,9 @@ class HomeScreen extends StatelessWidget {
         init: HomeScreenController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: !controller.fetchedData
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ? const Indicator()
                 : SafeArea(
                     child: SingleChildScrollView(
                       child: Column(
@@ -59,7 +58,9 @@ class HomeScreen extends StatelessWidget {
                                       'No Items to Display!!',
                                       style: AppDecoration.mediumStyle(
                                           fontSize: 25,
-                                          color: AppColors.pureBlack),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
                                     ),
                                   ),
                                 )
