@@ -29,7 +29,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      // canPop: false,
+      canPop: false,
       child: Scaffold(
         backgroundColor: AppColors.lightPurple,
         body: Column(
