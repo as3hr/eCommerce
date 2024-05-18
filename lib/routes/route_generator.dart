@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
+import 'package:ecommerce_admin_panel/screens/chat_support/chat_screen.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_listing.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_screen.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_page.dart';
@@ -106,6 +107,14 @@ class AppRouter {
                       return const ProductScreen();
                     }),
               ]),
+          GoRoute(
+            name: RouteName.chatScreen,
+            path: '/chats',
+            // redirect: (context, state) => redirect(context, state),
+            builder: (context, state) {
+              return const ChatScreen();
+            },
+          ),
         ],
       ),
     ],

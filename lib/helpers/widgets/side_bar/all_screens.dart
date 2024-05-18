@@ -7,5 +7,6 @@ class AllScreens {
     Screen(routeName: RouteName.ordersList, title: 'Orders'),
     Screen(routeName: RouteName.productsList, title: 'Products'),
     Screen(routeName: RouteName.notificationsList, title: 'Notifications'),
+    Screen(routeName: RouteName.chatScreen, title: 'Chats'),
   ];
 }

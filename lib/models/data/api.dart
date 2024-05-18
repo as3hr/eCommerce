@@ -1,11 +1,12 @@
-import 'dart:math';
-
 import 'package:ecommerce_admin_panel/models/data/api_helpers.dart';
 import 'package:ecommerce_admin_panel/models/user_notification.dart';
 import 'package:ecommerce_admin_panel/models/order.dart';
 import 'package:ecommerce_admin_panel/models/product.dart';
 import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:dio/dio.dart';
+
+import '../chat.dart';
+import '../message.dart';
 
 class Api {
   static final dio = Dio(
@@ -76,10 +77,9 @@ class Api {
     return ApiHelpers.parseResponse(response, User.fromJson);
   }
 
-  static Future<String> uploadImage(String file) async {
-    final random = Random().nextInt(99);
+  static Future<String> uploadImage(String file, String name) async {
     final data = FormData.fromMap({
-      'file': await MultipartFile.fromFile(file, filename: '$random.jpg'),
+      'file': await MultipartFile.fromFile(file, filename: name),
     });
     const url = '/uploads/';
     final response = await dio.post(
@@ -194,5 +194,64 @@ class Api {
       ...?extraQuery,
     });
     return ApiHelpers.parseResponse(response, UserNotification.fromJson);
+  }
+
+  //Message API's
+  static Future<List<Message>> getMessages({
+    required String chatId,
+    int limit = 25,
+    int page = 1,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/messages/';
+    final response = await dio.get(
+      url,
+      queryParameters: {
+        'limit': limit,
+        'page': page,
+        'chatId': chatId,
+        ...?extraQuery
+      },
+    );
+    return ApiHelpers.parseResponse(response, Message.fromJson);
+  }
+
+  static Future<void> updateMessage({required Message message}) async {
+    final url = '/messages/${message.id}';
+    final response = await dio.put(url, data: message.toJson());
+    ApiHelpers.checkError(response)['result'];
+  }
+
+  static Future<void> deleteMessage({required Message message}) async {
+    final url = '/messages/${message.id}';
+    final response = await dio.delete(url);
+    ApiHelpers.checkError(response);
+  }
+
+  //Chat Api's
+  static Future<void> createChat() async {
+    const url = '/chats/';
+    final response = await dio.post(url);
+    ApiHelpers.checkError(response)['result'];
+  }
+
+  static Future<Chat> getChatById(String id) async {
+    final url = '/chats/$id';
+    final response = await dio.get(url);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Chat.fromJson(data);
+  }
+
+  static Future<List<Chat>> getChats({
+    int limit = 25,
+    int page = 1,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/chats/';
+    final response = await dio.get(
+      url,
+      queryParameters: {'limit': limit, 'page': page, ...?extraQuery},
+    );
+    return ApiHelpers.parseResponse(response, Chat.fromJson);
   }
 }

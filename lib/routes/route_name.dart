@@ -11,4 +11,5 @@ class RouteName {
   static const login = 'login';
   static const mainScreen = 'mainScreen';
   static const homePage = 'homePage';
+  static const chatScreen = 'chatScreen';
 }
