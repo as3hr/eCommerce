@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../extensions/theme_colors.dart';
+import '../styles/app_colors.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -28,7 +28,7 @@ class CustomElevatedButton extends StatelessWidget {
           width: 100,
           decoration: BoxDecoration(
               border: Border.all(
-                color: ThemeColors.grayII,
+                color: AppColors.grayII,
               ),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12)),
@@ -38,7 +38,7 @@ class CustomElevatedButton extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                  color: textColor ?? ThemeColors.smokyBlack,
+                  color: textColor ?? AppColors.smokyBlack,
                 ),
               ),
             ),

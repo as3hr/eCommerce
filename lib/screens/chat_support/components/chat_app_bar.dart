@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,25 +12,36 @@ class ChatAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Container(
-        color: Colors.white,
+        decoration: const BoxDecoration(
+          color: AppColors.white,
+          border: Border(
+              top: BorderSide(color: AppColors.grayI, width: 0.25),
+              bottom: BorderSide(color: AppColors.grayI, width: 0.25)),
+        ),
         height: 80,
         child: Row(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 18, left: 13),
+            Padding(
+              padding: const EdgeInsets.only(left: 13),
               child: Row(
                 children: [
                   CircleAvatar(
-                    radius: 12,
-                    child: Icon(Icons.person),
-                  ),
+                      radius: 20,
+                      backgroundImage:
+                          controller.currentChat.user?.image != null
+                              ? NetworkImage(
+                                  controller.currentChat.user?.image ?? '')
+                              : null,
+                      child: controller.currentChat.user?.image != null
+                          ? null
+                          : const Icon(Icons.person))
                 ],
               ),
             ),
-            10.horizontalSpace,
+            5.horizontalSpace,
             SizedBox(
               height: 80,
-              width: 0.5.sw,
+              width: 0.2.sw,
               child: ListTile(
                 contentPadding: const EdgeInsets.all(3),
                 title: Text(
@@ -40,6 +52,9 @@ class ChatAppBar extends StatelessWidget {
                 ),
               ),
             ),
+            const Spacer(),
+            const Icon(Icons.settings),
+            10.horizontalSpace,
           ],
         ),
       );

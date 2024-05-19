@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
-import '../extensions/theme_colors.dart';
+import '../styles/app_colors.dart';
 
 class CheckBoxField extends StatefulWidget {
   const CheckBoxField({
@@ -43,7 +43,7 @@ class _CheckBoxFieldState extends State<CheckBoxField> {
             decoration: BoxDecoration(
               color: widget.isChecked ? Colors.blue : Colors.transparent,
               border: Border.all(
-                color: widget.isChecked ? Colors.white : ThemeColors.smokyBlack,
+                color: widget.isChecked ? Colors.white : AppColors.smokyBlack,
                 width: 0,
               ),
               borderRadius: const BorderRadius.only(
@@ -65,7 +65,7 @@ class _CheckBoxFieldState extends State<CheckBoxField> {
                 });
               },
               activeColor: Colors.blue,
-              checkColor: ThemeColors.white,
+              checkColor: AppColors.white,
             ),
           ),
         ),

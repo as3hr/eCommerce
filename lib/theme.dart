@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'helpers/extensions/theme_colors.dart';
+import 'helpers/styles/app_colors.dart';
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: ThemeColors.black,
-  onPrimary: ThemeColors.grayBackground,
-  secondary: ThemeColors.marjanda,
-  onSecondary: ThemeColors.navy,
-  background: ThemeColors.white,
-  onBackground: ThemeColors.grayBackground,
-  surface: ThemeColors.white,
-  onSurface: ThemeColors.deepBlack,
-  onSurfaceVariant: ThemeColors.offWhite,
-  error: ThemeColors.boldRed,
+  primary: AppColors.black,
+  onPrimary: AppColors.grayBackground,
+  secondary: AppColors.marjanda,
+  onSecondary: AppColors.navy,
+  background: AppColors.white,
+  onBackground: AppColors.grayBackground,
+  surface: AppColors.white,
+  onSurface: AppColors.deepBlack,
+  onSurfaceVariant: AppColors.offWhite,
+  error: AppColors.boldRed,
   onError: Color.fromARGB(255, 237, 233, 233),
   outline: Color.fromARGB(255, 93, 95, 96),
 );
@@ -53,32 +53,32 @@ InputDecoration fieldDecoration({
 const listingContainerDecoration = BoxDecoration();
 const headingRowDecoration = BoxDecoration(
   border: Border(
-    bottom: BorderSide(color: ThemeColors.black, width: 2),
+    bottom: BorderSide(color: AppColors.black, width: 2),
     top: BorderSide(
-      color: ThemeColors.transparent,
+      color: AppColors.transparent,
     ),
     left: BorderSide(
-      color: ThemeColors.transparent,
+      color: AppColors.transparent,
     ),
     right: BorderSide(
-      color: ThemeColors.transparent,
+      color: AppColors.transparent,
     ),
   ),
 );
 const listingTableBorder = TableBorder(
-  verticalInside: BorderSide(color: ThemeColors.grayII),
+  verticalInside: BorderSide(color: AppColors.grayII),
 );
 final headingRowColor = MaterialStateColor.resolveWith(
-  (states) => ThemeColors.white,
+  (states) => AppColors.white,
 );
 const listingTableDecoration = BoxDecoration(
-  color: ThemeColors.white,
+  color: AppColors.white,
 );
 MaterialStateColor listingRowColor(
   int index,
 ) =>
     MaterialStateColor.resolveWith((states) {
-      return index % 2 == 0 ? ThemeColors.white : ThemeColors.grayBackground;
+      return index % 2 == 0 ? AppColors.white : AppColors.lightWhite;
     });
 
 final largeTextStyle = GoogleFonts.inter(
@@ -90,7 +90,7 @@ final largeTextStyle = GoogleFonts.inter(
 final dialogTitleTextStyle = GoogleFonts.inter(
   fontSize: 32,
   fontWeight: FontWeight.w600,
-  color: ThemeColors.smokyBlack,
+  color: AppColors.smokyBlack,
 );
 
 final textFieldTextStyle = GoogleFonts.inter(
@@ -131,7 +131,7 @@ final smallTextStyle = GoogleFonts.inter(
 final hintTextStyle = GoogleFonts.inter(
   fontSize: 14,
   fontWeight: FontWeight.normal,
-  color: ThemeColors.grayV,
+  color: AppColors.grayV,
 );
 TextTheme textTheme = TextTheme(
   displayLarge: largeTextStyle,
@@ -159,7 +159,7 @@ TextTheme textTheme = TextTheme(
 ThemeData theme({bool dark = false}) {
   return ThemeData(
     dialogTheme: dialogTheme(),
-    scaffoldBackgroundColor: ThemeColors.platinumWhiteI,
+    scaffoldBackgroundColor: AppColors.platinumWhiteI,
     useMaterial3: false,
     colorScheme: lightColorScheme,
     fontFamily: 'SFPro',
@@ -169,10 +169,10 @@ ThemeData theme({bool dark = false}) {
     cardColor:
         dark ? const Color.fromRGBO(34, 34, 34, 1) : lightColorScheme.secondary,
     chipTheme: ChipThemeData(
-      selectedColor: ThemeColors.transparent,
+      selectedColor: AppColors.transparent,
       brightness: dark ? Brightness.dark : Brightness.light,
     ),
-    disabledColor: ThemeColors.grayI,
+    disabledColor: AppColors.grayI,
   );
 }
 
@@ -182,9 +182,9 @@ ElevatedButtonThemeData elevatedButtonTheme() {
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
         (Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) {
-            return ThemeColors.grayI;
+            return AppColors.grayI;
           }
-          return ThemeColors.grayBackground;
+          return AppColors.grayBackground;
         },
       ),
       shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
@@ -196,7 +196,7 @@ ElevatedButtonThemeData elevatedButtonTheme() {
       ),
       textStyle: MaterialStateProperty.resolveWith<TextStyle>(
         (states) => elevatedButtonTextStyle.copyWith(
-          color: ThemeColors.black,
+          color: AppColors.black,
           fontSize: 15,
           fontWeight: FontWeight.w500,
         ),
@@ -217,7 +217,7 @@ const checkBoxShape = RoundedRectangleBorder(
 const checkBoxTheme = CheckboxThemeData(
   shape: checkBoxShape,
   side: BorderSide(
-    color: ThemeColors.black,
+    color: AppColors.black,
     width: 1.5,
     strokeAlign: 2,
   ),
@@ -239,22 +239,22 @@ TextButtonThemeData textButtonTheme() {
 }
 
 const inputEnabledBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: ThemeColors.transparent),
+  borderSide: BorderSide(color: AppColors.transparent),
 );
 
 const inputFocusedBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: ThemeColors.transparent),
+  borderSide: BorderSide(color: AppColors.transparent),
 );
 
 const inputErrorBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: ThemeColors.boldRed),
+  borderSide: BorderSide(color: AppColors.boldRed),
 );
 
 final boxDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(2),
   shape: BoxShape.rectangle,
   border: Border.all(
-    color: ThemeColors.black,
+    color: AppColors.black,
     width: 1,
   ),
 );

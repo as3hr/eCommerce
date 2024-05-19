@@ -12,10 +12,10 @@ import '../log_in_view/auth_controller.dart';
 
 class ChatController extends GetxController {
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
     socketConnect();
-    await getAllChats();
+    getAllChats();
   }
 
   //initial declarations
@@ -32,9 +32,12 @@ class ChatController extends GetxController {
   final user = Get.find<AuthController>().user;
   late io.Socket socket;
 
-  Future<void> getAllChats() async {
+  Future<void> getAllChats({bool refresh = false}) async {
+    if (refresh) allChats.clear();
     allChats = await Api.getChats();
-    await getChatById(allChats.first.id ?? '');
+    if (allChats.isNotEmpty) {
+      await getChatById(allChats.first.id ?? '');
+    }
     isLoading = false;
     update();
   }

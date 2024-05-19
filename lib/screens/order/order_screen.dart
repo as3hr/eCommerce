@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../helpers/extensions/theme_colors.dart';
+import '../../helpers/styles/app_colors.dart';
 import '../../helpers/widgets/header/custom_header.dart';
 
 class OrderScreen extends StatelessWidget {
@@ -18,7 +18,7 @@ class OrderScreen extends StatelessWidget {
       final order = controller.getCurrentOrder;
       final isNew = order.id?.isEmpty ?? true;
       return Scaffold(
-        backgroundColor: ThemeColors.grayBackground,
+        backgroundColor: AppColors.grayBackground,
         body: Column(
           children: [
             CustomHeader(

@@ -1,3 +1,5 @@
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,14 +25,18 @@ class AdminMessage extends StatelessWidget {
                   maxWidth: 0.65.sw,
                 ),
                 decoration: const BoxDecoration(
-                    color: Colors.grey,
+                    color: AppColors.skyBlue,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.zero,
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12),
                     )),
-                child: Text(message.text ?? ''),
+                child: Text(
+                  message.text ?? '',
+                  style: AppDecoration.semiMediumStyle(
+                      fontSize: 13, color: AppColors.white),
+                ),
               ),
               5.verticalSpace,
               Row(

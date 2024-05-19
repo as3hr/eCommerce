@@ -23,7 +23,7 @@ class ChatContent extends StatelessWidget {
           const ChatAppBar(),
           const ChatMessages(),
           Padding(
-            padding: EdgeInsets.only(bottom: 15, left: 0.05.sw, top: 20),
+            padding: EdgeInsets.only(bottom: 15, left: 0.02.sw, top: 20),
             child: const ChatField(),
           ),
         ],

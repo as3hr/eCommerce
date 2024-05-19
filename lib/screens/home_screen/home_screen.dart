@@ -1,4 +1,5 @@
-import 'package:ecommerce_admin_panel/theme.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
           child: Center(
               child: Text(
             'D A S H B O A R D',
-            style: largeTextStyle,
+            style: AppDecoration.boldStyle(fontSize: 20, color: AppColors.navy),
           ))),
     );
   }

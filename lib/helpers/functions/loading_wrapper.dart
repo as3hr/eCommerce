@@ -1,10 +1,11 @@
 // ignore_for_file: avoid_print
 
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import '../error.dart';
-import '../extensions/asset_images.dart';
+import '../styles/asset_images.dart';
 import 'show_toast.dart';
 
 Future<T?> loadingWrapper<T>(
@@ -14,7 +15,7 @@ Future<T?> loadingWrapper<T>(
   context.loaderOverlay.show(
     widgetBuilder: (progress) => const Center(
       child: CircularProgressIndicator(
-        color: Colors.deepPurple,
+        color: AppColors.navy,
       ),
     ),
   );

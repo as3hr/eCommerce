@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class HeaderItem extends StatelessWidget {
         if (showIcon)
           const Text(
             '/',
-            style: TextStyle(fontSize: 20, color: ThemeColors.grayII),
+            style: TextStyle(fontSize: 20, color: AppColors.grayII),
           ),
       ],
     );

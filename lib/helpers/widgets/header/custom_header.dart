@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/header/header_item.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class CustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: ThemeColors.grayBackground,
+      color: AppColors.grayBackground,
       child: Padding(
         padding: const EdgeInsets.only(left: 30, top: 30),
         child: Row(

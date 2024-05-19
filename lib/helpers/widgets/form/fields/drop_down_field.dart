@@ -2,7 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme.dart';
-import '../../../extensions/theme_colors.dart';
+import '../../../styles/app_colors.dart';
 
 class DropDownField<T> extends StatefulWidget {
   const DropDownField({
@@ -56,7 +56,7 @@ class _DropDownFieldState<T> extends State<DropDownField<T>> {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: ThemeColors.black,
+                  color: AppColors.black,
                   width: 0.5,
                 ),
               ),
@@ -64,7 +64,7 @@ class _DropDownFieldState<T> extends State<DropDownField<T>> {
             iconStyleData: const IconStyleData(
               icon: Icon(Icons.keyboard_arrow_down_rounded),
               iconSize: 30,
-              iconDisabledColor: ThemeColors.black,
+              iconDisabledColor: AppColors.black,
             ),
             style: Theme.of(context).textTheme.bodySmall,
             isExpanded: true,

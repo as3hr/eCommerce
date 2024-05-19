@@ -2,7 +2,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../helpers/extensions/theme_colors.dart';
+import '../styles/app_colors.dart';
 
 class WindowTitleBar extends StatelessWidget {
   WindowTitleBar({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class WindowTitleBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return WindowTitleBarBox(
       child: Container(
-        decoration: BoxDecoration(color: Get.theme.colorScheme.background),
+        decoration: const BoxDecoration(color: AppColors.navy),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -36,7 +36,7 @@ class WindowTitleBar extends StatelessWidget {
             CloseWindowButton(
               colors: WindowButtonColors(
                 iconNormal: Get.theme.colorScheme.primary,
-                mouseOver: ThemeColors.focusRed,
+                mouseOver: AppColors.focusRed,
               ),
               onPressed: () {
                 Get.dialog(

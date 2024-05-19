@@ -1,11 +1,11 @@
 import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
-import 'package:ecommerce_admin_panel/routes/route_name.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/input_field.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/log_in_view_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import '../../helpers/extensions/theme_colors.dart';
-import '../../theme.dart';
+import '../../helpers/styles/app_colors.dart';
 
 class LoginView extends StatelessWidget {
   static const routeName = '/';
@@ -18,96 +18,101 @@ class LoginView extends StatelessWidget {
       builder: (controller) {
         return Material(
           child: Scaffold(
-            backgroundColor: ThemeColors.grayBackground,
+            backgroundColor: AppColors.navy,
             body: Form(
               key: controller.formKey,
               child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 60,
-                        width: 430,
-                        child: Center(
-                          child: TextFormField(
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            decoration: fieldDecoration(label: 'Admin ID'),
-                            controller: controller.emailController,
-                            onEditingComplete: () {
-                              Focus.of(context).nextFocus();
-                            },
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter your email';
-                              }
-                              return null;
-                            },
-                          ),
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  width: 0.3.sw,
+                  height: 0.5.sh,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightWhite,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        30.verticalSpace,
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                'Sign In',
+                                style: AppDecoration.boldStyle(
+                                    fontSize: 26, color: AppColors.deepBlack),
+                              ),
+                            )),
+                        30.verticalSpace,
+                        InputField(
+                          width: 0.3.sw,
+                          onChanged: (val) {
+                            controller.emailController.text = val;
+                          },
+                          onSubmit: (_) {
+                            loadingWrapper(() async {
+                              await controller.submit(context);
+                            }, context);
+                          },
+                          hintText: 'Email',
+                          preFixIcon: const Icon(Icons.mail_rounded,
+                              color: AppColors.navy),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            return null;
+                          },
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 60,
-                        width: 430,
-                        child: Center(
-                          child: TextFormField(
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            controller: controller.passwordController,
-                            decoration: fieldDecoration(
-                              label: 'Password',
-                              suffixIcon: Padding(
-                                padding: const EdgeInsets.only(bottom: 3.0),
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      loadingWrapper(() async {
-                                        await controller.submit().then(
-                                            (value) => context
-                                                .goNamed(RouteName.home));
-                                      }, context);
-                                    },
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.8),
-                                        child: Icon(
-                                          Icons.arrow_forward,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                        InputField(
+                          width: 0.3.sw,
+                          onChanged: (val) {
+                            controller.passwordController.text = val;
+                          },
+                          onSubmit: (_) {
+                            loadingWrapper(() async {
+                              await controller.submit(context);
+                            }, context);
+                          },
+                          preFixIcon:
+                              const Icon(Icons.lock, color: AppColors.navy),
+                          hintText: 'Password',
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            return null;
+                          },
+                          passwordField: true,
+                        ),
+                        30.verticalSpace,
+                        InkWell(
+                          onTap: () {
+                            loadingWrapper(() async {
+                              await controller.submit(context);
+                            }, context);
+                          },
+                          child: Container(
+                            width: 0.15.sw,
+                            height: 0.05.sh,
+                            decoration: BoxDecoration(
+                                color: AppColors.navy,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: Text(
+                                'Sign In',
+                                style: AppDecoration.boldStyle(
+                                    fontSize: 20, color: AppColors.white),
                               ),
                             ),
-                            onEditingComplete: () async {
-                              loadingWrapper(() async {
-                                await controller.submit().then(
-                                    (value) => context.goNamed(RouteName.home));
-                              }, context);
-                            },
-                            obscureText: true,
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter your password';
-                              }
-                              return null;
-                            },
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

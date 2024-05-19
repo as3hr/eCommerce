@@ -1,10 +1,11 @@
-import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/asset_images.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/all_screens.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/screen_item.dart';
 import 'package:ecommerce_admin_panel/screens/log_in_view/auth_controller.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
-import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class SideBar extends StatefulWidget {
 
 class _SideBarState extends State<SideBar> {
   bool showItems = false;
-
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -27,35 +28,13 @@ class _SideBarState extends State<SideBar> {
         width: 280,
         height: double.infinity,
         decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-                bottom: BorderSide(color: ThemeColors.grayI),
-                top: BorderSide(color: ThemeColors.grayI),
-                right: BorderSide(color: ThemeColors.grayI))),
+          color: AppColors.navy,
+        ),
         child: Column(
           children: [
-            20.verticalSpace,
-            InkWell(
-                onTap: () {
-                  context.goNamed(RouteName.home);
-                },
-                child: Text(
-                  'ADMIN  PANEL',
-                  style: largeTextStyle,
-                )),
-            40.verticalSpace,
-            Padding(
-              padding: const EdgeInsets.only(left: 12, bottom: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'NAVIGATION',
-                    style: mediumTextStyle,
-                  )),
-            ),
             10.verticalSpace,
             ListTile(
-              leading: const Icon(Icons.widgets_rounded),
+              leading: Image.asset(AssetImages.logo),
               title: InkWell(
                 onTap: () {
                   showItems = !showItems;
@@ -63,8 +42,14 @@ class _SideBarState extends State<SideBar> {
                 },
                 child: Text(
                   'C L O T',
-                  style: mediumTextStyle,
+                  style: AppDecoration.mediumStyle(
+                      fontSize: 20, color: AppColors.grayI),
                 ),
+              ),
+              subtitle: Text(
+                'Production',
+                style: AppDecoration.mediumStyle(
+                    fontSize: 15, color: AppColors.grayII),
               ),
               trailing: showItems
                   ? InkWell(
@@ -72,21 +57,36 @@ class _SideBarState extends State<SideBar> {
                         showItems = !showItems;
                         setState(() {});
                       },
-                      child: const Icon(Icons.arrow_upward_rounded))
+                      child: const Icon(
+                        Icons.arrow_circle_up,
+                        color: AppColors.grayI,
+                      ))
                   : InkWell(
                       onTap: () {
                         showItems = !showItems;
                         setState(() {});
                       },
-                      child: const Icon(Icons.arrow_downward_sharp)),
+                      child: const Icon(
+                        Icons.arrow_circle_down,
+                        color: AppColors.grayI,
+                      )),
             ),
+            20.verticalSpace,
             if (showItems)
               Expanded(
                   child: ListView.builder(
                       itemCount: AllScreens.allScreens.length,
                       itemBuilder: (context, index) {
                         final screen = AllScreens.allScreens[index];
-                        return ScreenItem(screen: screen);
+                        return ScreenItem(
+                          screen: screen,
+                          index: index,
+                          isSelected: currentIndex == index,
+                          updateIndex: (index) {
+                            currentIndex = index;
+                            setState(() {});
+                          },
+                        );
                       })),
             const Spacer(),
             const Divider(),
@@ -97,12 +97,16 @@ class _SideBarState extends State<SideBar> {
                   loadingWrapper(controller.logout, context)
                       .then((value) => context.goNamed(RouteName.login));
                 },
-                child: const Text(
-                  'Sign out!',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25, bottom: 8, top: 8),
+                    child: Text(
+                      'Sign out!',
+                      style: AppDecoration.semiBoldStyle(
+                          fontSize: 20, color: AppColors.white),
+                    ),
+                  ),
                 ),
               ),
             ),

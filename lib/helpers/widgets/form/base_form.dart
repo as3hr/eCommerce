@@ -1,4 +1,4 @@
-import 'package:ecommerce_admin_panel/helpers/extensions/theme_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -161,7 +161,7 @@ class _BaseFormState extends State<BaseForm> {
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Container(
-                          color: ThemeColors.white,
+                          color: AppColors.white,
                           width: 1.sw,
                           child: Form(
                             child: Column(

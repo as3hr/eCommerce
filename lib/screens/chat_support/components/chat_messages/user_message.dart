@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +23,7 @@ class UserMessage extends StatelessWidget {
                   maxWidth: 0.65.sw,
                 ),
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.offWhite,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.zero,
                       topRight: Radius.circular(12),

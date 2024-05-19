@@ -1,7 +1,10 @@
+import 'package:ecommerce_admin_panel/helpers/styles/asset_images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../helpers/styles/app_colors.dart';
 import '../chat_controller.dart';
 
 class ChatField extends StatelessWidget {
@@ -11,59 +14,55 @@ class ChatField extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: 0.5.sw,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.black, width: 1.7)),
-            child: Row(
-              children: [
-                Expanded(
-                    child: TextFormField(
-                  maxLines: 3,
-                  minLines: 1,
-                  controller: controller.messageController,
-                  keyboardType: TextInputType.multiline,
-                  decoration: const InputDecoration(
-                    hintText: 'Type your response here..',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Colors.transparent,
-                    )),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Colors.transparent,
-                    )),
-                  ),
-                  onFieldSubmitted: (_) => controller.sendMessage(),
-                )),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                          offset: Offset(0, 4),
-                          spreadRadius: 0.5,
-                          blurRadius: 1,
-                          color: Colors.black,
-                        )
-                      ],
-                    ),
-                    child: GestureDetector(
-                        onTap: () => controller.sendMessage(),
-                        child: const Icon(Icons.send, color: Colors.black)),
-                  ),
-                )
-              ],
+          const CircleAvatar(
+            radius: 20,
+            backgroundColor: AppColors.navy,
+            child: Icon(
+              Icons.person,
+              color: Colors.grey,
             ),
           ),
+          5.horizontalSpace,
+          Expanded(
+            child: Container(
+              width: 0.5.sw,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.grayI, width: 1)),
+              constraints: BoxConstraints(maxWidth: 0.5.sw, maxHeight: 70),
+              child: TextFormField(
+                maxLines: 3,
+                minLines: 1,
+                controller: controller.messageController,
+                keyboardType: TextInputType.multiline,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10),
+                  hintText: 'Type your response here..',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                    color: Colors.transparent,
+                  )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                    color: Colors.transparent,
+                  )),
+                ),
+                onFieldSubmitted: (_) {
+                  controller.sendMessage();
+                },
+              ),
+            ),
+          ),
+          5.horizontalSpace,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 25, 8),
+            child: InkWell(
+                onTap: () => controller.sendMessage(),
+                child: Image.asset(AssetImages.send, color: Colors.black)),
+          )
         ],
       );
     });

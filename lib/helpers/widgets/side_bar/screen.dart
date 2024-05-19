@@ -1,6 +1,6 @@
 class Screen {
   String title;
   String routeName;
-
-  Screen({required this.routeName, required this.title});
+  String image;
+  Screen({required this.routeName, required this.title, required this.image});
 }

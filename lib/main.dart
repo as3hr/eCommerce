@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:ecommerce_admin_panel/helpers/widgets/window_title_bar.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+import 'helpers/widgets/window_title_bar.dart';
 import 'screens/log_in_view/auth_controller.dart';
 import 'routes/route_generator.dart';
 
