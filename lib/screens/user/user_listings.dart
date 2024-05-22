@@ -7,7 +7,6 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_tabl
 import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/user/user_controller.dart';
-import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,10 +21,10 @@ class UserListing extends StatelessWidget {
         init: UserController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: lightColorScheme.onBackground,
             body: Column(
               children: [
                 CustomHeader(
+                  mainTitle: 'Users',
                   onPressed: () {
                     changePage(context, RouteName.userScreen);
                     controller.setUser = User();

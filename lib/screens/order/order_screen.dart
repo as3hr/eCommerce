@@ -22,6 +22,7 @@ class OrderScreen extends StatelessWidget {
         body: Column(
           children: [
             CustomHeader(
+              mainTitle: isNew ? '' : 'Update a Order',
               previousRoute: RouteName.ordersList,
               formTitle: 'Orders',
               onPressed: () {},

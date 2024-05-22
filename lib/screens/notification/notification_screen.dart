@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../helpers/widgets/form/base_form.dart';
 import '../../helpers/widgets/form/form_fields.dart';
 import '../../routes/route_name.dart';
-import '../../theme.dart';
 
 class NotificationScreen extends StatelessWidget {
   static const routeName = '/logs';
@@ -18,10 +17,10 @@ class NotificationScreen extends StatelessWidget {
     return GetBuilder<NotificationController>(builder: (controller) {
       final notification = controller.notification;
       return Scaffold(
-        backgroundColor: lightColorScheme.onBackground,
         body: Column(
           children: [
             CustomHeader(
+              mainTitle: 'Create a New Notification',
               previousRoute: RouteName.notificationsList,
               formTitle: 'Notifications',
               onPressed: () {},

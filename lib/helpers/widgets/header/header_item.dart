@@ -15,13 +15,16 @@ class HeaderItem extends StatelessWidget {
           style: largeTextStyle,
         ),
         const SizedBox(
-          width: 14,
+          width: 10,
         ),
         if (showIcon)
           const Text(
-            '/',
-            style: TextStyle(fontSize: 20, color: AppColors.grayII),
+            '•',
+            style: TextStyle(fontSize: 20, color: AppColors.black),
           ),
+        const SizedBox(
+          width: 10,
+        ),
       ],
     );
   }

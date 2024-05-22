@@ -7,7 +7,6 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_tabl
 import 'package:ecommerce_admin_panel/models/order.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_controller.dart';
-import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,10 +21,10 @@ class OrderListing extends StatelessWidget {
         init: OrderController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: lightColorScheme.onBackground,
             body: Column(
               children: [
                 CustomHeader(
+                  mainTitle: 'Orders',
                   onPressed: () {
                     changePage(context, RouteName.orderScreen);
                     controller.setOrder = Order();

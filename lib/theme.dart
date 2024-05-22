@@ -159,7 +159,7 @@ TextTheme textTheme = TextTheme(
 ThemeData theme({bool dark = false}) {
   return ThemeData(
     dialogTheme: dialogTheme(),
-    scaffoldBackgroundColor: AppColors.platinumWhiteI,
+    scaffoldBackgroundColor: AppColors.white,
     useMaterial3: false,
     colorScheme: lightColorScheme,
     fontFamily: 'SFPro',

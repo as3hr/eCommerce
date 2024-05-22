@@ -6,7 +6,6 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_row.
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_table.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/notification/notification_controller.dart';
-import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,10 +20,10 @@ class NotificationListing extends StatelessWidget {
         init: NotificationController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: lightColorScheme.onBackground,
             body: Column(
               children: [
                 CustomHeader(
+                  mainTitle: 'Notifications',
                   onPressed: () {
                     changePage(context, RouteName.notificationsScreen);
                   },

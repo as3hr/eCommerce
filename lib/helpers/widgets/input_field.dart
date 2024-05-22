@@ -80,7 +80,7 @@ class _InputFieldState extends State<InputField> {
                 borderSide: const BorderSide(color: AppColors.transparent),
               ),
               suffixIcon: widget.passwordField
-                  ? GestureDetector(
+                  ? InkWell(
                       onTap: () {
                         isObsecure = !isObsecure;
                         setState(() {});

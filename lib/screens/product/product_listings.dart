@@ -7,7 +7,6 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_tabl
 import 'package:ecommerce_admin_panel/models/product.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/product/product_controller.dart';
-import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,10 +21,10 @@ class ProductListing extends StatelessWidget {
         init: ProductController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: lightColorScheme.onBackground,
             body: Column(
               children: [
                 CustomHeader(
+                  mainTitle: 'Products',
                   onPressed: () {
                     changePage(context, RouteName.productsScreen);
                     controller.setProduct = Product();

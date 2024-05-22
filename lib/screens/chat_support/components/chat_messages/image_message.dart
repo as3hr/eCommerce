@@ -74,7 +74,7 @@ class ImageMessage extends StatelessWidget {
           5.verticalSpace,
           Row(
             children: [
-              10.horizontalSpace,
+              5.horizontalSpace,
               Text(DateHelper.formatDate(message.date!)),
               5.horizontalSpace,
               const Icon(

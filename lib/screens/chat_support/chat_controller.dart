@@ -20,14 +20,10 @@ class ChatController extends GetxController {
 
   //initial declarations
   var currentChat = Chat();
-  bool showImage = false;
+  bool isLoading = true;
+  int limit = 25;
   List<Message> messages = [];
   List<Chat> allChats = [];
-  String currentImage = '';
-  String selectedImage = '';
-  bool isLoading = true;
-  bool filePicked = false;
-  int limit = 25;
   final messageController = TextEditingController();
   final user = Get.find<AuthController>().user;
   late io.Socket socket;
@@ -85,7 +81,6 @@ class ChatController extends GetxController {
       final message = Message.fromJson(data);
       messages.insert(0, message);
       update();
-      print('User message received: $data');
     });
     socket.onDisconnect((_) {
       print('Disconnected from the Chat Server');
@@ -93,18 +88,14 @@ class ChatController extends GetxController {
   }
 
   Future<void> sendMessage() async {
-    if (messageController.text.isNotEmpty ||
-        (currentImage.isNotEmpty == true)) {
+    if (messageController.text.isNotEmpty) {
       final message = Message(
         text: messageController.text,
-        image: currentImage.isNotEmpty ? currentImage : null,
         date: DateTime.now(),
         chatId: currentChat.id,
         isUser: false,
       );
       messages.insert(0, message);
-      filePicked = false;
-      currentImage = '';
       messageController.clear();
       update();
       socket.emit('sendAdminMessage', message.toJson());

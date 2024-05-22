@@ -19,7 +19,7 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
-  bool showItems = false;
+  bool showItems = true;
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -97,16 +97,21 @@ class _SideBarState extends State<SideBar> {
                   loadingWrapper(controller.logout, context)
                       .then((value) => context.goNamed(RouteName.login));
                 },
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 25, bottom: 8, top: 8),
-                    child: Text(
-                      'Sign out!',
-                      style: AppDecoration.semiBoldStyle(
-                          fontSize: 20, color: AppColors.white),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 25, bottom: 8, top: 8),
+                      child: Text(
+                        'Sign out',
+                        style: AppDecoration.semiBoldStyle(
+                            fontSize: 20, color: AppColors.white),
+                      ),
                     ),
-                  ),
+                    const Spacer(),
+                    const Icon(Icons.logout, color: AppColors.white),
+                    12.horizontalSpace,
+                  ],
                 ),
               ),
             ),

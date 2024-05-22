@@ -23,20 +23,14 @@ class ChatAppBar extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 13),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                      radius: 20,
-                      backgroundImage:
-                          controller.currentChat.user?.image != null
-                              ? NetworkImage(
-                                  controller.currentChat.user?.image ?? '')
-                              : null,
-                      child: controller.currentChat.user?.image != null
-                          ? null
-                          : const Icon(Icons.person))
-                ],
-              ),
+              child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: controller.currentChat.user?.image != null
+                      ? NetworkImage(controller.currentChat.user?.image ?? '')
+                      : null,
+                  child: controller.currentChat.user?.image != null
+                      ? null
+                      : const Icon(Icons.person)),
             ),
             5.horizontalSpace,
             SizedBox(
@@ -48,7 +42,7 @@ class ChatAppBar extends StatelessWidget {
                     '${controller.currentChat.user?.firstName ?? ''}${controller.currentChat.user?.lastName ?? ''}'),
                 subtitle: const Text(
                   'Online',
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(color: AppColors.green),
                 ),
               ),
             ),
