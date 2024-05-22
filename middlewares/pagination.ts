@@ -61,7 +61,7 @@ const pagination = asyncHandler(
       .skip(startIndex)
       .limit(limit)
       .populate(req.populate)
-      .select(req.select);
+      // .select(req.select);
     result.count = result.data.length;
     res.json({ success: true, result: result });
   }

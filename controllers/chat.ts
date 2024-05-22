@@ -1,19 +1,26 @@
 import { NextFunction, Request, Response } from "express";
-import { asyncHandler, chatModel } from "../internal";
+import { asyncHandler, chatModel, userModel } from "../internal";
 
 const getChats = asyncHandler(
     async(req: Request,resp:Response,next:NextFunction)=>{
         req.model = chatModel,
-        req.modelName = 'chats',
+        req.modelName = 'chats';
+        const user = await userModel.findOne({_id: req.session.user, isAdmin: false});
+        if(user){
+            req.query.user = req.user._id
+        }
         req.populate = 'user';
-        req.query.user = req.user._id
         next();
 });
 
 const getChatById = asyncHandler(
     async(req: Request,resp:Response,next:NextFunction)=>{
         req.model = chatModel,
-        req.modelName = 'chates',
+        req.modelName = 'chats';
+        const user = await userModel.findOne({ _id: req.session.user, isAdmin: false});
+        if(user){
+            req.query.user = req.user._id
+        }
         req.populate = 'user';
         next();
 });

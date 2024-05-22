@@ -3,9 +3,6 @@ import { HttpError, asyncHandler, userModel, wishModel } from "../internal";
 import { sendTemplateMail } from "../utils/send_mail";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import { client } from "../config/db_config";
-import mongoose from "mongoose";
-
 
 const signIn = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -22,12 +19,12 @@ const signIn = asyncHandler(
     if(result){
       const checkPass = await result.comparePassword(req.body.password);
       if(result.isSocial){
-        await startSession(req, result._id);
+        req.session.user = result._id;
         res.json({ success: true, result });
       }else if (!checkPass){
         throw HttpError.invalidCredentials();
       } else {
-        await startSession(req, result!._id);
+        req.session.user = result._id;
         res.json({ success: true, result });
       }
     }else{
@@ -42,18 +39,18 @@ const socialAuth = asyncHandler(
     if (!user) {
       await userModel.create(req.body);
       const result = await userModel.findOne({ email: req.body.email });
-      await startSession(req, result!._id);
       await wishModel.create({
         user: result!._id,
         title: 'Favorites',
         products: [],
       });
+      req.session.user = result!._id;
       res.json({
         success: true,
         result,
       });
     }else{
-      await startSession(req, user._id);
+      req.session.user = user._id;
       res.json({ success: true, user });
     }
   }
@@ -71,12 +68,12 @@ const signUp = asyncHandler(
     }
     await userModel.create(req.body);
     const result = await userModel.findOne({ email: req.body.email });
-    await startSession(req, result!._id);
     await wishModel.create({
       user: result!._id,
       title: 'Favorites',
       products: [],
     });
+    req.session.user = result!._id;
     res.json({
       success: true,
       result,
@@ -163,8 +160,8 @@ const sendEmailVerification=asyncHandler(
   }
 );
 
-const verifyEmail=asyncHandler(
-  async (req:Request,res:Response,next:NextFunction)=>{
+const verifyEmail = asyncHandler(
+  async (req:Request,res:Response,next:NextFunction) => {
     const result = await userModel.findOneAndUpdate(
       {
         verificationCode: req.body.verificationCode,
@@ -180,16 +177,11 @@ const verifyEmail=asyncHandler(
   }
 );
 
-const startSession = async (req: Request, id: mongoose.Schema.Types.ObjectId) => {
-  req.session.user = id;
-  await client.set('user-session', JSON.stringify(req.session.user));          
-}
 
 const signOut = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     if (req.session) {
       req.session.destroy(() => {});
-      await client.del('user-session');
     }
     res.json({ success: true });
   }
@@ -204,5 +196,4 @@ export {
   resetPassword, 
   forgotPassword, 
   socialAuth,
-  startSession 
 };

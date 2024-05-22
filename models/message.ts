@@ -12,7 +12,7 @@ export interface IMessage extends Document{
 const messageSchema = new Schema<IMessage>({
     chatId: {
         type: mongoose.Schema.Types.ObjectId,
-        cast: 'Invalid user type',
+        cast: 'Invalid chatId type',
         ref: 'users'
     },
     image: {

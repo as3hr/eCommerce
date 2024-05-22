@@ -9,7 +9,7 @@ const getMessages = asyncHandler(
 });
 
 const updateMessage = asyncHandler(
-    async(req: Request,resp:Response,next:NextFunction)=>{
+    async(req: Request, resp:Response, next:NextFunction)=>{
         req.model = messageModel,
         req.modelName = 'messages',
         next();

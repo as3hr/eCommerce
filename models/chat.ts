@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { messageModel } from "./message";
 
 export interface IChat extends Document{
     user: mongoose.Schema.Types.ObjectId,
@@ -26,6 +27,11 @@ const chatSchema = new Schema<IChat>({
         type: Date,
         cast: 'Invalid adminLastSeen Type',
     },
+});
+
+chatSchema.pre<IChat>('deleteOne', async function (next) {
+ await messageModel.deleteMany({ chatId: this._id });
+ next();
 });
 
 

@@ -21,12 +21,10 @@ import {
   userRouter,
   wishRouter,
   chatsRouter,
+  messageRouter,
 } from "./internal.js";
 import { createServer } from "http";
-import { configureRedis } from "./config/db_config.js";
 import { createSessionStore } from "./config/session_store.js";
-
-configureRedis();
 
 admin.initializeApp({
   credential: admin.credential.cert("serviceAccountKey.json"),
@@ -53,10 +51,6 @@ app.use(
   })
 );
 
-mongoose.SchemaTypes.Boolean.cast(false);
-mongoose.SchemaTypes.String.cast(false);
-mongoose.SchemaTypes.Number.cast(false);
-
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/logs", logRouter);
@@ -69,6 +63,7 @@ app.use("/wishes", wishRouter);
 app.use("/payments", paymentRouter);
 app.use("/addresses", addressRouter);
 app.use("/chats", chatsRouter);
+app.use("/messages", messageRouter);
 
 app.use(errorHandler);
 
