@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { asyncHandler, orderModel } from "../internal";
 
-
 const getOrders = asyncHandler(
-    async (req: Request, res:Response, next: NextFunction)=>{
+    async (req: Request, res: Response, next: NextFunction) => {
         req.model = orderModel;
         req.modelName = 'orders';
         req.query.userId =  req.user._id;

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  addFcmToken,
   checkBooleanPermission,
   checkNecessaryParameters,
   checkToken,
@@ -51,6 +52,13 @@ router.put(
     "_id",
   ]),
   updateUser,
+);
+
+router.delete(
+  "/add-token", 
+  checkToken,
+  checkNecessaryParameters(['fcmToken']), 
+  addFcmToken
 );
 
 router.delete(

@@ -21,7 +21,7 @@ const createNotification = asyncHandler(
 
 
 const sendPushNotification = async (title: string, body: any, notifyUser: mongoose.Schema.Types.ObjectId, data?: any) => {
-    const user = await userModel.findById(notifyUser).select('fcmTokens');
+    const user = await userModel.findById(notifyUser).select('+fcmTokens');
     const fcmTokens = user?.fcmTokens;
     
     if(fcmTokens && fcmTokens.length > 0){

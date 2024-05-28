@@ -74,6 +74,26 @@ const deleteUser = asyncHandler(
   }
 );
 
+const addFcmToken = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.body.fcmToken;
+    if (token && token.length > 10) {
+      const result = await userModel.findByIdAndUpdate(
+        { _id: req.user._id },
+        { $addToSet: { fcmTokens: token } },
+        { new: true }
+      );
+
+      if (result) {
+        res.json({
+          success: true,
+          result,
+        });
+      }
+    }
+  }
+);
+
 const createUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     let contact = parseNumber(req.body.contactNumber);
@@ -95,4 +115,5 @@ export {
   getUser,
   getUserById,
   updateUser,
+  addFcmToken,
 };
