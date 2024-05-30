@@ -27,6 +27,7 @@ class ChatController extends GetxController {
   String currentImage = '';
   String selectedImage = '';
   bool isLoading = true;
+  bool inChat = false;
   bool messagesFetched = false;
   bool filePicked = false;
   int limit = 25;
@@ -34,6 +35,8 @@ class ChatController extends GetxController {
   final user = Get.find<AuthController>().user;
   late io.Socket socket;
   final picker = ImagePicker();
+
+  ChatController({this.inChat = false});
 
   Future<void> getMyChat() async {
     myChat = await Api.getMyChat();
@@ -71,7 +74,7 @@ class ChatController extends GetxController {
 
   void socketConnect() {
     if (myChat.id == null) return;
-    socket = io.io('http://192.168.100.55:3000', {
+    socket = io.io(Api.baseUrl, {
       'autoConnect': false,
       'transports': ['websocket'],
     });

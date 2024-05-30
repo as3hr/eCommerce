@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:e_commerce/data/notification_service.dart';
 import 'package:e_commerce/firebase_options.dart';
 import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/models/settings.dart';
@@ -25,6 +26,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final notificationService = NotificationService();
+  notificationService.requestPermission();
+  // FirebaseMessaging.onBackgroundMessage(
+  //   notificationService.firebaseMessagingBackgroundHandler,
+  // );
   final auth = AuthController();
   Get.put(auth);
   Get.put(SettingsController(auth: auth));

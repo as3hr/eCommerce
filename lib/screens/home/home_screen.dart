@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                                     15.verticalSpace,
                                     const SpacerRow(text1: 'New in'),
                                     15.verticalSpace,
-                                    const ItemsList(),
+                                    const ItemsList(reverse: true),
                                     10.verticalSpace,
                                   ],
                                 ),

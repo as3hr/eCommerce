@@ -15,7 +15,6 @@ class CartController extends GetxController {
     if (!checkoutProducts.contains(product)) {
       checkoutProducts.add(product);
       calculateCost();
-      update();
       return true;
     }
     return false;
@@ -24,7 +23,6 @@ class CartController extends GetxController {
   void removeProduct(Product product) {
     checkoutProducts.remove(product);
     calculateCost();
-    update();
   }
 
   void calculateCost() {
@@ -48,13 +46,11 @@ class CartController extends GetxController {
     checkoutProducts = [];
     order = Order();
     calculateCost();
-    update();
   }
 
   void increaseQuantity(Product product) {
     product.quantity = product.quantity + 1;
     calculateCost();
-    update();
   }
 
   void decreaseQuantity(Product product) {

@@ -26,38 +26,40 @@ class CustomContainer extends StatelessWidget {
   final double? fontSize;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: height ?? 75,
-          width: width ?? 1.sw,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(35),
-            color: color,
-          ),
-          child: Stack(
-            children: [
-              if (preFixImage != null)
-                Positioned(
-                  top: 10,
-                  bottom: 10,
-                  left: 25,
-                  child: Image(
-                    image: AssetImage(preFixImage!),
-                  ),
-                ),
-              widget != null
-                  ? widget!
-                  : Center(
-                      child: Text(
-                        text ?? '',
-                        style: AppDecoration.semiBoldStyle(
-                            fontSize: fontSize ?? 20, color: textColor),
-                      ),
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            height: height ?? 75,
+            width: width ?? 1.sw,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(35),
+              color: color,
+            ),
+            child: Stack(
+              children: [
+                if (preFixImage != null)
+                  Positioned(
+                    top: 10,
+                    bottom: 10,
+                    left: 25,
+                    child: Image(
+                      image: AssetImage(preFixImage!),
                     ),
-            ],
+                  ),
+                widget != null
+                    ? widget!
+                    : Center(
+                        child: Text(
+                          text ?? '',
+                          style: AppDecoration.semiBoldStyle(
+                              fontSize: fontSize ?? 20, color: textColor),
+                        ),
+                      ),
+              ],
+            ),
           ),
         ),
       ),

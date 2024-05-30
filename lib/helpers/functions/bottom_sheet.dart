@@ -4,8 +4,6 @@ import '../styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../styles/app_colors.dart';
-
 void viewBottomSheet(BuildContext context, String titleText,
     Widget bottomSheetBody, Function() onClearTap) {
   showModalBottomSheet(
@@ -48,7 +46,8 @@ void viewBottomSheet(BuildContext context, String titleText,
                     child: Text(
                       'X',
                       style: AppDecoration.semiBoldStyle(
-                          fontSize: 20, color: AppColors.pureBlack),
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                   ),
                 ],

@@ -1,7 +1,6 @@
 import 'package:e_commerce/helpers/functions/parse_val.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../helpers/functions/change_page.dart';
@@ -64,13 +63,18 @@ class CartContent extends StatelessWidget {
             text2: '\$${parseValToDouble(controller.order.total)}',
             text2Color: Theme.of(context).colorScheme.onSecondary,
           ),
-          CustomContainer(
-              onTap: () {
-                changePage(CheckoutScreen.routeName);
-              },
-              text: 'Checkout',
-              color: AppColors.lightPurple,
-              textColor: AppColors.pureWhite),
+          10.verticalSpace,
+          Hero(
+            tag: 'checkout-container',
+            child: CustomContainer(
+                height: 65,
+                onTap: () {
+                  changePage(CheckoutScreen.routeName);
+                },
+                text: 'Checkout',
+                color: AppColors.lightPurple,
+                textColor: AppColors.pureWhite),
+          ),
         ],
       );
     });

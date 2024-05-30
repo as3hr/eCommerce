@@ -48,6 +48,7 @@ void showToast({
   Widget? imageWidget,
   String imagePath = AppImages.successful,
   SnackPosition snackPosition = SnackPosition.BOTTOM,
+  Duration duration = const Duration(milliseconds: 1200),
 }) {
   Get.showSnackbar(
     GetSnackBar(
@@ -62,7 +63,7 @@ void showToast({
               color: Get.theme.colorScheme.onSurface,
             ),
       ),
-      duration: const Duration(milliseconds: 1200),
+      duration: duration,
       margin: const EdgeInsets.all(10),
       backgroundGradient: LinearGradient(
         begin: Alignment.centerLeft,

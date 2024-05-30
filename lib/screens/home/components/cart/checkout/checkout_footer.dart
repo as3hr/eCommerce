@@ -46,37 +46,40 @@ class CheckoutFooter extends StatelessWidget {
           30.verticalSpace,
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomContainer(
-                onTap: () {
-                  loadingWrapper(() async {
-                    await controller.createOrder();
-                  });
-                },
-                widget: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          '\$${parseValToDouble(controller.order.total)}',
-                          style: AppDecoration.boldStyle(
-                              fontSize: 17, color: AppColors.pureWhite),
+            child: Hero(
+              tag: 'checkout-container',
+              child: CustomContainer(
+                  onTap: () {
+                    loadingWrapper(() async {
+                      await controller.createOrder();
+                    });
+                  },
+                  widget: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            '\$${parseValToDouble(controller.order.total)}',
+                            style: AppDecoration.boldStyle(
+                                fontSize: 17, color: AppColors.pureWhite),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Text(
-                          'Place Order',
-                          style: AppDecoration.semiBoldStyle(
-                              fontSize: 17, color: AppColors.pureWhite),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Text(
+                            'Place Order',
+                            style: AppDecoration.semiBoldStyle(
+                                fontSize: 17, color: AppColors.pureWhite),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                color: AppColors.lightPurple,
-                textColor: AppColors.pureWhite),
+                  color: AppColors.lightPurple,
+                  textColor: AppColors.pureWhite),
+            ),
           ),
         ],
       );

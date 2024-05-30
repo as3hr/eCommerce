@@ -7,7 +7,8 @@ class Indicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircularProgressIndicator(
-          color: Theme.of(context).colorScheme.onSecondary),
+        color: Theme.of(context).colorScheme.onSecondary,
+      ),
     );
   }
 }

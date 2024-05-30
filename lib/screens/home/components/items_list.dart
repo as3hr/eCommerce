@@ -1,3 +1,4 @@
+import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/home_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -6,14 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemsList extends StatelessWidget {
-  const ItemsList({super.key});
-
+  const ItemsList({super.key, this.reverse = false});
+  final bool reverse;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeScreenController>(builder: (controller) {
-      final products = controller.title.isEmpty
+      List<Product> products = controller.title.isEmpty
           ? controller.productsList
           : controller.filteredProducts;
+      if (reverse) {
+        products = products.reversed.toList();
+      }
       return SizedBox(
         height: 280,
         width: 1.sw,

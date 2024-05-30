@@ -11,8 +11,9 @@ import '../models/address.dart';
 import '../models/chat.dart';
 
 class Api {
+  static const baseUrl = 'http://192.168.100.63:3000';
   static final dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.100.55:3000",
+      baseUrl: baseUrl,
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       contentType: 'application/json'));
@@ -42,6 +43,12 @@ class Api {
     final response = await dio.post(url, data: user.userSignUp());
     final data = ApiHelpers.checkError(response)['result'];
     return User.fromJson(data);
+  }
+
+  static Future<void> addFcm({required String fcmToken}) async {
+    const url = '/users/add-token';
+    final response = await dio.post(url, data: {'fcmToken': fcmToken});
+    ApiHelpers.checkError(response);
   }
 
   static Future<String> uploadImage(String file, String fileName) async {

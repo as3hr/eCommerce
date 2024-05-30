@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/data/api.dart';
+import 'package:e_commerce/data/notification_service.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/user.dart';
@@ -13,6 +14,7 @@ import '../../models/token.dart';
 
 class AuthController extends GetxController {
   final isInitialized = false.obs;
+  final notificationService = NotificationService();
   User user = User();
   final token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
@@ -62,6 +64,7 @@ class AuthController extends GetxController {
   Future<void> login() async {
     await Api.login(email: email.trim(), password: password.trim());
     token.value?.persistToken();
+    addFcmToken();
     fetchProfile();
     update();
   }
@@ -91,6 +94,7 @@ class AuthController extends GetxController {
   Future<void> socialAuth(User user) async {
     await Api.socialAuth(user: user);
     token.value?.persistToken();
+    addFcmToken();
     fetchProfile();
     update();
   }
@@ -104,6 +108,7 @@ class AuthController extends GetxController {
       imagePath: AppImages.successful,
     );
     token.value?.persistToken();
+    addFcmToken();
     fetchProfile();
     update();
   }
@@ -116,6 +121,11 @@ class AuthController extends GetxController {
   Future<void> uploadImage(String path, String fileName) async {
     user.image = await Api.uploadImage(path, fileName);
     await Api.updateUser(user: user);
+  }
+
+  Future<void> addFcmToken() async {
+    final token = await notificationService.getNotificationToken();
+    await Api.addFcm(fcmToken: token);
   }
 
   Future<void> logout() async {

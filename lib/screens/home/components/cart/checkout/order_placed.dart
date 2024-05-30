@@ -1,3 +1,4 @@
+import 'package:e_commerce/screens/bottom_bar/bottom_nav_bar.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helpers/styles/app_colors.dart';
@@ -20,9 +21,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Get.back();
-      Get.back();
-      Get.back();
+      Get.until(ModalRoute.withName(BottomNavBar.routeName));
     });
   }
 

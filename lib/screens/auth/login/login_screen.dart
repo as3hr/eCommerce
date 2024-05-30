@@ -61,7 +61,9 @@ class LoginScreen extends StatelessWidget {
                     height: 65,
                     width: 0.97.sw,
                     onTap: () {
-                      loadingWrapper(controller.login);
+                      loadingWrapper(() async {
+                        await controller.login();
+                      });
                     },
                     text: 'Continue',
                     color: AppColors.lightPurple,
