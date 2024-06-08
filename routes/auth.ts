@@ -1,5 +1,15 @@
 import { Router } from "express";
-import { checkNecessaryParameters, forgotPassword, resetPassword, sendEmailVerification, signIn, signOut, signUp, socialAuth, verifyEmail } from "../internal";
+import { 
+    checkNecessaryParameters, 
+    forgotPassword, 
+    resetPassword, 
+    sendEmailVerification, 
+    signIn, 
+    signOut, 
+    signUp, 
+    socialAuth, 
+    verifyEmail
+} from "../internal";
 
 const router = Router();
 

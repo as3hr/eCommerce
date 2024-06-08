@@ -32,7 +32,7 @@ const sendPushNotification = async (title: string, body: any, notifyUser: mongoo
         },
         notification: {
           title: title ?? "Test Title",
-          body: body ?? "Test Body",
+          body: body.toString() ?? "Test Body",
         },
         android: { priority: "high" },
         apns: { payload: { aps: { contentAvailable: true } } },

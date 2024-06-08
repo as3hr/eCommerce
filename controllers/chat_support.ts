@@ -7,7 +7,6 @@ import { HttpError, sendPushNotification, userModel } from "../internal";
 export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
     
     io.on('connection' , (socket) => {
-        console.log(`Connected!`);
 
         socket.on('error', (error) => {
             console.error('Socket.io error:', error);

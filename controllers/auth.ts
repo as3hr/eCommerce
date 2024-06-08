@@ -16,18 +16,19 @@ const signIn = asyncHandler(
     }
     const result = await userModel
       .findOne({ email: req.body.email });
+
     if(result){
       const checkPass = await result.comparePassword(req.body.password);
-      if(result.isSocial){
+      if(!checkPass && !result.isSocial){
+        throw HttpError.invalidCredentials();
+      } else if (result.isSocial && !checkPass){
         req.session.user = result._id;
         res.json({ success: true, result });
-      }else if (!checkPass){
-        throw HttpError.invalidCredentials();
-      } else {
+      } else if(checkPass && !result.isSocial) {
         req.session.user = result._id;
         res.json({ success: true, result });
       }
-    }else{
+    } else {
       throw HttpError.invalidCredentials();
     }
   }

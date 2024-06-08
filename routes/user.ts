@@ -54,7 +54,7 @@ router.put(
   updateUser,
 );
 
-router.delete(
+router.post(
   "/add-token", 
   checkToken,
   checkNecessaryParameters(['fcmToken']), 

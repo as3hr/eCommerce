@@ -2,7 +2,6 @@ import Router from "express";
 import { 
     checkNecessaryParameters,
     checkToken, 
-    createDocument, 
     createOrder, 
     deleteDocument, 
     deleteOrder, 
@@ -22,7 +21,6 @@ router.post('/',
     checkToken, 
     checkNecessaryParameters(['products','total','subTotal','shippingCost','tax','address']), 
     createOrder, 
-    createDocument 
 );
 
 router.get('/:id', checkToken, getOrderById, fetchSingleDocument );

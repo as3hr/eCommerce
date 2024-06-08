@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { asyncHandler, orderModel } from "../internal";
+import { asyncHandler, createLogs, orderModel, sendPushNotification } from "../internal";
 
 const getOrders = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -21,10 +21,24 @@ const getOrderById = asyncHandler(
 
 const createOrder = asyncHandler(
     async (req: Request, res:Response, next: NextFunction)=>{
-        req.model = orderModel;
-        req.modelName = 'orders';
         req.body.userId = req.session.user; 
-        next();
+        const result = await orderModel.create(req.body);
+        if (result) {
+          createLogs(
+            req.session.user,
+            'orders',
+            "ADD",
+            result._id,
+            result.toJSON()
+          );
+          sendPushNotification(
+            'Your order is placed successfully!',
+            `Keep in touch with us via our chat support or email, Thank you!`,
+            req.session.user,
+            null
+          );
+          res.json({ success: true, result });
+        }
     }
 );
 
