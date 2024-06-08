@@ -16,7 +16,7 @@ class AuthController extends GetxController {
   final isInitialized = false.obs;
   final notificationService = NotificationService();
   User user = User();
-  final token = Rx<Token?>(null);
+  Rx<Token?> token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
   String email = '';
   String password = '';
@@ -129,9 +129,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
+    await Token.clearToken();
     await GoogleSignIn().signOut();
     await Api.logout();
-    await Token.clearToken();
     token.value = null;
     user = User();
     update();

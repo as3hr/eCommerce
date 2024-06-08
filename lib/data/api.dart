@@ -11,7 +11,7 @@ import '../models/address.dart';
 import '../models/chat.dart';
 
 class Api {
-  static const baseUrl = 'http://192.168.100.63:3000';
+  static const baseUrl = 'http://192.168.1.103:3000';
   static final dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       receiveDataWhenStatusError: true,

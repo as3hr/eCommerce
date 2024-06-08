@@ -1,3 +1,4 @@
+import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,9 @@ class ChatField extends StatelessWidget {
                       onTap: () => controller.showOptions(context),
                       child: Icon(
                         Icons.add,
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: context.isDark
+                            ? AppColors.lightIndigo
+                            : AppColors.grayIV,
                       ),
                     ),
                   ),

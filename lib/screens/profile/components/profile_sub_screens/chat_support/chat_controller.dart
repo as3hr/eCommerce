@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:e_commerce/screens/auth/auth_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/models/chat.dart';
@@ -10,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:e_commerce/models/message.dart';
 import 'package:get/get.dart';
 import '../../../../../helpers/functions/loader.dart';
+import '../../../../../helpers/styles/app_decoration.dart';
 
 class ChatController extends GetxController {
   @override
@@ -123,7 +125,12 @@ class ChatController extends GetxController {
       builder: (context) => CupertinoActionSheet(
         actions: [
           CupertinoActionSheetAction(
-            child: const Text('Photo Gallery'),
+            child: Text(
+              'Photo Gallery',
+              style: AppDecoration.semiBoldStyle(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSecondary),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {
@@ -132,7 +139,12 @@ class ChatController extends GetxController {
             },
           ),
           CupertinoActionSheetAction(
-            child: const Text('Camera'),
+            child: Text(
+              'Camera',
+              style: AppDecoration.semiBoldStyle(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSecondary),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
               loadingWrapper(() async {
