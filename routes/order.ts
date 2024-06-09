@@ -9,8 +9,6 @@ import {
     getOrderById, 
     getOrders, 
     pagination, 
-    updateDocument, 
-    updateOrder 
 } from "../internal";
 
 const router = Router();
@@ -24,8 +22,6 @@ router.post('/',
 );
 
 router.get('/:id', checkToken, getOrderById, fetchSingleDocument );
-
-router.put('/:id', checkToken, updateOrder, updateDocument );
 
 router.delete('/:id', checkToken, deleteOrder, deleteDocument);
 

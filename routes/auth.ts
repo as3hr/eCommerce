@@ -13,7 +13,7 @@ import {
 
 const router = Router();
 
-router.post("/login", checkNecessaryParameters(["email", "password"]), signIn);
+router.post("/login", checkNecessaryParameters(["email", "password", "isAdmin"]), signIn);
 
 router.post("/signUp", checkNecessaryParameters(["email", "password"]), signUp);
 

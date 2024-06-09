@@ -31,6 +31,8 @@ export interface IProduct extends Document{
     price?: number,
     isFav?: boolean,
     size: Size,
+    sellCount: number,
+    boughtTime: Date,
     rating?: number,
     quantity?: number,
     gender?: Gender,
@@ -43,9 +45,18 @@ const productSchema = new Schema<IProduct>({
         type: String,
         cast: 'title type is invalid'
     },
+    sellCount: {
+        type: Number,
+        default: 0,
+        cast: 'Invalid sellCount type',
+    },
     images: {
         type: [String],
         cast: "Invalid images type"
+    },
+    boughtTime: {
+        type: Date,
+        cast: "Invalid boughtTime Type"
     },
     description: { 
         type: String,

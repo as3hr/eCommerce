@@ -14,8 +14,14 @@ const signIn = asyncHandler(
         "Password and Email must be of type String"
       );
     }
-    const result = await userModel
-      .findOne({ email: req.body.email });
+    
+    let result;
+    if(req.body.isAdmin == true){
+      result = await userModel.findOne({ email: req.body.email, isAdmin: true });
+    }else{
+      result = await userModel
+        .findOne({ email: req.body.email, isAdmin: false });
+    }
 
     if(result){
       const checkPass = await result.comparePassword(req.body.password);

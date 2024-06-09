@@ -20,7 +20,7 @@ const getOrderById = asyncHandler(
 );
 
 const createOrder = asyncHandler(
-    async (req: Request, res:Response, next: NextFunction)=>{
+    async (req: Request, res:Response, next: NextFunction) => {
         req.body.userId = req.session.user; 
         const result = await orderModel.create(req.body);
         if (result) {

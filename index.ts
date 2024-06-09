@@ -5,7 +5,9 @@ import express from "express";
 import { queryParser } from "express-query-parser";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
-
+import { createServer } from "http";
+import { createSessionStore } from "./config/session_store.js";
+import { CronJob } from "cron";
 import {
   addressRouter,
   authRouter,
@@ -21,16 +23,18 @@ import {
   userRouter,
   wishRouter,
   chatsRouter,
+  salesAnalytics,
   messageRouter,
+  stockRouter,
 } from "./internal.js";
-import { createServer } from "http";
-import { createSessionStore } from "./config/session_store.js";
 
 admin.initializeApp({
   credential: admin.credential.cert("serviceAccountKey.json"),
 });
 
 dotenv.config({ path: ".env" });
+
+new CronJob('0 0 1 * *', salesAnalytics, null, true, 'Etc/UTC')
 
 const app = express();
 const httpServer = createServer(app);
@@ -64,6 +68,7 @@ app.use("/payments", paymentRouter);
 app.use("/addresses", addressRouter);
 app.use("/chats", chatsRouter);
 app.use("/messages", messageRouter);
+app.use("/stocks", stockRouter);
 
 app.use(errorHandler);
 

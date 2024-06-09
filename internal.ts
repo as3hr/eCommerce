@@ -12,6 +12,7 @@ export * from "./utils/http_error";
 export * from "./utils/permission_check";
 export * from "./utils/validate_number";
 export * from "./utils/verify_document";
+export * from "./utils/sales_analytics";
 
 export * from "./models/address";
 export * from "./models/user";
@@ -23,6 +24,8 @@ export * from "./models/order";
 export * from "./models/wish";
 export * from "./models/message";
 export * from "./models/chat";
+export * from "./models/sales";
+export * from "./models/stock";
 
 export * from "./controllers/auth";
 export * from "./controllers/upload";
@@ -38,6 +41,7 @@ export * from "./controllers/address";
 export * from "./controllers/chat_support";
 export * from "./controllers/chat";
 export * from "./controllers/message";
+export * from "./controllers/stock";
 
 export * from "./routes/auth";
 export * from "./routes/permission";
@@ -52,5 +56,6 @@ export * from "./routes/address";
 export * from "./routes/log";
 export * from "./routes/chat";
 export * from "./routes/message";
+export * from "./routes/stock";
 
 
