@@ -34,6 +34,7 @@ class Api {
     final response = await dio.post(url, data: {
       "email": email,
       "password": password,
+      'isAdmin': true,
     });
     final data = ApiHelpers.checkError(response)['result'];
     return User.fromJson(data);

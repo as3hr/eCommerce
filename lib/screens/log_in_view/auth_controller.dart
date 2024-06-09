@@ -11,7 +11,6 @@ import '../../models/token.dart';
 
 class AuthController extends GetxController {
   final token = Rx<Token?>(null);
-  final isAuthenticated = Rx<bool>(false);
   User? _user;
   User? get user => _user;
   set user(User? value) {
@@ -19,7 +18,7 @@ class AuthController extends GetxController {
     update();
   }
 
-  bool get authenticated => isAuthenticated.value;
+  bool get authenticated => token.value != null;
 
   @override
   void onInit() {
@@ -69,7 +68,7 @@ class AuthController extends GetxController {
     bool rememberMe = false,
   }) async {
     _user = await Api.login(email: email, password: password);
-    isAuthenticated.value = true;
+    token.value?.persistTokens();
     update();
   }
 

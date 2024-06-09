@@ -1,5 +1,6 @@
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/chat_support/chat_screen.dart';
+import 'package:ecommerce_admin_panel/screens/main_screen.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_listing.dart';
 import 'package:ecommerce_admin_panel/screens/order/order_screen.dart';
 import 'package:ecommerce_admin_panel/screens/home_screen/home_page.dart';
@@ -19,8 +20,17 @@ class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-          name: RouteName.login,
+          name: RouteName.mainScreen,
           path: '/',
+          // redirect: (context, state) {
+          //   return Get.find<Auth>().authenticated ? url : null;
+          // },
+          builder: (context, state) {
+            return const MainScreen();
+          }),
+      GoRoute(
+          name: RouteName.login,
+          path: '/login',
           // redirect: (context, state) {
           //   return Get.find<Auth>().authenticated ? url : null;
           // },

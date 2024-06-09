@@ -46,7 +46,10 @@ class ChatSideBar extends StatelessWidget {
                           await controller.getChatById(chat.id ?? '');
                         }, context);
                       },
-                      child: SizedBox(
+                      child: Container(
+                        color: chat.id == controller.currentChat.id
+                            ? AppColors.offWhite
+                            : AppColors.white,
                         height: 60,
                         child: Row(
                           children: [

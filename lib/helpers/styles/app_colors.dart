@@ -25,4 +25,5 @@ class AppColors {
   static const grayV = Color(0xFF2D2D2D);
   static const grayVI = Color(0xFF222222);
   static const green = Colors.green;
+  static final lightPurple = Colors.purple.shade100;
 }

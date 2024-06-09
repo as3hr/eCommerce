@@ -16,10 +16,6 @@ class TitleBar extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Icon(
-                Icons.search,
-                color: AppColors.black,
-              ),
               Spacer(),
               CircleAvatar(
                 backgroundColor: AppColors.navy,
