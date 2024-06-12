@@ -145,17 +145,21 @@ const addOrders = async (address?: boolean) => {
 };
 
 const deleteDb = async() => {
-  await orderModel.deleteMany();
-  await userModel.deleteMany({ isAdmin: false });
-  await cardModel.deleteMany();
-  await addressModel.deleteMany();
-  await salesModel.deleteMany();
-  await chatModel.deleteMany();
-  await messageModel.deleteMany();
-  await wishModel.deleteMany();
-  await stockModel.deleteMany();
-  await notificationModel.deleteMany();
-  await cardModel.deleteMany();
+  await Promise.all(
+    [
+      orderModel.deleteMany(),
+      userModel.deleteMany({ isAdmin: false }),
+      cardModel.deleteMany(),
+      addressModel.deleteMany(),
+      salesModel.deleteMany(),
+      chatModel.deleteMany(),
+      messageModel.deleteMany(),
+      wishModel.deleteMany(),
+      stockModel.deleteMany(),
+      notificationModel.deleteMany(),
+      cardModel.deleteMany(),
+    ]
+  );
 }
 
 
