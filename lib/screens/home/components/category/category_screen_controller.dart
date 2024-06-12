@@ -1,4 +1,3 @@
-import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/api.dart';
@@ -16,7 +15,7 @@ class CategoryScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadingWrapper(getProducts);
+    getProducts();
   }
 
   bool fetchedData = false;

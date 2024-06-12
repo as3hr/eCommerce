@@ -8,10 +8,12 @@ import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/models/wishlist.dart';
 
 import '../models/address.dart';
+import '../models/card.dart';
 import '../models/chat.dart';
+import '../models/payment.dart';
 
 class Api {
-  static const baseUrl = 'http://192.168.1.103:3000';
+  static const baseUrl = 'http://192.168.1.105:3000';
   static final dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       receiveDataWhenStatusError: true,
@@ -26,6 +28,7 @@ class Api {
     const url = '/auth/login';
     final response = await dio.post(url, data: {
       'email': email,
+      'isAdmin': false,
       'password': password,
     });
     final data = ApiHelpers.checkError(response)['result'];
@@ -252,5 +255,33 @@ class Api {
       return Chat.fromJson(data.first);
     }
     return Chat();
+  }
+
+  //payment API's
+  static Future<String> createPayment({required Payment payment}) async {
+    const url = '/payments/';
+    final response = await dio.post(url, data: payment.toJson());
+    final data = ApiHelpers.checkError(response);
+    return data['client_secret'];
+  }
+
+  static Future<Card> addCard(Card card) async {
+    const url = '/payments/card/';
+    final response = await dio.post(url, data: card.toJson());
+    final data = ApiHelpers.checkError(response)['result'];
+    return Card.fromJson(data);
+  }
+
+  static Future<List<Card>> getCards({
+    int limit = 25,
+    int page = 1,
+    Map<String, dynamic>? extraQuery,
+  }) async {
+    const url = '/payments/cards/';
+    final response = await dio.get(
+      url,
+      queryParameters: {'limit': limit, 'page': page, ...?extraQuery},
+    );
+    return ApiHelpers.parseResponse(response, Card.fromJson);
   }
 }

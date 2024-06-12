@@ -95,7 +95,7 @@ class ProfileScreenController extends GetxController {
   Future<void> createAddress(Address address) async {
     await Api.createAddress(address: address);
     showToast(message: 'Created Successfully', imagePath: AppImages.successful);
-    getAddresses(refresh: true);
+    await getAddresses(refresh: true);
     update();
   }
 

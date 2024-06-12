@@ -6,6 +6,8 @@ import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_s
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
+import 'data/notification_service.dart';
+
 class Binding extends Bindings {
   @override
   void dependencies() {
@@ -15,5 +17,7 @@ class Binding extends Bindings {
     Get.put(OrderScreenController());
     Get.put(NotificationScreenController());
     Get.put(ChatController());
+    final notificationService = NotificationService();
+    notificationService.requestPermission();
   }
 }

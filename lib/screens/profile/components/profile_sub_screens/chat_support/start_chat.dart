@@ -14,7 +14,7 @@ class StartChat extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor:
-              context.isDark ? AppColors.indigo : Colors.deepPurple.shade100,
+              context.isDark ? AppColors.indigo : Colors.grey.shade300,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,13 +66,14 @@ class StartChat extends StatelessWidget {
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.chat, size: 24, color: AppColors.lightIndigo),
-                      SizedBox(width: 10),
                       Text(
                         'Start Chat with Admin',
                         style: TextStyle(
                             fontSize: 16, color: AppColors.lightIndigo),
                       ),
+                      SizedBox(width: 10),
+                      Icon(Icons.arrow_forward_ios,
+                          size: 24, color: AppColors.lightIndigo),
                     ],
                   ),
                 ),

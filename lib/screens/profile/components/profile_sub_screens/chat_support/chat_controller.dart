@@ -88,7 +88,7 @@ class ChatController extends GetxController {
       'userId': user.id,
       'chatId': myChat.id,
     };
-    socket.emit('userJoinRoom', joinRoom);
+    if (user.id != null) socket.emit('userJoinRoom', joinRoom);
     socket.on('newAdminMessage', (data) {
       final message = Message.fromJson(data);
       messages.insert(0, message);

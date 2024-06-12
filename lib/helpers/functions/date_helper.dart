@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class DateHelper {
   static String formatDate(DateTime date) {
     DateTime now = DateTime.now();
@@ -30,5 +32,15 @@ class DateHelper {
       }
       return '$years years ago';
     }
+  }
+
+  static Future<DateTime?> getDateFromPicker(BuildContext context) async {
+    final date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2028),
+    );
+    return date;
   }
 }

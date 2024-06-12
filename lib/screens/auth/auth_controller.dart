@@ -15,7 +15,8 @@ import '../../models/token.dart';
 class AuthController extends GetxController {
   final isInitialized = false.obs;
   final notificationService = NotificationService();
-  User user = User();
+  var _user = User();
+  User get user => _user;
   Rx<Token?> token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
   String email = '';
@@ -114,7 +115,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> fetchProfile() async {
-    user = await Api.getUser();
+    _user = await Api.getUser();
     update();
   }
 
@@ -133,7 +134,7 @@ class AuthController extends GetxController {
     await GoogleSignIn().signOut();
     await Api.logout();
     token.value = null;
-    user = User();
+    _user = User();
     update();
   }
 

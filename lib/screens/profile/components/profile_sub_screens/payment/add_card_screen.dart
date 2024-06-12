@@ -1,4 +1,6 @@
+import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_controller.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helpers/widgets/custom_container.dart';
@@ -19,7 +21,7 @@ class AddCardScreen extends StatelessWidget {
         init: PaymentController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: AppColors.pureWhite,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
                 child: Column(
               children: [
@@ -27,35 +29,56 @@ class AddCardScreen extends StatelessWidget {
                 const Header(text: 'Add Card'),
                 35.verticalSpace,
                 InputField(
-                  onChanged: (val) {},
+                  onChanged: (val) {
+                    controller.newCard.cardHolderName = val;
+                  },
+                  hintText: 'Cardholder Name',
+                ),
+                InputField(
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(16),
+                  ],
+                  onChanged: (val) {
+                    controller.newCard.cardNumber = int.tryParse(val);
+                  },
+                  keyboardType: TextInputType.number,
                   hintText: 'Card Number',
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: InputField(
-                        onChanged: (val) {},
-                        hintText: 'CVC',
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(3),
+                        ],
+                        keyboardType: TextInputType.number,
+                        onChanged: (val) {
+                          controller.newCard.cvc = int.tryParse(val);
+                        },
+                        hintText: 'CVV',
                       ),
                     ),
                     Expanded(
                       child: InputField(
-                        onChanged: (val) {},
-                        hintText: 'Expiry',
+                        readOnly: true,
+                        isDateField: true,
+                        onChanged: (val) {
+                          controller.newCard.expiry = DateTime.parse(val);
+                        },
+                        hintText: 'Expiry (MM/YY)',
                       ),
                     ),
                   ],
-                ),
-                InputField(
-                  onChanged: (val) {},
-                  hintText: 'Cardholder Name',
                 ),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomContainer(
                       onTap: () async {
-                        await controller.createPayment();
+                        loadingWrapper(() async {
+                          await controller.addCard();
+                        });
+                        Get.back();
                       },
                       text: 'Save',
                       color: AppColors.lightPurple,

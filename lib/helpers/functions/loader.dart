@@ -4,6 +4,7 @@ import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -26,6 +27,11 @@ Future<T?> loadingWrapper<T>(
       message: e.displayMessage,
       imagePath: AppImages.unsuccessful,
     );
+  } on StripeException catch (e) {
+    showToast(
+      message: e.toString(),
+      imagePath: AppImages.unsuccessful,
+    );
   } catch (e) {
     if (showLogs) {
       print(e.toString());
@@ -46,12 +52,14 @@ void showToast({
   Function(SnackbarStatus?)? snackbarStatus,
   String? title,
   Widget? imageWidget,
+  void Function(GetSnackBar)? onTap,
   String imagePath = AppImages.successful,
   SnackPosition snackPosition = SnackPosition.BOTTOM,
   Duration duration = const Duration(milliseconds: 1200),
 }) {
   Get.showSnackbar(
     GetSnackBar(
+      onTap: onTap,
       snackbarStatus: (status) => snackbarStatus,
       snackPosition: snackPosition,
       maxWidth: 0.8.sw,

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce/helpers/widgets/indicator.dart';
+import 'package:e_commerce/helpers/widgets/shimmer_effect.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class ItemDetailContent extends StatelessWidget {
                                   ),
                                 ),
                                 placeholder: (context, url) =>
-                                    const Indicator(),
+                                    const ShimmerEffect(),
                                 errorWidget: (context, url, error) =>
                                     const Icon(Icons.error),
                               ),

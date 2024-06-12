@@ -1,5 +1,7 @@
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
+import '../functions/date_helper.dart';
 import '../styles/app_colors.dart';
 import '../styles/app_decoration.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class InputField extends StatefulWidget {
     this.keyboardType,
     this.readOnly = false,
     this.inputFormatters,
+    this.isDateField = false,
     this.onSubmit,
     this.maxLength,
     this.suffixIcon,
@@ -24,6 +27,7 @@ class InputField extends StatefulWidget {
   final String? preFilledValue;
   final bool passwordField;
   final int? maxLength;
+  final bool isDateField;
   final bool readOnly;
   final String? hintText;
   final double? width;
@@ -64,6 +68,21 @@ class _InputFieldState extends State<InputField> {
             cursorColor: AppColors.lightPurple,
             onChanged: widget.onChanged,
             validator: widget.validator,
+            onTap: widget.isDateField
+                ? () async {
+                    if (widget.isDateField) {
+                      final selectedDate =
+                          await DateHelper.getDateFromPicker(context);
+                      if (selectedDate != null) {
+                        controller.text =
+                            DateFormat('dd/MM/yyyy').format(selectedDate);
+                        setState(() {});
+                      }
+                    }
+                  }
+                : null,
+            maxLength: widget.maxLength,
+            scrollPadding: const EdgeInsets.all(0),
             onFieldSubmitted: widget.onSubmit,
             decoration: AppDecoration.inputFieldDecoration(
               widget.hintText ?? '',

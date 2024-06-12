@@ -1,5 +1,6 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/functions/parse_val.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:get/get.dart';
 
@@ -49,11 +50,17 @@ class CheckoutFooter extends StatelessWidget {
             child: Hero(
               tag: 'checkout-container',
               child: CustomContainer(
-                  onTap: () {
-                    loadingWrapper(() async {
-                      await controller.createOrder();
-                    });
-                  },
+                  onTap: controller.order.address != null
+                      ? () {
+                          loadingWrapper(() async {
+                            await controller.createOrder();
+                          });
+                        }
+                      : () {
+                          showToast(
+                              message: 'Address is required',
+                              imagePath: AppImages.access);
+                        },
                   widget: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +84,9 @@ class CheckoutFooter extends StatelessWidget {
                       ],
                     ),
                   ),
-                  color: AppColors.lightPurple,
+                  color: controller.order.address != null
+                      ? AppColors.lightPurple
+                      : AppColors.grayIV,
                   textColor: AppColors.pureWhite),
             ),
           ),

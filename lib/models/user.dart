@@ -55,6 +55,7 @@ class User {
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
+      'isAdmin': false,
       'userName': userName?.trim(),
       'firstName': firstName?.trim(),
       'lastName': lastName?.trim(),

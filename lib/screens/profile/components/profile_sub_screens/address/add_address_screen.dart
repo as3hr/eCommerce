@@ -51,6 +51,13 @@ class AddAddressScreen extends StatelessWidget {
               },
               hintText: 'City',
             ),
+            InputField(
+              preFilledValue: address.city,
+              onChanged: (val) {
+                address.country = val;
+              },
+              hintText: 'Country',
+            ),
             Row(
               children: [
                 Expanded(
