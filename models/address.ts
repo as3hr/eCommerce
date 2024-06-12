@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IAddress extends Document {
   streetAddress?: string;
   city?: string;
+  country?: string,
   state?: string;
   zipCode?: number;
   user?: Schema.Types.ObjectId,
@@ -22,6 +23,10 @@ const addressSchema = new Schema<IAddress>(
     city: {
       type: String,
       cast: "city datatype is incorrect",
+    },
+    country: {
+      type: String,
+      cast: "country datatype is incorrect",
     },
     state: {
       type: String,

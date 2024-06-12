@@ -1,14 +1,20 @@
-import { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface ICard extends Document {
   cardHolderName?: string;
   cardNumber?: number;    
   cvc?: number;
   expiry?: Date;
+  userId: Schema.Types.ObjectId,
 }
 
 const cardSchema = new Schema<ICard>(
   {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+      cast: "Invalid userId type"
+    },
     cardHolderName: {
       type: String,
       cast: "card line datatype is incorrect",
@@ -28,5 +34,5 @@ const cardSchema = new Schema<ICard>(
   },
   { timestamps: false, versionKey: false }
 );
-export const card = cardSchema;
 
+export const cardModel = mongoose.model<ICard>('cards', cardSchema);

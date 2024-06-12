@@ -1,14 +1,37 @@
 import Router from "express";
-import { addPayment, checkNecessaryParameters, checkToken } from "../internal";
+import { 
+    addCard, 
+    addPayment, 
+    checkNecessaryParameters, 
+    checkToken, 
+    createDocument, 
+    getCards, 
+    pagination 
+} from "../internal";
 
 const router = Router();
 
 router.post(
-    '/create', 
+    '/', 
     checkToken, 
     checkNecessaryParameters(['amount','currency']), 
     addPayment
 );
+
+router.post(
+    '/card', 
+    checkToken, 
+    addCard,
+    createDocument,
+);
+
+router.get(
+    '/cards', 
+    checkToken,
+    getCards,
+    pagination,
+);
+
 
 
 export { router as paymentRouter }

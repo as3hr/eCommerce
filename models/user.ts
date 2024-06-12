@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import mongoose, { Document, Schema, Types } from "mongoose";
-import { ICard, card } from "./card";
 
 export interface IUser extends Document {
   userName?: string;
@@ -13,7 +12,7 @@ export interface IUser extends Document {
   email?: string;
   isDisable:boolean,
   addresses?: Schema.Types.ObjectId[];
-  cards?: ICard[]; 
+  cards?: Schema.Types.ObjectId[]; 
   fcmTokens?: Types.Array<string>;
   isAdmin: boolean,
   comparePassword(password: string): Promise<boolean>;
@@ -34,11 +33,12 @@ const userSchema = new Schema<IUser>(
     addresses: [{
       type: Schema.Types.ObjectId,
       ref: 'addresses',
-      cast: "Invalid address",
+      cast: "Invalid address type",
     }],
     cards: [{
-      type: card,
-      cast: "Invalid card",
+      type: Schema.Types.ObjectId,
+      cast: "Invalid cards type",
+      ref: 'cards',
     }],
     isAdmin: {
       type: Boolean,

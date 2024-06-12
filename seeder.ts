@@ -2,9 +2,10 @@ import dotenv from "dotenv";
 import mongoose, { Schema } from "mongoose";
 import express from "express";
 import { IUser, userModel } from "./models/user";
-import { IAddress, IProduct, addressModel, orderModel, orderStatus, productModel } from "./internal";
+import { IAddress, IProduct, addressModel, chatModel, messageModel, notificationModel, orderModel, orderStatus, productModel, salesModel, stockModel, wishModel } from "./internal";
 import readExcelFile from "read-excel-file/node";
 import { getAddressData } from "./utils/static_address";
+import { cardModel } from "./models/card";
 
 dotenv.config({ path: ".env" });
 
@@ -143,9 +144,18 @@ const addOrders = async (address?: boolean) => {
   }
 };
 
-const deleteDb =async() => {
+const deleteDb = async() => {
   await orderModel.deleteMany();
   await userModel.deleteMany({ isAdmin: false });
+  await cardModel.deleteMany();
+  await addressModel.deleteMany();
+  await salesModel.deleteMany();
+  await chatModel.deleteMany();
+  await messageModel.deleteMany();
+  await wishModel.deleteMany();
+  await stockModel.deleteMany();
+  await notificationModel.deleteMany();
+  await cardModel.deleteMany();
 }
 
 
