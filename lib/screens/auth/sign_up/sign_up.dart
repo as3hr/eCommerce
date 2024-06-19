@@ -24,77 +24,85 @@ class SignUp extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                30.verticalSpace,
-                const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: CustomBackButton(),
-                ),
-                35.verticalSpace,
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    'Create Account',
-                    style: AppDecoration.boldStyle(
-                        fontSize: 35,
-                        color: Theme.of(context).colorScheme.onSecondary),
+            child: Form(
+              key: controller.signUpFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  30.verticalSpace,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: CustomBackButton(),
                   ),
-                ),
-                20.verticalSpace,
-                InputField(
-                  validator: (val) =>
-                      (val?.isEmpty == true) ? 'First Name is required' : null,
-                  onChanged: (val) {
-                    user.firstName = val;
-                  },
-                  hintText: 'Firstname',
-                ),
-                InputField(
-                  onChanged: (val) {
-                    user.lastName = val;
-                  },
-                  hintText: 'Lastname',
-                ),
-                InputField(
-                  onChanged: (val) {
-                    user.email = val;
-                  },
-                  validator: (val) =>
-                      (val?.isEmpty == true) ? 'Email is required' : null,
-                  hintText: 'Email Address',
-                ),
-                InputField(
-                  onChanged: (val) {
-                    user.password = val;
-                  },
-                  validator: (val) =>
-                      (val?.isEmpty == true) ? 'Enter a valid password!' : null,
-                  hintText: 'Password',
-                  passwordField: true,
-                ),
-                10.verticalSpace,
-                InputField(
-                  onChanged: (val) {
-                    user.contactNumber = val;
-                  },
-                  hintText: 'Contact',
-                ),
-                10.verticalSpace,
-                CustomContainer(
-                  height: 65,
-                  width: 0.97.sw,
-                  onTap: () {
-                    loadingWrapper(
-                        () async => {await controller.signUp(user: user)});
-                  },
-                  text: 'Continue',
-                  color: AppColors.lightPurple,
-                  textColor: AppColors.pureWhite,
-                ),
-              ],
+                  35.verticalSpace,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Create Account',
+                      style: AppDecoration.boldStyle(
+                          fontSize: 35,
+                          color: Theme.of(context).colorScheme.onSecondary),
+                    ),
+                  ),
+                  20.verticalSpace,
+                  InputField(
+                    validator: (val) => (val?.isEmpty == true)
+                        ? 'First Name is required'
+                        : null,
+                    onChanged: (val) {
+                      user.firstName = val;
+                    },
+                    hintText: 'Firstname',
+                  ),
+                  InputField(
+                    onChanged: (val) {
+                      user.lastName = val;
+                    },
+                    hintText: 'Lastname',
+                  ),
+                  InputField(
+                    onChanged: (val) {
+                      user.email = val;
+                    },
+                    validator: (val) =>
+                        (val?.isEmpty == true) ? 'Email is required' : null,
+                    hintText: 'Email Address',
+                  ),
+                  InputField(
+                    onChanged: (val) {
+                      user.password = val;
+                    },
+                    validator: (val) =>
+                        (val?.isEmpty == true && (val?.length ?? 0) <= 8)
+                            ? 'Password should be of at least 8 characters'
+                            : null,
+                    hintText: 'Password',
+                    passwordField: true,
+                  ),
+                  10.verticalSpace,
+                  InputField(
+                    onChanged: (val) {
+                      user.contactNumber = val;
+                    },
+                    hintText: 'Contact',
+                  ),
+                  10.verticalSpace,
+                  CustomContainer(
+                    height: 65,
+                    width: 0.97.sw,
+                    onTap: () {
+                      if (controller.signUpValid) {
+                        loadingWrapper(
+                            () async => {await controller.signUp(user: user)});
+                      }
+                    },
+                    text: 'Continue',
+                    color: AppColors.lightPurple,
+                    textColor: AppColors.pureWhite,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

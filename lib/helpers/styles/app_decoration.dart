@@ -9,6 +9,10 @@ class AppDecoration {
     return InputDecoration(
       hintText: hintText,
       suffixIcon: suffixIcon,
+      errorStyle: boldStyle(fontSize: 12, color: AppColors.redColor),
+      errorBorder: InputBorder.none,
+      errorMaxLines: 1,
+      focusedErrorBorder: InputBorder.none,
       hintStyle: const TextStyle(color: AppColors.grayIV),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(

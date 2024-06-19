@@ -1,15 +1,19 @@
 import 'package:e_commerce/data/api.dart';
-import 'package:e_commerce/helpers/functions/change_page.dart';
+import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/models/order.dart';
-import 'package:e_commerce/screens/home/components/cart/checkout/order_placed.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:get/get.dart';
 
+import '../../../../helpers/functions/change_page.dart';
 import '../../../../models/product.dart';
+import 'checkout/order_placed.dart';
 
 class CartController extends GetxController {
   Order order = Order();
   List<Product> checkoutProducts = [];
+  int selectedIndex = 0;
+  late bool selectedAddress;
+  List<Address> userAddresses = [];
 
   bool addProduct(Product product) {
     if (!checkoutProducts.contains(product)) {

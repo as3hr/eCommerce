@@ -5,6 +5,7 @@ import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fire;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -17,8 +18,12 @@ class AuthController extends GetxController {
   final notificationService = NotificationService();
   var _user = User();
   User get user => _user;
+  final signUpFormKey = GlobalKey<FormState>();
+  final loginFormKey = GlobalKey<FormState>();
   Rx<Token?> token = Rx<Token?>(null);
   bool get authenticated => token.value != null;
+  bool get signUpValid => signUpFormKey.currentState?.validate() == true;
+  bool get loginValid => loginFormKey.currentState?.validate() == true;
   String email = '';
   String password = '';
 
@@ -130,6 +135,8 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
+    email = '';
+    password = '';
     await Token.clearToken();
     await GoogleSignIn().signOut();
     await Api.logout();

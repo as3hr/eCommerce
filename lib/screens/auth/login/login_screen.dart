@@ -28,88 +28,98 @@ class LoginScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           body: SafeArea(
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  80.verticalSpace,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      'Sign in',
-                      style: AppDecoration.boldStyle(
-                          fontSize: 35,
-                          color: Theme.of(context).colorScheme.onSecondary),
-                    ),
-                  ),
-                  10.verticalSpace,
-                  InputField(
-                    onChanged: (val) {
-                      controller.email = val;
-                    },
-                    hintText: 'Email Address',
-                  ),
-                  InputField(
-                    onChanged: (val) {
-                      controller.password = val;
-                    },
-                    passwordField: true,
-                    hintText: 'Password',
-                  ),
-                  10.verticalSpace,
-                  CustomContainer(
-                    height: 65,
-                    width: 0.97.sw,
-                    onTap: () {
-                      loadingWrapper(() async {
-                        await controller.login();
-                      });
-                    },
-                    text: 'Continue',
-                    color: AppColors.lightPurple,
-                    textColor: AppColors.pureWhite,
-                  ),
-                  10.verticalSpace,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        changePage(SignUp.routeName);
-                      },
-                      child: EasyRichText(
-                        "Don't have an Account ? Create One",
-                        defaultStyle: AppDecoration.mediumStyle(
-                            fontSize: 14,
-                            color: context.isDark
-                                ? AppColors.grayIII
-                                : AppColors.lightBlack),
-                        patternList: [
-                          EasyPattern(
-                              targetString: 'Create One',
-                              style: AppDecoration.boldStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary))
-                        ],
+              child: Form(
+                key: controller.loginFormKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    80.verticalSpace,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        'Sign in',
+                        style: AppDecoration.boldStyle(
+                            fontSize: 35,
+                            color: Theme.of(context).colorScheme.onSecondary),
                       ),
                     ),
-                  ),
-                  60.verticalSpace,
-                  CustomContainer(
-                    height: 65,
-                    width: 0.97.sw,
-                    onTap: () {
-                      loadingWrapper(() async {
-                        await controller.googleSignIn();
-                      }, showLogs: true);
-                    },
-                    preFixImage: AppImages.google,
-                    text: 'Continue With Google',
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    textColor: Theme.of(context).colorScheme.onSecondary,
-                  ),
-                ],
+                    10.verticalSpace,
+                    InputField(
+                      onChanged: (val) {
+                        controller.email = val;
+                      },
+                      validator: (val) =>
+                          (val?.isEmpty == true) ? 'Email is required' : null,
+                      hintText: 'Email Address',
+                    ),
+                    InputField(
+                      onChanged: (val) {
+                        controller.password = val;
+                      },
+                      passwordField: true,
+                      hintText: 'Password',
+                      validator: (val) => (val?.isEmpty == true)
+                          ? 'Enter a valid password!'
+                          : null,
+                    ),
+                    10.verticalSpace,
+                    CustomContainer(
+                      height: 65,
+                      width: 0.97.sw,
+                      onTap: () {
+                        if (controller.loginValid) {
+                          loadingWrapper(() async {
+                            await controller.login();
+                          });
+                        }
+                      },
+                      text: 'Continue',
+                      color: AppColors.lightPurple,
+                      textColor: AppColors.pureWhite,
+                    ),
+                    10.verticalSpace,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          changePage(SignUp.routeName);
+                        },
+                        child: EasyRichText(
+                          "Don't have an Account ? Create One",
+                          defaultStyle: AppDecoration.mediumStyle(
+                              fontSize: 14,
+                              color: context.isDark
+                                  ? AppColors.grayIII
+                                  : AppColors.lightBlack),
+                          patternList: [
+                            EasyPattern(
+                                targetString: 'Create One',
+                                style: AppDecoration.boldStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary))
+                          ],
+                        ),
+                      ),
+                    ),
+                    60.verticalSpace,
+                    CustomContainer(
+                      height: 65,
+                      width: 0.97.sw,
+                      onTap: () {
+                        loadingWrapper(() async {
+                          await controller.googleSignIn();
+                        }, showLogs: true);
+                      },
+                      preFixImage: AppImages.google,
+                      text: 'Continue With Google',
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

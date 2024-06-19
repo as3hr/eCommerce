@@ -21,6 +21,7 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
   final themeMode = await AdaptiveTheme.getThemeMode();
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

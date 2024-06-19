@@ -15,6 +15,9 @@ import '../auth/auth_controller.dart';
 import 'components/profile_sub_screens/address/address_screen.dart';
 
 class ProfileScreenController extends GetxController {
+  final addressFormKey = GlobalKey<FormState>();
+  bool get addressFormIsValid =>
+      addressFormKey.currentState?.validate() == true;
   static final authController = Get.find<AuthController>();
   final picker = ImagePicker();
 
@@ -71,10 +74,11 @@ class ProfileScreenController extends GetxController {
     update();
   }
 
-  Future<void> getAddresses({bool refresh = false}) async {
+  Future<List<Address>> getAddresses({bool refresh = false}) async {
     if (refresh) addresses.clear();
     addresses = await Api.getAddresses();
     update();
+    return addresses;
   }
 
   Future<void> updateAddress(Address address) async {

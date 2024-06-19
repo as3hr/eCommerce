@@ -20,6 +20,7 @@ class InputField extends StatefulWidget {
     this.isDateField = false,
     this.onSubmit,
     this.maxLength,
+    this.textEditingController,
     this.suffixIcon,
     required this.onChanged,
   });
@@ -31,6 +32,7 @@ class InputField extends StatefulWidget {
   final bool readOnly;
   final String? hintText;
   final double? width;
+  final TextEditingController? textEditingController;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
@@ -41,12 +43,17 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  final controller = TextEditingController();
+  late TextEditingController controller;
   bool isObsecure = true;
 
   @override
   void initState() {
     super.initState();
+    if (widget.textEditingController != null) {
+      controller = widget.textEditingController!;
+    } else {
+      controller = TextEditingController();
+    }
     if (widget.preFilledValue != null) {
       controller.text = '${widget.preFilledValue}';
     }
@@ -66,6 +73,7 @@ class _InputFieldState extends State<InputField> {
             obscureText: widget.passwordField ? isObsecure : false,
             readOnly: widget.readOnly,
             cursorColor: AppColors.lightPurple,
+            cursorErrorColor: AppColors.lightPurple,
             onChanged: widget.onChanged,
             validator: widget.validator,
             onTap: widget.isDateField

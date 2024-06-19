@@ -1,6 +1,8 @@
 import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
+import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/address.dart';
+import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -23,80 +25,108 @@ class AddAddressScreen extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
-            child: Column(
-          children: [
-            35.verticalSpace,
-            Header(
-                text: address.id == null ? 'Add Address' : 'Update Address',
-                trailingIcon: address.id != null ? Icons.delete : null,
-                trailingTap: address.id != null
-                    ? () {
-                        loadingWrapper(() async {
-                          await controller.deleteAddress(address);
-                        });
+            child: Form(
+          key: controller.addressFormKey,
+          child: Column(
+            children: [
+              35.verticalSpace,
+              Header(
+                  text: address.id == null ? 'Add Address' : 'Update Address',
+                  trailingIcon: address.id != null ? Icons.delete : null,
+                  trailingTap: address.id != null
+                      ? () {
+                          loadingWrapper(() async {
+                            await controller.deleteAddress(address);
+                            Get.find<CartController>().update();
+                          });
+                          Get.back();
+                        }
+                      : null),
+              35.verticalSpace,
+              InputField(
+                preFilledValue: address.streetAddress,
+                onChanged: (val) {
+                  address.streetAddress = val;
+                },
+                hintText: 'Street Address',
+                validator: (val) => (val?.isEmpty == true)
+                    ? 'Street Address is required'
+                    : null,
+              ),
+              InputField(
+                preFilledValue: address.city,
+                onChanged: (val) {
+                  address.city = val;
+                },
+                hintText: 'City',
+                validator: (val) =>
+                    (val?.isEmpty == true) ? 'City is required' : null,
+              ),
+              InputField(
+                preFilledValue: address.city,
+                onChanged: (val) {
+                  address.country = val;
+                },
+                hintText: 'Country',
+                validator: (val) =>
+                    (val?.isEmpty == true) ? 'Country is required' : null,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: InputField(
+                      preFilledValue: address.state,
+                      onChanged: (val) {
+                        address.state = val;
+                      },
+                      hintText: 'State',
+                      validator: (val) =>
+                          (val?.isEmpty == true) ? 'State is required' : null,
+                    ),
+                  ),
+                  Expanded(
+                    child: InputField(
+                      keyboardType: TextInputType.number,
+                      preFilledValue: '${address.zipCode ?? ''}',
+                      onChanged: (val) {
+                        address.zipCode = val.toInt;
+                      },
+                      hintText: 'Zip Code',
+                      validator: (val) => (val?.isEmpty == true)
+                          ? 'Zip Code is required'
+                          : null,
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomContainer(
+                    onTap: () {
+                      if ((address.streetAddress?.length ?? 0) < 25) {
+                        showToast(
+                          message: 'Provide a detailed Street Address!',
+                          imagePath: AppImages.access,
+                        );
+                      } else {
+                        if (controller.addressFormIsValid) {
+                          loadingWrapper(() async {
+                            address.id != null
+                                ? await controller.updateAddress(address)
+                                : await controller.createAddress(address);
+                            Get.find<CartController>().update();
+                          });
+                          Get.back();
+                        }
                       }
-                    : null),
-            35.verticalSpace,
-            InputField(
-              preFilledValue: address.streetAddress,
-              onChanged: (val) {
-                address.streetAddress = val;
-              },
-              hintText: 'Street Address',
-            ),
-            InputField(
-              preFilledValue: address.city,
-              onChanged: (val) {
-                address.city = val;
-              },
-              hintText: 'City',
-            ),
-            InputField(
-              preFilledValue: address.city,
-              onChanged: (val) {
-                address.country = val;
-              },
-              hintText: 'Country',
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: InputField(
-                    preFilledValue: address.state,
-                    onChanged: (val) {
-                      address.state = val;
                     },
-                    hintText: 'State',
-                  ),
-                ),
-                Expanded(
-                  child: InputField(
-                    keyboardType: TextInputType.number,
-                    preFilledValue: '${address.zipCode ?? ''}',
-                    onChanged: (val) {
-                      address.zipCode = val.toInt;
-                    },
-                    hintText: 'Zip Code',
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomContainer(
-                  onTap: () {
-                    loadingWrapper(() async {
-                      address.id != null
-                          ? await controller.updateAddress(address)
-                          : await controller.createAddress(address);
-                    });
-                  },
-                  text: address.id == null ? 'Save' : 'update',
-                  color: AppColors.lightPurple,
-                  textColor: AppColors.pureWhite),
-            ),
-          ],
+                    text: address.id == null ? 'Save' : 'update',
+                    color: AppColors.lightPurple,
+                    textColor: AppColors.pureWhite),
+              ),
+            ],
+          ),
         )),
       );
     });
