@@ -1,29 +1,36 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/widgets/indicator.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/components/payment_form.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_controller.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/payment/components/payment_form.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/payment/payment_controller.dart';
 import 'package:get/get.dart';
 
-import '../../../../../helpers/functions/change_page.dart';
-import '../../../../../helpers/styles/app_decoration.dart';
-import '../../../../../helpers/styles/app_images.dart';
-import '../../../../../helpers/widgets/custom_container.dart';
-import '../../../../../helpers/widgets/header.dart';
+import '../../../../../../helpers/functions/change_page.dart';
+import '../../../../../../helpers/styles/app_decoration.dart';
+import '../../../../../../helpers/styles/app_images.dart';
+import '../../../../../../helpers/widgets/custom_container.dart';
+import '../../../../../../helpers/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../helpers/styles/app_colors.dart';
+import '../../../../../../helpers/styles/app_colors.dart';
 import 'add_card_screen.dart';
 
 class PaymentScreen extends StatelessWidget {
   static const routeName = '/payment';
-  const PaymentScreen({super.key});
-
+  const PaymentScreen({
+    super.key,
+    required this.amount,
+    required this.currency,
+  });
+  final String currency;
+  final double amount;
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
         init: PaymentController(),
         builder: (controller) {
+          controller.amount = amount.toPrecision(2);
+          controller.currency = currency;
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
             body: controller.isLoading
@@ -83,13 +90,7 @@ class PaymentScreen extends StatelessWidget {
                                   : () {
                                       loadingWrapper(() async {
                                         await controller.createPayment();
-                                        showToast(
-                                          message: 'Payment Successfull!',
-                                          imagePath: AppImages.successful,
-                                        );
                                       });
-                                      Future.delayed(const Duration(seconds: 2),
-                                          () => Navigator.pop(context));
                                     },
                               text: 'Create Payment',
                               color: controller.cards.isEmpty ||

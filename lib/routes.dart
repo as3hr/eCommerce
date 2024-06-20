@@ -16,8 +16,8 @@ import 'screens/order/components/order_detail/order_detail.dart';
 import 'screens/order/order_screen.dart';
 import 'screens/profile/components/profile_sub_screens/address/add_address_screen.dart';
 import 'screens/profile/components/profile_sub_screens/address/address_screen.dart';
-import 'screens/profile/components/profile_sub_screens/payment/add_card_screen.dart';
-import 'screens/profile/components/profile_sub_screens/payment/payment_screen.dart';
+import 'screens/home/components/cart/checkout/payment/add_card_screen.dart';
+import 'screens/home/components/cart/checkout/payment/payment_screen.dart';
 import 'screens/profile/components/profile_sub_screens/wishlist/wishlist_screen.dart';
 import 'screens/profile/components/update_profile_screen.dart';
 import 'screens/profile/profile_screen.dart';
@@ -148,7 +148,10 @@ class Routes {
       case PaymentScreen.routeName:
         return GetPageRoute(
           settings: settings,
-          page: () => const PaymentScreen(),
+          page: () => PaymentScreen(
+            amount: args['amount'],
+            currency: args['currency'],
+          ),
         );
       case ChatScreen.routeName:
         return GetPageRoute(

@@ -29,7 +29,7 @@ class CheckoutAddress extends StatelessWidget {
           children: [
             if (userAddresses.isNotEmpty)
               SizedBox(
-                height: userAddresses.length == 1 ? 0.07.sh : 0.23.sh,
+                height: userAddresses.length == 1 ? 0.07.sh : 0.1.sh,
                 child: ListView.separated(
                     separatorBuilder: (context, index) {
                       return const Divider(
@@ -42,11 +42,11 @@ class CheckoutAddress extends StatelessWidget {
                     itemCount: userAddresses.length,
                     itemBuilder: (context, index) {
                       controller.selectedAddress =
-                          controller.selectedIndex == index;
+                          controller.selectedAddressIndex == index;
                       final address = userAddresses[index];
                       return GestureDetector(
                         onTap: () {
-                          controller.selectedIndex = index;
+                          controller.selectedAddressIndex = index;
                           controller.order.address = address;
                           controller.update();
                         },

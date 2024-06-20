@@ -4,6 +4,7 @@ import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/models/payment.dart';
+import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/address/add_address_screen.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class PaymentController extends GetxController {
         amount: amount,
         currency: currency,
       ));
+      await Get.find<CartController>().createOrder(paymentDone: true);
     }
   }
 

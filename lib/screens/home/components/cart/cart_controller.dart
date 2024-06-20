@@ -1,6 +1,7 @@
 import 'package:e_commerce/data/api.dart';
 import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/models/order.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/payment/payment_screen.dart';
 import 'package:e_commerce/screens/order/order_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +12,17 @@ import 'checkout/order_placed.dart';
 class CartController extends GetxController {
   Order order = Order();
   List<Product> checkoutProducts = [];
-  int selectedIndex = 0;
-  late bool selectedAddress;
+
+  //address
   List<Address> userAddresses = [];
+  int selectedAddressIndex = 0;
+  late bool selectedAddress;
+
+  //payment
+  late bool selectedPayment;
+  int selectedPaymentIndex = 0;
+  List<String> paymentMethods = ['Cash On Delivery (COD)', 'Pay Right Now'];
+  String currentPayment = 'Cash On Delivery (COD)';
 
   bool addProduct(Product product) {
     if (!checkoutProducts.contains(product)) {
@@ -67,11 +76,18 @@ class CartController extends GetxController {
     update();
   }
 
-  Future<void> createOrder() async {
+  Future<void> createOrder({bool paymentDone = false}) async {
     order.products = checkoutProducts;
-    await Api.createOrder(order: order);
-    changePage(OrderPlaced.routeName);
-    removeAllProducts();
-    await Get.find<OrderScreenController>().getOrders(refresh: true);
+    if (paymentDone || currentPayment != paymentMethods.last) {
+      await Api.createOrder(order: order);
+      changePage(OrderPlaced.routeName);
+      removeAllProducts();
+      await Get.find<OrderScreenController>().getOrders(refresh: true);
+    } else if (currentPayment == paymentMethods.last) {
+      changePage(PaymentScreen.routeName, arguments: {
+        'amount': order.total,
+        'currency': 'usd',
+      });
+    }
   }
 }

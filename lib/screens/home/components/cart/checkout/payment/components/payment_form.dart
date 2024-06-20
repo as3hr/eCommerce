@@ -1,11 +1,11 @@
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_controller.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/payment/payment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../helpers/styles/app_decoration.dart';
-import '../../../../../../helpers/styles/app_images.dart';
-import '../../../../../../helpers/widgets/input_field.dart';
+import '../../../../../../../helpers/styles/app_decoration.dart';
+import '../../../../../../../helpers/styles/app_images.dart';
+import '../../../../../../../helpers/widgets/input_field.dart';
 
 class PaymentForm extends StatelessWidget {
   const PaymentForm({super.key});
@@ -60,6 +60,8 @@ class PaymentForm extends StatelessWidget {
           ),
           10.verticalSpace,
           InputField(
+            readOnly: true,
+            preFilledValue: controller.amount.toString(),
             onChanged: (val) {
               controller.amount = double.tryParse(val) ?? 0;
               controller.checkPaymentValidity();
@@ -69,6 +71,8 @@ class PaymentForm extends StatelessWidget {
           ),
           10.verticalSpace,
           InputField(
+            readOnly: true,
+            preFilledValue: controller.currency,
             onChanged: (val) {
               controller.currency = val;
               controller.checkPaymentValidity();

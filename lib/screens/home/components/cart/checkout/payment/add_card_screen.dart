@@ -1,15 +1,15 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/payment/payment_controller.dart';
+import 'package:e_commerce/screens/home/components/cart/checkout/payment/payment_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../../../helpers/widgets/custom_container.dart';
+import '../../../../../../helpers/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../helpers/styles/app_colors.dart';
-import '../../../../../helpers/widgets/header.dart';
-import '../../../../../helpers/widgets/input_field.dart';
+import '../../../../../../helpers/styles/app_colors.dart';
+import '../../../../../../helpers/widgets/header.dart';
+import '../../../../../../helpers/widgets/input_field.dart';
 
 class AddCardScreen extends StatelessWidget {
   static const routeName = '/add-card';
