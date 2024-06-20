@@ -4,6 +4,7 @@ import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helpers/styles/app_colors.dart';
@@ -91,6 +92,9 @@ class AddAddressScreen extends StatelessWidget {
                       onChanged: (val) {
                         address.zipCode = val.toInt;
                       },
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(5),
+                      ],
                       hintText: 'Zip Code',
                       validator: (val) => (val?.isEmpty == true)
                           ? 'Zip Code is required'

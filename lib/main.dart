@@ -40,13 +40,13 @@ class Clot extends StatelessWidget {
   final AdaptiveThemeMode? initialThemeMode;
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-        light: theme(),
-        dark: theme(dark: true),
-        initial: AdaptiveThemeMode.light,
-        builder: (light, dark) {
-          return GlobalLoaderOverlay(
-            child: ScreenUtilInit(
+    return GlobalLoaderOverlay(
+      child: AdaptiveTheme(
+          light: theme(),
+          dark: theme(dark: true),
+          initial: AdaptiveThemeMode.light,
+          builder: (light, dark) {
+            return ScreenUtilInit(
                 designSize: Size(context.screenWidth, context.screenHeight),
                 builder: (context, child) {
                   return Builder(builder: (context) {
@@ -61,8 +61,8 @@ class Clot extends StatelessWidget {
                       ),
                     );
                   });
-                }),
-          );
-        });
+                });
+          }),
+    );
   }
 }

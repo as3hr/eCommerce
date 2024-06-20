@@ -23,68 +23,84 @@ class AddCardScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
-                child: Column(
-              children: [
-                35.verticalSpace,
-                const Header(text: 'Add Card'),
-                35.verticalSpace,
-                InputField(
-                  onChanged: (val) {
-                    controller.newCard.cardHolderName = val;
-                  },
-                  hintText: 'Cardholder Name',
-                ),
-                InputField(
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(16),
-                  ],
-                  onChanged: (val) {
-                    controller.newCard.cardNumber = int.tryParse(val);
-                  },
-                  keyboardType: TextInputType.number,
-                  hintText: 'Card Number',
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputField(
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(3),
-                        ],
-                        keyboardType: TextInputType.number,
-                        onChanged: (val) {
-                          controller.newCard.cvc = int.tryParse(val);
-                        },
-                        hintText: 'CVV',
+                child: Form(
+              key: controller.cardFormKey,
+              child: Column(
+                children: [
+                  35.verticalSpace,
+                  const Header(text: 'Add Card'),
+                  35.verticalSpace,
+                  InputField(
+                    onChanged: (val) {
+                      controller.newCard.cardHolderName = val;
+                    },
+                    validator: (val) => (val?.isEmpty == true)
+                        ? 'Card Holder Name is required'
+                        : null,
+                    hintText: 'Cardholder Name',
+                  ),
+                  InputField(
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(16),
+                    ],
+                    validator: (val) => (val?.isEmpty == true)
+                        ? 'Card Number is required'
+                        : null,
+                    onChanged: (val) {
+                      controller.newCard.cardNumber = int.tryParse(val);
+                    },
+                    keyboardType: TextInputType.number,
+                    hintText: 'Card Number',
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InputField(
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(3),
+                          ],
+                          keyboardType: TextInputType.number,
+                          onChanged: (val) {
+                            controller.newCard.cvc = int.tryParse(val);
+                          },
+                          hintText: 'CVV',
+                          validator: (val) =>
+                              (val?.isEmpty == true) ? 'CVV is required' : null,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: InputField(
-                        readOnly: true,
-                        isDateField: true,
-                        onChanged: (val) {
-                          controller.newCard.expiry = DateTime.parse(val);
-                        },
-                        hintText: 'Expiry (MM/YY)',
+                      Expanded(
+                        child: InputField(
+                          readOnly: true,
+                          isDateField: true,
+                          onChanged: (val) {
+                            controller.newCard.expiry = DateTime.parse(val);
+                          },
+                          hintText: 'Expiry (MM/YY)',
+                          validator: (val) => (val?.isEmpty == true)
+                              ? 'Expiry is required'
+                              : null,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomContainer(
-                      onTap: () async {
-                        loadingWrapper(() async {
-                          await controller.addCard();
-                        });
-                        Get.back();
-                      },
-                      text: 'Save',
-                      color: AppColors.lightPurple,
-                      textColor: AppColors.pureWhite),
-                ),
-              ],
+                    ],
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomContainer(
+                        onTap: () async {
+                          if (controller.cardFormIsValid) {
+                            loadingWrapper(() async {
+                              await controller.addCard();
+                            });
+                            Get.back();
+                          }
+                        },
+                        text: 'Save',
+                        color: AppColors.lightPurple,
+                        textColor: AppColors.pureWhite),
+                  ),
+                ],
+              ),
             )),
           );
         });

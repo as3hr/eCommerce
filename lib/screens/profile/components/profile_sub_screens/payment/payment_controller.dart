@@ -6,10 +6,13 @@ import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/models/payment.dart';
 import 'package:e_commerce/screens/profile/components/profile_sub_screens/address/add_address_screen.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce/models/card.dart' as card;
 
 class PaymentController extends GetxController {
+  final cardFormKey = GlobalKey<FormState>();
+  bool get cardFormIsValid => cardFormKey.currentState?.validate() == true;
   var newCard = card.Card();
   @override
   void onInit() {
