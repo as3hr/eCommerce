@@ -6,10 +6,9 @@ class RouteName {
   static const ordersList = 'ordersList';
   static const productsScreen = 'productsScreen';
   static const productsList = 'productsList';
-  static const notificationsScreen = 'notificationsScreen';
-  static const notificationsList = 'notificationsList';
   static const login = 'login';
   static const mainScreen = 'mainScreen';
   static const homePage = 'homePage';
   static const chatScreen = 'chatScreen';
+  static const profileScreen = 'profileScreen';
 }

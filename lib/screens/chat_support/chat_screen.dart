@@ -21,12 +21,16 @@ class ChatScreen extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : Row(
-                    children: [
-                      const ChatSideBar(),
-                      Expanded(child: ChatContent()),
-                    ],
-                  ),
+                : controller.allChats.isEmpty
+                    ? const Center(
+                        child: Text('No Chats Available!'),
+                      )
+                    : Row(
+                        children: [
+                          const ChatSideBar(),
+                          Expanded(child: ChatContent()),
+                        ],
+                      ),
           );
         });
   }

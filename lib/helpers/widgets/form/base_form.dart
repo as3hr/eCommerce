@@ -94,7 +94,7 @@ class _BaseFormState extends State<BaseForm> {
       init: FormController(),
       builder: (controller) {
         return Shortcuts(
-          shortcuts: <ShortcutActivator, Intent>{
+          shortcuts: {
             controlS: const SaveIntent(),
             controlU: const UpdateIntent(),
             controlD: const DeleteIntent(),

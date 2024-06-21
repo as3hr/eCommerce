@@ -33,17 +33,15 @@ InputDecoration fieldDecoration({
   Widget? suffixIcon,
 }) =>
     InputDecoration(
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(width: 2, color: Colors.blue),
-        borderRadius: BorderRadius.circular(2),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
       ),
-      enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(width: 0.75),
-        borderRadius: BorderRadius.circular(2),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
       ),
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       labelText: label,
-      contentPadding: const EdgeInsets.only(left: 10),
+      contentPadding: const EdgeInsets.all(3),
       labelStyle: textFieldTextStyle,
       hintText: hintText,
       errorStyle: const TextStyle(height: 0.001, fontSize: 0.001),

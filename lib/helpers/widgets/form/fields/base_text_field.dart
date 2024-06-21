@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../theme.dart';
 
@@ -84,22 +85,33 @@ class _BaseTextFieldState extends State<BaseTextField> {
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 60,
-                width: widget.width,
-                child: TextFormField(
-                  keyboardType: widget.isMultiLineField
-                      ? TextInputType.multiline
-                      : TextInputType.text,
-                  maxLines: widget.isMultiLineField ? null : 1,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  readOnly: widget.readOnly,
-                  controller: controller,
-                  onChanged: widget.onChanged,
-                  decoration: fieldDecoration(
-                    label: widget.title,
-                    hintText: widget.hintText,
-                  ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: Column(
+                  children: [
+                    8.verticalSpace,
+                    SizedBox(
+                      height: 38,
+                      width: widget.width,
+                      child: TextFormField(
+                        scrollPadding: const EdgeInsets.all(0),
+                        maxLines: widget.isMultiLineField ? null : 1,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        readOnly: widget.readOnly,
+                        controller: controller,
+                        onChanged: widget.onChanged,
+                        decoration: fieldDecoration(
+                          label: widget.title,
+                          hintText: widget.hintText,
+                        ),
+                      ),
+                    ),
+                    5.verticalSpace,
+                  ],
                 ),
               ),
             ),

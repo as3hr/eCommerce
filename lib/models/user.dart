@@ -10,15 +10,17 @@ class User {
   String? firstName;
   String? lastName;
   String? image;
-  File? imageFile;
   String? contactNumber;
   String? email;
+  File? imageFile;
   List<String>? fcmTokens;
   List<Address>? addresses;
   List<Card>? cards;
   bool isSocial;
+  bool isAdmin;
   User({
     this.isSocial = false,
+    this.isAdmin = false,
     this.id,
     this.imageFile,
     this.userName,
@@ -40,6 +42,7 @@ class User {
       firstName: json['firstName'],
       lastName: json['lastName'],
       image: json['image'],
+      isAdmin: json['isAdmin'],
       email: json['email'],
       fcmTokens: json['fcmTokens'] != null
           ? json['fcmTokens']

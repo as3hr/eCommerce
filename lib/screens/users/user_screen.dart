@@ -1,5 +1,5 @@
 import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart';
-import 'package:ecommerce_admin_panel/screens/user/user_controller.dart';
+import 'package:ecommerce_admin_panel/screens/users/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +20,7 @@ class UserScreen extends StatelessWidget {
         body: Column(
           children: [
             CustomHeader(
-              mainTitle: isNew ? '' : '',
+              mainTitle: '',
               previousRoute: RouteName.userList,
               formTitle: 'User',
               onPressed: () {},

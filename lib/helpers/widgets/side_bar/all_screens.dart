@@ -25,18 +25,13 @@ class AllScreens {
       title: 'Products',
     ),
     Screen(
-      image: AssetImages.bell,
-      routeName: RouteName.notificationsList,
-      title: 'Notifications',
-    ),
-    Screen(
       image: AssetImages.chat,
       routeName: RouteName.chatScreen,
       title: 'Chats',
     ),
     Screen(
-      image: AssetImages.home,
-      routeName: RouteName.home,
+      image: AssetImages.users,
+      routeName: RouteName.profileScreen,
       title: 'Account',
     ),
   ];

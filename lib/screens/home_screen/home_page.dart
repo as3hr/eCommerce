@@ -14,12 +14,7 @@ class HomePage extends StatelessWidget {
         const SideBar(),
         Expanded(
           child: Column(
-            children: [
-              // Title Bar
-              const TitleBar(),
-
-              Expanded(child: child)
-            ],
+            children: [const TitleBar(), Expanded(child: child)],
           ),
         ),
       ],

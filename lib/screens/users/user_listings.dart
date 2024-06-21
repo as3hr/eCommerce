@@ -6,7 +6,7 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_row.
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_table.dart';
 import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
-import 'package:ecommerce_admin_panel/screens/user/user_controller.dart';
+import 'package:ecommerce_admin_panel/screens/users/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
