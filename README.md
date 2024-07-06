@@ -33,7 +33,7 @@ This is the mobile application for my Full-Stack e-commerce project, built using
    git clone <mobile-app-repo-url>
 2. Navigate to the project directory:
    ```bash
-   cd e-commerce-mobile-app
+   cd E-commerce
 3. Install dependencies:
    ```bash
    flutter pub get
