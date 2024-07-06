@@ -1,6 +1,6 @@
 # E-commerce Mobile App
 
-This is the mobile application for my Full-Stack e-commerce project, built using Flutter.
+This is the decriotion of my mobile application for my Full-Stack e-commerce project, built using Flutter.
 
 ## Features
 - Dark mode and light mode
