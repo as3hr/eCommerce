@@ -1,7 +1,3 @@
-
-### README for Backend
-
-```markdown
 # E-commerce Backend
 
 This is the backend for my full stack e-commerce project, built using Node.js, Expressjs and MongoDB.
@@ -37,7 +33,6 @@ This is the backend for my full stack e-commerce project, built using Node.js, E
 6. Start the Server:
    ```bash
    npm run dev
-
 
 ## Links to Other Parts of the Project
 [ADMIN PANEL](https://github.com/as3hr/eCommerce-Admin-Panel)
