@@ -1,7 +1,6 @@
 import 'package:e_commerce/helpers/widgets/items_expansion.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/home/components/cart/checkout/checkout_address.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helpers/styles/app_colors.dart';
@@ -20,7 +19,7 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
             child: Column(
           children: [

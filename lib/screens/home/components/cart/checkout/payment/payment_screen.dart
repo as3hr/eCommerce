@@ -32,7 +32,7 @@ class PaymentScreen extends StatelessWidget {
           controller.amount = amount.toPrecision(2);
           controller.currency = currency;
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: controller.isLoading
                 ? const Indicator()
                 : SafeArea(

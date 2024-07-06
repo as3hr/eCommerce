@@ -4,7 +4,6 @@ import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/helpers/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -25,11 +24,6 @@ Future<T?> loadingWrapper<T>(
   } on ApiError catch (e) {
     showToast(
       message: e.displayMessage,
-      imagePath: AppImages.unsuccessful,
-    );
-  } on StripeException catch (e) {
-    showToast(
-      message: e.toString(),
       imagePath: AppImages.unsuccessful,
     );
   } catch (e) {

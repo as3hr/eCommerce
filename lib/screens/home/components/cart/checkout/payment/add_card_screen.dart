@@ -21,7 +21,7 @@ class AddCardScreen extends StatelessWidget {
         init: PaymentController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: SafeArea(
                 child: Form(
               key: controller.cardFormKey,

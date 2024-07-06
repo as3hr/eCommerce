@@ -20,7 +20,7 @@ class WishListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: Column(
             children: [

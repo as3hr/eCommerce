@@ -54,7 +54,6 @@ dependencies:
   collection: ^1.18.0
   shared_preferences: ^2.2.2
   gap: ^3.0.1
-  flutter_stripe: ^10.1.1
   firebase_auth: ^4.17.9
   firebase_core: ^2.27.1
   firebase_messaging: ^14.9.3

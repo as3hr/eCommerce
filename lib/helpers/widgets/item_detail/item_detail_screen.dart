@@ -43,7 +43,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
           controller.update();
         },
         child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           body: SafeArea(
               child: SingleChildScrollView(
             child: Stack(

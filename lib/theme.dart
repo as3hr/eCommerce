@@ -2,29 +2,25 @@ import 'helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
-  background: AppColors.pureWhite,
   primary: AppColors.pureWhite,
   secondary: AppColors.lightPurple,
   onPrimary: AppColors.grayI,
   onSecondary: AppColors.pureBlack,
-  surface: AppColors.grayI,
-  onSurface: AppColors.pureBlack,
+  surface: AppColors.pureWhite,
+  onSurface: AppColors.grayI,
   error: AppColors.redColor,
-  onBackground: AppColors.grayI,
   onError: Color.fromARGB(255, 237, 233, 233),
   brightness: Brightness.light,
 );
 
 const darkColorScheme = ColorScheme(
-  background: AppColors.indigo,
   primary: AppColors.indigo,
   secondary: AppColors.lightPurple,
   onPrimary: AppColors.lightIndigo,
   onSecondary: AppColors.pureWhite,
-  surface: AppColors.grayIV,
-  onSurface: AppColors.pureWhite,
+  surface: AppColors.indigo,
+  onSurface: AppColors.lightIndigo,
   error: AppColors.redColor,
-  onBackground: AppColors.lightIndigo,
   onError: AppColors.grayI,
   brightness: Brightness.dark,
 );

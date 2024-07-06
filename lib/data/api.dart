@@ -13,7 +13,7 @@ import '../models/chat.dart';
 import '../models/payment.dart';
 
 class Api {
-  static const baseUrl = 'http://192.168.1.107:3000';
+  static const baseUrl = 'http://192.168.1.105:3000';
   static final dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       receiveDataWhenStatusError: true,

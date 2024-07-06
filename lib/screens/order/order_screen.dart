@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
         init: OrderScreenController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: SafeArea(
               child: Column(
                 children: [

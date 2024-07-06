@@ -20,7 +20,7 @@ class OrderContent extends StatelessWidget {
             TabBar(
                 tabAlignment: TabAlignment.start,
                 isScrollable: true,
-                overlayColor: MaterialStateProperty.resolveWith((states) {
+                overlayColor: WidgetStateProperty.resolveWith((states) {
                   return Colors.transparent;
                 }),
                 labelStyle: AppDecoration.mediumStyle(

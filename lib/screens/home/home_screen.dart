@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         init: HomeScreenController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: !controller.fetchedData
                 ? const Indicator()
                 : SafeArea(

@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       return PopScope(
         canPop: false,
         child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Form(

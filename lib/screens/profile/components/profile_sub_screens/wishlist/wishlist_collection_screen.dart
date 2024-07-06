@@ -22,7 +22,7 @@ class WishListCollectionScreen extends StatelessWidget {
           ? controller.favourites
           : wish;
       return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
             child: Column(
           children: [

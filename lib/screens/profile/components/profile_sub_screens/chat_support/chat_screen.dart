@@ -14,7 +14,7 @@ class ChatScreen extends StatelessWidget {
         init: ChatController(inChat: true),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: SafeArea(
                 child: controller.isLoading
                     ? const SizedBox()

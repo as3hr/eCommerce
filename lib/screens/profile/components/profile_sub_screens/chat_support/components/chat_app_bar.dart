@@ -14,7 +14,7 @@ class ChatAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(builder: (controller) {
       return Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
         width: 1.sw,
         height: 80,
         child: Row(

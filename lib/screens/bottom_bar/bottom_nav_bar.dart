@@ -21,14 +21,14 @@ class BottomNavBar extends StatelessWidget {
           return WillPopScope(
             onWillPop: controller.onWillPop,
             child: Scaffold(
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               body: Navigator(
                 key: Get.nestedKey(1),
                 initialRoute: HomeScreen.routeName,
                 onGenerateRoute: Routes.onGenerateRoute,
               ),
               bottomNavigationBar: Container(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 height: 65,
                 width: 1.sw,
                 child: Row(
