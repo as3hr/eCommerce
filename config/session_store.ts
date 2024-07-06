@@ -14,9 +14,9 @@ export const createSessionStore = function () {
     }),
     cookie: {
       maxAge: 14 * 24 * 60 * 60 * 1000, //14 days
-      // secure: true,
-      // sameSite: "none",
-      // httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      httpOnly: true,
     },
   });
 };

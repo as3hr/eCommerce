@@ -157,7 +157,6 @@ const deleteDb = async() => {
       wishModel.deleteMany(),
       stockModel.deleteMany(),
       notificationModel.deleteMany(),
-      cardModel.deleteMany(),
     ]
   );
 }

@@ -7,6 +7,7 @@ const stripe = new Stripe('sk_test_51OnlVODprsdU1lbtRhqWFznwXM3xpd6dNPc4hNzMZ3Ca
 
 const addPayment = asyncHandler(
     async(req: Request, res:Response, next: NextFunction) => {
+      req.body.userId = req.user._id;
       const { currency, amount, address } = req.body;
       const user = await userModel.findById(req.user._id);
       await stripe.paymentIntents.create({
