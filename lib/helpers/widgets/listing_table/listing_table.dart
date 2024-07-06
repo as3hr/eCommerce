@@ -255,7 +255,7 @@ class _ListingTableState extends State<ListingTable> {
           SizedBox(
             height: 40,
             child: ColorChangingContainer(
-              color1: Theme.of(context).colorScheme.background,
+              color1: Theme.of(context).colorScheme.onSecondary,
               color2: Theme.of(context).colorScheme.surface,
               child: const Center(
                 child: Text('Loading data...'),

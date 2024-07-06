@@ -61,14 +61,15 @@ class _BaseMultiSelectState<T> extends State<BaseMultiSelect<T>> {
           width: widget.width,
           child: Center(
             child: DropDownMultiSelect(
-              readOnly: widget.readOnly,
+              whenEmpty: '',
+              // readOnly: widget.readOnly,
               decoration: fieldDecoration(
                 label: widget.title,
-              ),
-              icon: Icon(
-                Icons.keyboard_arrow_down_outlined,
-                size: 35,
-                color: Theme.of(context).colorScheme.primary,
+                suffixIcon: Icon(
+                  Icons.keyboard_arrow_down_outlined,
+                  size: 35,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               childBuilder: displayedText != null
                   ? (selectedValues) {
@@ -78,8 +79,10 @@ class _BaseMultiSelectState<T> extends State<BaseMultiSelect<T>> {
                       );
                     }
                   : null,
-              options: widget.dropdownItems ?? [],
-              selectedValues: widget.selectedValues,
+              options: const [],
+              selectedValues: const [],
+              // options: widget.dropdownItems ?? [],
+              // selectedValues: widget.selectedValues,
               onChanged: (value) {
                 widget.onChanged?.call(value);
                 updateDisplayedText();

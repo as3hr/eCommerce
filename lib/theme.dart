@@ -9,8 +9,6 @@ const lightColorScheme = ColorScheme(
   onPrimary: AppColors.grayBackground,
   secondary: AppColors.marjanda,
   onSecondary: AppColors.navy,
-  background: AppColors.white,
-  onBackground: AppColors.grayBackground,
   surface: AppColors.white,
   onSurface: AppColors.deepBlack,
   onSurfaceVariant: AppColors.offWhite,
@@ -66,16 +64,16 @@ const headingRowDecoration = BoxDecoration(
 const listingTableBorder = TableBorder(
   verticalInside: BorderSide(color: AppColors.grayII),
 );
-final headingRowColor = MaterialStateColor.resolveWith(
+final headingRowColor = WidgetStateColor.resolveWith(
   (states) => AppColors.white,
 );
 const listingTableDecoration = BoxDecoration(
   color: AppColors.white,
 );
-MaterialStateColor listingRowColor(
+WidgetStateColor listingRowColor(
   int index,
 ) =>
-    MaterialStateColor.resolveWith((states) {
+    WidgetStateColor.resolveWith((states) {
       return index % 2 == 0 ? AppColors.white : AppColors.lightWhite;
     });
 
@@ -177,22 +175,22 @@ ThemeData theme({bool dark = false}) {
 ElevatedButtonThemeData elevatedButtonTheme() {
   return ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return AppColors.grayI;
           }
           return AppColors.grayBackground;
         },
       ),
-      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+      shape: WidgetStateProperty.resolveWith<OutlinedBorder>(
         (states) =>
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
       ),
-      minimumSize: MaterialStateProperty.resolveWith<Size>(
+      minimumSize: WidgetStateProperty.resolveWith<Size>(
         (states) => const Size(180, 40),
       ),
-      textStyle: MaterialStateProperty.resolveWith<TextStyle>(
+      textStyle: WidgetStateProperty.resolveWith<TextStyle>(
         (states) => elevatedButtonTextStyle.copyWith(
           color: AppColors.black,
           fontSize: 15,

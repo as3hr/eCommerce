@@ -1,16 +1,37 @@
-# ecommerce_admin_panel
+# E-commerce Admin Panel
 
-A new Flutter project.
+This is the admin panel for my fullStack e-commerce project, built using Flutter. 
 
-## Getting Started
+## Desktop version (future migration to web planned)!!
 
-This project is a starting point for a Flutter application.
+## Features
+- Go Router for routing
+- Chat support for communication with all users
+- Graphs and calculations for orders and products at the landing page
+- Add, delete, and manage products with images.
+- GetX state management
+- CRUD operations for users, products, orders, stocks, invoices, and admin profile management.
+- Clean and understandable code
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone <admin-panel-repo-url>
+2. Navigate to the project directory:
+   ```bash
+   cd eCommerce-Admin-Panel
+3. Install dependencies:
+   ```bash
+   flutter pub get
+4. Clone the repository:
+   ```bash
+   git clone <admin-panel-repo-url>
+5. Run the admin panel:
+   ```bash
+   flutter run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Links to Other Parts of the Project
+[MOBILE APP](https://github.com/as3hr/E-commerce)
+[Backend](https://github.com/as3hr/E-commerce-Backend)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## The UI is still under development!
