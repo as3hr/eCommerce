@@ -104,7 +104,33 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    60.verticalSpace,
+                    30.verticalSpace,
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            indent: 10,
+                            endIndent: 10,
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
+                        ),
+                        Text(
+                          'or',
+                          style: AppDecoration.mediumStyle(
+                              fontSize: 15,
+                              color: Theme.of(context).colorScheme.onSecondary),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            indent: 10,
+                            endIndent: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                    30.verticalSpace,
                     CustomContainer(
                       height: 65,
                       width: 0.97.sw,

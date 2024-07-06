@@ -15,7 +15,7 @@ class Payment {
   Map<String, dynamic> toJson() {
     return {
       'token': token,
-      'amount': amount,
+      'amount': amount?.toInt(),
       'address': address?.toJson(),
       'currency': currency,
     };

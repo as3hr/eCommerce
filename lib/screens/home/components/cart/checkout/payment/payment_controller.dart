@@ -29,6 +29,7 @@ class PaymentController extends GetxController {
 
   Future<void> createPayment() async {
     final addresses = Get.find<ProfileScreenController>().addresses;
+    final cart = Get.find<CartController>();
     if (addresses.isEmpty == true) {
       showToast(
         message: 'No Address found\nClick here to add Address!',
@@ -42,11 +43,11 @@ class PaymentController extends GetxController {
     } else {
       clientSecret = await Api.createPayment(
           payment: Payment(
-        address: addresses.first,
+        address: cart.order.address,
         amount: amount,
         currency: currency,
       ));
-      await Get.find<CartController>().createOrder(paymentDone: true);
+      await cart.createOrder(paymentDone: true);
     }
   }
 

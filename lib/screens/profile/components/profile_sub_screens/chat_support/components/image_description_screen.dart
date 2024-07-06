@@ -51,7 +51,11 @@ class ImageDescriptionScreen extends StatelessWidget {
                               child: TextFormField(
                                   style: AppDecoration.mediumStyle(
                                       fontSize: 18,
-                                      color: AppColors.lightBlack),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                                  cursorColor:
+                                      Theme.of(context).colorScheme.onSecondary,
                                   maxLines: 3,
                                   controller: controller.messageController,
                                   minLines: 1,

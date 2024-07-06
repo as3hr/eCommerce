@@ -62,7 +62,7 @@ void showToast({
         child: imageWidget ??
             Image.asset(
               imagePath,
-              color: Get.theme.colorScheme.onSurface,
+              color: Get.theme.colorScheme.onSecondary,
             ),
       ),
       duration: duration,
@@ -81,7 +81,7 @@ void showToast({
         message,
         maxLines: 2,
         style: TextStyle(
-          color: Get.theme.colorScheme.onSurface,
+          color: Get.theme.colorScheme.onSecondary,
         ),
       ),
       titleText: title != null

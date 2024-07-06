@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/widgets/shimmer_effect.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
@@ -30,8 +31,16 @@ class ItemContainer extends StatelessWidget {
           true;
       return GestureDetector(
         onTap: () {
-          changePage(ItemDetailScreen.routeName,
-              arguments: {'product': product});
+          if (product.images.isNotEmpty) {
+            changePage(ItemDetailScreen.routeName,
+                arguments: {'product': product});
+          } else {
+            showToast(
+              duration: const Duration(seconds: 2),
+              message: 'This Product is not updated yet',
+              imagePath: AppImages.access,
+            );
+          }
         },
         child: Container(
           height: 024.sh,
@@ -59,6 +68,15 @@ class ItemContainer extends StatelessWidget {
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),
+                  ),
+                ),
+              if (product.images.isEmpty)
+                Center(
+                  child: Text(
+                    'Pending Update By Admin',
+                    style: AppDecoration.semiMediumStyle(
+                        fontSize: 12,
+                        color: Theme.of(context).colorScheme.error),
                   ),
                 ),
               Positioned(
