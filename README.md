@@ -32,15 +32,19 @@ This is the mobile application for my Full-Stack e-commerce project, built using
    ```bash
    git clone <mobile-app-repo-url>
 2. Navigate to the project directory:
+   ```bash
    cd e-commerce-mobile-app
 3. Install dependencies:
+   ```bash
    flutter pub get
 4. Set Up Firebase
+   ```bash
    flutterfire configure
 5. Run the app:
+   ```bash
    flutter run
 
-Links to Other Parts of the Project
+## Links to Other Parts of the Project
 [Admin Panel](https://github.com/as3hr/eCommerce-Admin-Panel)
 [Backend](https://github.com/as3hr/E-commerce-Backend)
 
