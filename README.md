@@ -2,11 +2,11 @@
 
 This is the admin panel for my fullStack e-commerce project, built using Flutter. 
 
-## Desktop version (future migration to web planned)!!
+## Desktop version (future migration to web planned)
 
 ## Features
 - Go Router for routing
-- Chat support for communication with all users
+- Real time Chat support for communication with all users via socket.io
 - Graphs and calculations for orders and products at the landing page
 - Add, delete, and manage products with images.
 - GetX state management
@@ -34,4 +34,4 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
 [MOBILE APP](https://github.com/as3hr/E-commerce)
 [Backend](https://github.com/as3hr/E-commerce-Backend)
 
-## The UI is still under development!
+## The UI is still under development.
