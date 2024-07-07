@@ -48,7 +48,6 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
    ```bash
    flutterfire configure
 5. Set Up Backend
-   ```bash
    [Backend](https://github.com/as3hr/E-commerce-Backend)
 6. Run the app:
    ```bash
