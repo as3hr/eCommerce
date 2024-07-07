@@ -37,7 +37,7 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone <mobile-app-repo-url>
+   git clone https://github.com/as3hr/E-Commerce
 2. Navigate to the project directory:
    ```bash
    cd E-commerce
