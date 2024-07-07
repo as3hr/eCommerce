@@ -47,10 +47,13 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 4. Set Up Firebase
    ```bash
    flutterfire configure
-5. Run the app:
+5. Set Up Backend
+   ```bash
+   [Backend](https://github.com/as3hr/E-commerce-Backend)
+6. Run the app:
    ```bash
    flutter run
-
+   
 ## Links to Other Parts of the Project
 [Admin Panel](https://github.com/as3hr/eCommerce-Admin-Panel)
 [Backend](https://github.com/as3hr/E-commerce-Backend)
