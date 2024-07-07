@@ -49,7 +49,8 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
    flutterfire configure
 5. Set Up Backend
    [Backend](https://github.com/as3hr/E-commerce-Backend)
-6. Run the app:
+   
+7. Run the app:
    ```bash
    flutter run
    
