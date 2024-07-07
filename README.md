@@ -16,7 +16,7 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone <admin-panel-repo-url>
+   git clone https://github.com/as3hr/eCommerce-Admin-Panel
 2. Navigate to the project directory:
    ```bash
    cd eCommerce-Admin-Panel
