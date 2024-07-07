@@ -9,12 +9,12 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 - Real-time chat support with admin using socket.io
 - Add to cart functionality
 - Stripe payment integration
-- Proper routing with GetX
+- Routes Management
 - GetX state management
-- Profile update feature
+- User Profile update feature
 - Wishlist and favorites management
 - User-friendly UI
-- Pagination and filtration in API calls
+- Pagination and filteration in API calls
 - Clean and understandable code
 
 ## Main Screens
