@@ -11,7 +11,7 @@ const addPayment = asyncHandler(
       const { currency, amount, address } = req.body;
       const user = await userModel.findById(req.user._id);
       await stripe.paymentIntents.create({
-        amount: amount * 100,
+        amount: Number(amount),
         currency: currency,
         receipt_email: user?.email,
         shipping: {
@@ -29,7 +29,7 @@ const addPayment = asyncHandler(
           res.send({ success: true, client_secret: paymentIntent.client_secret });
       })
       .catch((error) => {
-        res.send(error);
+        res.send("Something went wrong");
       });
     }
 );
