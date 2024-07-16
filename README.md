@@ -22,7 +22,7 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 - Orders Screen
   To keep track of the status of your current Orders whether it is in process, delivered or cancelled.
 - Home Screen
-  Here you have the options to look into the Main Products coming from backend and can also filter based on gender.
+  Here you have the options to look into the Main Products coming from backend and can also filter them out.
 - Notifications Screen
   Here you can see the notifications that you have received from the Admin.
 - Profile Screen
