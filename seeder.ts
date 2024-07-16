@@ -108,7 +108,7 @@ const addOrders = async (address?: boolean) => {
   if(address){
     await createAddress();
   }
-  const products = await addProducts("../products.xlsx");
+  const products = await addProducts("./products.xlsx");
   let productStartIndex = 0;
   let productEndIndex = 5;
   
