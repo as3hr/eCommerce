@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../theme.dart';
 
@@ -39,26 +39,32 @@ class _BaseNumberFieldState extends State<BaseNumberField> {
       alignment: Alignment.centerLeft,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: 60,
-          width: widget.width,
-          child: Center(
-            child: TextFormField(
-              readOnly: widget.readOnly,
-              style: Theme.of(context).textTheme.bodyMedium,
-              decoration: fieldDecoration(
-                label: widget.title,
-                hintText: widget.hintText,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.only(left: 8, right: 8),
+          child: Column(
+            children: [
+              8.verticalSpace,
+              SizedBox(
+                height: 60,
+                width: widget.width ?? 0.5.sw,
+                child: TextFormField(
+                  readOnly: widget.readOnly,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  decoration: fieldDecoration(
+                    label: widget.title,
+                    hintText: widget.hintText,
+                  ),
+                  controller: controller,
+                  onChanged: (val) {
+                    widget.onChanged?.call(val);
+                  },
+                ),
               ),
-              controller: controller,
-              onChanged: (val) {
-                widget.onChanged?.call(val);
-              },
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              keyboardType: TextInputType.number,
-            ),
+            ],
           ),
         ),
       ),

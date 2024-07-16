@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../theme.dart';
 import '../../../styles/app_colors.dart';
@@ -44,44 +45,55 @@ class _DropDownFieldState<T> extends State<DropDownField<T>> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: 60,
-          width: widget.width,
-          child: DropdownButtonFormField2<T>(
-            dropdownStyleData: DropdownStyleData(
-              maxHeight: 200,
-              elevation: 2,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: AppColors.black,
-                  width: 0.5,
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          height: 70,
+          width: widget.width ?? 0.51.sw,
+          child: Column(
+            children: [
+              12.verticalSpace,
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: DropdownButtonFormField2<T>(
+                  dropdownStyleData: DropdownStyleData(
+                    maxHeight: 200,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: AppColors.black,
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  iconStyleData: const IconStyleData(
+                    icon: Icon(Icons.keyboard_arrow_down_rounded),
+                    iconSize: 30,
+                    iconDisabledColor: AppColors.black,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
+                  decoration: fieldDecoration(
+                    label: widget.title,
+                  ),
+                  value: valueSelected,
+                  hint: const Text('Select an item'),
+                  items: _buildDropdownItems(),
+                  onChanged: (value) {
+                    if (value != null) {
+                      setState(() {
+                        widget.onChanged?.call(value);
+                        valueSelected = value;
+                      });
+                    }
+                  },
                 ),
               ),
-            ),
-            iconStyleData: const IconStyleData(
-              icon: Icon(Icons.keyboard_arrow_down_rounded),
-              iconSize: 30,
-              iconDisabledColor: AppColors.black,
-            ),
-            style: Theme.of(context).textTheme.bodySmall,
-            isExpanded: true,
-            decoration: fieldDecoration(
-              label: widget.title,
-            ),
-            value: valueSelected,
-            hint: const Text('Select an item'),
-            items: _buildDropdownItems(),
-            onChanged: (value) {
-              if (value != null) {
-                setState(() {
-                  widget.onChanged?.call(value);
-                  valueSelected = value;
-                });
-              }
-            },
+            ],
           ),
         ),
       ),

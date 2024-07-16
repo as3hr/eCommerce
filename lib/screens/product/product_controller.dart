@@ -38,9 +38,9 @@ class ProductController extends GetxController {
 
   void distributeImages(List<ImageType> newImages) {
     final fileImages = newImages;
-    images = fileImages.where((image) => image.hasPath == true).toList();
     final simpleImages =
         newImages.where((image) => image.hasPath == false).toList();
+    images = fileImages.where((image) => image.hasPath == true).toList();
     product.images = simpleImages.map((image) => image.image).toList();
   }
 

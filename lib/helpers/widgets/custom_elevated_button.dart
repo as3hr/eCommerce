@@ -32,9 +32,7 @@ class CustomElevatedButton extends StatelessWidget {
           height: 40,
           width: 100,
           decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.grayII,
-              ),
+              border: Border.all(color: AppColors.grayII, width: 0.15),
               color: color,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12)),

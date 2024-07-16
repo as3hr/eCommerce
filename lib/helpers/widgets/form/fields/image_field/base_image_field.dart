@@ -1,10 +1,12 @@
-import 'dart:io';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../styles/app_decoration.dart';
+import '../../../shimmer_effect.dart';
 import 'image_type.dart';
 
 class BaseImageFormField extends StatefulWidget {
@@ -21,6 +23,7 @@ class BaseImageFormField extends StatefulWidget {
 
 class _BaseImageFormFieldState extends State<BaseImageFormField> {
   final picker = ImagePicker();
+  bool showText = false;
   List<ImageType> images = [];
   List<XFile> imageFiles = [];
 
@@ -50,8 +53,18 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
 
   void removeImage(int index) {
     images.removeAt(index);
+    showText = false;
     setState(() {});
     widget.getImages.call(images);
+  }
+
+  void pickImage(bool lengthExceeded) {
+    if (lengthExceeded) {
+      showText = true;
+      setState(() {});
+    } else {
+      addImages();
+    }
   }
 
   @override
@@ -62,69 +75,106 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
       alignment: Alignment.centerLeft,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: SizedBox(
           width: 0.5.sw,
           height: 250,
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              images.isEmpty
-                  ? const Expanded(
-                      child: Center(
-                        child: Text('No images selected!'),
+              Row(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      leading: InkWell(
+                          onTap: () => pickImage(lengthExceeded),
+                          child: Image.asset(AssetImages.download)),
+                      title: InkWell(
+                        onTap: () => pickImage(lengthExceeded),
+                        child: const Text(
+                          'Click to upload images',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline),
+                        ),
                       ),
-                    )
-                  : Row(
-                      children: images.mapIndexed((index, image) {
-                        return Stack(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width: 120,
-                                  height: 160,
-                                  child: image.hasPath
-                                      ? Image.file(
-                                          File(image.image),
-                                          fit: BoxFit.cover,
-                                          width: 120,
-                                        )
-                                      : Image.network(
-                                          image.image,
-                                          fit: BoxFit.cover,
-                                          width: 120,
-                                        ),
-                                )),
-                            Positioned(
-                                top: 0,
-                                right: 5,
-                                child: InkWell(
-                                  onTap: () {
-                                    removeImage(index);
-                                  },
-                                  child: const Icon(
-                                    Icons.cancel,
-                                    color: Colors.grey,
-                                  ),
-                                )),
-                          ],
-                        );
-                      }).toList(),
+                      subtitle: Text(
+                        '(SVG, PNG, JPG or JPEG)',
+                        style: AppDecoration.lightStyle(
+                            fontSize: 12, color: Colors.grey),
+                      ),
                     ),
-              if (images.isNotEmpty) const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: InkWell(
-                      onTap: lengthExceeded ? null : addImages,
-                      child: const Icon(
-                        Icons.file_copy,
-                        color: Colors.black,
-                      ),
-                    )),
+                  ),
+                  if (showText)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Text('(There can be maximum of four images)',
+                          style: AppDecoration.mediumStyle(
+                              fontSize: 12, color: Colors.red)),
+                    ),
+                ],
               ),
+              if (images.isNotEmpty)
+                Row(
+                  children: images.mapIndexed((index, image) {
+                    return Stack(
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: 120,
+                              height: 160,
+                              child: image.hasPath
+                                  ? Image.network(
+                                      image.image,
+                                      fit: BoxFit.cover,
+                                      width: 120,
+                                    )
+                                  : CachedNetworkImage(
+                                      width: 120,
+                                      imageUrl: image.image,
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                            colorFilter: ColorFilter.mode(
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                              BlendMode.dst,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      placeholder: (context, url) =>
+                                          const ShimmerEffect(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    ),
+                            )),
+                        Positioned(
+                            top: 0,
+                            right: 5,
+                            child: InkWell(
+                              onTap: () {
+                                removeImage(index);
+                              },
+                              child: const Icon(
+                                Icons.cancel,
+                                color: Colors.grey,
+                              ),
+                            )),
+                      ],
+                    );
+                  }).toList(),
+                ),
             ],
           ),
         ),

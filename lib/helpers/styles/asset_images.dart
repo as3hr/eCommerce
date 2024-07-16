@@ -12,4 +12,5 @@ class AssetImages {
   static const users = '${baseDir}users.png';
   static const bell = '${baseDir}bell.png';
   static const send = '${baseDir}send.png';
+  static const download = '${baseDir}download.png';
 }
