@@ -48,7 +48,7 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 4. Set Up Firebase
    ```bash
    flutterfire configure
-5. Set Up Backend
+5. Set Up
    [Backend](https://github.com/as3hr/E-commerce-Backend)
    
 7. Run the app:
