@@ -14,6 +14,7 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 - User Profile update feature
 - Wishlist and favorites management
 - User-friendly UI
+- Addresses, Cards, Checkout and many more features
 - Pagination and filteration in API calls
 - Clean and understandable code
 
