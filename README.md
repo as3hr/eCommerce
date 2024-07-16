@@ -27,7 +27,7 @@ This is the backend for my full stack e-commerce project, built using Node.js, E
    ```bash
    npm install
 4. Set up environment variables:
-   - Create a .env file in the root directory and add necessary environment variables.
+   - Create a .env file in the root directory and add necessary environment variables (you can refer to the .env.example file given in the project).
      
 5. Set up a mongodb Database
    - Create a database and add the connection string to the .env file.
