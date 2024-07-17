@@ -69,7 +69,7 @@ class _InputFieldState extends State<InputField> {
             validator: widget.validator,
             onFieldSubmitted: widget.onSubmit,
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(3),
+              contentPadding: const EdgeInsets.only(top: 3, left: 8),
               prefixIcon: widget.preFixIcon,
               hintText: widget.hintText ?? '',
               focusedBorder: OutlineInputBorder(
