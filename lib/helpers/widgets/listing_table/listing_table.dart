@@ -1,12 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme.dart';
 import '../../functions/loading_wrapper.dart';
-import '../color_changing_container.dart';
 import '../custom_table_design.dart';
 import 'listing_cell.dart';
 import 'listing_column.dart';
@@ -23,6 +24,8 @@ class ListingTable extends StatefulWidget {
     this.footer,
     this.fetchOnInit = false,
     this.selectActions,
+    this.totalPages = 0,
+    this.count = 0,
   }) {
     if (footer != null) {
       if (footer!.cells.length < columns.length) {
@@ -35,6 +38,8 @@ class ListingTable extends StatefulWidget {
       }
     }
   }
+  final int totalPages;
+  final int count;
   final List<ListingRow> rows;
   final List<ListingColumn> columns;
   final ListingRow? footer;
@@ -49,6 +54,7 @@ class ListingTable extends StatefulWidget {
 }
 
 class _ListingTableState extends State<ListingTable> {
+  int currentPage = 1;
   final ScrollController _scrollController = ScrollController();
   List<int> selectedIndexes = [];
   bool _isLoading = false;
@@ -60,7 +66,6 @@ class _ListingTableState extends State<ListingTable> {
   void initState() {
     super.initState();
     if (widget.fetchMoreData != null) {
-      _scrollController.addListener(onScrollCallback);
       if (widget.fetchOnInit) {
         loadingWrapper(
           () => fetchData(
@@ -72,15 +77,6 @@ class _ListingTableState extends State<ListingTable> {
     }
   }
 
-  Future<void> onScrollCallback({bool refresh = false}) async {
-    if (_scrollController.hasClients &&
-        _scrollController.position.extentAfter <= 1000.0 &&
-        !_isLoading &&
-        !_loadFinished) {
-      fetchData(refresh: refresh);
-    }
-  }
-
   Future<void> fetchData({bool refresh = false}) async {
     setState(() {
       _isLoading = true;
@@ -89,6 +85,8 @@ class _ListingTableState extends State<ListingTable> {
       refresh: refresh,
       extraQuery: {
         if (sortKey != null) 'sort[$sortKey]': sortAscending ? -1 : 1,
+        'page': currentPage,
+        'limit': 25,
       },
     );
     setState(() {
@@ -98,7 +96,7 @@ class _ListingTableState extends State<ListingTable> {
 
   @override
   void dispose() {
-    _scrollController.removeListener(onScrollCallback);
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -251,56 +249,57 @@ class _ListingTableState extends State<ListingTable> {
             ),
           ),
         ),
-        if (_isLoading)
-          SizedBox(
-            height: 40,
-            child: ColorChangingContainer(
-              color1: Theme.of(context).colorScheme.onSecondary,
-              color2: Theme.of(context).colorScheme.surface,
-              child: const Center(
-                child: Text('Loading data...'),
-              ),
+        10.verticalSpace,
+        Row(children: [
+          const Spacer(),
+          Center(
+            child: Text(
+              'Rows per page:  ${widget.count}',
+              style: AppDecoration.semiMediumStyle(
+                  fontSize: 18, color: AppColors.black),
             ),
           ),
-        if (widget.footer != null)
-          Container(
-            color: Colors.orange,
-            height: 40,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              children: List.generate(widget.footer!.cells.length, (i) {
-                final child = Container(
-                  padding: EdgeInsets.only(
-                    left: i > 0 ? 12 : 0,
-                    right: (i < widget.footer!.cells.length - 1) ? 12.0 : 0,
-                  ),
-                  alignment: widget.footer!.cells[i].alignment,
-                  child: widget.footer!.cells[i].child,
-                );
-                if (widget.columns[i].fixedWidth != null) {
-                  return SizedBox(
-                    width: widget.columns[i].fixedWidth,
-                    child: child,
-                  );
-                } else {
-                  final int flex;
-                  switch (widget.columns[i].size) {
-                    case ColumnSize.S:
-                      flex = 1;
-                      break;
-                    case ColumnSize.L:
-                      flex = 3;
-                      break;
-                    case ColumnSize.M:
-                    default:
-                      flex = 2;
-                      break;
+          10.horizontalSpace,
+          Center(
+            child: Text(
+              '$currentPage of ${widget.totalPages}',
+              style: AppDecoration.semiMediumStyle(
+                  fontSize: 15, color: AppColors.black),
+            ),
+          ),
+          10.horizontalSpace,
+          InkWell(
+            onTap: currentPage > 1
+                ? () {
+                    currentPage--;
+                    fetchData(refresh: true);
                   }
-                  return Expanded(flex: flex, child: child);
-                }
-              }),
+                : null,
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: currentPage > 1 ? AppColors.black : Colors.grey,
+              size: 15,
             ),
           ),
+          4.horizontalSpace,
+          InkWell(
+            onTap: currentPage < widget.totalPages
+                ? () {
+                    currentPage++;
+                    fetchData(refresh: true);
+                  }
+                : null,
+            child: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: currentPage < widget.totalPages
+                  ? AppColors.black
+                  : Colors.grey,
+              size: 15,
+            ),
+          ),
+          30.horizontalSpace,
+        ]),
+        10.verticalSpace,
       ],
     );
   }

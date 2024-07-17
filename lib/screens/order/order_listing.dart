@@ -33,6 +33,8 @@ class OrderListing extends StatelessWidget {
                 Expanded(
                     child: ListingTable(
                         fetchOnInit: true,
+                        count: controller.orderPagination.count ?? 0,
+                        totalPages: controller.orderPagination.totalPages ?? 0,
                         fetchMoreData: ({
                           bool refresh = false,
                           Map<String, dynamic>? extraQuery,

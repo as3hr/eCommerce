@@ -7,7 +7,7 @@ import '../../models/user.dart';
 class UserController extends GetxController {
   List<User> allUsers = [];
   User? user;
-  late Pagination<User> userPagination;
+  Pagination<User> userPagination = Pagination<User>();
   int limit = 25;
   User get getCurrentUser => user ?? User();
 

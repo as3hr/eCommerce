@@ -7,7 +7,7 @@ import '../../models/order.dart';
 class OrderController extends GetxController {
   int limit = 25;
   Order? order;
-  late Pagination<Order> orderPagination;
+  Pagination<Order> orderPagination = Pagination<Order>();
   Order get getCurrentOrder => order ?? Order();
   set setOrder(Order newOrder) {
     order = newOrder;

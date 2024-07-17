@@ -8,7 +8,7 @@ import '../../models/data/api.dart';
 class ProductController extends GetxController {
   int limit = 25;
   List<ImageType> images = [];
-  late Pagination<Product> productPagination;
+  Pagination<Product> productPagination = Pagination<Product>();
   Product product = Product();
   Product get getCurrentProduct => product;
   set setProduct(Product newProduct) {
@@ -17,6 +17,12 @@ class ProductController extends GetxController {
 
   List<Product> allProducts = [];
 
+  @override
+  void onInit() {
+    getAllProducts();
+    super.onInit();
+  }
+
   Future<bool> getAllProducts({
     bool refresh = false,
     Map<String, dynamic>? extraQuery,
@@ -24,13 +30,10 @@ class ProductController extends GetxController {
     if (refresh) {
       allProducts.clear();
     }
-    int page = (allProducts.length / limit).ceil() + 1;
     productPagination = await Api.getAllProducts(
-      page: page,
-      limit: limit,
       extraQuery: extraQuery,
     );
-    allProducts.addAll(productPagination.data);
+    allProducts = productPagination.data;
     update();
     if (productPagination.data.length < limit) {
       return true;
