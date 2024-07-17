@@ -5,9 +5,9 @@ import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../theme.dart';
-import '../../functions/loading_wrapper.dart';
 import '../custom_table_design.dart';
 import 'listing_cell.dart';
 import 'listing_column.dart';
@@ -58,21 +58,27 @@ class _ListingTableState extends State<ListingTable> {
   final ScrollController _scrollController = ScrollController();
   List<int> selectedIndexes = [];
   bool _isLoading = false;
-  bool _loadFinished = false;
   String? sortKey;
   bool sortAscending = true;
   bool secondaryTap = false;
   @override
   void initState() {
     super.initState();
+    intializeTable();
+  }
+
+  Future<void> intializeTable() async {
     if (widget.fetchMoreData != null) {
       if (widget.fetchOnInit) {
-        loadingWrapper(
-          () => fetchData(
-            refresh: true,
-          ),
-          context,
+        setState(() {
+          _isLoading = true;
+        });
+        await fetchData(
+          refresh: true,
         );
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
@@ -81,7 +87,7 @@ class _ListingTableState extends State<ListingTable> {
     setState(() {
       _isLoading = true;
     });
-    _loadFinished = await widget.fetchMoreData!(
+    await widget.fetchMoreData!(
       refresh: refresh,
       extraQuery: {
         if (sortKey != null) 'sort[$sortKey]': sortAscending ? -1 : 1,
@@ -145,18 +151,15 @@ class _ListingTableState extends State<ListingTable> {
             padding: const EdgeInsets.all(8.0),
             child: CustomTableDesign(
               child: DataTable2(
-                checkboxHorizontalMargin: 10,
                 dataRowHeight: 30,
-                checkboxAlignment: Alignment.centerLeft,
                 showBottomBorder: true,
+                showCheckboxColumn: false,
                 border: listingTableBorder,
                 smRatio: 0.5,
                 lmRatio: 1.5,
-                headingCheckboxTheme: checkBoxTheme,
                 headingRowHeight: 40,
                 headingRowDecoration: headingRowDecoration,
                 headingRowColor: headingRowColor,
-                datarowCheckboxTheme: checkBoxTheme,
                 scrollController: _scrollController,
                 columnSpacing: 23,
                 headingTextStyle: mediumTextStyle,
@@ -189,8 +192,7 @@ class _ListingTableState extends State<ListingTable> {
                                   sortKey = column.sortKey;
                                   sortAscending = ascending;
                                 });
-                                loadingWrapper(
-                                    () => fetchData(refresh: true), context);
+                                fetchData(refresh: true);
                               }
                             : null,
                       ),
@@ -202,49 +204,51 @@ class _ListingTableState extends State<ListingTable> {
                         (element) => element.sortKey == sortKey,
                       ),
                 sortAscending: sortAscending,
-                rows: widget.rows
-                    .mapIndexed(
-                      (index, row) => DataRow2(
-                        color: listingRowColor(
-                          index,
-                        ),
-                        onSelectChanged: (selected) {
-                          setState(() {
-                            if (!(selected ?? false)) {
-                              selectedIndexes.remove(index);
-                            }
-                            if (!selectedIndexes.contains(index) &&
-                                (selected ?? false)) {
-                              selectedIndexes.add(index);
-                            }
-                            widget.onSelectChanged?.call(selectedIndexes);
-                          });
-                        },
-                        selected: selectedIndexes.contains(index),
-                        onTap: row.onTap,
-                        onSecondaryTap: (row.contextMenu == null)
-                            ? null
-                            : () {
-                                setState(() {
-                                  secondaryTap = true;
-                                });
-                                context.contextMenuOverlay
-                                    .show(row.contextMenu!);
-                              },
-                        cells: row.cells
-                            .map(
-                              (cell) => DataCell(
-                                Align(
-                                  alignment: cell.alignment,
-                                  child: cell.child,
-                                ),
-                                showEditIcon: cell.showEditIcon,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    )
-                    .toList(),
+                rows: _isLoading
+                    ? loadingRows()
+                    : widget.rows
+                        .mapIndexed(
+                          (index, row) => DataRow2(
+                            color: listingRowColor(
+                              index,
+                            ),
+                            onSelectChanged: (selected) {
+                              setState(() {
+                                if (!(selected ?? false)) {
+                                  selectedIndexes.remove(index);
+                                }
+                                if (!selectedIndexes.contains(index) &&
+                                    (selected ?? false)) {
+                                  selectedIndexes.add(index);
+                                }
+                                widget.onSelectChanged?.call(selectedIndexes);
+                              });
+                            },
+                            selected: selectedIndexes.contains(index),
+                            onTap: row.onTap,
+                            onSecondaryTap: (row.contextMenu == null)
+                                ? null
+                                : () {
+                                    setState(() {
+                                      secondaryTap = true;
+                                    });
+                                    context.contextMenuOverlay
+                                        .show(row.contextMenu!);
+                                  },
+                            cells: row.cells
+                                .map(
+                                  (cell) => DataCell(
+                                    Align(
+                                      alignment: cell.alignment,
+                                      child: cell.child,
+                                    ),
+                                    showEditIcon: cell.showEditIcon,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        )
+                        .toList(),
               ),
             ),
           ),
@@ -302,5 +306,32 @@ class _ListingTableState extends State<ListingTable> {
         10.verticalSpace,
       ],
     );
+  }
+
+  List<DataRow> loadingRows() {
+    return List.generate(5, (index) {
+      return DataRow2(
+          specificRowHeight: 50,
+          decoration: BoxDecoration(
+              color: AppColors.white,
+              border: Border.all(color: AppColors.white)),
+          cells: List.generate(widget.columns.length, (index) {
+            return DataCell(Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            ));
+          }));
+    });
   }
 }
