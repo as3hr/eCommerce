@@ -320,14 +320,11 @@ class _ListingTableState extends State<ListingTable> {
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(15),
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  color: Colors.white,
                 ),
               ),
             ));
