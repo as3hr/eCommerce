@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_admin_panel/screens/chat_support/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../helpers/functions/loading_wrapper.dart';
 import '../../../helpers/styles/app_colors.dart';
 import '../../../helpers/styles/app_decoration.dart';
-import '../../../helpers/widgets/shimmer_effect.dart';
 
 class ChatSideBar extends StatelessWidget {
   const ChatSideBar({super.key});
@@ -58,34 +56,10 @@ class ChatSideBar extends StatelessWidget {
                             15.horizontalSpace,
                             CircleAvatar(
                                 radius: 20,
+                                backgroundImage:
+                                    NetworkImage(chat.user?.image ?? ''),
                                 child: chat.user?.image != null
-                                    ? CachedNetworkImage(
-                                        width: 120,
-                                        imageUrl: chat.user!.image!,
-                                        imageBuilder:
-                                            (context, imageProvider) =>
-                                                Container(
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary,
-                                            image: DecorationImage(
-                                              image: imageProvider,
-                                              fit: BoxFit.cover,
-                                              colorFilter: ColorFilter.mode(
-                                                Theme.of(context)
-                                                    .colorScheme
-                                                    .onPrimary,
-                                                BlendMode.dst,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        placeholder: (context, url) =>
-                                            const ShimmerEffect(),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.person),
-                                      )
+                                    ? null
                                     : const Icon(Icons.person)),
                             8.horizontalSpace,
                             Text(

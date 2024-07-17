@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/widgets/shimmer_effect.dart';
 import '../chat_controller.dart';
 
 class ChatAppBar extends StatelessWidget {
@@ -28,25 +26,10 @@ class ChatAppBar extends StatelessWidget {
               child: CircleAvatar(
                   radius: 20,
                   child: controller.currentChat.user?.image != null
-                      ? CachedNetworkImage(
-                          width: 120,
-                          imageUrl: controller.currentChat.user?.image ?? '',
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                                colorFilter: ColorFilter.mode(
-                                  Theme.of(context).colorScheme.onPrimary,
-                                  BlendMode.dst,
-                                ),
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) => const ShimmerEffect(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.person),
+                      ? CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                              controller.currentChat.user?.image ?? ''),
                         )
                       : const Icon(Icons.person)),
             ),
