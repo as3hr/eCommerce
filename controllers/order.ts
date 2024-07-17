@@ -1,11 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-import { asyncHandler, createLogs, orderModel, sendPushNotification } from "../internal";
+import { asyncHandler, createLogs, orderModel, sendPushNotification, userModel } from "../internal";
 
 const getOrders = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
         req.model = orderModel;
         req.modelName = 'orders';
-        req.query.userId =  req.user._id;
+        const user = await userModel.findOne({ 
+            _id: req.user._id,
+            isAdmin: false,
+        })        
+        if(user){
+            req.query.userId =  req.user._id;
+        }
         next();
     }
 );
