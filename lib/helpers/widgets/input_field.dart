@@ -69,14 +69,15 @@ class _InputFieldState extends State<InputField> {
             validator: widget.validator,
             onFieldSubmitted: widget.onSubmit,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(3),
               prefixIcon: widget.preFixIcon,
               hintText: widget.hintText ?? '',
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 borderSide: const BorderSide(color: AppColors.transparent),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 borderSide: const BorderSide(color: AppColors.transparent),
               ),
               suffixIcon: widget.passwordField
