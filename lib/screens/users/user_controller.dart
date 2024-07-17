@@ -1,11 +1,13 @@
 import 'package:ecommerce_admin_panel/models/data/api.dart';
 import 'package:get/get.dart';
 
+import '../../models/pagination.dart';
 import '../../models/user.dart';
 
 class UserController extends GetxController {
   List<User> allUsers = [];
   User? user;
+  late Pagination<User> userPagination;
   int limit = 25;
   User get getCurrentUser => user ?? User();
 
@@ -22,14 +24,14 @@ class UserController extends GetxController {
     }
     extraQuery?['isAdmin'] = false;
     int page = (allUsers.length / limit).ceil() + 1;
-    final data = await Api.getAllUsers(
+    userPagination = await Api.getAllUsers(
       page: page,
       limit: limit,
       extraQuery: extraQuery,
     );
-    allUsers.addAll(data);
+    allUsers.addAll(userPagination.data);
     update();
-    if (data.length < limit) {
+    if (userPagination.data.length < limit) {
       return true;
     }
     return false;

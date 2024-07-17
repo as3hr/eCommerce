@@ -17,9 +17,12 @@ class HomeController extends GetxController {
     const extraQuery = {
       'sort': {'sellCount': -1},
     };
-    data = await Api.getAllProducts(limit: 10, extraQuery: extraQuery);
+    final productsResponse =
+        await Api.getAllProducts(limit: 10, extraQuery: extraQuery);
+    data = productsResponse.data;
     if (data.isEmpty) {
-      data = await Api.getAllProducts(limit: 10);
+      final productsResponse = await Api.getAllProducts(limit: 10);
+      data = productsResponse.data;
     }
     products.addAll(data);
     isLoading = false;

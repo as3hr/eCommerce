@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 import '../chat.dart';
 import '../message.dart';
+import '../pagination.dart';
 
 class Api {
   static final dio = Dio(
@@ -64,7 +65,7 @@ class Api {
     return User.fromJson(data);
   }
 
-  static Future<List<User>> getAllUsers({
+  static Future<Pagination<User>> getAllUsers({
     int page = 1,
     int limit = 25,
     Map<String, dynamic>? extraQuery,
@@ -75,7 +76,8 @@ class Api {
       'limit': limit,
       ...?extraQuery,
     });
-    return ApiHelpers.parseResponse(response, User.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, User.fromJson);
   }
 
   static Future<String> uploadImage(String file, String name) async {
@@ -108,7 +110,7 @@ class Api {
     return Order.fromJson(data);
   }
 
-  static Future<List<Order>> getAllOrders({
+  static Future<Pagination<Order>> getAllOrders({
     int page = 1,
     int limit = 25,
     Map<String, dynamic>? extraQuery,
@@ -119,7 +121,8 @@ class Api {
       'limit': limit,
       ...?extraQuery,
     });
-    return ApiHelpers.parseResponse(response, Order.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, Order.fromJson);
   }
 
   static Future<void> deleteOrder(String id) async {
@@ -153,7 +156,7 @@ class Api {
     return Product.fromJson(data);
   }
 
-  static Future<List<Product>> getAllProducts({
+  static Future<Pagination<Product>> getAllProducts({
     int page = 1,
     int limit = 25,
     Map<String, dynamic>? extraQuery,
@@ -164,7 +167,8 @@ class Api {
       'limit': limit,
       ...?extraQuery,
     });
-    return ApiHelpers.parseResponse(response, Product.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, Product.fromJson);
   }
 
   static Future<void> deleteProduct(String id) async {
@@ -183,7 +187,7 @@ class Api {
     return UserNotification.fromJson(data);
   }
 
-  static Future<List<UserNotification>> getAllNotifications({
+  static Future<Pagination<UserNotification>> getAllNotifications({
     int page = 1,
     int limit = 25,
     Map<String, dynamic>? extraQuery,
@@ -194,11 +198,12 @@ class Api {
       'limit': limit,
       ...?extraQuery,
     });
-    return ApiHelpers.parseResponse(response, UserNotification.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, UserNotification.fromJson);
   }
 
   //Message API's
-  static Future<List<Message>> getMessages({
+  static Future<Pagination<Message>> getMessages({
     required String chatId,
     int limit = 25,
     int page = 1,
@@ -214,7 +219,8 @@ class Api {
         ...?extraQuery
       },
     );
-    return ApiHelpers.parseResponse(response, Message.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, Message.fromJson);
   }
 
   static Future<void> updateMessage({required Message message}) async {
@@ -243,7 +249,7 @@ class Api {
     return Chat.fromJson(data);
   }
 
-  static Future<List<Chat>> getChats({
+  static Future<Pagination<Chat>> getChats({
     int limit = 25,
     int page = 1,
     Map<String, dynamic>? extraQuery,
@@ -253,6 +259,7 @@ class Api {
       url,
       queryParameters: {'limit': limit, 'page': page, ...?extraQuery},
     );
-    return ApiHelpers.parseResponse(response, Chat.fromJson);
+    final data = ApiHelpers.checkError(response)['result'];
+    return Pagination.fromJson(data, Chat.fromJson);
   }
 }

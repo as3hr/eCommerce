@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../models/chat.dart';
 import '../../models/data/api.dart';
 import '../../models/message.dart';
+import '../../models/pagination.dart';
 import '../log_in_view/auth_controller.dart';
 
 class ChatController extends GetxController {
@@ -19,6 +20,8 @@ class ChatController extends GetxController {
   }
 
   //initial declarations
+  late Pagination<Message> messagePagination;
+  late Pagination<Chat> chatsPagination;
   var currentChat = Chat();
   bool isLoading = true;
   int limit = 25;
@@ -30,7 +33,8 @@ class ChatController extends GetxController {
 
   Future<void> getAllChats({bool refresh = false}) async {
     if (refresh) allChats.clear();
-    allChats = await Api.getChats();
+    chatsPagination = await Api.getChats();
+    allChats = chatsPagination.data;
     if (allChats.isNotEmpty) {
       await getChatById(allChats.first.id ?? '');
     }
@@ -55,13 +59,14 @@ class ChatController extends GetxController {
     }
     int page = (messages.length / limit).ceil() + 1;
     if (currentChat.id != null) {
-      messages.addAll(await Api.getMessages(
+      messagePagination = await Api.getMessages(
           limit: limit,
           page: page,
           chatId: currentChat.id!,
           extraQuery: {
             'sort': {'date': -1}
-          }));
+          });
+      messages.addAll(messagePagination.data);
       update();
       if (messages.length < limit) return false;
     }

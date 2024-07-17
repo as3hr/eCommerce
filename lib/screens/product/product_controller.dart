@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/helpers/widgets/form/fields/image_field/image_type.dart';
+import 'package:ecommerce_admin_panel/models/pagination.dart';
 import 'package:ecommerce_admin_panel/models/product.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +8,7 @@ import '../../models/data/api.dart';
 class ProductController extends GetxController {
   int limit = 25;
   List<ImageType> images = [];
+  late Pagination<Product> productPagination;
   Product product = Product();
   Product get getCurrentProduct => product;
   set setProduct(Product newProduct) {
@@ -23,14 +25,14 @@ class ProductController extends GetxController {
       allProducts.clear();
     }
     int page = (allProducts.length / limit).ceil() + 1;
-    final data = await Api.getAllProducts(
+    productPagination = await Api.getAllProducts(
       page: page,
       limit: limit,
       extraQuery: extraQuery,
     );
-    allProducts.addAll(data);
+    allProducts.addAll(productPagination.data);
     update();
-    if (data.length < limit) {
+    if (productPagination.data.length < limit) {
       return true;
     }
     return false;

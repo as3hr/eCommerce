@@ -68,13 +68,6 @@ class ProductScreenForm extends StatelessWidget {
                       'Kids',
                     ]),
                 DropDownField(
-                    title: 'Product Rating',
-                    preFilledVal: product.rating,
-                    onChanged: (val) {
-                      product.rating = int.parse(val.toString());
-                    },
-                    dropdownItems: const [1, 2, 3, 4, 5]),
-                DropDownField(
                     title: 'Size',
                     dropdownItems: const [
                       'Small',
@@ -178,6 +171,25 @@ class ProductScreenForm extends StatelessWidget {
                       'Trousers'
                     ],
                   ),
+                ],
+              )),
+          10.verticalSpace,
+          FormSection(
+              sectionTitle: Text(
+                'Additional Information',
+                style: AppDecoration.mediumStyle(
+                    fontSize: 20, color: Colors.black),
+              ),
+              sectionBody: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DropDownField(
+                      title: 'Product Rating',
+                      preFilledVal: product.rating,
+                      onChanged: (val) {
+                        product.rating = int.parse(val.toString());
+                      },
+                      dropdownItems: const [1, 2, 3, 4, 5]),
                 ],
               )),
         ],
