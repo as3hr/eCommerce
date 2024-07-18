@@ -47,25 +47,15 @@ InputDecoration fieldDecoration({
     );
 
 const listingContainerDecoration = BoxDecoration();
-const headingRowDecoration = BoxDecoration(
-  border: Border(
-    bottom: BorderSide(color: AppColors.black, width: 2),
-    top: BorderSide(
-      color: AppColors.transparent,
-    ),
-    left: BorderSide(
-      color: AppColors.transparent,
-    ),
-    right: BorderSide(
-      color: AppColors.transparent,
-    ),
-  ),
+final headingRowDecoration = BoxDecoration(
+  color: Colors.grey.withOpacity(0.1),
+  borderRadius: BorderRadius.circular(15),
 );
-const listingTableBorder = TableBorder(
-  verticalInside: BorderSide(color: AppColors.grayII),
+final listingTableBorder = TableBorder(
+  verticalInside: BorderSide(color: Colors.grey.withOpacity(0.1)),
 );
 final headingRowColor = WidgetStateColor.resolveWith(
-  (states) => AppColors.white,
+  (states) => Colors.grey[200]!,
 );
 const listingTableDecoration = BoxDecoration(
   color: AppColors.white,

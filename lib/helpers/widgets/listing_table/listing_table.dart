@@ -24,8 +24,9 @@ class ListingTable extends StatefulWidget {
     this.footer,
     this.fetchOnInit = false,
     this.selectActions,
-    this.totalPages = 0,
-    this.count = 0,
+    this.rowHeight,
+    required this.totalPages,
+    required this.count,
   }) {
     if (footer != null) {
       if (footer!.cells.length < columns.length) {
@@ -40,6 +41,7 @@ class ListingTable extends StatefulWidget {
   }
   final int totalPages;
   final int count;
+  final double? rowHeight;
   final List<ListingRow> rows;
   final List<ListingColumn> columns;
   final ListingRow? footer;
@@ -151,18 +153,17 @@ class _ListingTableState extends State<ListingTable> {
             padding: const EdgeInsets.all(8.0),
             child: CustomTableDesign(
               child: DataTable2(
-                dataRowHeight: 30,
-                showBottomBorder: true,
+                dataRowHeight: widget.rowHeight ?? 50,
+                showBottomBorder: false,
                 showCheckboxColumn: false,
                 border: listingTableBorder,
-                smRatio: 0.5,
-                lmRatio: 1.5,
-                headingRowHeight: 40,
+                headingRowHeight: 50,
+                horizontalMargin: 20,
                 headingRowDecoration: headingRowDecoration,
                 headingRowColor: headingRowColor,
                 scrollController: _scrollController,
                 columnSpacing: 23,
-                headingTextStyle: mediumTextStyle,
+                headingTextStyle: largeTextStyle,
                 decoration: listingTableDecoration,
                 onSelectAll: (selected) {
                   setState(() {
@@ -209,9 +210,10 @@ class _ListingTableState extends State<ListingTable> {
                     : widget.rows
                         .mapIndexed(
                           (index, row) => DataRow2(
-                            color: listingRowColor(
-                              index,
-                            ),
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                border: Border.all(
+                                    color: Colors.grey.withOpacity(0.05))),
                             onSelectChanged: (selected) {
                               setState(() {
                                 if (!(selected ?? false)) {

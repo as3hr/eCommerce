@@ -10,6 +10,6 @@ class ListingColumn {
     this.sortKey,
     required this.title,
     this.fixedWidth,
-    this.size = ColumnSize.M,
+    this.size = ColumnSize.L,
   });
 }

@@ -33,8 +33,8 @@ class UserListing extends StatelessWidget {
                 Expanded(
                     child: ListingTable(
                         fetchOnInit: true,
-                        count: controller.userPagination.count ?? 0,
-                        totalPages: controller.userPagination.totalPages ?? 0,
+                        count: controller.userPagination.count,
+                        totalPages: controller.userPagination.totalPages,
                         fetchMoreData: ({
                           bool refresh = false,
                           Map<String, dynamic>? extraQuery,

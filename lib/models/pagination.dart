@@ -1,19 +1,19 @@
 import 'data/api_helpers.dart';
 
 class Pagination<T> {
-  int? totalPages;
-  int? limit;
-  int? totalCount;
-  int? currentPage;
-  int? count;
+  int totalPages;
+  int limit;
+  int totalCount;
+  int currentPage;
+  int count;
   List<T> data;
   Pagination({
-    this.count,
+    this.count = 0,
     this.data = const [],
-    this.currentPage,
-    this.limit,
-    this.totalCount,
-    this.totalPages,
+    this.currentPage = 0,
+    this.limit = 0,
+    this.totalCount = 0,
+    this.totalPages = 0,
   });
   factory Pagination.fromJson(
     Map<String, dynamic> json,

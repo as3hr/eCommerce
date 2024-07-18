@@ -28,11 +28,6 @@ class ProductScreenForm extends StatelessWidget {
             sectionBody: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!isNew)
-                  BaseTextField(
-                      title: 'Product Id',
-                      preFilledValue: product.id,
-                      readOnly: true),
                 BaseTextField(
                   preFilledValue: product.title,
                   title: 'Product Name',

@@ -7,7 +7,6 @@ import '../fields/base_date_field.dart';
 import '../fields/image_field/base_image_field.dart';
 import '../fields/base_multi_select.dart';
 import '../fields/base_number_field.dart';
-import '../fields/base_suggestion_field.dart';
 import '../fields/base_text_field.dart';
 import '../fields/check_field.dart';
 import '../fields/drop_down_field.dart';
@@ -48,21 +47,21 @@ class FormHelpers {
         onChanged: formField.onSelected,
       );
     }
-    if (formField is BaseSuggestionFieldModel) {
-      return BaseSuggestionField(
-        key: Key('${formField.preFilledVal}'),
-        hideSuffixIcon: formField.hideSuffixIcon,
-        preFilledValue: formField.preFilledVal,
-        width: isScreenLarge ? 0.5.sw : 0.3.sw,
-        readOnly: formField.readOnly,
-        title: formField.title,
-        onChanged: formField.onChanged,
-        onSelected: formField.onSelected,
-        isRequired: formField.isRequired,
-        isNum: formField.isNum,
-        hintText: formField.hintText,
-      );
-    }
+    // if (formField is BaseSuggestionFieldModel) {
+    //   return BaseSuggestionField(
+    //     key: Key('${formField.preFilledVal}'),
+    //     hideSuffixIcon: formField.hideSuffixIcon,
+    //     preFilledValue: formField.preFilledVal,
+    //     width: isScreenLarge ? 0.5.sw : 0.3.sw,
+    //     readOnly: formField.readOnly,
+    //     title: formField.title,
+    //     onChanged: formField.onChanged,
+    //     onSelected: formField.onSelected,
+    //     isRequired: formField.isRequired,
+    //     isNum: formField.isNum,
+    //     hintText: formField.hintText,
+    //   );
+    // }
     if (formField is BaseCheckFieldModel) {
       return CheckField(
         key: Key('${formField.preFilledValue}'),
