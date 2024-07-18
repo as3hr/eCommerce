@@ -7,6 +7,7 @@ class Pagination<T> {
   int currentPage;
   int count;
   List<T> data;
+
   Pagination({
     this.count = 0,
     this.data = const [],
@@ -15,6 +16,7 @@ class Pagination<T> {
     this.totalCount = 0,
     this.totalPages = 0,
   });
+
   factory Pagination.fromJson(
     Map<String, dynamic> json,
     T Function(Map<String, dynamic>) dataFromJson,

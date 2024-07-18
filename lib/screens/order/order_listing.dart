@@ -64,17 +64,7 @@ class OrderListing extends StatelessWidget {
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text('${order.products?.length}',
-                                    style: TextStyle(
-                                      fontFamily: 'SF Pro Display',
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: lightColorScheme.primary,
-                                    )),
-                              )),
-                              ListingCell(
-                                  child: Center(
-                                child: Text('\$${order.total}',
+                                child: Text(order.status?.toUpperCase() ?? '-',
                                     style: TextStyle(
                                       fontFamily: 'SF Pro Display',
                                       fontSize: 17,
@@ -93,14 +83,35 @@ class OrderListing extends StatelessWidget {
                                       color: lightColorScheme.primary,
                                     )),
                               )),
+                              ListingCell(
+                                  child: Center(
+                                child: Text('\$${order.total}',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
+                              )),
+                              ListingCell(
+                                  child: Center(
+                                child: Text('${order.products?.length}',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
+                              )),
                             ],
                           );
                         }).toList(),
                         columns: [
                       ListingColumn(title: const Text('Order id')),
-                      ListingColumn(title: const Text('Products')),
-                      ListingColumn(title: const Text('Total Price')),
+                      ListingColumn(title: const Text('Order Status')),
                       ListingColumn(title: const Text('Order Address')),
+                      ListingColumn(title: const Text('Total Amount')),
+                      ListingColumn(title: const Text('Total Products')),
                     ])),
               ],
             ),
