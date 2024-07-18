@@ -154,11 +154,10 @@ class _ListingTableState extends State<ListingTable> {
             child: CustomTableDesign(
               child: DataTable2(
                 dataRowHeight: widget.rowHeight ?? 50,
-                showBottomBorder: false,
+                showBottomBorder: true,
                 showCheckboxColumn: false,
                 border: listingTableBorder,
                 headingRowHeight: 50,
-                horizontalMargin: 20,
                 headingRowDecoration: headingRowDecoration,
                 headingRowColor: headingRowColor,
                 scrollController: _scrollController,
@@ -256,55 +255,61 @@ class _ListingTableState extends State<ListingTable> {
           ),
         ),
         10.verticalSpace,
-        Row(children: [
-          const Spacer(),
-          Center(
-            child: Text(
-              'Rows per page:  ${widget.count}',
-              style: AppDecoration.semiMediumStyle(
-                  fontSize: 18, color: AppColors.black),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Center(
+                child: Text(
+                  'Row count:  ${widget.count}',
+                  style: AppDecoration.semiMediumStyle(
+                      fontSize: 18, color: AppColors.black),
+                ),
+              ),
             ),
-          ),
-          10.horizontalSpace,
-          Center(
-            child: Text(
-              '$currentPage of ${widget.totalPages}',
-              style: AppDecoration.semiMediumStyle(
-                  fontSize: 15, color: AppColors.black),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Center(
+                child: Text(
+                  '$currentPage of ${widget.totalPages}',
+                  style: AppDecoration.semiMediumStyle(
+                      fontSize: 15, color: AppColors.black),
+                ),
+              ),
             ),
-          ),
-          10.horizontalSpace,
-          InkWell(
-            onTap: currentPage > 1
-                ? () {
-                    currentPage--;
-                    fetchData(refresh: true);
-                  }
-                : null,
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: currentPage > 1 ? AppColors.black : Colors.grey,
-              size: 15,
+            InkWell(
+              onTap: currentPage > 1
+                  ? () {
+                      currentPage--;
+                      fetchData(refresh: true);
+                    }
+                  : null,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: currentPage > 1 ? AppColors.black : Colors.grey,
+                size: 20,
+              ),
             ),
-          ),
-          4.horizontalSpace,
-          InkWell(
-            onTap: currentPage < widget.totalPages
-                ? () {
-                    currentPage++;
-                    fetchData(refresh: true);
-                  }
-                : null,
-            child: Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: currentPage < widget.totalPages
-                  ? AppColors.black
-                  : Colors.grey,
-              size: 15,
+            8.horizontalSpace,
+            InkWell(
+              onTap: currentPage < widget.totalPages
+                  ? () {
+                      currentPage++;
+                      fetchData(refresh: true);
+                    }
+                  : null,
+              child: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: currentPage < widget.totalPages
+                    ? AppColors.black
+                    : Colors.grey,
+                size: 20,
+              ),
             ),
-          ),
-          30.horizontalSpace,
-        ]),
+            20.horizontalSpace,
+          ],
+        ),
         10.verticalSpace,
       ],
     );

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helpers/functions/change_page.dart';
+import '../../theme.dart';
 
 class OrderListing extends StatelessWidget {
   const OrderListing({super.key});
@@ -53,20 +54,44 @@ class OrderListing extends StatelessWidget {
                             cells: [
                               ListingCell(
                                   child: Center(
-                                child: Text(order.id ?? '-'),
+                                child: Text(order.id?.substring(0, 9) ?? '-',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text('${order.products?.length}'),
+                                child: Text('${order.products?.length}',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text('\$${order.total}'),
+                                child: Text('\$${order.total}',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                               ListingCell(
                                   child: Center(
-                                child:
-                                    Text(order.address?.streetAddress ?? '-'),
+                                child: Text(order.address?.streetAddress ?? '-',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      overflow: TextOverflow.ellipsis,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                             ],
                           );

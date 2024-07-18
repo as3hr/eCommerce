@@ -13,7 +13,9 @@ class CustomHeader extends StatelessWidget {
     this.onPressed,
     this.previousRoute,
     this.items,
+    this.hideAddButton = false,
   });
+  final bool hideAddButton;
   final List<HeaderItem>? items;
   final String mainTitle;
   final String? formTitle;
@@ -34,7 +36,7 @@ class CustomHeader extends StatelessWidget {
                     style: AppDecoration.boldStyle(
                         fontSize: 25, color: AppColors.black)),
                 const Spacer(),
-                if (formTitle == null)
+                if (formTitle == null && !hideAddButton)
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: CustomElevatedButton(

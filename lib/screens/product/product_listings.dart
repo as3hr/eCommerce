@@ -95,7 +95,7 @@ class ProductListing extends StatelessWidget {
                               ),
                               ListingCell(
                                   child: Center(
-                                child: Text("${product.price}",
+                                child: Text("\$${product.price}",
                                     style: TextStyle(
                                       fontFamily: 'SF Pro Display',
                                       fontSize: 17,

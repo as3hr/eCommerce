@@ -4,13 +4,13 @@ import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_cell
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_column.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_row.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_table.dart';
-import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:ecommerce_admin_panel/routes/route_name.dart';
 import 'package:ecommerce_admin_panel/screens/users/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helpers/functions/change_page.dart';
+import '../../theme.dart';
 
 class UserListing extends StatelessWidget {
   const UserListing({super.key});
@@ -24,10 +24,10 @@ class UserListing extends StatelessWidget {
             body: Column(
               children: [
                 CustomHeader(
+                  hideAddButton: true,
                   mainTitle: 'Users',
                   onPressed: () {
                     changePage(context, RouteName.userScreen);
-                    controller.setUser = User();
                   },
                 ),
                 Expanded(
@@ -56,38 +56,41 @@ class UserListing extends StatelessWidget {
                             cells: [
                               ListingCell(
                                   child: Center(
-                                child: Text(user.firstName ?? '-'),
+                                child: Text(user.firstName ?? '-',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text(user.lastName ?? '-'),
+                                child: Text(user.contactNumber ?? '-',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                               ListingCell(
                                   child: Center(
-                                child: Text(user.contactNumber ?? '-'),
-                              )),
-                              ListingCell(
-                                  child: Center(
-                                child: Text(user.userName ?? '-'),
-                              )),
-                              ListingCell(
-                                  child: Center(
-                                child: Text(user.email ?? '-'),
-                              )),
-                              ListingCell(
-                                  child: Center(
-                                child: Text("${user.addresses?.length}"),
+                                child: Text(user.email ?? '-',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: lightColorScheme.primary,
+                                    )),
                               )),
                             ],
                           );
                         }).toList(),
                         columns: [
-                      ListingColumn(title: const Text('First Name')),
-                      ListingColumn(title: const Text('Last Name')),
+                      ListingColumn(title: const Text('Full Name')),
                       ListingColumn(title: const Text('Contact Number')),
-                      ListingColumn(title: const Text('Username')),
                       ListingColumn(title: const Text('email')),
-                      ListingColumn(title: const Text('Addresses')),
                     ])),
               ],
             ),
