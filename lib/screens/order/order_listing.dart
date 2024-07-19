@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_cell.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_column.dart';
@@ -25,6 +26,7 @@ class OrderListing extends StatelessWidget {
             body: Column(
               children: [
                 CustomHeader(
+                  hideAddButton: true,
                   mainTitle: 'Orders',
                   onPressed: () {
                     changePage(context, RouteName.orderScreen);
@@ -47,14 +49,19 @@ class OrderListing extends StatelessWidget {
                         },
                         rows: controller.allOrders.mapIndexed((index, order) {
                           return ListingRow(
-                            onTap: () {
-                              changePage(context, RouteName.orderScreen);
-                              controller.setOrder = order;
+                            onTap: () async {
+                              loadingWrapper(() async {
+                                await controller.getOrderById(order.id ?? '');
+                              }, context)
+                                  .then((_) {
+                                changePage(context, RouteName.orderScreen);
+                              });
                             },
                             cells: [
                               ListingCell(
                                   child: Center(
-                                child: Text(order.id?.substring(0, 9) ?? '-',
+                                child: Text(
+                                    '${order.id?.substring(0, 6).toUpperCase()}-${order.id?.substring(7, 12).toUpperCase()}',
                                     style: TextStyle(
                                       fontFamily: 'SF Pro Display',
                                       fontSize: 17,

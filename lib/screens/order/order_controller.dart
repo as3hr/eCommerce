@@ -36,8 +36,8 @@ class OrderController extends GetxController {
     return false;
   }
 
-  Future<void> getOrderById() async {
-    order = await Api.getOrderById(order?.id ?? '');
+  Future<void> getOrderById(String id) async {
+    order = await Api.getOrderById(id);
     update();
   }
 

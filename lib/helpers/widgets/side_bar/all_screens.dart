@@ -29,10 +29,10 @@ class AllScreens {
       routeName: RouteName.chatScreen,
       title: 'Chats',
     ),
-    Screen(
-      image: AssetImages.users,
-      routeName: RouteName.profileScreen,
-      title: 'Account',
-    ),
+    // Screen(
+    //   image: AssetImages.users,
+    //   routeName: RouteName.profileScreen,
+    //   title: 'Account',
+    // ),
   ];
 }

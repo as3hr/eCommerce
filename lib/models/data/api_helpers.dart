@@ -48,7 +48,7 @@ class ApiHelpers {
     } else if (data is Map<String, dynamic>) {
       return fromJson(data);
     } else {
-      return fromJson({'_id': data.toString()});
+      return data;
     }
   }
 
