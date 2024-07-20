@@ -45,7 +45,7 @@ class Order {
   Map<String, dynamic> toJson() {
     return {
       'shippingDetails': shippingDetails,
-      'status': 'pending',
+      'status': status,
       'subTotal': subTotal,
       'shippingCost': shippingCost,
       'tax': tax,

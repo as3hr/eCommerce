@@ -41,6 +41,12 @@ class OrderController extends GetxController {
     update();
   }
 
+  Future<void> updateOrder(Order newOrder) async {
+    order = await Api.updateOrder(newOrder);
+    getAllOrders(refresh: true);
+    update();
+  }
+
   Future<void> deleteOrder() async {
     await Api.deleteOrder(order?.id ?? '');
     getAllOrders(refresh: true);

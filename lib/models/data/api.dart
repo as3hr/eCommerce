@@ -125,6 +125,13 @@ class Api {
     return Pagination.fromJson(data, Order.fromJson);
   }
 
+  static Future<Order> updateOrder(Order order) async {
+    final url = '/orders/${order.id}';
+    final response = await dio.put(url, data: order.toJson());
+    final data = ApiHelpers.checkError(response)['result'];
+    return Order.fromJson(data);
+  }
+
   static Future<void> deleteOrder(String id) async {
     final url = '/orders/$id';
     final response = await dio.delete(

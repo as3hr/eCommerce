@@ -20,6 +20,7 @@ class ListingTable extends StatefulWidget {
     required this.rows,
     required this.columns,
     this.fetchMoreData,
+    this.hidePagination = false,
     this.onSelectChanged,
     this.footer,
     this.fetchOnInit = false,
@@ -41,6 +42,7 @@ class ListingTable extends StatefulWidget {
   }
   final int totalPages;
   final int count;
+  final bool hidePagination;
   final double? rowHeight;
   final List<ListingRow> rows;
   final List<ListingColumn> columns;
@@ -255,61 +257,62 @@ class _ListingTableState extends State<ListingTable> {
           ),
         ),
         10.verticalSpace,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Center(
-                child: Text(
-                  'Row count:  ${widget.count}',
-                  style: AppDecoration.semiMediumStyle(
-                      fontSize: 18, color: AppColors.black),
+        if (!widget.hidePagination)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Center(
+                  child: Text(
+                    'Row count:  ${widget.count}',
+                    style: AppDecoration.semiMediumStyle(
+                        fontSize: 18, color: AppColors.black),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Center(
-                child: Text(
-                  '$currentPage of ${widget.totalPages}',
-                  style: AppDecoration.semiMediumStyle(
-                      fontSize: 15, color: AppColors.black),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Center(
+                  child: Text(
+                    '$currentPage of ${widget.totalPages}',
+                    style: AppDecoration.semiMediumStyle(
+                        fontSize: 15, color: AppColors.black),
+                  ),
                 ),
               ),
-            ),
-            InkWell(
-              onTap: currentPage > 1
-                  ? () {
-                      currentPage--;
-                      fetchData(refresh: true);
-                    }
-                  : null,
-              child: Icon(
-                Icons.arrow_back_ios,
-                color: currentPage > 1 ? AppColors.black : Colors.grey,
-                size: 20,
+              InkWell(
+                onTap: currentPage > 1
+                    ? () {
+                        currentPage--;
+                        fetchData(refresh: true);
+                      }
+                    : null,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: currentPage > 1 ? AppColors.black : Colors.grey,
+                  size: 20,
+                ),
               ),
-            ),
-            8.horizontalSpace,
-            InkWell(
-              onTap: currentPage < widget.totalPages
-                  ? () {
-                      currentPage++;
-                      fetchData(refresh: true);
-                    }
-                  : null,
-              child: Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: currentPage < widget.totalPages
-                    ? AppColors.black
-                    : Colors.grey,
-                size: 20,
+              8.horizontalSpace,
+              InkWell(
+                onTap: currentPage < widget.totalPages
+                    ? () {
+                        currentPage++;
+                        fetchData(refresh: true);
+                      }
+                    : null,
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: currentPage < widget.totalPages
+                      ? AppColors.black
+                      : Colors.grey,
+                  size: 20,
+                ),
               ),
-            ),
-            20.horizontalSpace,
-          ],
-        ),
+              20.horizontalSpace,
+            ],
+          ),
         10.verticalSpace,
       ],
     );
