@@ -29,7 +29,7 @@ class UserController extends GetxController {
       limit: limit,
       extraQuery: extraQuery,
     );
-    allUsers.addAll(userPagination.data);
+    allUsers = userPagination.data;
     update();
     if (userPagination.data.length < limit) {
       return true;

@@ -21,6 +21,7 @@ class UserListing extends StatelessWidget {
         init: UserController(),
         builder: (controller) {
           return Scaffold(
+            backgroundColor: Colors.white,
             body: Column(
               children: [
                 CustomHeader(
@@ -32,7 +33,9 @@ class UserListing extends StatelessWidget {
                 ),
                 Expanded(
                     child: ListingTable(
+                        searchHintText: 'Search by users name',
                         fetchOnInit: true,
+                        searchKey: 'firstName',
                         count: controller.userPagination.count,
                         totalPages: controller.userPagination.totalPages,
                         fetchMoreData: ({

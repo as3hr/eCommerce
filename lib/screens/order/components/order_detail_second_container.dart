@@ -1,8 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:ecommerce_admin_panel/helpers/functions/change_page.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/side_bar_controller.dart';
 import 'package:ecommerce_admin_panel/models/order.dart';
+import 'package:ecommerce_admin_panel/routes/route_name.dart';
+import 'package:ecommerce_admin_panel/screens/product/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../helpers/widgets/custom_table_design.dart';
@@ -85,8 +90,11 @@ class OrderDetailSecondContainer extends StatelessWidget {
                             color: Colors.transparent,
                             border: Border.all(
                                 color: Colors.grey.withOpacity(0.05))),
-                        onSelectChanged: (selected) {},
-                        onTap: () {},
+                        onTap: () {
+                          Get.find<SideBarController>().setIndex(3);
+                          Get.put(ProductController()).setProduct = product;
+                          changePage(context, RouteName.productsScreen);
+                        },
                         cells: [
                           DataCell(
                             Align(

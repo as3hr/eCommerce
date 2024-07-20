@@ -97,6 +97,7 @@ class AppRouter {
                     path: 'product-screen',
                     name: RouteName.productsScreen,
                     builder: (context, state) {
+                      // final product = state.extra as Product;
                       return const ProductScreen();
                     }),
               ]),

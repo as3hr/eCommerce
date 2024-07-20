@@ -6,6 +6,7 @@ import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/table_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../theme.dart';
 import '../custom_table_design.dart';
@@ -20,11 +21,14 @@ class ListingTable extends StatefulWidget {
     required this.rows,
     required this.columns,
     this.fetchMoreData,
+    this.searchHintText,
+    this.hideSearchField = false,
     this.hidePagination = false,
     this.onSelectChanged,
     this.footer,
     this.fetchOnInit = false,
     this.selectActions,
+    this.searchKey,
     this.rowHeight,
     required this.totalPages,
     required this.count,
@@ -44,12 +48,15 @@ class ListingTable extends StatefulWidget {
   final int count;
   final bool hidePagination;
   final double? rowHeight;
+  final String? searchKey;
   final List<ListingRow> rows;
   final List<ListingColumn> columns;
   final ListingRow? footer;
   final List<ListingSelectButton>? selectActions;
   final void Function(List<int> selectedIndexes)? onSelectChanged;
+  final bool hideSearchField;
   final bool fetchOnInit;
+  final String? searchHintText;
   final Future<bool> Function({bool refresh, Map<String, dynamic>? extraQuery})?
       fetchMoreData;
 
@@ -59,6 +66,7 @@ class ListingTable extends StatefulWidget {
 
 class _ListingTableState extends State<ListingTable> {
   int currentPage = 1;
+  Rx<String> searchVal = ''.obs;
   final ScrollController _scrollController = ScrollController();
   List<int> selectedIndexes = [];
   bool _isLoading = false;
@@ -97,6 +105,8 @@ class _ListingTableState extends State<ListingTable> {
         if (sortKey != null) 'sort[$sortKey]': sortAscending ? -1 : 1,
         'page': currentPage,
         'limit': 25,
+        if (widget.searchKey != null && searchVal.value.isNotEmpty)
+          widget.searchKey.toString(): searchVal,
       },
     );
     setState(() {
@@ -150,6 +160,48 @@ class _ListingTableState extends State<ListingTable> {
                     .toList() ??
                 [],
           ),
+        if (!widget.hideSearchField) ...[
+          10.verticalSpace,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0, left: 12),
+              child: Container(
+                width: 0.6.sw,
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: Row(
+                  children: [
+                    const Icon(Icons.search_rounded, color: Colors.grey),
+                    10.horizontalSpace,
+                    SizedBox(
+                      height: 35,
+                      width: 0.5.sw,
+                      child: TextFormField(
+                        scrollPadding: const EdgeInsets.all(0),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        onChanged: (val) {
+                          searchVal.value = val;
+                          debounce(searchVal, (_) {
+                            fetchData(refresh: true);
+                          }, time: const Duration(milliseconds: 200));
+                        },
+                        decoration: fieldDecoration(
+                          hintText: widget.searchHintText,
+                        ),
+                      ),
+                    ),
+                    5.verticalSpace,
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

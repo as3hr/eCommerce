@@ -23,6 +23,7 @@ class OrderListing extends StatelessWidget {
         init: OrderController(),
         builder: (controller) {
           return Scaffold(
+            backgroundColor: Colors.white,
             body: Column(
               children: [
                 CustomHeader(
@@ -36,6 +37,8 @@ class OrderListing extends StatelessWidget {
                 Expanded(
                     child: ListingTable(
                         fetchOnInit: true,
+                        hideSearchField: true,
+                        searchHintText: 'Search by order address',
                         count: controller.orderPagination.count,
                         totalPages: controller.orderPagination.totalPages,
                         fetchMoreData: ({

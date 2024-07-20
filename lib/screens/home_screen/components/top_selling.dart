@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../../helpers/functions/change_page.dart';
 import '../../../helpers/styles/app_colors.dart';
 import '../../../helpers/styles/app_decoration.dart';
+import '../../../helpers/widgets/side_bar/side_bar_controller.dart';
 import '../../../routes/route_name.dart';
 
 class TopSelling extends StatelessWidget {
@@ -47,9 +48,10 @@ class TopSelling extends StatelessWidget {
                               final product = controller.products[index];
                               return InkWell(
                                 onTap: () {
-                                  changePage(context, RouteName.productsScreen);
+                                  Get.find<SideBarController>().setIndex(3);
                                   Get.put(ProductController()).setProduct =
                                       product;
+                                  changePage(context, RouteName.productsScreen);
                                 },
                                 child: ListTile(
                                   leading: Container(

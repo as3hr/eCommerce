@@ -24,6 +24,7 @@ class ProductListing extends StatelessWidget {
         init: ProductController(),
         builder: (controller) {
           return Scaffold(
+            backgroundColor: Colors.white,
             body: Column(
               children: [
                 CustomHeader(
@@ -35,7 +36,9 @@ class ProductListing extends StatelessWidget {
                 ),
                 Expanded(
                     child: ListingTable(
+                        searchHintText: 'Search by product name',
                         fetchOnInit: true,
+                        searchKey: 'title',
                         rowHeight: 150,
                         count: controller.productPagination.count,
                         totalPages: controller.productPagination.totalPages,
