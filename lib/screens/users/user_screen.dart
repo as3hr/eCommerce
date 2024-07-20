@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:ecommerce_admin_panel/helpers/functions/change_page.dart';
+import 'package:ecommerce_admin_panel/helpers/functions/confirmation_dialog.dart';
 import 'package:ecommerce_admin_panel/helpers/functions/loading_wrapper.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/custom_table_design.dart';
@@ -208,11 +211,15 @@ class UserScreen extends StatelessWidget {
                             5.verticalSpace,
                             CustomElevatedButton(
                               onPressed: () async {
-                                await loadingWrapper(() async {
-                                  await controller.deleteUser();
-                                }, context)
-                                    .then((_) => changePage(
-                                        context, RouteName.userList));
+                                final resp = await confirmationDialog(context,
+                                    'Are you sure you want to delete this Account?');
+                                if (resp != null && resp) {
+                                  await loadingWrapper(() async {
+                                    await controller.deleteUser();
+                                  }, context)
+                                      .then((_) => changePage(
+                                          context, RouteName.userList));
+                                }
                               },
                               width: 120,
                               text: 'Delete Account',

@@ -131,7 +131,6 @@ class OrderDetailFirstContainer extends StatelessWidget {
                       10.horizontalSpace,
                       CustomElevatedButton(
                         onPressed: () {
-                          print(order.status);
                           onUpdate.call(order);
                         },
                         text: 'Update',
