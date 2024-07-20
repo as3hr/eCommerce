@@ -10,7 +10,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Side Bar
         const SideBar(),
         Expanded(
           child: Column(

@@ -327,7 +327,9 @@ class _ListingTableState extends State<ListingTable> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Center(
                   child: Text(
-                    '$currentPage of ${widget.totalPages}',
+                    widget.totalPages == 0
+                        ? '0 of 0'
+                        : '$currentPage of ${widget.totalPages}',
                     style: AppDecoration.semiMediumStyle(
                         fontSize: 15, color: AppColors.black),
                   ),

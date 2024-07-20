@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../helpers/widgets/jumping_dots.dart';
+
 class HomeScreen extends StatelessWidget {
   static const routeName = '/dashboard';
   const HomeScreen({super.key});
@@ -18,7 +20,16 @@ class HomeScreen extends StatelessWidget {
           init: HomeController(),
           builder: (controller) {
             return controller.isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      JumpingDots(
+                        color: AppColors.navy,
+                        radius: 12,
+                        numberOfDots: 3,
+                      ),
+                    ],
+                  )
                 : SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),

@@ -57,7 +57,7 @@ class _InputFieldState extends State<InputField> {
         width: widget.width,
         decoration: BoxDecoration(
             color: AppColors.grayBackground,
-            borderRadius: BorderRadius.circular(15)),
+            borderRadius: BorderRadius.circular(10)),
         child: TextFormField(
             keyboardType: widget.keyboardType,
             controller: controller,
@@ -72,13 +72,15 @@ class _InputFieldState extends State<InputField> {
               contentPadding: const EdgeInsets.only(top: 3, left: 8),
               prefixIcon: widget.preFixIcon,
               hintText: widget.hintText ?? '',
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.8),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: AppColors.transparent),
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: AppColors.transparent),
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               suffixIcon: widget.passwordField
                   ? InkWell(

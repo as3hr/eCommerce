@@ -22,6 +22,7 @@ class ChatController extends GetxController {
   //initial declarations
   late Pagination<Message> messagePagination;
   late Pagination<Chat> chatsPagination;
+  TextInputAction textInputAction = TextInputAction.newline;
   var currentChat = Chat();
   bool isLoading = true;
   int limit = 25;
@@ -49,11 +50,11 @@ class ChatController extends GetxController {
 
   Future<void> getChatById(String id) async {
     currentChat = await Api.getChatById(id);
-    // final joinRoom = {
-    //   'userId': user!.id,
-    //   'chatId': currentChat.id,
-    // };
-    // socket.emit('adminJoinRoom', joinRoom);
+    final joinRoom = {
+      'userId': user!.id,
+      'chatId': currentChat.id,
+    };
+    socket.emit('adminJoinRoom', joinRoom);
     await getMessages(refresh: true);
     update();
   }

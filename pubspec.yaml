@@ -60,7 +60,8 @@ dependencies:
   collection: ^1.18.0
   path: ^1.8.3
   shared_preferences: ^2.2.2
-
+  animated_text_kit: ^4.2.2
+  
 dependency_overrides:
   intl: ^0.18.0
   
