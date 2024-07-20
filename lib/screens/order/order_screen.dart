@@ -20,28 +20,33 @@ class OrderScreen extends StatelessWidget {
       final order = controller.getCurrentOrder;
       return Scaffold(
         backgroundColor: AppColors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomHeader(
-                mainTitle:
-                    'ORDER #${order.id?.substring(0, 6).toUpperCase()}-${order.id?.substring(7, 12).toUpperCase()}',
-                previousRoute: RouteName.ordersList,
-                formTitle: 'Orders',
-                onPressed: () {},
-              ),
-              OrderDetailFirstContainer(
-                  order: order,
-                  onUpdate: (newOrder) {
-                    loadingWrapper(() async {
-                      await controller.updateOrder(newOrder);
-                    }, context)
-                        .then((_) => changePage(context, RouteName.ordersList));
-                  }),
-              OrderDetailSecondContainer(order: order),
-              10.verticalSpace,
-            ],
-          ),
+        body: Column(
+          children: [
+            CustomHeader(
+              mainTitle:
+                  'ORDER #${order.id?.substring(0, 6).toUpperCase()}-${order.id?.substring(7, 12).toUpperCase()}',
+              previousRoute: RouteName.ordersList,
+              formTitle: 'Orders',
+              onPressed: () {},
+            ),
+            Expanded(
+                child: SingleChildScrollView(
+                    child: Column(
+              children: [
+                OrderDetailFirstContainer(
+                    order: order,
+                    onUpdate: (newOrder) {
+                      loadingWrapper(() async {
+                        await controller.updateOrder(newOrder);
+                      }, context)
+                          .then(
+                              (_) => changePage(context, RouteName.ordersList));
+                    }),
+                OrderDetailSecondContainer(order: order),
+                10.verticalSpace,
+              ],
+            ))),
+          ],
         ),
       );
     });

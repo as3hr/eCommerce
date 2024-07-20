@@ -3,9 +3,9 @@ import 'package:context_menus/context_menus.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
 import 'package:ecommerce_admin_panel/helpers/styles/app_decoration.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/table_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../theme.dart';
 import '../custom_table_design.dart';
@@ -207,7 +207,7 @@ class _ListingTableState extends State<ListingTable> {
                       ),
                 sortAscending: sortAscending,
                 rows: _isLoading
-                    ? loadingRows()
+                    ? TableHelpers.loadingRows(widget.columns.length)
                     : widget.rows
                         .mapIndexed(
                           (index, row) => DataRow2(
@@ -316,29 +316,5 @@ class _ListingTableState extends State<ListingTable> {
         10.verticalSpace,
       ],
     );
-  }
-
-  List<DataRow> loadingRows() {
-    return List.generate(5, (index) {
-      return DataRow2(
-          specificRowHeight: 50,
-          decoration: BoxDecoration(
-              color: AppColors.white,
-              border: Border.all(color: AppColors.white)),
-          cells: List.generate(widget.columns.length, (index) {
-            return DataCell(Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Colors.white,
-                ),
-              ),
-            ));
-          }));
-    });
   }
 }
