@@ -249,6 +249,12 @@ class Api {
     ApiHelpers.checkError(response)['result'];
   }
 
+  static Future<void> deleteChat({required String chatId}) async {
+    final url = '/chats/$chatId';
+    final response = await dio.delete(url);
+    ApiHelpers.checkError(response);
+  }
+
   static Future<Chat> getChatById(String id) async {
     final url = '/chats/$id';
     final response = await dio.get(url);

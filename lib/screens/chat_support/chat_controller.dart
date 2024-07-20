@@ -42,13 +42,18 @@ class ChatController extends GetxController {
     update();
   }
 
+  Future<void> deleteChat() async {
+    await Api.deleteChat(chatId: currentChat.id ?? '');
+    await getAllChats(refresh: true);
+  }
+
   Future<void> getChatById(String id) async {
     currentChat = await Api.getChatById(id);
-    final joinRoom = {
-      'userId': user!.id,
-      'chatId': currentChat.id,
-    };
-    socket.emit('adminJoinRoom', joinRoom);
+    // final joinRoom = {
+    //   'userId': user!.id,
+    //   'chatId': currentChat.id,
+    // };
+    // socket.emit('adminJoinRoom', joinRoom);
     await getMessages(refresh: true);
     update();
   }

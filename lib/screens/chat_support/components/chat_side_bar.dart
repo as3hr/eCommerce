@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../helpers/functions/loading_wrapper.dart';
 import '../../../helpers/styles/app_colors.dart';
 import '../../../helpers/styles/app_decoration.dart';
+import '../../../theme.dart';
 
 class ChatSideBar extends StatelessWidget {
   const ChatSideBar({super.key});
@@ -64,8 +65,7 @@ class ChatSideBar extends StatelessWidget {
                             8.horizontalSpace,
                             Text(
                               '${chat.user?.firstName ?? 'User ${index + 1}'}${chat.user?.lastName ?? ''}',
-                              style: AppDecoration.semiMediumStyle(
-                                  fontSize: 18, color: AppColors.deepBlack),
+                              style: mediumTextStyle,
                             ),
                           ],
                         ),

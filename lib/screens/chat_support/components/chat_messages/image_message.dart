@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -39,27 +39,10 @@ class ImageMessage extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   child: GetBuilder<ChatController>(builder: (controller) {
                     return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        imageUrl: message.image ?? '',
-                        imageBuilder: (context, imageProvider) => Container(
-                          constraints: BoxConstraints(
-                            maxWidth: 0.2.sw,
-                            maxHeight: 0.15.sh,
-                          ),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                        ),
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
-                    );
+                        borderRadius: BorderRadius.circular(10),
+                        child: ShimmerImage(
+                          imageUrl: message.image ?? '',
+                        ));
                   }),
                 ),
                 Align(

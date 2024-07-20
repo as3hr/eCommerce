@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/jumping_dots.dart';
 import 'package:ecommerce_admin_panel/screens/chat_support/components/chat_side_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,15 @@ class ChatScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: AppColors.white,
             body: controller.isLoading
-                ? const Center(
-                    child: CircularProgressIndicator(),
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      JumpingDots(
+                        color: AppColors.navy,
+                        radius: 12,
+                        numberOfDots: 3,
+                      ),
+                    ],
                   )
                 : controller.allChats.isEmpty
                     ? const Center(

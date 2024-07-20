@@ -1,8 +1,11 @@
 import 'package:ecommerce_admin_panel/helpers/styles/app_colors.dart';
+import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../helpers/functions/loading_wrapper.dart';
+import '../../../helpers/widgets/custom_elevated_button.dart';
 import '../chat_controller.dart';
 
 class ChatAppBar extends StatelessWidget {
@@ -34,21 +37,22 @@ class ChatAppBar extends StatelessWidget {
                       : const Icon(Icons.person)),
             ),
             5.horizontalSpace,
-            SizedBox(
-              height: 80,
-              width: 0.2.sw,
-              child: ListTile(
-                contentPadding: const EdgeInsets.all(3),
-                title: Text(
-                    '${controller.currentChat.user?.firstName ?? ''}${controller.currentChat.user?.lastName ?? ''}'),
-                subtitle: const Text(
-                  'Online',
-                  style: TextStyle(color: AppColors.green),
-                ),
-              ),
-            ),
+            Text(
+                '${controller.currentChat.user?.firstName ?? ''}${controller.currentChat.user?.lastName ?? ''}',
+                style: mediumTextStyle),
             const Spacer(),
-            const Icon(Icons.settings),
+            CustomElevatedButton(
+              onPressed: () async {
+                await loadingWrapper(() async {
+                  await controller.deleteChat();
+                }, context);
+              },
+              width: 120,
+              text: 'Close chat',
+              textColor: Colors.white,
+              color: Colors.red,
+              borderColor: Colors.red,
+            ),
             10.horizontalSpace,
           ],
         ),
