@@ -20,7 +20,14 @@ const getOrderById = asyncHandler(
     async (req: Request, res:Response, next: NextFunction)=>{
         req.model = orderModel;
         req.modelName = 'orders';
-        req.query.userId =  req.user._id;
+        const user = await userModel.findOne({ 
+            _id: req.user._id,
+            isAdmin: false,
+        })        
+        if(user){
+            req.query.userId =  req.user._id;
+        }
+        req.populate = 'userId';
         next();
     }
 );
