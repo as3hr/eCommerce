@@ -8,9 +8,7 @@ const getProducts = asyncHandler(
         if (req.query.title) {
             const title = req.query.title as string;
             delete req.query["title"];
-            req.query = {
-                title: { $regex: title, $options: "i" }
-            };
+            req.query.title = { $regex: title, $options: "i" };
         }
         next();
     }

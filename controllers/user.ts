@@ -12,19 +12,17 @@ const getAllUsers = asyncHandler(
     if (req.query.firstName) {
       const firstName = req.query.firstName;
       delete req.query["firstName"];
-      req.query = {
-        firstName: { $regex: firstName.toString(), $options: "i" },
-      };
+      req.query.firstName = { $regex: firstName.toString(), $options: "i" };
     }
     if (req.query.lastName) {
       const lastName = req.query.lastName;
       delete req.query["lastName"];
-      req.query = { lastName: { $regex: lastName.toString(), $options: "i" } };
+      req.query.lastName={ $regex: lastName.toString(), $options: "i" };
     }
     if (req.query.username) {
       const username = req.query.username;
       delete req.query["username"];
-      req.query = { username: { $regex: username.toString(), $options: "i" } };
+      req.query.username = { $regex: username.toString(), $options: "i" };
     }
     req.model = userModel;
     next();

@@ -47,7 +47,7 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
             if(chat){
                 const message = await messageModel.create(data);
                 io.to(data.chatId.toString()).emit("newUserMessage", message.toJSON());
-                console.log('Message sent successfully!');
+                console.log('User Message sent successfully!');
             }
         });
 
@@ -66,7 +66,7 @@ export const chatSupport = (io: Server<DefaultEventsMap, DefaultEventsMap, Defau
                      chat.user,
                      null,
                 );
-                console.log('Message sent successfully!');
+                console.log('Admin Message sent successfully!');
             }
         });
  

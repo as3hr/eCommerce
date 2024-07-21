@@ -12,6 +12,11 @@ const getOrders = asyncHandler(
         if(user){
             req.query.userId =  req.user._id;
         }
+        if (req.query.streetAddress) {
+            const address = req.query.streetAddress as string;
+            delete req.query["streetAddress"];
+            req.query.streetAddress = { $regex: address, $options: "i" };
+        }
         next();
     }
 );
