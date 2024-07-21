@@ -31,10 +31,10 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
 6. Create an Admin: 
     Call the Create User/Create Account Api with "isAdmin: true" and other user information.
 
-7. Use the credentials you gave in the previous step to log in to the Admin-Panel    
-
-8. Run the admin panel:
+7. Run the admin panel:
    ```bash
    flutter run
+
+8. Use the credentials you gave in step 6 to log in to the Admin-Panel    
 
 ### The UI is still under development.
