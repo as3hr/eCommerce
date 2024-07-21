@@ -1,6 +1,5 @@
 import 'package:e_commerce/helpers/extensions/extensions.dart';
 import 'package:e_commerce/helpers/functions/loader.dart';
-import 'package:e_commerce/helpers/styles/app_images.dart';
 import 'package:e_commerce/models/address.dart';
 import 'package:e_commerce/screens/home/components/cart/cart_controller.dart';
 import 'package:e_commerce/screens/profile/profile_screen_controller.dart';
@@ -108,21 +107,14 @@ class AddAddressScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CustomContainer(
                     onTap: () {
-                      if ((address.streetAddress?.length ?? 0) < 25) {
-                        showToast(
-                          message: 'Provide a detailed Street Address!',
-                          imagePath: AppImages.access,
-                        );
-                      } else {
-                        if (controller.addressFormIsValid) {
-                          loadingWrapper(() async {
-                            address.id != null
-                                ? await controller.updateAddress(address)
-                                : await controller.createAddress(address);
-                            Get.find<CartController>().update();
-                          });
-                          Get.back();
-                        }
+                      if (controller.addressFormIsValid) {
+                        loadingWrapper(() async {
+                          address.id != null
+                              ? await controller.updateAddress(address)
+                              : await controller.createAddress(address);
+                          Get.find<CartController>().update();
+                        });
+                        Get.back();
                       }
                     },
                     text: address.id == null ? 'Save' : 'update',
