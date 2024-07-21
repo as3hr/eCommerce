@@ -1,4 +1,4 @@
-# E-commerce Admin Panel
+# E-commerce Solution with Admin Panel, Mobile App and Backend
 
 This is the admin panel for my fullStack e-commerce project, built using Flutter. 
 
@@ -32,9 +32,5 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
 7. Run the admin panel:
    ```bash
    flutter run
-
-## Links to Other Parts of the Project
-[Mobile App](https://github.com/as3hr/E-commerce)
-[Backend](https://github.com/as3hr/E-commerce-Backend)
 
 ### The UI is still under development.

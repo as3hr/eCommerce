@@ -43,8 +43,3 @@ This is the backend for my full stack e-commerce project, built using Node.js, E
 - To remove the data run the following command in your project root directory:
    ```bash
    ts-node seeder.ts --delete
-
-## Links to Other Parts of the Project
-[ADMIN PANEL](https://github.com/as3hr/eCommerce-Admin-Panel)
-[MOBILE APP](https://github.com/as3hr/E-commerce)
-
