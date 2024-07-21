@@ -27,7 +27,7 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
    ```bash
    git clone <admin-panel-repo-url>
 5. Set Up 
-   [Backend](https://github.com/as3hr/E-commerce-Backend)
+   [Backend](https://github.com/as3hr/eCommerce/tree/main/backend)
    
 7. Run the admin panel:
    ```bash
