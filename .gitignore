@@ -40,12 +40,32 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-node_modules
-firebase_options.dart
-.env
-serviceAccountKey.json
+# Node.js related
+node_modules/
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# # Secure files
+# .env
+# firebase_options.dart
+# serviceAccountKey.json
+
+# Backend specific
+/backend/node_modules/
+/backend/.env
+/backend/serviceAccountKey.json
+
+# Admin Panel specific
+/admin_panel/build/
+/admin_panel/.flutter-plugins
+/admin_panel/.flutter-plugins-dependencies
+/admin_panel/.packages
+/admin_panel/.pub-cache/
+/admin_panel/.pub/
+
+# Mobile App specific
+/mobile_app/build/
+/mobile_app/.flutter-plugins
+/mobile_app/.flutter-plugins-dependencies
+/mobile_app/.packages
+/mobile_app/.pub-cache/
+/mobile_app/.pub/
+/mobile_app/lib/firebase_options.dart
