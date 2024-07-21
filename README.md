@@ -1,50 +1,40 @@
-# E-commerce Backend
+# E-commerce Admin Panel
 
-This is the backend for my full stack e-commerce project, built using Node.js, Expressjs and MongoDB.
+This is the admin panel for my fullStack e-commerce project, built using Flutter. 
+
+## Desktop version (future migration to web planned)
 
 ## Features
-- Stripe payment logic
-- Product images stored in AWS S3 bucket
-- Firebase-admin for push notifications
-- Real-time chat using socket.io
-- API development for multiple modules
-- Admin user authentication and authorization
-- Proper code structure
-- Express sessions
-- MongoDB database
-- Cron jobs for order status checks
-- Seeder file for database management
-- Pagination, filtering, and sorting
+- Go Router for routing
+- Real time Chat support for communication with all users via socket.io
+- Graphs and calculations for orders and products at the landing page
+- Add, delete, and manage products with images.
+- GetX state management
+- CRUD operations for users, products, orders, stocks, invoices, and admin profile management.
+- Clean and understandable code
 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/as3hr/E-commerce-Backend
+   git clone https://github.com/as3hr/eCommerce-Admin-Panel
 2. Navigate to the project directory:
    ```bash
-   cd E-Commerce-Backend
-3. Install Dependencies:
+   cd eCommerce-Admin-Panel
+3. Install dependencies:
    ```bash
-   npm install
-4. Set up environment variables:
-   - Create a .env file in the root directory and add necessary environment variables (you can refer to the .env.example file given in the project).
-     
-5. Set up a mongodb Database
-   - Create a database and add the connection string to the .env file.
+   flutter pub get
+4. Clone the repository:
+   ```bash
+   git clone <admin-panel-repo-url>
+5. Set Up 
+   [Backend](https://github.com/as3hr/E-commerce-Backend)
    
-6. Start the Server:
+7. Run the admin panel:
    ```bash
-   npm run dev
-
-## Add and Remove Sample Data
-- To add the data run the following command in your project root directory:
-   ```bash
-   ts-node seeder.ts --start
-- To remove the data run the following command in your project root directory:
-   ```bash
-   ts-node seeder.ts --delete
+   flutter run
 
 ## Links to Other Parts of the Project
-[ADMIN PANEL](https://github.com/as3hr/eCommerce-Admin-Panel)
-[MOBILE APP](https://github.com/as3hr/E-commerce)
+[Mobile App](https://github.com/as3hr/E-commerce)
+[Backend](https://github.com/as3hr/E-commerce-Backend)
 
+### The UI is still under development.
