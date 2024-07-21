@@ -19,10 +19,10 @@ This is the backend for my full stack e-commerce project, built using Node.js, E
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/as3hr/E-commerce-Backend
+   git clone https://github.com/as3hr/eCommerce
 2. Navigate to the project directory:
    ```bash
-   cd E-Commerce-Backend
+   cd backend
 3. Install Dependencies:
    ```bash
    npm install

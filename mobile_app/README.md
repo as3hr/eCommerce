@@ -38,10 +38,10 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/as3hr/E-Commerce
+   git clone https://github.com/as3hr/eCommerce
 2. Navigate to the project directory:
    ```bash
-   cd E-commerce
+   cd mobile_app
 3. Install dependencies:
    ```bash
    flutter pub get
