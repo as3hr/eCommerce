@@ -28,8 +28,12 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
    git clone <admin-panel-repo-url>
 5. Set Up 
    [Backend](https://github.com/as3hr/eCommerce/tree/main/backend)
-   
-7. Run the admin panel:
+6. Create an Admin: 
+    Call the Create User/Create Account Api with "isAdmin: true" and other user information.
+
+7. Use the credentials you gave in the previous step to log in to the Admin-Panel    
+
+8. Run the admin panel:
    ```bash
    flutter run
 
