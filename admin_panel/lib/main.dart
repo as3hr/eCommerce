@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:ecommerce_admin_panel/helpers/widgets/side_bar/side_bar_controller.dart';
 import 'package:ecommerce_admin_panel/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +25,7 @@ void main() async {
   final themeMode = await AdaptiveTheme.getThemeMode();
   HttpOverrides.global = MyHttpOverrides();
   Get.put(AuthController());
+  Get.put(SideBarController());
   runApp(AdminPanel(initialThemeMode: themeMode));
 }
 

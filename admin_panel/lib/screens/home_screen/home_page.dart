@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/helpers/extensions/extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/widgets/side_bar/side_bar.dart';
@@ -8,15 +9,28 @@ class HomePage extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SideBar(),
-        Expanded(
-          child: Column(
-            children: [const TitleBar(), Expanded(child: child)],
-          ),
-        ),
-      ],
+    return Scaffold(
+      appBar: (context.isMin || !context.isMax)
+          ? AppBar(
+              title: const TitleBar(),
+            )
+          : null,
+      drawer: (context.isMin || !context.isMax) ? const SideBar() : null,
+      drawerScrimColor: Colors.grey.withOpacity(0.4),
+      body: (!context.isMin && context.isMax)
+          ? Row(
+              children: [
+                const SideBar(),
+                Expanded(
+                  child: Column(
+                    children: [const TitleBar(), Expanded(child: child)],
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              children: [Expanded(child: child)],
+            ),
     );
   }
 }

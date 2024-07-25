@@ -24,6 +24,8 @@ const getAllUsers = asyncHandler(
       delete req.query["username"];
       req.query.username = { $regex: username.toString(), $options: "i" };
     }
+    req.query.isAdmin = 'false';
+    req.query.isDisable = 'false';
     req.model = userModel;
     next();
   }

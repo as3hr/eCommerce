@@ -22,7 +22,6 @@ class UserController extends GetxController {
     if (refresh) {
       allUsers.clear();
     }
-    extraQuery?['isAdmin'] = false;
     int page = (allUsers.length / limit).ceil() + 1;
     userPagination = await Api.getAllUsers(
       page: page,

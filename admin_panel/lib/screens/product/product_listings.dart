@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:ecommerce_admin_panel/helpers/extensions/extension.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/header/custom_header.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_cell.dart';
 import 'package:ecommerce_admin_panel/helpers/widgets/listing_table/listing_column.dart';
@@ -75,24 +76,32 @@ class ProductListing extends StatelessWidget {
                                       ),
                                     ),
                                     5.horizontalSpace,
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 12),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${product.title}",
-                                            style: mediumTextStyle,
-                                          ),
-                                          2.verticalSpace,
-                                          Text(
-                                            "in ${product.category}",
-                                            style: smallTextStyle,
-                                          )
-                                        ],
-                                      ),
-                                    )
+                                    if (context.isMax)
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 12),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${product.title}",
+                                              style: TextStyle(
+                                                  fontFamily: 'SF Pro Display',
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w700,
+                                                  color:
+                                                      lightColorScheme.primary,
+                                                  overflow:
+                                                      TextOverflow.ellipsis),
+                                            ),
+                                            2.verticalSpace,
+                                            Text(
+                                              "in ${product.category}",
+                                              style: smallTextStyle,
+                                            )
+                                          ],
+                                        ),
+                                      )
                                   ],
                                 ),
                               ),
