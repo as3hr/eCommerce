@@ -37,6 +37,7 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 
 ### Admin Panel Features
 - Go Router for routing.
+- Complete Responsive Web Application
 - Real-time chat support for communication with all users via socket.io.
 - Graphs and calculations for orders and products at the landing page.
 - Add, delete, and manage products with images.
