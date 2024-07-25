@@ -1,11 +1,10 @@
-# E-commerce Admin Panel
+# E-commerce Admin Panel Web App
 
-This is the admin panel for my fullStack e-commerce project, built using Flutter. 
-
-## Desktop version (future migration to web planned)
+This is the admin panel for my FullStack e-commerce project, built using Flutter. 
 
 ## Features
 - Go Router for routing
+- Complete Responsive Web Application
 - Real time Chat support for communication with all users via socket.io
 - Graphs and calculations for orders and products at the landing page
 - Add, delete, and manage products with images.
@@ -35,6 +34,4 @@ This is the admin panel for my fullStack e-commerce project, built using Flutter
    ```bash
    flutter run
 
-8. Use the credentials you gave in step 6 to log in to the Admin-Panel    
-
-### The UI is still under development.
+8. Use the credentials you gave in step 6 to log in to the Admin-Panel
