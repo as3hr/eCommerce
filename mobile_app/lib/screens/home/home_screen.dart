@@ -34,8 +34,8 @@ class HomeScreen extends StatelessWidget {
                           const HomeHeader(),
                           15.verticalSpace,
                           SearchField(onChanged: (val) {
-                            controller.title = val;
-                            controller.searchProducts(controller.title);
+                            controller.title.value = val;
+                            controller.searchProducts();
                           }),
                           15.verticalSpace,
                           SpacerRow(
@@ -48,9 +48,7 @@ class HomeScreen extends StatelessWidget {
                           15.verticalSpace,
                           const AllCategories(),
                           15.verticalSpace,
-                          controller.productsList.isEmpty ||
-                                  (controller.title.isNotEmpty &&
-                                      controller.filteredProducts.isEmpty)
+                          controller.productsList.isEmpty
                               ? Center(
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),

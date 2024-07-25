@@ -8,7 +8,7 @@ class CategoryScreenController extends GetxController {
   int genderSheetIndex = 0;
   int sortSheetIndex = 0;
   Map<String, dynamic> extraQuery = {};
-  String title = '';
+  Rx<String> title = ''.obs;
   String category = '';
   CategoryScreenController({required this.category});
 
@@ -20,7 +20,6 @@ class CategoryScreenController extends GetxController {
 
   bool fetchedData = false;
   List<Product> productsList = [];
-  List<Product> filteredProducts = [];
 
   Future<void> getProducts({
     bool refresh = false,
@@ -35,15 +34,19 @@ class CategoryScreenController extends GetxController {
     update();
   }
 
-  void onChanged(String query) {
-    if (query.isEmpty) {
-      getProducts();
-      update();
-    }
-    filteredProducts = productsList
-        .where((product) =>
-            (product.title?.toLowerCase() ?? '').contains(query.toLowerCase()))
-        .toList();
-    update();
+  void onChanged() {
+    debounce(
+        title,
+        (_) => {
+              if (title.value.isNotEmpty) ...[
+                fetchedData = false,
+                extraQuery.assign('title', title.value),
+                getProducts(),
+              ] else ...[
+                extraQuery.remove('title'),
+                getProducts(refresh: true)
+              ]
+            },
+        time: Duration(milliseconds: 1200));
   }
 }

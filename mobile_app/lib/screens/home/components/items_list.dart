@@ -12,9 +12,7 @@ class ItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeScreenController>(builder: (controller) {
-      List<Product> products = controller.title.isEmpty
-          ? controller.productsList
-          : controller.filteredProducts;
+      List<Product> products = controller.productsList;
       if (reverse) {
         products = products.reversed.toList();
       }

@@ -37,7 +37,7 @@ class ItemContainer extends StatelessWidget {
           } else {
             showToast(
               duration: const Duration(seconds: 2),
-              message: 'This Product is not updated yet',
+              message: 'This Product is not in the Stock right now!',
               imagePath: AppImages.access,
             );
           }
@@ -72,12 +72,7 @@ class ItemContainer extends StatelessWidget {
                 ),
               if (product.images.isEmpty)
                 Center(
-                  child: Text(
-                    'Pending Update By Admin',
-                    style: AppDecoration.semiMediumStyle(
-                        fontSize: 12,
-                        color: Theme.of(context).colorScheme.error),
-                  ),
+                  child: Icon(Icons.image),
                 ),
               Positioned(
                 top: 10,

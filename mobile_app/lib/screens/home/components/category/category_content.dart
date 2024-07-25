@@ -22,9 +22,7 @@ class CategoryContent extends StatelessWidget {
     return GetBuilder(
         init: CategoryScreenController(category: category),
         builder: (controller) {
-          final allProducts = controller.title.isEmpty
-              ? controller.productsList
-              : controller.filteredProducts;
+          final allProducts = controller.productsList;
           return Scaffold(
             body: !controller.fetchedData && controller.productsList.isEmpty
                 ? const Indicator()
@@ -41,8 +39,8 @@ class CategoryContent extends StatelessWidget {
                                 child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SearchField(onChanged: (val) {
-                                controller.title = val;
-                                controller.onChanged(controller.title);
+                                controller.title.value = val;
+                                controller.onChanged();
                               }),
                             )),
                           ],

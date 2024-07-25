@@ -1,12 +1,11 @@
 import 'package:e_commerce/data/api.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import '../../models/product.dart';
 
 class HomeScreenController extends GetxController {
-  String title = '';
+  Rx<String> title = ''.obs;
   List<Product> productsList = [];
-  List<Product> filteredProducts = [];
+  // List<Product> filteredProducts = [];
 
   int bottomSheetCurrentIndex = 0;
   void setIndex(int index) {
@@ -15,14 +14,12 @@ class HomeScreenController extends GetxController {
   }
 
   bool fetchedData = false;
-
   int limit = 25;
-  final debouncer = Debouncer(delay: const Duration(milliseconds: 500));
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    await getProducts();
+    getProducts();
   }
 
   Future<void> getProducts({
@@ -38,14 +35,18 @@ class HomeScreenController extends GetxController {
     update();
   }
 
-  void searchProducts(String query) {
-    if (query.isEmpty) {
-      getProducts(refresh: true);
-    }
-    filteredProducts = productsList
-        .where((product) =>
-            (product.title?.toLowerCase() ?? '').contains(query.toLowerCase()))
-        .toList();
-    update();
+  void searchProducts() {
+    debounce(
+        title,
+        (_) => {
+              if (title.value.isNotEmpty) ...[
+                fetchedData = false,
+                getProducts(
+                  query: {'title': title.value},
+                ),
+              ] else
+                getProducts(refresh: true)
+            },
+        time: Duration(milliseconds: 1200));
   }
 }
