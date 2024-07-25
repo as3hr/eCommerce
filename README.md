@@ -32,7 +32,6 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 - Add to cart functionality.
 - Stripe payment integration.
 - Routes management.
-- GetX state management.
 - User profile update feature.
 - Wishlist and favorites management.
 - User-friendly UI.
@@ -46,7 +45,6 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 - Real-time chat support for communication with all users via socket.io.
 - Graphs and calculations for orders and products at the landing page.
 - Add, delete, and manage products with images.
-- GetX state management.
 - CRUD operations for users, products, orders, stocks, invoices, and admin profile management.
 - Clean and understandable code.
 
