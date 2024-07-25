@@ -1,6 +1,6 @@
 # E-commerce Project
 
-This is a comprehensive full-stack e-commerce application that includes a mobile app, an admin panel, and a backend. Each module is in its respective directory within this repository. The project is designed to provide a seamless shopping experience for users and efficient management capabilities for administrators.
+This is a comprehensive full-stack e-commerce application that includes a mobile app, an admin panel, and a backend. Each module is in its respective directory within this repository. I have tried to include every functionality, that an eCommerce module would require.
 
 ## Modules
 1. **Mobile App** (`mobile_app/`)
