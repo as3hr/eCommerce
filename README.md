@@ -15,10 +15,15 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 ## Features
 
 ### General Features
-- Full e-commerce functionality including product listings, user authentication, and payment processing.
-- Real-time chat support and push notifications.
+- Full e-commerce functionality including product listings, user authentication.
+- Real-time chat support.
+- push notifications.
+- Stripe payments,
+- Dark and light Mode.
+- Responsiveness.
+- Authorization and Admin-User Roles.
 - Admin management features including product, order, and user management.
-- User-friendly UI with dark mode and light mode.
+- User-friendly UI with animations in both Web and Mobile App and many more features.
 
 ### Mobile App Features
 - API integrations from the backend.
