@@ -8,7 +8,6 @@ This is the admin panel for my FullStack e-commerce project, built using Flutter
 - Real time Chat support for communication with all users via socket.io
 - Graphs and calculations for orders and products at the landing page
 - Add, delete, and manage products with images.
-- GetX state management
 - CRUD operations for users, products, orders, stocks, invoices, and admin profile management.
 - Clean and understandable code
 
