@@ -10,7 +10,6 @@ This is the decriotion of my mobile application for my Full-Stack e-commerce pro
 - Add to cart functionality
 - Stripe payment integration
 - Routes Management
-- GetX state management
 - User Profile update feature
 - Wishlist and favorites management
 - User-friendly UI
