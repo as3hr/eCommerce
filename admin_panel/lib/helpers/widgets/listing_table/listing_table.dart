@@ -187,8 +187,9 @@ class _ListingTableState extends State<ListingTable> {
                         onChanged: (val) {
                           searchVal.value = val;
                           debounce(searchVal, (_) {
+                            currentPage = 1;
                             fetchData(refresh: true);
-                          }, time: const Duration(milliseconds: 200));
+                          }, time: const Duration(milliseconds: 1200));
                         },
                         decoration: fieldDecoration(
                           hintText: widget.searchHintText,

@@ -20,18 +20,14 @@ class NotificationService {
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        final inChat = Get.find<ChatController>().inChat;
-        if (!inChat) {
-          final notification =
-              message.notification ?? const RemoteNotification();
-          showToast(
-            message: '${notification.body}',
-            snackPosition: SnackPosition.TOP,
-            title: '${notification.title}',
-            imagePath: AppImages.bellImage,
-            duration: const Duration(seconds: 2),
-          );
-        }
+        final notification = message.notification ?? const RemoteNotification();
+        showToast(
+          message: '${notification.body}',
+          snackPosition: SnackPosition.TOP,
+          title: '${notification.title}',
+          imagePath: AppImages.bellImage,
+          duration: const Duration(seconds: 2),
+        );
       });
     } else if (settings.authorizationStatus == AuthorizationStatus.denied) {
       showToast(
