@@ -43,8 +43,14 @@ class _BaseImageFormFieldState extends State<BaseImageFormField> {
   Future<void> addImages() async {
     imageFiles = await picker.pickMultiImage();
     for (var image in imageFiles) {
-      images.add(
-          ImageType(image: image.path, hasPath: true, imageName: image.name));
+      final bytes = await image.readAsBytes();
+      images.add(ImageType(
+        image: image.path,
+        mimeType: image.mimeType,
+        hasPath: true,
+        imageName: image.name,
+        bytes: bytes,
+      ));
     }
     setState(() {});
     widget.getImages.call(images);

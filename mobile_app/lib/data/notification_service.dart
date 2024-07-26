@@ -1,6 +1,5 @@
 import 'package:e_commerce/helpers/functions/loader.dart';
 import 'package:e_commerce/helpers/styles/app_images.dart';
-import 'package:e_commerce/screens/profile/components/profile_sub_screens/chat_support/chat_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 

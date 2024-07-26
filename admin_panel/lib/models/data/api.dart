@@ -2,6 +2,7 @@ import 'package:ecommerce_admin_panel/models/data/api_helpers.dart';
 import 'package:ecommerce_admin_panel/models/user_notification.dart';
 import 'package:ecommerce_admin_panel/models/order.dart';
 import 'package:ecommerce_admin_panel/models/product.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:ecommerce_admin_panel/models/user.dart';
 import 'package:dio/dio.dart';
 
@@ -80,9 +81,17 @@ class Api {
     return Pagination.fromJson(data, User.fromJson);
   }
 
-  static Future<String> uploadImage(String file, String name) async {
+  static Future<String> uploadImage(
+      List<int> file, String name, String mimeType) async {
     final data = FormData.fromMap({
-      'file': await MultipartFile.fromFile(file, filename: name),
+      'file': MultipartFile.fromBytes(
+        file,
+        filename: name,
+        contentType: MediaType(
+          'image',
+          mimeType,
+        ),
+      ),
     });
     const url = '/uploads/';
     final response = await dio.post(

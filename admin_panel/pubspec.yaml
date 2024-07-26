@@ -61,6 +61,7 @@ dependencies:
   path: ^1.8.3
   shared_preferences: ^2.2.2
   animated_text_kit: ^4.2.2
+  http_parser: ^4.0.2
   
 dependency_overrides:
   intl: ^0.18.0

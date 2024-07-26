@@ -84,8 +84,11 @@ class ProductController extends GetxController {
 
   Future<void> uploadImages(List<ImageType> images) async {
     for (final image in images) {
-      final resultedImage =
-          await Api.uploadImage(image.image, image.imageName ?? '');
+      final resultedImage = await Api.uploadImage(
+        image.bytes,
+        image.imageName ?? '',
+        image.mimeType ?? '',
+      );
       product.images.add(resultedImage);
     }
   }
