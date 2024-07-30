@@ -12,9 +12,9 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 - `admin_panel/`: Contains the admin panel built using Flutter.
 - `mobile_app/`: Contains the mobile application built using Flutter.
 
+## VIDEOS: (Note: Complete videos are present in each of their respective directories)
 ## Admin Panel Quick Overview
 https://github.com/user-attachments/assets/2d948284-0cc3-4fbc-9a46-bb8f12287d30
-
 
 ## Features
 
