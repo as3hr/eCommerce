@@ -18,7 +18,8 @@ https://github.com/user-attachments/assets/59f08dd0-e6d7-4f2e-ac83-a7bb26ed0931
 https://github.com/user-attachments/assets/96f5d086-3449-4c10-b75e-d4f2dab9a4c9
 
 ## Auth
-https://github.com/user-attachments/assets/86b111b3-4127-4a44-afe4-64d0997f94ac
+https://github.com/user-attachments/assets/3276c56d-99b2-476e-afb7-b240cf470ee2
+
 
 ## Installation
 1. Clone the repository:
