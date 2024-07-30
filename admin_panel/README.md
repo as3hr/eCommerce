@@ -14,7 +14,7 @@ This is the admin panel for my FullStack e-commerce project, built using Flutter
 ## Quick Overview
 https://github.com/user-attachments/assets/59f08dd0-e6d7-4f2e-ac83-a7bb26ed0931
 
-## Adding a Product
+## Example of updating a Product
 https://github.com/user-attachments/assets/96f5d086-3449-4c10-b75e-d4f2dab9a4c9
 
 ## Auth
