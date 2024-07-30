@@ -11,7 +11,7 @@ This is the admin panel for my FullStack e-commerce project, built using Flutter
 - CRUD operations for users, products, orders, stocks, invoices, and admin profile management.
 - Clean and understandable code
 
-## Quick Overview
+## Complete Overview
 https://github.com/user-attachments/assets/2d948284-0cc3-4fbc-9a46-bb8f12287d30
 
 ## Example of updating a Product
