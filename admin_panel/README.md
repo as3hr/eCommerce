@@ -34,11 +34,9 @@ https://github.com/user-attachments/assets/3276c56d-99b2-476e-afb7-b240cf470ee2
 3. Install dependencies:
    ```bash
    flutter pub get
-4. Clone the repository:
-   ```bash
-   git clone <admin-panel-repo-url>
-5. Set Up 
+4. Set Up 
    [Backend](https://github.com/as3hr/eCommerce/tree/main/backend)
+   
 6. Create an Admin: 
     Call the Create User/Create Account Api with "isAdmin: true" and other user information.
 
@@ -46,4 +44,4 @@ https://github.com/user-attachments/assets/3276c56d-99b2-476e-afb7-b240cf470ee2
    ```bash
    flutter run
 
-8. Use the credentials you gave in step 6 to log in to the Admin-Panel
+8. Use the credentials you gave in step 5 to log in to the Admin-Panel
