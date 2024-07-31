@@ -14,7 +14,7 @@ This is the admin panel for my FullStack e-commerce project, built using Flutter
 ## Complete Overview
 https://github.com/user-attachments/assets/2d948284-0cc3-4fbc-9a46-bb8f12287d30
 
-## RealTime Chat with Sockets
+## Chat with Sockets
 https://github.com/user-attachments/assets/2b792d4d-b301-4774-bf4d-a2d4d6177cd2
 
 ## Example of updating a Product
