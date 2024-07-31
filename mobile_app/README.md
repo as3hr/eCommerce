@@ -2,6 +2,21 @@
 
 This is the decriotion of my mobile application for my Full-Stack e-commerce project, built using Flutter.
 
+## Complete Overview
+https://github.com/user-attachments/assets/5d159c4a-57dd-4358-9991-2d73f2a3303c
+
+## Chat via Sockets
+https://github.com/user-attachments/assets/2b792d4d-b301-4774-bf4d-a2d4d6177cd2
+
+## Order Creation Process
+https://github.com/user-attachments/assets/09878aa4-fc30-4ebe-abb7-fa9be52d5e64
+
+## Auth
+https://github.com/user-attachments/assets/49060f4e-d74d-4a32-9783-bcf7e1761e97
+
+## Other Features
+https://github.com/user-attachments/assets/290bc946-f705-432a-89d6-50f91916e8bc
+
 ## Features
 - Dark mode and light mode
 - API integrations from my backend
