@@ -13,6 +13,9 @@ This is a comprehensive full-stack e-commerce application that includes a mobile
 - `mobile_app/`: Contains the mobile application built using Flutter.
 
 ## VIDEOS: (Complete videos are present in each of their respective directories)
+## [Mobile App](https://github.com/as3hr/eCommerce/tree/main/mobile_app) Overview
+https://github.com/user-attachments/assets/5d159c4a-57dd-4358-9991-2d73f2a3303c
+
 ## [Admin Panel](https://github.com/as3hr/eCommerce/tree/main/admin_panel) Overview
 https://github.com/user-attachments/assets/2d948284-0cc3-4fbc-9a46-bb8f12287d30
 
