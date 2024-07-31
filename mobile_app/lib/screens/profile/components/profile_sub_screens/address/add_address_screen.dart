@@ -63,7 +63,7 @@ class AddAddressScreen extends StatelessWidget {
                     (val?.isEmpty == true) ? 'City is required' : null,
               ),
               InputField(
-                preFilledValue: address.city,
+                preFilledValue: address.country,
                 onChanged: (val) {
                   address.country = val;
                 },

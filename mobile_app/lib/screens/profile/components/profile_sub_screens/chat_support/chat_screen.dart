@@ -11,7 +11,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: ChatController(inChat: true),
+        init: ChatController(),
         builder: (controller) {
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.surface,
