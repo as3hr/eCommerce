@@ -68,3 +68,6 @@ https://github.com/user-attachments/assets/2d948284-0cc3-4fbc-9a46-bb8f12287d30
 - Cron jobs for order status checks.
 - Seeder file for database management.
 - Pagination, filtering, and sorting.
+
+---
+Developed by Muhammad Ashar - 2024
