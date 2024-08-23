@@ -3,7 +3,7 @@ name: Installation and Checking
 on:
     push:
         branches:
-            - master
+            - main
 
 jobs:
     build:
