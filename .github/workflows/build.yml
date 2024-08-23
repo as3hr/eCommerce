@@ -1,0 +1,34 @@
+name: Installation and Checking
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        name: Installation Job of Continous Integration
+        runs-on: ubunut-latest
+        steps:
+            
+            - name: Checkot Code
+              uses: actions/checkout@v2
+            
+            - name: Use NodeJs
+              uses: actions/setup-node@v4
+              with:
+                node-version: '21.6.1'
+            
+            - name: Use Flutter
+              uses: subosito/flutter-action@v1
+              with: 
+                flutter-version: '3.22.1'
+            
+            - name: Install Node
+              run: cd backend && npm install
+            
+            - name: Install Flutter On Mobile
+              run: cd mobile_app && flutter pub get
+
+            - name: Install Flutter On Admin
+              run: cd admin_panel && flutter pub get
