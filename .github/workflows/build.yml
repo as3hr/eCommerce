@@ -32,3 +32,12 @@ jobs:
 
             - name: Install Flutter On Admin
               run: cd admin_panel && flutter pub get
+            
+            - name: Run npm
+              uses: npm run dev
+            
+            - name: Run Flutter 
+              run: cd mobile_app && flutter run
+            
+            - name: Run Flutter
+              uses: cd admin_panel && flutter run
