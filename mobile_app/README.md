@@ -1,6 +1,6 @@
 # E-commerce Mobile App
 
-This is the decriotion of my mobile application for my Full-Stack e-commerce project, built using Flutter.
+This is the description of my mobile application for my Full-Stack e-commerce project, built using Flutter.
 
 ## Complete Overview
 https://github.com/user-attachments/assets/5d159c4a-57dd-4358-9991-2d73f2a3303c
@@ -22,14 +22,14 @@ https://github.com/user-attachments/assets/290bc946-f705-432a-89d6-50f91916e8bc
 - API integrations from my backend
 - Push notifications using Firebase
 - Real-time chat support with admin using socket.io
-- Add to cart functionality
+- Add to-cart functionality
 - Stripe payment integration
 - Routes Management
 - User Profile update feature
 - Wishlist and favorites management
 - User-friendly UI
 - Addresses, Cards, Checkout and many more features
-- Pagination and filteration in API calls
+- Pagination and filtration in API calls
 - Clean and understandable code
 
 ## Main Screens
